@@ -8,7 +8,11 @@
             <div class="relative flex justify-center pt-8">
 
                 <img class=" border-2 border-[#76A8B2] -bottom-10 left-8 w-40 h-40 rounded-full "
-                     src="http://picsum.photos/seed/{{rand(62, 999999)}}/160/160/" alt="">
+                @if(auth()->user()->image)
+                    <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="User Image">
+                @else
+                    <img src="{{ asset('storage/images/download.jpeg') }}" alt="Default Image">
+                @endif
             </div>
 
             <!-- Profile Info -->
