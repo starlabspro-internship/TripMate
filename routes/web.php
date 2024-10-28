@@ -10,7 +10,7 @@ Route::get('/', function () {
 //example route
 Route::get('/example', function () {
     return view('example.index');
-});
+})->name('example');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

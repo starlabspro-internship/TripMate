@@ -14,15 +14,22 @@
         <!-- Scripts -->
         @vite('resources/js/app.js')
     </head>
-    <body class="font-sans antialiased min-h-screen bg-gray-100">
-        <!-- Page Heading -->
-        <header class="w-full md:absolute md:w-navbar md:left-[50px]">
+    <body class=" bg-orange-200 dark:bg-[#0F172A] font-sans antialiased w-full md:absolute md:w-navbar md:left-[50px]">
+        <div class="min-h-screen">
             @include('components.navbar')
-        </header>
 
-        <!-- Page Content -->
-        <main class="p-14 bg-orange-200">
-            {{ $slot }}
-        </main>
+            <!-- Page Heading -->
+            @isset($header)
+                <header class="w-full md:absolute md:w-navbar md:left-[50px]">
+                    @include('components.navbar')
+                </header>
+            @endisset
+
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
+        </div>
+
     </body>
 </html>
