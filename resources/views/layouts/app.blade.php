@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'TripMate') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -14,7 +14,7 @@
         <!-- Scripts -->
         @vite('resources/js/app.js')
     </head>
-    <body class="font-sans antialiased">
+    <body class=" bg-white dark:bg-[#0F172A] font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
@@ -32,5 +32,6 @@
                 {{ $slot }}
             </main>
         </div>
+
     </body>
 </html>
