@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -17,6 +18,13 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         return view('profile.edit', [
+            'user' => $request->user(),
+        ]);
+    }
+
+    public function index(Request $request): View
+    {
+        return view('profile.index', [
             'user' => $request->user(),
         ]);
     }
@@ -32,9 +40,24 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
+        $request->validate([
+            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $user = Auth::user();
+
+        if (request()->hasFile('image')) {
+            if ($user->image){
+                Storage::disk('public')->delete($user->image);
+            }
+
+            $path = $request->file('image')->store('images', 'public');
+            $user->image = $path;
+            $user->save();
+        }
+
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.index')->with('status', 'profile-updated');
     }
 
     /**

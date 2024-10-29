@@ -13,13 +13,13 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required  autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
@@ -47,6 +47,14 @@
             @endif
         </div>
 
+        <div>
+            <x-secondary-button class="bg-gray-100 hover:scale-105 transition duration-500 hover:bg-gray-200 flex justify-center items-center mr-3"
+                                onclick="document.getElementById('image-upload').click()">
+                {{ __('Edit Image') }}
+            </x-secondary-button>
+            <input type="file" id="image-upload" name="image" accept="image/*" class="hidden" onchange="previewImage(event)">
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
@@ -61,4 +69,18 @@
             @endif
         </div>
     </form>
+    <script>
+        function previewImage(event) {
+            const image = document.getElementById('profileImage');
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    image.src = e.target.result; // Update the image preview
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 </section>
