@@ -15,8 +15,12 @@
         @vite('resources/js/app.js')
     </head>
     <body class=" bg-slate-600 dark:bg-[#0F172A] font-sans antialiased w-full md:absolute md:w-navbar md:left-[50px]">
+        
         <div class="min-h-screen">
-            @include('components.navbar')
+            
+            @if(!request()->is('dashboard'))  
+                @include('components.navbar')
+            @endif
 
             @isset($header)
                 <header class="bg-white shadow">
