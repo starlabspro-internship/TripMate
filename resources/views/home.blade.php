@@ -1,23 +1,19 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
-    @vite('resources/js/app.js')
+<!-- resources/views/home.blade.php -->
+<x-layouts.app>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Welcome to the Home Page') }}
+        </h2>
+    </x-slot>
 
-    <script>
-        console.log("Script in the head section");
-    </script>
-</head>
-
-<body>
-<div class="banner">
-    <h1 class="text-blue-500 p-4 bg-red-500">home</h1>
-</div>
-<div x-data="{ count: 0 }">
-    <button @click="count++">Add</button>
-    <span x-text="count"></span>
-</div>
-</body>
-</html>
+    <!-- Page Content -->
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    This is the main content of the home page.
+                </div>
+            </div>
+        </div>
+    </div>
+</x-layouts.app>
