@@ -14,7 +14,7 @@
         <!-- Scripts -->
         @vite('resources/js/app.js')
     </head>
-    <body class=" bg-slate-600 dark:bg-[#0F172A] font-sans antialiased w-full md:absolute md:w-navbar md:left-[50px]">
+    <body class=" bg-orange-200 dark:bg-[#0F172A] font-sans antialiased w-full md:absolute md:w-navbar md:left-[50px]">
         <div class="min-h-screen">
             @include('components.navbar')
 

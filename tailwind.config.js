@@ -19,6 +19,9 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            width: {
+                navbar: "calc(100% - 100px)"
+            },
         },
     },
 
