@@ -18,9 +18,12 @@
         
         <div class="h-screen flex flex-col ">
             
-            @if(!request()->is('dashboard'))  
-                @include('components.navbar')
+            @if(Auth::check())  
+                @include('layouts.navigation') 
+            @else
+                @include('components.navbar') 
             @endif
+
 
             @isset($header)
                 <header class="bg-white shadow w-full">
