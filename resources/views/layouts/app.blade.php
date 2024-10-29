@@ -14,17 +14,17 @@
         <!-- Scripts -->
         @vite('resources/js/app.js')
     </head>
-    <body class=" bg-slate-600 dark:bg-[#0F172A] font-sans antialiased w-full md:absolute md:w-navbar md:left-[50px]">
+    <body class="min-h-screen bg-slate-600 dark:bg-[#0F172A] font-sans antialiased w-full md:absolute md:w-navbar">
         
-        <div class="min-h-screen">
+        <div class="h-screen flex flex-col ">
             
             @if(!request()->is('dashboard'))  
                 @include('components.navbar')
             @endif
 
             @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <header class="bg-white shadow w-full">
+                    <div class=" py-6 px-4 sm:px-6 ">
                         {{ $header }}
                     </div>
                 </header>
