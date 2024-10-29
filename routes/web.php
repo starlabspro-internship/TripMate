@@ -7,6 +7,10 @@ use App\Http\Controllers\BannerController;
 Route::resource('banner', BannerController::class);
 
 Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/banner', function () {
     return redirect('banner');
 });
 
@@ -30,5 +34,7 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 });
+
+
 
 require __DIR__.'/auth.php';
