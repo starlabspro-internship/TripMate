@@ -16,6 +16,9 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                orange: '#E7944C',
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
