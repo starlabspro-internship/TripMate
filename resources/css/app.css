@@ -2,12 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.banner{
+.banner {
     border-bottom: solid black;
 }
-#container{
+
+#container {
     width: 50%;
 }
+
 @media (max-width: 768px) {
     #container {
         width: 90%;
@@ -15,9 +17,98 @@
     #card-place {
         flex-direction: column;
     }
-    #card{
+    #card {
         width: 100%;
         margin-bottom: 10px;
     }
+}
 
+@font-face {
+    font-family: 'Planer';
+    src: url('/fonts/Planer-Regular.ttf') format('opentype');
+    font-weight: 400;
+    font-style: oblique;
+}
+
+@keyframes gradientBackgroundAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.footer-background {
+    background: linear-gradient(270deg, #a384ec, #38B2AC, #de8484, #36edcb);
+    background-size: 800% 800%;
+    animation: gradientBackgroundAnimation 30s ease infinite;
+    position: relative; 
+    overflow: hidden; 
+    z-index: 2;
+}
+
+footer .footer-heading {
+    font-family: 'Planer', sans-serif;
+    font-weight: bold;
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.4px;
+    color: #fbfbfb;
+    margin-bottom: 0.75rem;
+}
+
+.footer-link {
+    color: #fbfbfb;
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Planer', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    line-height: 2;
+    transition: transform 0.3s ease, text-decoration 0.3s ease;
+}
+
+.footer-link:hover {
+    transform: translateX(5px);
+    color: #fbfbfb;
+}
+
+.arrow {
+    margin-right: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+@media (max-width: 640px) {
+    .footer-background {
+        padding: 20px;
+    }
+
+    .footer-heading {
+        font-size: 0.75rem;
+    }
+
+    .footer-link {
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 640px) {
+    .footer-heading {
+        font-size: 0.85rem;
+    }
+
+    .footer-link {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-heading {
+        font-size: 1rem;
+    }
+
+    .footer-link {
+        font-size: 1.1rem;
+    }
 }

@@ -68,6 +68,8 @@
                 <div>
                     Table
                 </div>
+               
+                
             </div>
             <div class =  "hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
@@ -77,6 +79,8 @@
                 <div>
                     Graph
                 </div>
+                
+              
             </div>
             <a href="{{ route('banners.index') }}">
                 <div class="hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
@@ -246,6 +250,12 @@
         </div>
     </div>
     </div>
+
+
+
+
+    
+    
 </x-app-layout>
 
 <!-- Create Button -->
