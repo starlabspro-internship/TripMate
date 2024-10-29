@@ -2,9 +2,21 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BannerController;
+
+Route::resource('banner', BannerController::class);
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+});
+
+Route::get('/banner', function () {
+    return redirect('banner');
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::resource('banners', BannerController::class);
 });
 
 //example route
@@ -20,6 +32,9 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
     Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
+
+
 
 require __DIR__.'/auth.php';
