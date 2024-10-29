@@ -7,6 +7,10 @@ use App\Http\Controllers\BannerController;
 Route::resource('banner', BannerController::class);
 
 Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/banner', function () {
     return redirect('banner');
 });
 
