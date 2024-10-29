@@ -7,14 +7,19 @@
 
         <title>TripMate</title>
 
-        <!-- Fonts -->
+        <!-- Fonts 
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />  -->
+
+         <!-- Ereblira's font -->
+        @vite('resources/css/app.css')
+
+
 
         <!-- Scripts -->
         @vite('resources/js/app.js')
     </head>
-    <body class="min-h-screen bg-slate-600 dark:bg-[#0F172A] font-sans antialiased w-full md:absolute md:w-navbar">
+    <body class="min-h-screen bg-slate-600 dark:bg-[#0F172A] font-planer antialiased w-full md:absolute md:w-navbar">
         
         <div class="h-screen flex flex-col ">
             
@@ -36,8 +41,18 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+
+                
             </main>
+
+  <!-- footer perveq ne dashboard -->
+ 
+
+            
         </div>
+        @unless(request()->is('dashboard*')) 
+        <x-footer />
+      @endunless
 
     </body>
 </html>
