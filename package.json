@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "serve": "start /b php artisan serve && npm run dev"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
@@ -13,10 +14,12 @@
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.47",
+        "sass-embedded": "^1.80.4",
         "tailwindcss": "^3.4.14",
         "vite": "^5.0"
     },
     "dependencies": {
-        "@alpinejs/intersect": "^3.14.3"
+        "@alpinejs/intersect": "^3.14.3",
+        "font-awesome": "^4.7.0"
     }
 }

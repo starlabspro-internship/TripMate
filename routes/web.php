@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialAuthController;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BannerController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 Route::resource('banner', BannerController::class);
 
@@ -13,7 +17,6 @@ Route::get('/', function () {
 Route::get('/banner', function () {
     return redirect('banner');
 });
-
 
 Route::middleware('auth')->group(function () {
     Route::resource('banners', BannerController::class);
@@ -35,6 +38,7 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 
 });
 
-
+Route::get('auth/google',[SocialAuthController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('auth/google/callback',[SocialAuthController::class, 'googleCallback'])->name('login.google.callback');
 
 require __DIR__.'/auth.php';
