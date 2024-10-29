@@ -9,6 +9,14 @@
                     {{ __("You're in example page") }}
                 </div>
             </div>
+            <ul>
+                <li class="">
+                    <a href="#">
+                        Link
+                    </a>
+                    <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="Profile Picture" class="mt-2 w-32 h-32 object-cover rounded-full">
+                </li>
+            </ul>
         </div>
     </div>
 </x-app-layout>
