@@ -1,5 +1,5 @@
-<footer class="footer-background relative text-white py-14">
-    <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm footer-content mt-8 relative">
+ <footer class="footer-background relative text-white py-14 mt-10">
+    <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm footer-content mt-14 relative text-center md:text-left">
         <div class="flex items-start justify-center md:col-span-1">
             <h2 class="footer-logo text-lg sm:text-xl">LOGO</h2>
         </div>
@@ -31,7 +31,7 @@
 
     <div class="container mx-auto flex justify-center items-center w-full mt-8 text-xs border-t border-white-500 pt-8 footer-bottom relative">
         <div class="text-center w-full">
-            <p>Copyright © TRIP MATE. {{ date('Y') }}. All Rights Reserved.</p>
+            <p>Copyright  TRIP MATE. {{ date('Y') }}. All Rights Reserved.</p>
         </div>
     </div>
 </footer>

@@ -36,8 +36,6 @@
                 
             </main>
 
-  <!-- footer perveq ne dashboard -->
- 
 
             
         </div>
