@@ -1,35 +1,9 @@
-@if(!Auth::check())  
-<x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="leading-tight mb-8"></div>
-            {{-- banners --}}
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-                @php
-                    $banners = \App\Models\Banner::all();
-                @endphp
-
-                @forelse($banners as $banner)
-                    <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200">
-                        <img src="{{ asset('storage/'.$banner->image_path) }}" alt="Banner Image" class="w-full h-40 object-cover rounded-md mb-4">
-                        <h2 class="text-lg font-bold text-gray-800">{{ $banner->title }}</h2>
-                        <p class="text-sm text-gray-600 mt-2">{{ $banner->description }}</p>
-                        <a href="{{ $banner->button_link }}" class="inline-block mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200">
-                            {{ $banner->button_text }}
-                        </a>
-                    </div>
-                @empty
-                    <p class="text-gray-600">No banners found.</p>
-                @endforelse
-            </div>
-        </div>
-    </div>
-    <!-- icons -->
-    <div class="flex items-center justify-center py-12 bg-gray-50">
-        <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12 lg:space-x-28">
+{{-- <x-app-layout>
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-28">
             <!-- Verified Icon -->
-            <div class="text-center flex-shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="url(#verifiedGradient)" class="w-12 h-12 md:w-16 md:h-16 mx-auto">
+            <div class="text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="url(#verifiedGradient)" class="w-16 h-16 mx-auto">
                     <defs>
                         <linearGradient id="verifiedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" style="stop-color:#0000FF; stop-opacity:1" />
@@ -43,8 +17,8 @@
             </div>
 
             <!-- Star Rating Icon -->
-            <div class="text-center flex-shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="url(#starGradient)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 md:w-16 md:h-16 mx-auto">
+            <div class="text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="url(#starGradient)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16 mx-auto">
                     <defs>
                         <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" style="stop-color:#0000FF; stop-opacity:1" />
@@ -58,8 +32,8 @@
             </div>
 
             <!-- Report Icon -->
-            <div class="text-center flex-shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="url(#infoGradient)" class="w-12 h-12 md:w-16 md:h-16 mx-auto">
+            <div class="text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="url(#infoGradient)" class="w-16 h-16 mx-auto">
                     <defs>
                         <linearGradient id="infoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" style="stop-color:#0000FF; stop-opacity:1" />
@@ -73,5 +47,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
-@endif
+</x-app-layout> --}}
