@@ -1,4 +1,4 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <div class="flex items-center justify-center min-h-screen">
         <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-28">
             <!-- Verified Icon -->
@@ -47,4 +47,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-app-layout> --}}
