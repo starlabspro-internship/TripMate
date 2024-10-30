@@ -16,7 +16,7 @@
                     @if(auth()->user()->image)
                         <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="User Image">
                     @else
-                        <img src="{{ asset('storage/images/download.jpeg') }}" alt="Default Image">
+                        <img src="{{ asset('https://eu.ui-avatars.com/api/' . auth()->user()->name  . '+' . auth()->user()->lastname . 'size=250') }}" alt="Default Image">
                     @endif
                 </div>
             </div>

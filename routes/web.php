@@ -22,6 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('banners', BannerController::class);
 });
 
+
+
+
+
 //example route
 Route::get('/example', function () {
     return view('example.index');
