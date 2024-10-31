@@ -16,7 +16,7 @@
 
             @if(Auth::check())
                 @include('layouts.navigation')
-            @else
+            @elseif (!Auth::check() && request()->is('/'))
                 @include('components.navbar')
             @endif
             @isset($header)
@@ -36,6 +36,13 @@
 
 
         </div>
+        @if (!Auth::check() && !request()->is('login') && !request()->is('register'))
+    <x-navbar />
+@endif
+
+@if (!Auth::check() && request()->is('/'))
+    <x-navbar />
+@endif
 
         @if (!Auth::check() && request()->is('/'))
         <x-footer />
