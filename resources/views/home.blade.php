@@ -67,4 +67,3 @@
         </div>
 </x-app-layout>
 @endguest
->>>>>>> Stashed changes

@@ -11,7 +11,7 @@
                 @if(auth()->user()->image)
                     <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="User Image">
                 @else
-                    <img src="{{ asset('storage/images/download.jpeg') }}" alt="Default Image">
+                    <img src="{{ asset('https://eu.ui-avatars.com/api/' . auth()->user()->name  . '+' . auth()->user()->lastname . 'size=250') }}" alt="Default Image">
                 @endif
             </div>
 
@@ -43,7 +43,7 @@
 
             <!-- Action Section -->
             <div class="p-6 bg-white/40 backdrop-blur-md flex justify-evenly" id="card-place">
-                <div id="card" class="w-1/3 bg-gray/20 backdrop-blur-md border-2 border-[#A2D5F2] rounded-lg p-4 mx-2 flex items-center justify-between shadow-sm hover:shadow-xl cursor-pointer hover:scale-105 transition duration-300 hover:border-sky-500">
+                <div id="card" class="w-1/2 bg-gray/20 backdrop-blur-md border-2 border-[#A2D5F2] rounded-lg p-4 mx-2 flex items-center justify-between shadow-sm hover:shadow-xl cursor-pointer hover:scale-105 transition duration-300 hover:border-sky-500">
                 <div>
                         <h4 class="font-medium">Verify Profile</h4>
                         <p class="text-sm text-gray-500">You should verify profile for safety reasons.</p>
@@ -51,7 +51,7 @@
                     <span class="text-gray-500 text-lg">&#8594;</span>
                 </div>
 
-                <div id="card" class="w-1/3 bg-gray/20 backdrop-blur-md border-2 border-[#A2D5F2] rounded-lg p-4 mx-2 flex items-center justify-between shadow-sm hover:shadow-xl cursor-pointer hover:scale-105 transition duration-300 hover:border-sky-500">
+                <div id="card" class="w-1/2 bg-gray/20 backdrop-blur-md border-2 border-[#A2D5F2] rounded-lg p-4 mx-2 flex items-center justify-between shadow-sm hover:shadow-xl cursor-pointer hover:scale-105 transition duration-300 hover:border-sky-500">
                     <div>
                         <h4 class="font-medium">Ride History</h4>
                         <p class="text-sm text-gray-500">See your last rides and details.</p>

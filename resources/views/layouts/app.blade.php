@@ -7,21 +7,17 @@
 
         <title>TripMate</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
         <!-- Scripts -->
         @vite('resources/js/app.js')
     </head>
-    <body class="min-h-screen bg-slate-600 dark:bg-[#0F172A] font-sans antialiased w-full md:absolute md:w-navbar">
-        
-        <div class="h-screen flex flex-col ">
-            
-            @if(Auth::check())  
-                @include('layouts.navigation') 
+    <body class="min-h-screen bg-slate-600 dark:bg-[#0F172A] font-planer antialiased w-full md:absolute md:w-navbar">
+
+        <div class=" flex flex-col ">
+
+            @if(Auth::check())
+                @include('layouts.navigation')
             @else
-                @include('components.navbar') 
+                @include('components.navbar')
             @endif
             @isset($header)
                 <header class="bg-white shadow w-full">
@@ -33,10 +29,17 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+
+
             </main>
+
+
+
         </div>
-        @if (request()->is('/'))
+
+        @if (!Auth::check() && request()->is('/'))
         <x-footer />
         @endif
+        
     </body>
 </html>

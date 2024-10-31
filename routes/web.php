@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialAuthController;
 use Laravel\Socialite\Facades\Socialite;
@@ -8,24 +9,19 @@ use App\Http\Controllers\BannerController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-Route::resource('banner', BannerController::class);
-
 Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/banner', function () {
-    return redirect('banner');
-});
-
-Route::middleware('auth')->group(function () {
-    Route::resource('banners', BannerController::class);
-});
+Route::get('/banners', function () {
+    return view('banners.index');
+})
+->name('banners');
 
 //example route
-Route::get('/example', function () {
+Route::get( '/example', function () {
     return view('example.index');
-})->name('example');
+})->name(name: "example");
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -38,7 +34,18 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 
 });
 
+
 Route::get('auth/google',[SocialAuthController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('auth/google/callback',[SocialAuthController::class, 'googleCallback'])->name('login.google.callback');
 
+Route::get('/icons', function () {
+    return view('icons');
+    });
+
+Route::get('/cars', function () {
+    return view('cars');
+});
+
 require __DIR__.'/auth.php';
+
+

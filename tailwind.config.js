@@ -20,10 +20,9 @@ export default {
                 orange: '#E7944C',
             },
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                planer: ['Planer', 'sans-serif'], 
             },
         },
     },
-
-    plugins: [forms],
+    plugins: [],
 };

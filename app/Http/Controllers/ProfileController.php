@@ -41,7 +41,7 @@ class ProfileController extends Controller
         }
 
         $request->validate([
-            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image'=>'required',
         ]);
         $user = Auth::user();
 
@@ -80,4 +80,5 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
 }
