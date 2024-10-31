@@ -42,7 +42,9 @@ Route::get('/icons', function () {
     return view('icons');
     });
 
-
+Route::get('/cars', function () {
+    return view('cars');
+});
 
 require __DIR__.'/auth.php';
 
