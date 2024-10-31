@@ -1,27 +1,12 @@
-@if(!Auth::check())
-    <x-app-layout>
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="leading-tight mb-8"></div>
-                {{-- banners --}}
-                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-                    @php
-                        $banners = \App\Models\Banner::all();
-                    @endphp
-                    
-                    @forelse($banners as $banner)
-                        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200">
-                            <img src="{{ asset('storage/'.$banner->image_path) }}" alt="Banner Image" class="w-full h-40 object-cover rounded-md mb-4">
-                            <h2 class="text-lg font-bold text-gray-800">{{ $banner->title }}</h2>
-                            <p class="text-sm text-gray-600 mt-2">{{ $banner->description }}</p>
-                            <a href="{{ $banner->button_link }}" class="inline-block mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200">
-                                {{ $banner->button_text }}
-                            </a>
-                        </div>
-                    @empty
-                        <p class="text-gray-600">No banners found.</p>
-                    @endforelse
-                </div>
+<x-app-layout>
+    <div class="w-full h-screen flex flex-col justify-center items-center text-center bg-cover bg-center py-12"
+        style="background-image: url('/storage/images/car.png');">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="leading-tight mb-8"></div>
+            {{-- banners --}}
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+
+                    </div>
             </div>
         </div>
         <!-- icons -->
@@ -73,6 +58,14 @@
                 </div>
             </div>
         </div>
-    </x-app-layout>
-@endif
+    </div>
+
+    <x-banner
+        title="Welcome to Our Platform"
+        description="Discover new experiences with us."
+        background-image="{{ asset('storage/images/car.png') }}"
+        button-text="Learn More"
+        button-link="/about"
+    />
+</x-app-layout>
 
