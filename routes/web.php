@@ -9,25 +9,14 @@ use App\Http\Controllers\BannerController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-
-
-Route::resource('banner', BannerController::class);
-
 Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/banner', function () {
-    return redirect('banner');
-});
-
-Route::middleware('auth')->group(function () {
-    Route::resource('banners', BannerController::class);
-});
-
-
-
-
+Route::get('/banners', function () {
+    return view('banners.index');
+})
+->name('banners');
 
 //example route
 Route::get( '/example', function () {
