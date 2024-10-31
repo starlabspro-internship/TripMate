@@ -32,7 +32,7 @@ class SocialAuthController extends Controller
                 ],
             );
             Auth::login($authUser);
-            return redirect('/');
+            return redirect('/dashboard');
         } catch (Exception $e) {
             Log::error('Google authentication error: ' . $e->getMessage());
             return redirect('/login')->withErrors('Google authentication failed!');
