@@ -8,14 +8,14 @@
         </div>
     </div>
     <div class="flex justify-center self-center pl-4 pr-4 z-10">
-            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="p-12 bg-white mx-auto border-4 border-transparent rounded-3xl mt-8 shadow-md transition duration-300 hover:shadow-lg mb-20 sm:mb-0">
+            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="p-1 bg-white mx-auto border-4 border-transparent rounded-3xl mt-8 shadow-md transition duration-300 hover:shadow-lg mb-20 sm:mb-0">
             @csrf
-            <div class="mb-7 font-sans">
-                <h3 class="text-2xl text-gray-800 mb-2">Sign Up</h3> 
+            <div class="mb-7 font-sans ml-4">
+                <h3 class="text-2xl text-gray-800 mb-2 mt-4">Sign Up</h3> 
                 <p class="text-gray-400">Already have an account? <a href="{{ route('login') }}" class="text-sm text-blue-900 hover:text-blue-900">Sign In</a></p>
             </div>            
             <div class="space-y-6 font-sans">
-<div class="mb-5">
+<div class="mb-5 ml-2">
     <label for="image" class="block mb-2 text-sm font-medium text-gray-700">Profile Picture</label>
     <div class="flex items-center">
         <input id="image" 
@@ -31,15 +31,15 @@
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
     @enderror
 </div>
-<div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+<div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 mx-2">
     <div class="w-full md:w-1/2">
-        <input id="name" class="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="name" placeholder="First Name" value="{{ old('name') }}" required autofocus />
+        <input id="name" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="name" placeholder="First Name" value="{{ old('name') }}" required autofocus />
         @error('name')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
     </div>
     <div class="w-full md:w-1/2">
-        <input id="lastname" class="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="lastname" placeholder="Last Name" value="{{ old('lastname') }}" required />
+        <input id="lastname" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="lastname" placeholder="Last Name" value="{{ old('lastname') }}" required />
         @error('lastname')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
@@ -47,22 +47,22 @@
 </div>
 
                 <!-- email -->
-                <div>
-                    <input id="email" class="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="email" name="email" placeholder="Email" value="{{old('email')}}" required />
+                <div class="mx-2">
+                    <input id="email" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="email" name="email" placeholder="Email" value="{{old('email')}}" required />
                     @error('email')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
                  <!-- Birthday and City Row -->
-                 <div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 mt-4">
+                 <div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 mt-4 mx-2">
                     <div class="w-full md:w-1/2">
-                        <input id="birthday" class="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="date" name="birthday" value="{{ old('birthday') }}" required />
+                        <input id="birthday" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="date" name="birthday" value="{{ old('birthday') }}" required />
                         @error('birthday')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="w-full md:w-1/2">
-                        <input id="city" class="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="city" placeholder="City" value="{{ old('city') }}" required />
+                        <input id="city" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="city" placeholder="City" value="{{ old('city') }}" required />
                         @error('city')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
@@ -70,23 +70,23 @@
                 </div>
                 
                 <!-- phone number -->
-                <div>
-                    <input id="phone" class="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="phone" placeholder="Phone Number" value="{{old('phone')}}" required />
+                <div class="mx-2">
+                    <input id="phone" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="phone" placeholder="Phone Number" value="{{old('phone')}}" required />
                     @error('phone')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
                                
 <!-- Password and Confirm Password Row -->
-<div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 mt-4">
+<div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 mt-4 mx-2">
     <div class="w-full md:w-1/2">
-        <input id="password" class="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="password" name="password" placeholder="Password" required />
+        <input id="password" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="password" name="password" placeholder="Password" required />
         @error('password')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
     </div>
     <div class="w-full md:w-1/2">
-        <input id="password_confirmation" class="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="password" name="password_confirmation" placeholder="Confirm Password" required />
+        <input id="password_confirmation" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="password" name="password_confirmation" placeholder="Confirm Password" required />
     </div>
 </div>
 
