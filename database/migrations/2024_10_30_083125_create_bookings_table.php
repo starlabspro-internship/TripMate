@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Trip;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -13,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor('trip_id')->constrained()->onDelete('cascade');
-            $table->foreignIdFor('passenger_id')->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Trip::class, 'trip_id')->constrained()->onDelete('cascade');
+            $table->foreignIdFor(User::class, 'passenger_id')->constrained()->onDelete('cascade');
             $table->integer('seats_booked');
             $table->string('status')->default('active');
             $table->timestamps();

@@ -11,13 +11,13 @@
         @vite('resources/js/app.js')
     </head>
     <body class="min-h-screen bg-slate-600 dark:bg-[#0F172A] font-planer antialiased w-full md:absolute md:w-navbar">
-        
-        <div class="h-screen flex flex-col ">
-            
-            @if(Auth::check())  
-                @include('layouts.navigation') 
+
+        <div class=" flex flex-col ">
+
+            @if(Auth::check())
+                @include('layouts.navigation')
             @else
-                @include('components.navbar') 
+                @include('components.navbar')
             @endif
 
 
@@ -33,13 +33,13 @@
             <main>
                 {{ $slot }}
 
-                
+
             </main>
 
 
-            
+
         </div>
-        @unless(request()->is('dashboard*')) 
+        @unless(request()->is('dashboard*'))
         <x-footer />
       @endunless
 
