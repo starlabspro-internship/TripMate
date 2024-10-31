@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Trip;
+use App\Models\Message;
+use App\Models\Booking;
+
 
 class User extends Authenticatable
 {
@@ -16,6 +20,20 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+    }
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+    public function mesazhat()
+    {
+        return $this->hasMany(Message::class);
+    }
+
     protected $fillable = [
         'image',
         'name',
@@ -27,7 +45,6 @@ class User extends Authenticatable
         'city',
         'google_id',
         'role',
-        'is_admin'
     ];
 
     /**
