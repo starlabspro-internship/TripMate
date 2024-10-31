@@ -1,3 +1,4 @@
+@guest
 <x-app-layout>
     <div class="w-full  flex flex-col justify-center items-center text-center bg-cover bg-center py-12"
         style="background-image: url('/storage/images/download.jpeg');">
@@ -64,7 +65,5 @@
                 </div>
             </div>
         </div>
-
-
 </x-app-layout>
-
+@endguest

@@ -19,8 +19,6 @@
             @else
                 @include('components.navbar')
             @endif
-
-
             @isset($header)
                 <header class="bg-white shadow w-full">
                     <div class=" py-6 px-4 sm:px-6 ">
@@ -28,7 +26,6 @@
                     </div>
                 </header>
             @endisset
-
             <!-- Page Content -->
             <main>
                 {{ $slot }}
@@ -39,9 +36,10 @@
 
 
         </div>
-        @unless(request()->is('dashboard*'))
-        <x-footer />
-      @endunless
 
+        @if (!Auth::check() && request()->is('/'))
+        <x-footer />
+        @endif
+        
     </body>
 </html>
