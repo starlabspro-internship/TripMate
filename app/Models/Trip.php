@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\City;
+use App\Models\Booking;
 
 class Trip extends Model
 {
@@ -24,7 +25,7 @@ class Trip extends Model
         return $this->hasMany(Booking::class);
     }
 
-    public function messages(){
+    public function mesazhat(){
         return $this->hasMany(Message::class);
     }
 }

@@ -1,4 +1,4 @@
- <footer class="footer-background relative text-white py-14 mt-10">
+ <footer class="footer-background relative text-white py-14">
     <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm footer-content mt-14 relative text-center md:text-left">
         <div class="flex items-start justify-center md:col-span-1">
             <h2 class="footer-logo text-lg sm:text-xl">LOGO</h2>
