@@ -57,6 +57,15 @@ Route::get('/cars', function () {
     return view('cars');
 });
 
+
+    Route::get('test-superadmin', function () {
+        return 'You are a super admin!';
+    })->middleware(['auth', 'super_admin']);
+    
+  
+    
+
+
 require __DIR__.'/auth.php';
 
 
