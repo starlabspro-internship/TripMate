@@ -15,6 +15,16 @@ class City extends Model
             'latitude',
             'longitude',
     ];
+    public function index()
+{
+    // Fetch all cities
+    $cities = City::all();
+    
+    // Fetch trips if needed or pass an empty array initially
+    $trips = Trip::all();
+
+    return view('index', compact('cities', 'trips'));
+}
 
     public function trips(){
         return $this->hasMany(Trip::class, 'origin_city_id');

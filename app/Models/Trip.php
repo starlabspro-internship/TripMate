@@ -9,6 +9,15 @@ use App\Models\Booking;
 
 class Trip extends Model
 {
+    protected $fillable = [
+        'driver_id',
+        'origin_city_id',
+        'destination_city_id',
+        'departure_time',
+        'arrival_time',
+        'available_seats',
+        'price',
+    ];
     public function users()
     {
         return $this->belongsTo(User::class, 'driver_id');
