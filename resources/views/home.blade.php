@@ -1,13 +1,14 @@
 <x-app-layout>
     <div class="w-full  flex flex-col justify-center items-center text-center bg-cover bg-center py-12"
-        style="background-image: url('{{ asset('storage/images/porsch.jpeg') }}');">
-        <div class="max-w-7xl  px-4 sm:px-6 lg:px-8">
+        style="background-image: url('/storage/images/download.jpeg');">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="leading-tight mb-8"></div>
             {{-- banners --}}
             <div class=" gap-6 sm:grid-cols-2 md:grid-cols-3">
                 <x-banner
                     title="Welcome to Our Platform"
                     description="Discover new experiences with us."
+                    background-image="{{ asset('storage/images/download.jpeg') }}"
                     button-text="Learn More"
                     button-link="/about"
                 />
