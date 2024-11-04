@@ -53,21 +53,24 @@
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
-                 <!-- Birthday and City Row -->
-                 <div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 mt-4 mx-2">
-                    <div class="w-full md:w-1/2">
-                        <input id="birthday" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="date" name="birthday" value="{{ old('birthday') }}" required />
-                        @error('birthday')
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="w-full md:w-1/2">
-                        <input id="city" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="city" placeholder="City" value="{{ old('city') }}" required />
-                        @error('city')
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
+<!-- Birthday and City Row -->
+<div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 mt-4 mx-2">
+    <div class="w-full md:w-1/2">
+        <input id="birthday" 
+               class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" 
+               type="text" name="birthday" value="{{ old('birthday') }}" required 
+               placeholder="Select your birthday" />
+        @error('birthday')
+            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+        @enderror
+    </div>
+    <div class="w-full md:w-1/2">
+        <input id="city" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="city" placeholder="City" value="{{ old('city') }}" required />
+        @error('city')
+            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+        @enderror
+    </div>
+</div>
                 
                 <!-- phone number -->
                 <div class="mx-2">
@@ -108,5 +111,11 @@
         const fileName = input.files[0] ? input.files[0].name : 'No file chosen';
         document.getElementById('file-name').textContent = fileName;
     }
+    document.addEventListener('DOMContentLoaded', function() {
+        flatpickr("#birthday", {
+            dateFormat: "Y-m-d", // Specify the desired date format
+            maxDate: new Date(), // Prevent future dates
+        });
+    });
 </script>
 </x-app-layout>

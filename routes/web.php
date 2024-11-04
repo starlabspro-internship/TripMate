@@ -8,6 +8,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BannerController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\TripController;
+
+// Route::get('/trips', [TripController::class, 'index']);
+Route::resource('trips', TripController::class);
+Route::get('/trips', [TripController::class, 'index'])->name('trips.index');
+Route::get('/trips/create', [TripController::class, 'create'])->name('trips.create');
+Route::post('/trips/store', [TripController::class, 'store'])->name('trips.store');
+Route::post('/trips', [TripController::class, 'store']); 
+Route::get('/trips/{id}/edit', [TripController::class, 'edit']);
+Route::put('/trips/{id}', [TripController::class, 'update']); 
+Route::delete('/trips/{id}', [TripController::class, 'destroy']); 
 
 Route::get('/', function () {
     return view('home');
