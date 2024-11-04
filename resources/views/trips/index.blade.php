@@ -1,8 +1,5 @@
 <x-app-layout>
     @auth
-    <head>
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    </head>
     <div class="container mx-auto p-6">
         <div class="flex flex-col md:flex-row justify-between items-center mb-6 mt-12 w-full space-y-4 md:space-y-0">
             <h1 class="text-3xl font-bold text-gray-800">Available Rides</h1>
@@ -162,8 +159,6 @@
         </div>
     </div>
 
-    <!-- Include your compiled JS file -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize Flatpickr for date selection

@@ -79,7 +79,6 @@ class TripController extends Controller
         $trip = Trip::findOrFail($id);
     
         $request->validate([
-            'driver_id' => 'exists:users,id',
             'origin_city_id' => 'exists:cities,id',
             'destination_city_id' => 'exists:cities,id',
             'departure_time' => 'date',
@@ -87,10 +86,8 @@ class TripController extends Controller
             'available_seats' => 'integer|min:1',
             'price' => 'numeric|min:0',
         ]);
-    
-        $trip->update($request->all());
-    
-        return redirect('/trips')->with('success', 'Trip updated successfully');
+        $trip->update($request->except('driver_id')); 
+        return response()->json(['success' => true, 'redirect' => route('trips.index')]);
     }
     
 
