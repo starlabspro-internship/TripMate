@@ -1,16 +1,22 @@
 <x-app-layout>
-    <div class="w-full h-screen flex flex-col justify-center items-center text-center bg-cover bg-center py-12"
-        style="background-image: url('/storage/images/car.png');">
+    <div class="w-full  flex flex-col justify-center items-center text-center bg-cover bg-center py-12"
+        style="background-image: url('/storage/images/download.jpeg');">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="leading-tight mb-8"></div>
             {{-- banners --}}
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-
-                    </div>
+            <div class=" gap-6 sm:grid-cols-2 md:grid-cols-3">
+                <x-banner
+                    title="Welcome to Our Platform"
+                    description="Discover new experiences with us."
+                    background-image="{{ asset('storage/images/download.jpeg') }}"
+                    button-text="Learn More"
+                    button-link="/about"
+                />
             </div>
         </div>
+    </div>
         <!-- icons -->
-        <div class="flex items-center justify-center py-12 bg-gray-50">
+        <div class="flex items-center justify-center py-12  bg-gray-50">
             <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12 lg:space-x-28">
                 <!-- Verified Icon -->
                 <div class="text-center flex-shrink-0">
@@ -58,14 +64,7 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <x-banner
-        title="Welcome to Our Platform"
-        description="Discover new experiences with us."
-        background-image="{{ asset('storage/images/car.png') }}"
-        button-text="Learn More"
-        button-link="/about"
-    />
+
 </x-app-layout>
 

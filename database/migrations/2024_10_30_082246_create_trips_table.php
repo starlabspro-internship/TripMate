@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
+use App\Models\City;
 
 return new class extends Migration
 {
@@ -13,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class, 'driver_id');
-            $table->foreignIdFor(\App\Models\City::class, 'origin_city_id' );
-            $table->foreignIdFor(\App\Models\City::class, 'destination_city_id' );
+            $table->foreignIdFor(User::class, 'driver_id')->constrained()->onDelete('cascade');
+            $table->foreignIdFor(City::class, 'origin_city_id' )->constrained()->onDelete('cascade');
+            $table->foreignIdFor(City::class, 'destination_city_id')->constrained()->onDelete('cascade');
             $table->dateTime('departure_time');
             $table->dateTime('arrival_time');
             $table->integer('available_seats');
