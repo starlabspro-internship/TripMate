@@ -29,12 +29,12 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
-
-
             </main>
         </div>
+
         @if (!Auth::check() && request()->is('/'))
         <x-footer /> 
         @endif
+
     </body>
 </html>
