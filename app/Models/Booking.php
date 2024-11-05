@@ -8,6 +8,14 @@ use App\Models\Trip;
 
 class Booking extends Model
 {
+
+   protected $fillable = [
+      'trip_id',
+      'passenger_id',
+      'seats_booked',
+      'status',
+  ];
+  
    public function passenger()
    {
     return $this->belongsTo(User::class, 'passenger_id');

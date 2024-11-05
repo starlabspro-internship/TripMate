@@ -1,14 +1,15 @@
 <?php
 
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SocialAuthController;
-use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BannerController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TripController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialAuthController;
 
 // Route::get('/trips', [TripController::class, 'index']);
 Route::resource('trips', TripController::class);
@@ -19,6 +20,13 @@ Route::post('/trips', [TripController::class, 'store']);
 Route::get('/trips/{id}/edit', [TripController::class, 'edit']);
 Route::put('/trips/{id}', [TripController::class, 'update']); 
 Route::delete('/trips/{id}', [TripController::class, 'destroy']); 
+
+Route::get('/trips/{id}', [TripController::class, 'show'])->name('trips.show');
+
+Route::post('/bookings/{id}', [BookingController::class, 'store'])->name('booking.store');
+Route::get('/bookings/index/{id}', [BookingController::class, 'index'])->name('booking.index');
+Route::delete('/bookings/{id}', [BookingController::class, 'destroy'])->name('booking.destroy');
+
 
 Route::get('/', function () {
     return view('home');
