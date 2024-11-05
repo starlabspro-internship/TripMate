@@ -6,6 +6,7 @@ use App\Models\Trip;
 use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class TripController extends Controller
@@ -60,6 +61,12 @@ class TripController extends Controller
         $trip = Trip::findOrFail($id);
         $cities = City::all();
         $drivers = User::all();
+
+
+        if (Auth::id() !== $trip->driver_id) {
+            return view('trips.unauthorized');
+        }
+
     
         return view('trips.edit', compact('trip', 'cities', 'drivers'));
     }
@@ -77,7 +84,12 @@ class TripController extends Controller
 
     public function update(Request $request, $id){
         $trip = Trip::findOrFail($id);
-    
+
+
+            if (Auth::id() !== $trip->driver_id) {
+                return view('trips.unauthorized');
+            }
+
         $request->validate([
             'origin_city_id' => 'exists:cities,id',
             'destination_city_id' => 'exists:cities,id',
