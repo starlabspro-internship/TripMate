@@ -1,5 +1,4 @@
-<x-app-layout>
-    <div class="container mx-auto flex flex-col items-center">
+    <div class="container mx-auto flex flex-col items-center mb-10">
         <h1 class="font-sans font-bold text-5xl text-center pt-36 mb-12">Our Partners</h1>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 sm:px-8 lg:px-24">
@@ -29,4 +28,3 @@
             </div>
         </div>
     </div>
-</x-app-layout>
