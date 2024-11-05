@@ -29,12 +29,7 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
-
-
             </main>
-
-
-
         </div>
         @unless(request()->is('dashboard*'))
         <x-footer />

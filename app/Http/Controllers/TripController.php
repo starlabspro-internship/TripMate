@@ -31,7 +31,7 @@ class TripController extends Controller
         $destinationCityId = $request->input('destination_city_id');
         $trips->where('destination_city_id', $destinationCityId);
     }
-    $trips = $trips->get();
+    $trips = $trips->orderBy('created_at', 'desc')->get();
 
     return view('trips.index', compact('cities', 'trips'));
 }

@@ -11,15 +11,14 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialAuthController;
 
-// Route::get('/trips', [TripController::class, 'index']);
-Route::resource('trips', TripController::class);
-Route::get('/trips', [TripController::class, 'index'])->name('trips.index');
-Route::get('/trips/create', [TripController::class, 'create'])->name('trips.create');
-Route::post('/trips/store', [TripController::class, 'store'])->name('trips.store');
-Route::post('/trips', [TripController::class, 'store']); 
-Route::get('/trips/{id}/edit', [TripController::class, 'edit']);
-Route::put('/trips/{id}', [TripController::class, 'update']); 
-Route::delete('/trips/{id}', [TripController::class, 'destroy']); 
+Route::prefix('trips')->name('trips.')->group(function () {
+    Route::get('/', [TripController::class, 'index'])->name('index');
+    Route::get('/create', [TripController::class, 'create'])->name('create');
+    Route::post('/store', [TripController::class, 'store'])->name('store');
+    Route::get('/{id}/edit', [TripController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [TripController::class, 'update'])->name('update');
+    Route::delete('/{id}', [TripController::class, 'destroy'])->name('destroy');
+});
 
 Route::get('/trips/{id}', [TripController::class, 'show'])->name('trips.show');
 
@@ -32,15 +31,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/banners', function () {
-    return view('banners.index');
-})
-->name('banners');
-
-//example route
-Route::get( '/example', function () {
-    return view('example.index');
-})->name(name: "example");
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -53,18 +43,19 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 
 });
 
-
 Route::get('auth/google',[SocialAuthController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('auth/google/callback',[SocialAuthController::class, 'googleCallback'])->name('login.google.callback');
 
-Route::get('/icons', function () {
-    return view('icons');
-    });
-
-Route::get('/cars', function () {
-    return view('cars');
+Route::prefix('superadmin')->name('superadmin.')->group(function () {
+    Route::get('/', [SuperAdminController::class, 'index'])->name('index');
+    Route::get('/edit/{user}', [SuperAdminController::class, 'edit'])->name('edit');
+    Route::patch('/{user}', [SuperAdminController::class, 'update'])->name('update');
+    Route::get('/{trip}/edit-trip', [SuperAdminController::class, 'edittrip'])->name('edit-trip');
+    Route::patch('/trip/{trip}', [SuperAdminController::class, 'updateTrip'])->name('updateTrip');
 });
-
+Route::delete('/trips/{trip}', [SuperAdminController::class, 'tripDelete'])->name('trip.delete');
+Route::delete('/bookings/{booking}', [SuperAdminController::class, 'bookingDelete'])->name('bookings.destroy');
+Route::delete('/users/{user}', [SuperAdminController::class, 'superDelete'])->name('users.destroy');
 require __DIR__.'/auth.php';
 
 

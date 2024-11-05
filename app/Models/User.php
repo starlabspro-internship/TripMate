@@ -34,6 +34,12 @@ class User extends Authenticatable
         return $this->hasMany(Message::class);
     }
 
+    public function isSuperAdmin()
+    {
+        return $this->is_super_admin == 1;
+    }
+    
+
     protected $fillable = [
         'image',
         'name',
