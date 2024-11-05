@@ -32,14 +32,9 @@
 
 
             </main>
-
-
-
         </div>
-        
         @if (!Auth::check() && request()->is('/'))
-        <x-footer />
+        <x-footer /> 
         @endif
-        
     </body>
 </html>
