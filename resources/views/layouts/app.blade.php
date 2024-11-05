@@ -29,24 +29,7 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
-
-
             </main>
-
-
-
         </div>
-        @if (!Auth::check() && !request()->is('login') && !request()->is('register'))
-    <x-navbar />
-@endif
-
-@if (!Auth::check() && request()->is('/'))
-    <x-navbar />
-@endif
-
-        @if (!Auth::check() && request()->is('/'))
-        <x-footer />
-        @endif
-        
     </body>
 </html>

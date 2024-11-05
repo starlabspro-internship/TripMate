@@ -21,7 +21,7 @@
                     <div>
                         <h2 class=" text-2xl font-bold">{{auth()->user()->name}} {{auth()->user()->lastname}}</h2>
                         <p class="">{{auth()->user()->city}}</p>
-                        <p class="">Joined at: {{ auth()->user()->created_at->format('F Y') }}</p>
+                       
                     </div>
                 </div>
                 <div class="flex justify-between py-4 mx-10 text-[#E0FFFF]">
