@@ -9,6 +9,5 @@
     <x-cars />
     <x-partners />
     <x-icons />
-    <x-footer />
 </x-app-layout>
 @endguest
