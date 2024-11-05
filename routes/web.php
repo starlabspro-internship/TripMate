@@ -4,6 +4,7 @@ use App\Http\Controllers\SocialAuthController;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BannerController;
+use \App\Http\Controllers\SuperAdminController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\TripController;
@@ -36,6 +37,16 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 Route::get('auth/google',[SocialAuthController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('auth/google/callback',[SocialAuthController::class, 'googleCallback'])->name('login.google.callback');
 
+Route::prefix('superadmin')->name('superadmin.')->group(function () {
+    Route::get('/', [SuperAdminController::class, 'index'])->name('index');
+    Route::get('/edit/{user}', [SuperAdminController::class, 'edit'])->name('edit');
+    Route::patch('/{user}', [SuperAdminController::class, 'update'])->name('update');
+    Route::get('/{trip}/edit-trip', [SuperAdminController::class, 'edittrip'])->name('edit-trip');
+    Route::patch('/trip/{trip}', [SuperAdminController::class, 'updateTrip'])->name('updateTrip');
+});
+Route::delete('/trips/{trip}', [SuperAdminController::class, 'tripDelete'])->name('trip.delete');
+Route::delete('/bookings/{booking}', [SuperAdminController::class, 'bookingDelete'])->name('bookings.destroy');
+Route::delete('/users/{user}', [SuperAdminController::class, 'superDelete'])->name('users.destroy');
 require __DIR__.'/auth.php';
 
 
