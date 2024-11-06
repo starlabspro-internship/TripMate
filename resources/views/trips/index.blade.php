@@ -99,17 +99,17 @@
                 @if ($trip->driver_id === auth()->id())
                         <a href="{{ route('trips.edit', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Edit</a>
                     @else
-                        <a href="" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Book Now</a>
+                        <a href="{{ route('trips.show', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Book Now</a>
                     @endif
             </div>            
             <div class="mb-2 flex items-center">
-                <a href="{{ route('trips.show', $trip->id) }}" class="text-blue-900 flex items-center mr-4 text-lg">
+                <p class="text-blue-900 flex items-center mr-4 text-lg">
                     <strong>{{ $trip->origincity->name }} </strong>
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20px" viewBox="0 -5 24 24" id="meteor-icon-kit__regular-long-arrow-right" fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5858 8H1C0.447715 8 0 7.5523 0 7C0 6.4477 0.447715 6 1 6H20.5858L16.2929 1.70711C15.9024 1.31658 15.9024 0.68342 16.2929 0.29289C16.6834 -0.09763 17.3166 -0.09763 17.7071 0.29289L23.7071 6.2929C24.0976 6.6834 24.0976 7.3166 23.7071 7.7071L17.7071 13.7071C17.3166 14.0976 16.6834 14.0976 16.2929 13.7071C15.9024 13.3166 15.9024 12.6834 16.2929 12.2929L20.5858 8z" fill="#758CA3"/>
                         </svg>
                     <strong> {{ $trip->destinationcity->name }}</strong>
-                </a>
+                </p>
             </div>
             <div class="flex justify-between items-center text-gray-700">
                 <p class="flex-1 flex items-center">
