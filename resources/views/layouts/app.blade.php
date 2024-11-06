@@ -16,7 +16,7 @@
 
             @if(Auth::check())
                 @include('layouts.navigation')
-            @else
+            @elseif (!Auth::check() && request()->is('/'))
                 @include('components.navbar')
             @endif
             @isset($header)

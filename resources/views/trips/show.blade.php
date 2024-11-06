@@ -12,8 +12,8 @@
             </img>
         </a>
         <div>
-            <img class="max-w-xl  ml-5 float-end hidden lg:block rounded-3xl" src="{{ Vite::asset('resources/images/Vushtrri.jpg') }}" alt="..">
-                <div class="text-black text-xl capitalize space-y-1 justify-between mt-4">
+            <img class="max-w-xl  ml-5 float-end hidden lg:block rounded-2xl" src="{{ Vite::asset('resources/images/Vushtrri.jpg') }}" alt="..">
+                <div class="text-black text-xl capitalize space-y-2 justify-between mt-4">
                     <p>{{$trip->origincity->name}} 
                         <img
                             src="{{ Vite::asset('resources/images/nextt.svg') }}"
@@ -50,15 +50,16 @@
                     @endif
                     <p class="relative inline-block  object-cover object-center">{{$trip->users->name}}</p>
                 </div>
-                <div class="flex-col mt-5 space-t-5 pb-6">
+                <div class="flex-col mt-5 space-t-5 ">
                     <h1 class="text-lg">Uleset:</h1>
                     <p class="relative inline-block  object-cover object-center" > {{$available_seats}} vende te lira</p>
                     
                 </div>
                 @if ($available_seats > 0)
-                <div class="flex-col mt-5  pb-6">
-                    <h1 class="text-lg">Zgjidhni numrin e uleseve:</h1>
-                    <input class="px-3 py-1 border border-gray-700 rounded-lg bg-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:border-transparent text-gray-700" type="number" name="seats_booked" min="1" max="{{ $available_seats }}" required>
+                <div class="flex-col  pb-6">
+                    <h1 class="text-lg py-3">Zgjidhni numrin e uleseve:</h1>
+                    <input class=" px-3 py-1 border border-gray-700 rounded-lg bg-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:border-transparent text-gray-700"
+                     type="number" name="seats_booked" min="1" max="{{ $available_seats }}" required>
                 </div>
                 @else
                 <p class="text-red-500">Nuk ka vende të lira për këtë udhëtim.</p>

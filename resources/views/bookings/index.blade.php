@@ -13,7 +13,7 @@
                 </img>
             </a>
             <div>
-                <img class="max-w-xl  ml-5 float-end hidden lg:block rounded-2xl" src="{{ Vite::asset('resources/images/Vushtrri.jpg') }}" alt="..">
+                <img class="max-w-lg  ml-5 float-end hidden lg:block rounded-2xl" src="{{ Vite::asset('resources/images/Vushtrri.jpg') }}" alt="..">
                     <div class="text-black text-xl capitalize space-y-1 justify-between mt-4">
                         <p>{{$trip->origincity->name}} 
                             <img
@@ -72,5 +72,4 @@
         </div>
         </ul>
     </div>
-    </x-app-layout>
-    
+</x-app-layout>
