@@ -1,8 +1,8 @@
 
-<nav x-data="{ open: false }" class="fixed top-0 left-0 right-0 md:left-10 md:right-10 text-white flex justify-between items-center px-5 py-3 md: bg-gray-800 bg-opacity-10 backdrop-blur-md shadow-lg rounded-lg mx-auto z-50">
+<nav x-data="{ open: false }" class="fixed top-0 left-0 right-0 md:left-10 md:right-10 text-white flex justify-between  items-center px-5 py-3 md: bg-gray-800 bg-opacity-10 backdrop-blur-md shadow-lg rounded-lg mx-auto z-50">
     <a class="mx-2 font-mono text-2xl font-bold " href="/">TripMate</a>
     <div :class="{'h-fit': open, 'h-0': ! open}" class="absolute w-full  bg-gray-900 bg-opacity-10 backdrop-blur-xl shadow-lg rounded-lg mt-4 md:mt-1 top-14 overflow-hidden  right-px px-5 md:relative md:h-fit md:top-0">
-        <ul class="space-x-3 flex text-xl  flex-col gap-4 py-4 md:py-0 md:flex-row md:justify-center ">
+        <ul class=" flex text-lg  flex-col gap-4 py-4 md:py-0 md:flex-row md:justify-center md:gap-0 ">
                 <li class="mx-3">
                     <a id="section1" class=" hover:text-white font-medium" href="/#">Home</a>
                 </li>

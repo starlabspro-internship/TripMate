@@ -67,16 +67,20 @@ class TripController extends Controller
     
         return view('trips.edit', compact('trip', 'cities', 'drivers'));
     }
+
     
     public function show($id)
     {
-        $trip = Trip::with(['users', 'origincity', 'destinationcity'])->find($id);
-
+        $trip = Trip::with(['users', 'origincity', 'destinationcity', 'bookings'])->find($id);
         if (!$trip) {
             return response()->json(['message' => 'Trip not found'], 404);
         }
+        $available_seats = $trip->available_seats;
+        foreach($trip->bookings as $booking) {
+            $available_seats -= $booking->seats_booked;
+        }
 
-        return response()->json($trip);
+        return view('trips.show', ['trip' => $trip, 'available_seats'=> $available_seats]);
     }
 
     public function update(Request $request, $id){
