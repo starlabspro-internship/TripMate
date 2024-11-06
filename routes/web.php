@@ -47,6 +47,5 @@ Route::prefix('superadmin')->name('superadmin.')->group(function () {
 Route::delete('/trips/{trip}', [SuperAdminController::class, 'tripDelete'])->name('trip.delete');
 Route::delete('/bookings/{booking}', [SuperAdminController::class, 'bookingDelete'])->name('bookings.destroy');
 Route::delete('/users/{user}', [SuperAdminController::class, 'superDelete'])->name('users.destroy');
+
 require __DIR__.'/auth.php';
-
-
