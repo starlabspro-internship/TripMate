@@ -1,6 +1,6 @@
 <!-- Kjo div ne qender te faqes -->
 <div  class="text-center pt-10 mb-4 sm:mb-8 mt-6 sm:mt-8">
-    <h1 class="mobile-app-text text-4xl w-full sm:w-1/2 px-4 sm:px-0 m-auto title font-extrabold text-[#290e07]">Extra features you will have with cars</h1>    
+    <h1 class="mobile-app-text text-4xl w-full sm:w-1/2 px-4 sm:px-0 m-auto title font-extrabold text-[#290e07]">Extra features you will have with cars</h1>
     <p class="text-base sm:text-lg mt-4 text-gray-700 w-full sm:w-1/2 m-auto title font-[500] mb-16">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. magna tellus phasellus id molestie sapien, diam. Senectus vivamus viverra at purus tincidunt tortor.
     </p>
