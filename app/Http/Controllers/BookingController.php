@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Booking;
 use App\Models\Trip;
 use App\Models\User;
+use App\Models\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class BookingController extends Controller
 {
 
-    public function index($id)
+    public function index()
     {
-        $bookings = Booking::all(); 
-        $trip = Trip::findOrFail($id);
-        return view('bookings.index', compact('bookings', 'trip'));
+        $bookings = Booking::all();
+        $booking = Booking::where('passenger_id', Auth::user()->id)->first();
+        $trip = Trip::first();
+        return view('bookings.index', compact('bookings', 'trip','booking'));
 
     }
-    public function store($id)
+    public function store()
     {
         $booking = Booking::create([
             'trip_id' => request('trip_id'),
@@ -27,7 +29,7 @@ class BookingController extends Controller
             'status' => 'active',
         ]);
     
-        return redirect()->route('booking.index', ['id' => $booking->trip_id])->with('booking', $booking);
+        return redirect()->route('booking.index')->with('booking', $booking);
     }
 
 
@@ -38,5 +40,6 @@ class BookingController extends Controller
     
         return redirect('/trips')->with('success', 'Book deleted successfully');
     }
+
     
 }

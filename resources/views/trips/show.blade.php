@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form action="{{ route('booking.store', ['id' => $trip->id]) }}" method="POST"  class="bg-gray-200 my-20 m-3 rounded-lg  p-20 lg:my-20  md:my-40 md:mx-60">
+    <form action="{{ route('booking.store') }}" method="POST"  class="bg-gray-200 my-20 m-5 rounded-2xl p-20 md:mt-20 md:mb-5 md:mx-40 lg:mt-20 lg:mb-5 lg:mx-40">
         @csrf
         <input type="hidden" name="trip_id" value="{{ $trip->id }}">
         <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
@@ -12,7 +12,7 @@
             </img>
         </a>
         <div>
-            <img class="max-w-md  ml-5 float-end hidden lg:block rounded-2xl" src="{{ Vite::asset('resources/images/Vushtrri.jpg') }}" alt="..">
+            <img class="max-w-xl  ml-5 float-end hidden lg:block rounded-3xl" src="{{ Vite::asset('resources/images/Vushtrri.jpg') }}" alt="..">
                 <div class="text-black text-xl capitalize space-y-1 justify-between mt-4">
                     <p>{{$trip->origincity->name}} 
                         <img
@@ -58,7 +58,7 @@
                 @if ($available_seats > 0)
                 <div class="flex-col mt-5  pb-6">
                     <h1 class="text-lg">Zgjidhni numrin e uleseve:</h1>
-                    <input type="number" name="seats_booked" min="1" max="{{ $available_seats }}" required>
+                    <input class="px-3 py-1 border border-gray-700 rounded-lg bg-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:border-transparent text-gray-700" type="number" name="seats_booked" min="1" max="{{ $available_seats }}" required>
                 </div>
                 @else
                 <p class="text-red-500">Nuk ka vende të lira për këtë udhëtim.</p>

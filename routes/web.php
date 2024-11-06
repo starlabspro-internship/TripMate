@@ -14,17 +14,19 @@ use App\Http\Controllers\SocialAuthController;
 Route::prefix('trips')->name('trips.')->group(function () {
     Route::get('/', [TripController::class, 'index'])->name('index');
     Route::get('/create', [TripController::class, 'create'])->name('create');
+    Route::get('/{id}', [TripController::class, 'show'])->name('show');
     Route::post('/store', [TripController::class, 'store'])->name('store');
     Route::get('/{id}/edit', [TripController::class, 'edit'])->name('edit');
     Route::put('/{id}', [TripController::class, 'update'])->name('update');
     Route::delete('/{id}', [TripController::class, 'destroy'])->name('destroy');
 });
 
-Route::get('/trips/{id}', [TripController::class, 'show'])->name('trips.show');
+Route::prefix('bookings')->name('booking.')->controller(BookingController::class)->group(function () {
+    Route::post('/',  'store')->name('store');
+    Route::get('/', 'index')->name('index');
+    Route::delete('/{id}', 'destroy')->name('destroy');
+});
 
-Route::post('/bookings/{id}', [BookingController::class, 'store'])->name('booking.store');
-Route::get('/bookings/index/{id}', [BookingController::class, 'index'])->name('booking.index');
-Route::delete('/bookings/{id}', [BookingController::class, 'destroy'])->name('booking.destroy');
 
 
 Route::get('/', function () {
