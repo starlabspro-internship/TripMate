@@ -31,15 +31,10 @@
                 {{ $slot }}
             </main>
         </div>
-        @unless(request()->is('dashboard*'))
-        <x-footer />
-      @endunless
 
-        </div>
-        
         @if (!Auth::check() && request()->is('/'))
-        <x-footer />
+        <x-footer /> 
         @endif
-        
+
     </body>
 </html>
