@@ -24,7 +24,7 @@ Route::prefix('trips')->name('trips.')->group(function () {
 
 Route::prefix('bookings')->name('booking.')->controller(BookingController::class)->group(function () {
     Route::post('/',  'store')->name('store');
-    Route::get('/', 'index')->name('index');
+    Route::get('/{id}', 'show')->name('show');
     Route::delete('/{id}', 'destroy')->name('destroy');
 });
 

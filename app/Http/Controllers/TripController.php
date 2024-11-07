@@ -61,9 +61,6 @@ class TripController extends Controller
         $trip = Trip::findOrFail($id);
         $cities = City::all();
         $drivers = User::all();
-        if (Auth::id() !== $trip->driver_id) {
-            return view('trips.unauthorized');
-        }
     
         return view('trips.edit', compact('trip', 'cities', 'drivers'));
     }
@@ -73,7 +70,7 @@ class TripController extends Controller
     {
         $trip = Trip::with(['users', 'origincity', 'destinationcity', 'bookings'])->find($id);
         if (!$trip) {
-            return response()->json(['message' => 'Trip not found'], 404);
+            return redirect()->route('trips.index')->with('error', 'Trip not found');
         }
         $available_seats = $trip->available_seats;
         foreach($trip->bookings as $booking) {
@@ -85,9 +82,6 @@ class TripController extends Controller
 
     public function update(Request $request, $id){
         $trip = Trip::findOrFail($id);
-            if (Auth::id() !== $trip->driver_id) {
-                return view('trips.unauthorized');
-            }
         $request->validate([
             'origin_city_id' => 'exists:cities,id',
             'destination_city_id' => 'exists:cities,id',

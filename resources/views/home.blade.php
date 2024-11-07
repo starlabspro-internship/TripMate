@@ -11,4 +11,7 @@
     <x-partners />
     <x-icons />
 </x-app-layout>
+@if (!Auth::check() && request()->is('/'))
+<x-footer />
+@endif
 @endguest
