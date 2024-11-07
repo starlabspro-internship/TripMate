@@ -6,11 +6,10 @@
             <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
             <a href="/trips">
                 <img
-                    
-                    src="{{ Vite::asset('resources/images/backk.svg') }}"
+                    src="{{ asset('storage/icons/backk.svg') }}"
                     alt="avatar"
-                    class="relative pb-5 inline-block h-10 w-10 !rounded-full object-cover object-center">
-                </img>
+                    class="relative pb-5 inline-block h-10 w-10 !rounded-full object-cover object-center"
+                />
             </a>
             <div>
                 <img class="max-w-lg  ml-5 float-end hidden lg:block rounded-2xl" src="{{ Vite::asset('resources/images/Vushtrri.jpg') }}" alt="..">
@@ -25,14 +24,14 @@
                     </div>
                     <div class="flex-col mt-5 space-y-5 pb-5">
                         <img
-                            src="{{ Vite::asset('resources/images/time.svg') }}"
+                            src="{{ asset('storage/icons/time.svg') }}"
                             alt="avatar"
                             class="relative inline-block h-8 w-8 !rounded-full object-cover object-center"
                         />
                         <p class="relative inline-block  object-cover object-center">{{$trip->departure_time}}</p>
                     <div class="flex-col mt-5 pb-4">
                         <img
-                            src="{{ Vite::asset('resources/images/eu.svg') }}"
+                            src="{{ asset('storage/icons/eu.svg') }}"
                             alt="avatar"
                             class="relative inline-block h-5 w-5 !rounded-full object-cover object-center"
                         />
