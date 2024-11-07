@@ -71,8 +71,8 @@
                   </button>
             </div>
             @else
-                
-            @endif   
+
+            @endif
         </div>
     </form>
 </x-app-layout>

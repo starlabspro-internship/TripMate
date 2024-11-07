@@ -4,6 +4,7 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\TripController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\BannerController;
@@ -27,7 +28,9 @@ Route::prefix('bookings')->name('booking.')->controller(BookingController::class
     Route::delete('/{id}', 'destroy')->name('destroy');
 });
 
-
+Route::get('/home', function(){
+    return view('home');
+});
 
 Route::get('/', function () {
     return view('home');
@@ -58,6 +61,5 @@ Route::prefix('superadmin')->name('superadmin.')->group(function () {
 Route::delete('/trips/{trip}', [SuperAdminController::class, 'tripDelete'])->name('trip.delete');
 Route::delete('/bookings/{booking}', [SuperAdminController::class, 'bookingDelete'])->name('bookings.destroy');
 Route::delete('/users/{user}', [SuperAdminController::class, 'superDelete'])->name('users.destroy');
+
 require __DIR__.'/auth.php';
-
-
