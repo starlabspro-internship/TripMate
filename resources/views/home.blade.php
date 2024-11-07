@@ -6,6 +6,7 @@
         button-text="Learn More"
         button-link="/about"
     />
+    @include('components.statistic-box')
     <x-cars />
     <x-partners />
     <x-icons />

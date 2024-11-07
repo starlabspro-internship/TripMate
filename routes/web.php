@@ -28,7 +28,9 @@ Route::prefix('bookings')->name('booking.')->controller(BookingController::class
     Route::delete('/{id}', 'destroy')->name('destroy');
 });
 
-
+Route::get('/home', function(){
+    return view('home');
+});
 
 Route::get('/', function () {
     return view('home');
