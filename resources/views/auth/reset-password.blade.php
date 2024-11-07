@@ -10,9 +10,8 @@
 
       <!-- Password Reset Form Container -->
       <div class="relative z-10 p-8 rounded-lg shadow-lg bg-white bg-opacity-95 w-full max-w-md">
-          <form method="POST" action="{{ route('password.update') }}">
+          <form method="POST" action="{{ route('password.store') }}">
               @csrf
-              @method('PUT')
               <!-- Password Reset Token -->
               <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
