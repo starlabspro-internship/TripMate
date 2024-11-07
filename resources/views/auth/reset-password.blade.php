@@ -10,9 +10,8 @@
 
       <!-- Password Reset Form Container -->
       <div class="relative z-10 p-8 rounded-lg shadow-lg bg-white bg-opacity-95 w-full max-w-md">
-          <form method="POST" action="{{ route('password.update') }}">
+          <form method="POST" action="{{ route('password.store') }}">
               @csrf
-
               <!-- Password Reset Token -->
               <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
@@ -36,6 +35,7 @@
                   <x-text-input id="password_confirmation" class="block mt-1 w-full px-4 py-2 rounded-md shadow-xl bg-white border-0 focus:ring-0 hover:shadow-xl focus:shadow-xl transition-shadow duration-300 ease-in-out" type="password" name="password_confirmation" required autocomplete="new-password" />
                   <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
               </div>
+
               <!-- Submit Button -->
               <div class="flex items-center justify-center mt-6">
                   <x-primary-button class="relative flex items-center justify-center w-full bg-blue-700 text-white px-4 py-2 rounded-full hover:bg-blue-900">
