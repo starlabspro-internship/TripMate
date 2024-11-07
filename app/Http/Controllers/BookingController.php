@@ -12,14 +12,17 @@ use Illuminate\Support\Facades\Validator;
 class BookingController extends Controller
 {
 
-    public function index()
+    public function show($id)
     {
-        $bookings = Booking::all();
-        $booking = Booking::where('passenger_id', Auth::user()->id)->first();
-        $trip = Trip::first();
-        return view('bookings.index', compact('bookings', 'trip','booking'));
+        $booking = Booking::with(['trip',  'passenger'])->find($id);
+        $trip = Trip::findOrFail($booking->trip_id);
+        if (!$trip) {
+            return redirect()->route('trips.index')->with('error', 'Trip not found');
+        }
 
+        return view('bookings.show', compact('booking', 'trip'));
     }
+
     public function store()
     {
         $booking = Booking::create([
@@ -29,7 +32,7 @@ class BookingController extends Controller
             'status' => 'active',
         ]);
     
-        return redirect()->route('booking.index')->with('booking', $booking);
+        return redirect()->route('booking.show', ['id' => $booking->id])->with('booking', $booking);
     }
 
 
