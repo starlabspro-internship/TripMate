@@ -10,7 +10,7 @@
         <!-- Scripts -->
         @vite('resources/js/app.js')
     </head>
-    <body class="min-h-screen bg-slate-600 dark:bg-[#0F172A] font-planer antialiased w-full md:absolute md:w-navbar">
+    <body class="min-h-screen bg-[#66AAC3] dark:bg-[#0F172A] font-planer antialiased w-full md:absolute md:w-navbar">
 
         <div class=" flex flex-col ">
 
@@ -33,7 +33,7 @@
         </div>
 
         @if (!Auth::check() && request()->is('/'))
-        <x-footer /> 
+        <x-footer />
         @endif
 
     </body>

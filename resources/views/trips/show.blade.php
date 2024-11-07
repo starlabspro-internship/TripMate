@@ -5,7 +5,7 @@
         <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
         <a href="/trips">
             <img
-                
+
                 src="{{ Vite::asset('resources/images/bck.svg') }}"
                 alt="avatar"
                 class="relative pb-5 inline-block h-10 w-10 !rounded-full object-cover object-center">
@@ -14,7 +14,7 @@
         <div>
             <img class="max-w-xl  ml-5 float-end hidden lg:block rounded-2xl" src="{{ Vite::asset('resources/images/Vushtrri.jpg') }}" alt="..">
                 <div class="text-black text-xl capitalize space-y-2 justify-between mt-4">
-                    <p>{{$trip->origincity->name}} 
+                    <p>{{$trip->origincity->name}}
                         <img
                             src="{{ Vite::asset('resources/images/nextt.svg') }}"
                             alt="avatar"
@@ -37,7 +37,7 @@
                     />
                     <p class="relative inline-block  object-cover object-center">{{$trip->price}}</p>
                 </div>
-                <div class="text-black  space-y-1 justify-between mt-4">    
+                <div class="text-black  space-y-1 justify-between mt-4">
                     <h1 class="text-lg">Shoferi:</h1>
                     @if ($trip->users->image)
                         <img
@@ -53,7 +53,7 @@
                 <div class="flex-col mt-5 space-t-5 ">
                     <h1 class="text-lg">Uleset:</h1>
                     <p class="relative inline-block  object-cover object-center" > {{$available_seats}} vende te lira</p>
-                    
+
                 </div>
                 @if ($available_seats > 0)
                 <div class="flex-col  pb-6">
@@ -72,8 +72,8 @@
                   </button>
             </div>
             @else
-                
-            @endif   
+
+            @endif
         </div>
     </form>
 </x-app-layout>
