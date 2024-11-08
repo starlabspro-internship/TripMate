@@ -11,7 +11,7 @@ use App\Http\Controllers\ContactController;
 Route::middleware('ifnotauth')->prefix('trips')->name('trips.')->controller(TripController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
-    Route::get('/store', 'store')->name('store');
+    Route::post('/store', 'store')->name('store');
     Route::get('/update', 'update')->name('update');
     Route::get('/destroy', 'destroy')->name('destroy');
     Route::get('/{trip}/edit', 'edit')->name('edit');
