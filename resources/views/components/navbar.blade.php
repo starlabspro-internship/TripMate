@@ -23,8 +23,13 @@
     <div class="flex  md:justify-end">
         <button 
             onclick="location.href='{{ route('login') }}'" 
-            class="mx-3 bg-sky-700 text-white border-2 border-sky-700 hover:bg-blue-600 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 font-medium py-2 px-4 rounded-lg transition duration-200 ease-in-out">
-            LogIn
+            class="mx-3 whitespace-nowrap border-solid hover:font-bold text-white border-2 shadow-md hover:shadow-gray-600  focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 font-medium py-2 px-4 rounded-2xl transition duration-200 ease-in-out">
+            Sign In
+        </button>
+        <button 
+            {{-- onclick="location.href='{{ route('login') }}'"  --}}
+            class="mx-3 whitespace-nowrap border-solid hover:font-bold text-white border-2 shadow-md hover:shadow-blue-900  focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 font-medium py-2 px-4 rounded-2xl transition duration-200 ease-in-out">
+            Sign Up
         </button>
         <img @click="open = ! open" src="{{ Vite::asset('resources/images/hamburger-icon.svg') }}" class="text-3xl  cursor-pointer md:hidden"></img>
     </div>
