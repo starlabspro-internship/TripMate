@@ -14,7 +14,8 @@ class TripController extends Controller
     public function index(Request $request)
 {
     $cities = City::all();
-    $trips = Trip::query();
+    $trips = Trip::with('bookings'); 
+    $this->deletePastTrips();
 
     $trips->where('departure_time', '>=', now()); 
 
@@ -34,7 +35,19 @@ class TripController extends Controller
     }
     $trips = $trips->orderBy('created_at', 'desc')->get();
 
+    foreach ($trips as $trip) {
+        $available_seats = $trip->available_seats;
+        foreach ($trip->bookings as $booking) {
+            $available_seats -= $booking->seats_booked;
+        }
+        $trip->available_seats = $available_seats;
+    }
+
     return view('trips.index', compact('cities', 'trips'));
+}
+protected function deletePastTrips()
+{
+    Trip::where('departure_time', '<', now())->delete();
 }
 
     public function create(){
@@ -58,7 +71,10 @@ class TripController extends Controller
         return redirect('/trips')->with('success', 'Trip created successfully');
     }
     public function edit($id){
-        $trip = Trip::findOrFail($id);
+        $trip = Trip::find($id);
+        if (!$trip) {
+            return redirect()->route('trips.index')->with('error', 'Trip not found');
+        }
         $cities = City::all();
         $drivers = User::all();
     

@@ -1,33 +1,24 @@
 <?php
 
-
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\TripController;
-
-use Laravel\Socialite\Facades\Socialite;
-use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialAuthController;
-
 use App\Http\Controllers\ContactController;
-use App\Models\Contact;
 
-
-Route::prefix('trips')->name('trips.')->group(function () {
-    Route::get('/', [TripController::class, 'index'])->name('index');
-    Route::get('/create', [TripController::class, 'create'])->name('create');
-    Route::get('/{id}', [TripController::class, 'show'])->name('show');
-    Route::post('/store', [TripController::class, 'store'])->name('store');
-    Route::get('/{id}/edit', [TripController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [TripController::class, 'update'])->name('update');
-    Route::delete('/{id}', [TripController::class, 'destroy'])->name('destroy');
+Route::middleware('ifnotauth')->prefix('trips')->name('trips.')->controller(TripController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::get('/store', 'store')->name('store');
+    Route::get('/update', 'update')->name('update');
+    Route::get('/destroy', 'destroy')->name('destroy');
+    Route::get('/{trip}/edit', 'edit')->name('edit');
+    Route::get('/{trip}', 'show')->name('show');
 });
 
-Route::prefix('bookings')->name('booking.')->controller(BookingController::class)->group(function () {
+Route::middleware('ifnotauth')->prefix('bookings')->name('booking.')->controller(BookingController::class)->group(function () {
     Route::post('/',  'store')->name('store');
     Route::get('/{id}', 'show')->name('show');
     Route::delete('/{id}', 'destroy')->name('destroy');
@@ -39,7 +30,7 @@ Route::get('/home', function(){
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
