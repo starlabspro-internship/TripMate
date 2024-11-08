@@ -1,6 +1,3 @@
-
-<x-app-layout>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
         <div class="flex flex-col md:flex-row items-center justify-between w-full  p-6 bg-white space-y-6 md:space-y-0">
             
@@ -54,4 +51,3 @@
 
         </div>
     </div>
-</x-app-layout>

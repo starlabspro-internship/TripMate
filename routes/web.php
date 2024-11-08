@@ -6,11 +6,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\TripController;
+
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialAuthController;
+
+use App\Http\Controllers\ContactController;
+use App\Models\Contact;
+
 
 Route::prefix('trips')->name('trips.')->group(function () {
     Route::get('/', [TripController::class, 'index'])->name('index');
@@ -24,7 +29,7 @@ Route::prefix('trips')->name('trips.')->group(function () {
 
 Route::prefix('bookings')->name('booking.')->controller(BookingController::class)->group(function () {
     Route::post('/',  'store')->name('store');
-    Route::get('/', 'index')->name('index');
+    Route::get('/{id}', 'show')->name('show');
     Route::delete('/{id}', 'destroy')->name('destroy');
 });
 
@@ -58,8 +63,16 @@ Route::prefix('superadmin')->name('superadmin.')->group(function () {
     Route::get('/{trip}/edit-trip', [SuperAdminController::class, 'edittrip'])->name('edit-trip');
     Route::patch('/trip/{trip}', [SuperAdminController::class, 'updateTrip'])->name('updateTrip');
 });
+
 Route::delete('/trips/{trip}', [SuperAdminController::class, 'tripDelete'])->name('trip.delete');
 Route::delete('/bookings/{booking}', [SuperAdminController::class, 'bookingDelete'])->name('bookings.destroy');
 Route::delete('/users/{user}', [SuperAdminController::class, 'superDelete'])->name('users.destroy');
+
+
+ Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+ Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+
+
+
 
 require __DIR__.'/auth.php';

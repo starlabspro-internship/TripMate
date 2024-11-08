@@ -10,5 +10,10 @@
     <x-cars />
     <x-partners />
     <x-icons />
+    <x-contact />
+   
 </x-app-layout>
+@if (!Auth::check() && request()->is('/'))
+<x-footer />
+@endif
 @endguest

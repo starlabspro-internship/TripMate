@@ -30,7 +30,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'image' => ['required', 'image', 'mimes:jpg,jpeg,png'],
+            'image' => ['required'],
             'name' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/', 'max:255'], 
             'lastname' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/', 'max:255'], 
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
