@@ -18,7 +18,7 @@
     </head>
     <div class="container mx-auto p-6">
         <div class="flex flex-col md:flex-row justify-between items-center mb-6 mt-12 w-full space-y-4 md:space-y-0">
-            <h1 class="text-3xl font-bold text-gray-800">Create Trips</h1>
+            <h1 class="text-3xl font-bold text-white">Create Trips</h1>
             <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mt-4 md:mt-0">
                 <a href="{{ route('trips.index') }}" 
                    class="w-28 px-4 py-1 text-sm rounded-full transition duration-200 
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="flex items-center justify-center p-6">
-        <div class=" hover:shadow-2xl hover:bg-gray-100 w-full max-w-lg ride-card bg-white p-6 rounded-lg transition-transform duration-500 transform hover:scale-105 shadow-md flex flex-col justify-between">
+        <div class="hover:shadow-2xl w-full max-w-lg ride-card bg-white p-6 rounded-lg transition-shadow duration-500 shadow-md flex flex-col justify-between">
             <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center">Add a Trip</h1>
             <form action="{{ route('trips.store') }}" method="POST" class="space-y-6 ">
                 @csrf

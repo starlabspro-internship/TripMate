@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->alias([
         'super_admin' => \App\Http\Middleware\SuperAdminMiddleware::class,
+        'ifnotauth' => \App\Http\Middleware\IfNotAuth::class,
         ]);
             })
     ->withExceptions(function (Exceptions $exceptions) {

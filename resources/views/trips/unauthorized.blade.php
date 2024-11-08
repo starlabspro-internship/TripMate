@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="flex flex-col items-center justify-center w-full min-h-screen bg-gray-100 text-center px-4 sm:px-6 lg:px-8 mt-10">
+    <div class="flex flex-col items-center justify-center w-full max-h-screen bg-gray-100 text-center px-4 sm:px-6 lg:px-8 mt-10">
         <h1 class="text-lg sm:text-2xl font-bold text-gray-700 mb-2">Unauthorized Access</h1>
         <svg xmlns="http://www.w3.org/2000/svg" 
              class="w-full h-auto max-w-xs sm:max-w-md lg:max-w-lg mx-auto my-4" 
