@@ -1,5 +1,5 @@
 <div class="w-full flex flex-col justify-center items-center text-center bg-cover bg-center py-12"
-    style="background-image: url('{{ asset('storage/images/bg5.png') }}');">
+    style="background-image: url('{{ asset('storage/images/b.jpg') }}');">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="leading-tight mb-8"></div>
 

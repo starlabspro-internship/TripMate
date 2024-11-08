@@ -1,5 +1,5 @@
 
-    <div class="flex items-center justify-center h-screen p-6 ">
+    <div class="flex items-center justify-center p-6 ">
         <div class="container mx-auto max-w-lg mt-30 mb-30 px-10 py-8 bg-white shadow-md rounded-lg border border-gray-200">
             <h2 class="text-2xl font-medium mb-4 text-center text-gray-800">For questions, please contact us</h2>
             <p class="text-sm mb-6 text-gray-400 text-center">
