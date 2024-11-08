@@ -18,11 +18,25 @@ export default {
         extend: {
             colors: {
                 orange: '#E7944C',
+                aquamarine: '#38B2AC',
             },
             fontFamily: {
                 planer: ['Planer', 'sans-serif'], 
             },
+            backgroundSize: {
+                '200%': '200%',
+            },
+            animation: {
+                'gradient-background': 'backgroundShift 10s ease infinite',
+            },
+            keyframes: {
+                backgroundShift: {
+                    '0%': { backgroundPosition: '0% 50%' },
+                    '50%': { backgroundPosition: '100% 50%' },
+                    '100%': { backgroundPosition: '0% 50%' },
+                },
+            },
         },
     },
-    plugins: [],
+    plugins: [forms],
 };
