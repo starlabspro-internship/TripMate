@@ -44,7 +44,7 @@
                         alt="avatar"
                         class="relative inline-block h-auto w-20 p-2"
                     />
-                <p class="p-2 inline-block"> 
+                <p class="p-2 md:text-md text-sm inline-block"> 
                     Post your trip 24 hours in advance to double your chances of finding travel companions!
                     Plan ahead, travel stress-free, and enjoy every moment of your journey!
                 </p>
