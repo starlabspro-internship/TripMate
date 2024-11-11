@@ -112,7 +112,7 @@
                         <td class="p-4 border-b border-slate-200 py-5" x-text="booking.seats_booked"></td>
                         <td class="p-4 border-b border-slate-200 py-5" x-text="booking.status"></td>
                         <td class="p-4 border-b border-slate-200 py-5">
-                            <form :action="`{{ route('bookings.destroy', '') }}/${booking.id}`" method="POST" @submit="return confirm('Are you sure you want to delete this user?');">
+                            <form :action="`{{ route('booking.delete', '') }}/${booking.id}`" method="POST" @submit="return confirm('Are you sure you want to delete this user?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-slate-500 hover:text-slate-700">
@@ -185,7 +185,7 @@
             function userSearch() {
                 return {
                     search: '',
-                    currentTab: 'users',
+                    currentTab: new URLSearchParams(window.location.search).get('tab') || 'users',
                     users: @json($users),
                     bookings: @json($bookings),
                     trips: @json($trips),

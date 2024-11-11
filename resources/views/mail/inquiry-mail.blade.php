@@ -6,14 +6,14 @@
     <title>Thank you for contacting us!</title>
     <style>
         body {
-            background-color: #f3f4f6; 
-            color: #1f2937; 
+            background-color: #f3f4f6;
+            color: #1f2937;
         }
         .container {
             max-width: 600px;
             margin: 40px auto;
             background: linear-gradient(135deg, #6f91ef, #1b3a73);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
             padding: 24px;
@@ -26,31 +26,32 @@
             margin-bottom: 20px;
         }
         .message {
-            color: #ffffff; 
+            color: #ffffff;
             line-height: 1.6;
             margin-bottom: 20px;
         }
         .bold-text {
             font-weight: bold;
-            color: #f09f61; 
+            color: #ffffff;
+            text-decoration: underline;
         }
         footer {
             margin-top: 24px;
             text-align: center;
             font-size: 0.875rem;
-            color:#ffffff; 
+            color:#ffffff;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Thank You for Contacting Us!</h1>
-        
+
         <p class="message">
             Dear Customer <span class="bold-text">{{ $contact->name }}</span>,
         </p>
         <p class="message">
-            Thank you for reaching out regarding <span class="bold-text">{{ $contact->subject }}</span>. We are here to assist you about <span class="bold-text">{{ $contact->message }}</span>.
+            Thank you for reaching out regarding <span class="bold-text">{{ $contact->subject }}</span>. We are here to assist you about: <span class="bold-text"><br>{{ $contact->message }}</span>.
         </p>
         <footer>
             <p>We will get back to you soon!</p>

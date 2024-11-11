@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\TripController;
@@ -36,7 +37,9 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['ifnotauth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard', [SuperAdminController::class, 'count'])->middleware(['ifnotauth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->prefix('profile')->group(function () {
     Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -58,7 +61,7 @@ Route::prefix('superadmin')->name('superadmin.')->group(function () {
 });
 
 Route::delete('/trips/{trip}', [SuperAdminController::class, 'tripDelete'])->name('trip.delete');
-Route::delete('/bookings/{booking}', [SuperAdminController::class, 'bookingDelete'])->name('bookings.destroy');
+Route::delete('/bookings/{booking}', [SuperAdminController::class, 'bookingDelete'])->name('booking.delete');
 Route::delete('/users/{user}', [SuperAdminController::class, 'superDelete'])->name('users.destroy');
 
 
