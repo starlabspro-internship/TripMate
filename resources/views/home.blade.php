@@ -6,13 +6,16 @@
         button-text="Learn More"
         button-link="/about"
     />
-    @include('components.statistic-box')
-    @include('components.end-section')
     <x-cars />
+    <x-our-services/>
+    <x-statistic-box/>
     <x-partners />
+    <x-safety />
     <x-icons />
     <x-contact />
-   
+
+    <x-end-section/>
+
 </x-app-layout>
 @if (!Auth::check() && request()->is('/'))
 <x-footer />

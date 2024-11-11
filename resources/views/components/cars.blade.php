@@ -1,5 +1,5 @@
 <!-- Kjo div ne qender te faqes -->
-<div  class="text-center pt-10 mb-4 sm:mb-8 mt-6 sm:mt-8">
+<div  class="text-center pt-10 mt-6 sm:mt-8">
 
 
     <h1 class="mobile-app-text text-4xl w-full sm:w-1/2 px-4 sm:px-0 m-auto title font-extrabold text-[#290e07]">Extra features you will have with cars</h1>
@@ -8,7 +8,7 @@
     </p>
     <div id="box-container" class="flex flex-col sm:flex-row sm:space-x-4 justify-center gap-8 max-w-screen-xl m-auto mb-10 md:px-4">
 
-      
+
         <div id="box" class="myBox mt-6 w-60 flex flex-col items-center justify-center rounded-2xl relative mx-auto" style="margin-left: 0;">
 
 

@@ -1,7 +1,7 @@
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+
         <div class="flex flex-col md:flex-row items-center justify-between w-full  p-6 bg-white space-y-6 md:space-y-0">
-            
-            
+
+
             <div class="flex flex-col items-center text-center w-full md:w-1/3 space-y-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="url(#smileGradient)" class="w-12 h-12">
                     <defs>
@@ -16,7 +16,7 @@
                 <p class="text-gray-500 text-sm">Përdorues të regjistruar</p>
             </div>
 
-            
+
             <div class="flex flex-col items-center text-center w-full md:w-1/3 space-y-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="url(#carGradient)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12">
                     <defs>
@@ -31,7 +31,7 @@
                 <p class="text-gray-500 text-sm">Udhëtime</p>
             </div>
 
-            
+
             <div class="flex flex-col items-center text-center w-full md:w-1/3 space-y-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="url(#userGradient)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12">
                     <defs>
@@ -50,4 +50,3 @@
             </div>
 
         </div>
-    </div>
