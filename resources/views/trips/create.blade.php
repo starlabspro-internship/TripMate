@@ -35,30 +35,41 @@
             </div>
         </div>
     </div>
-    <div class="flex items-center justify-center p-6">
+    <div class="flex items-center justify-center p-8">
         <div class="hover:shadow-2xl w-full max-w-lg ride-card bg-white p-6 rounded-lg transition-shadow duration-500 shadow-md flex flex-col justify-between">
-            <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center">Add a Trip</h1>
+            <h1 class="text-xl font-semibold text-gray-800 mb-6 text-center leading-tight">Plan Your Next Journey</h1>
+            <div class="flex font-light border-2 rounded-xl border-yellow-400 ">
+                <img
+                        src="{{ asset('storage/icons/warn.svg') }}"
+                        alt="avatar"
+                        class="relative inline-block h-auto w-20 p-2"
+                    />
+                <p class="p-2 inline-block"> 
+                    Post your trip 24 hours in advance to double your chances of finding travel companions!
+                    Plan ahead, travel stress-free, and enjoy every moment of your journey!
+                </p>
+            </div>
             <form action="{{ route('trips.store') }}" method="POST" class="space-y-6 ">
                 @csrf
                 <input type="hidden" name="driver_id" value="{{ auth()->id() }}">
-                <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4 ">
-                    <div class="flex flex-col w-full">
+                <div class="flex flex-row justify-stretch">
+                    <div class=" flex flex-col w-full relative">
                         <select name="origin_city_id" id="origin_city_id" 
-                                class="border border-gray-300 rounded-md px-3 py-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                                class="border border-gray-300 rounded-md bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                             <option value="" class="text-gray-500">From:</option>
                             @foreach ($cities as $city)
                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="40px" viewBox="0 -5 24 24" id="meteor-icon-kit__regular-long-arrow-right" fill="none">
+                    <div class="  mr-5 ml-5 pt-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30px" viewBox="0 -5 24 24" id="meteor-icon-kit__regular-long-arrow-right" fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5858 8H1C0.447715 8 0 7.5523 0 7C0 6.4477 0.447715 6 1 6H20.5858L16.2929 1.70711C15.9024 1.31658 15.9024 0.68342 16.2929 0.29289C16.6834 -0.09763 17.3166 -0.09763 17.7071 0.29289L23.7071 6.2929C24.0976 6.6834 24.0976 7.3166 23.7071 7.7071L17.7071 13.7071C17.3166 14.0976 16.6834 14.0976 16.2929 13.7071C15.9024 13.3166 15.9024 12.6834 16.2929 12.2929L20.5858 8z" fill="#758CA3"/>
                         </svg>
                     </div>                      
-                    <div class="flex flex-col w-full">
+                    <div class=" flex flex-col w-full relative">
                         <select name="destination_city_id" id="destination_city_id" 
-                                class="border border-gray-300 rounded-md px-3 py-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                                class="border border-gray-300 rounded-md  bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                             <option value="" class="text-gray-500">To:</option>
                             @foreach ($cities as $city)
                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -99,8 +110,20 @@
                             </svg>
                     </div>
                 </div>
+                <div class="flex flex-row w-full relative">
+                    <input type="text" id="meeting" name="meeting" 
+                           class="border border-gray-300 rounded-md w-full px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition" 
+                           placeholder="Meeting At:" value=""  >
+                            <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">
+                                <img
+                                    src="{{ asset('storage/icons/map.svg') }}"
+                                    alt="avatar"
+                                    class="mx-2 relative inline-block h-10 w-10 !rounded-full object-cover object-center"
+                                />
+                            </a>
+                </div>
                 
-                <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+                <div class="flex  md:flex-row md:space-y-0 space-x-4">
                     <div class="flex flex-col w-full">
                         <div class="relative">
                             <input type="number" id="available_seats" name="available_seats" 
@@ -130,20 +153,20 @@
                         </div>
                     </div>
                 </div>      
-                <div class="flex flex-col items-center space-y-4">
+                <div class="flex  flex-col items-center space-y-4">
                     <div class="flex flex-row items-center justify-center space-x-4">
                         <a href="{{ route('trips.index') }}">
                             <button type="submit" 
-                                    class="px-3 py-1 text-xs rounded-full transition duration-200 bg-blue-500 text-white hover:bg-blue-600 w-[70px] h-[28px] max-w-full">
-                                Add
+                                    class="px-3 py-1 text-md rounded-xl transition duration-200 bg-blue-500 text-white hover:bg-blue-300 w-[250px] h-[45px] max-w-full">
+                                    Publish
                             </button>
                         </a>   
-                        <a href="{{ route('trips.index') }}">
+                        {{-- <a href="{{ route('trips.index') }}">
                             <button type="button" 
-                                    class="px-3 py-1 text-xs rounded-full transition duration-200 bg-red-500 text-white hover:bg-red-600 w-[70px] h-[28px] max-w-full">
+                                    class="px-3 py-1 text-md rounded-lg transition duration-200 bg-red-600 text-white hover:bg-red-400 w-[150px] h-[45px] max-w-full">
                                 Cancel
                             </button>
-                        </a>                        
+                        </a>                         --}}
                     </div>
                 </div>          
             </form>

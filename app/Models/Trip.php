@@ -15,6 +15,7 @@ class Trip extends Model
         'destination_city_id',
         'departure_time',
         'arrival_time',
+        'meeting',
         'available_seats',
         'price',
     ];
