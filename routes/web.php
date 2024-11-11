@@ -13,7 +13,7 @@ Route::middleware('ifnotauth')->prefix('trips')->name('trips.')->controller(Trip
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::get('/update', 'update')->name('update');
+    Route::put('/update', 'update')->name('update');
     Route::get('/destroy', 'destroy')->name('destroy');
     Route::get('/{trip}/edit', 'edit')->name('edit');
     Route::get('/{trip}', 'show')->name('show');

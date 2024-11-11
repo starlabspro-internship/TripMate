@@ -152,6 +152,18 @@
                     </div>
                 </div>
             </div>
+            <div class="flex flex-row w-full relative">
+                <input type="text" id="meeting" name="meeting" 
+                       class="border border-gray-300 rounded-md w-full px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition" 
+                       placeholder="Meeting At:" value="{{ $trip->meeting }}"  >
+                        <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">
+                            <img
+                                src="{{ asset('storage/icons/map.svg') }}"
+                                alt="avatar"
+                                class="mx-2 relative inline-block h-10 w-10 !rounded-full object-cover object-center"
+                            />
+                        </a>
+            </div>
         <div class="flex justify-between space-x-2">
             <div class="relative w-1/2">
                 <input type="number" id="available_seats" name="available_seats" 
