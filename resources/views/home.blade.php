@@ -7,6 +7,7 @@
         button-link="/about"
     />
     @include('components.statistic-box')
+    @include('components.end-section')
     <x-cars />
     <x-partners />
     <x-icons />
