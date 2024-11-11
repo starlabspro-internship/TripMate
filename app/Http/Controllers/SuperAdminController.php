@@ -95,16 +95,25 @@ class SuperAdminController extends Controller
 
         $trip->save();
 
-        return response()->json(['success' => true, 'redirect' => route('superadmin.index')]);
+        return response()->json(['success' => true, 'redirect' => route('superadmin.index', ['tab' => 'trips']) ]);
 
     }
     public function tripDelete(Trip $trip){
         $trip->delete();
-        return redirect()->route('superadmin.idex');
+        return redirect()->route('superadmin.index', ['tab' => 'trips']);
     }
     public function bookingDelete(Booking $booking){
         $booking->delete();
-        return redirect()->route('superadmin.index');
+        return redirect()->route('superadmin.index', ['tab' => 'bookings']);
     }
+
+    public function count()
+    {
+        $totalBookings = Booking::count();
+        $totalUsers = User::count();
+        $totalTrips = Trip::count();
+        return view('dashboard', compact('totalTrips', 'totalUsers', 'totalBookings'));
+    }
+
 }
 

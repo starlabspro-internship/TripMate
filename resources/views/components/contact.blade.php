@@ -1,27 +1,30 @@
-
-    <div class="flex items-center justify-center p-6 ">
-        <div class="container mx-auto max-w-lg mt-30 mb-30 px-10 py-8 bg-white shadow-md rounded-lg border border-gray-200">
-            <h2 class="text-2xl font-medium mb-4 text-center text-gray-800">For questions, please contact us</h2>
-            <p class="text-sm mb-6 text-gray-400 text-center">
+<div class=" flex flex-col sm:flex-row justify-center">
+    <div>
+        <x-faq/>
+    </div>
+    <div class="flex items-center justify-center py-8 px-5 ">
+        <div class="container mx-auto max-w-lg mt-30 mb-30 px-10 py-8 bg-white shadow-md rounded-lg border border-gray-200 lg:h-[624px] md:h-[720px]">
+            <h2 class="text-3xl font-medium mb-4 text-center text-gray-800">For questions, please contact us</h2>
+            <p class="text-md mb-6 text-gray-400 text-center">
                 By submitting, you give permission to Trip Mate to store and process your personal information so we can provide you with the content you have requested.
                 For more information see our <a href="#" class="text-aquamarine underline">Privacy Policy</a>.
             </p>
-    
-            
+
+
                 <form id="myForm" action="{{ route('contact.submit') }}" method="POST">
                 @csrf
-    
+
                 <!-- Name and Email Input -->
                 <div class="mb-5 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-2">
                         <div class="flex-1">
-                        <input type="text" id="name" name="name" placeholder="name" class="w-full h-8 bg-gray-200 border border-gray-300 rounded-lg shadow-sm p-2 mt-1 text-xs placeholder-gray-700" required>
+                        <input type="text" id="name" name="name" placeholder="name" class="w-full h-10 bg-gray-200 border border-gray-300 rounded-lg shadow-sm p-2 mt-1 text-sm placeholder-gray-700" required>
                         @error('name')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div class="flex-1">
-                        <input type="email" id="email" name="email" placeholder="email address" class="w-full h-8 bg-gray-200 border border-gray-300 rounded-lg shadow-sm p-2 mt-1 text-xs placeholder-gray-700" required>
+                        <input type="email" id="email" name="email" placeholder="email address" class="w-full h-10 bg-gray-200 border border-gray-300 rounded-lg shadow-sm p-2 mt-1 text-sm placeholder-gray-700" required>
                         @error('email')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
@@ -30,7 +33,7 @@
 
                 <!-- Subject Input -->
                 <div class="mb-5">
-                    <select id="subject" name="subject" class="w-full h-8 bg-gray-200 border border-gray-300 rounded-lg shadow-sm p-2 mt-1 text-xs placeholder-gray-700" required>
+                    <select id="subject" name="subject" class="w-full h-10 bg-gray-200 border border-gray-300 rounded-lg shadow-sm p-2 mt-1 text-sm placeholder-gray-700" required>
                         <option value="" disabled selected>select subject</option>
                         <option value="Info Request">Info Request</option>
                         <option value="Customer Support">Customer Support</option>
@@ -45,7 +48,7 @@
 
                 <!-- Message Input -->
                 <div class="mb-5">
-                    <textarea id="message" name="message" rows="4" placeholder="message" class="w-full h-32 bg-gray-200 border border-gray-300 rounded-lg shadow-sm p-2 mt-1 text-xs placeholder-gray-700" required></textarea>
+                    <textarea id="message" name="message" rows="4" placeholder="message" class="w-full h-32 bg-gray-200 border border-gray-300 rounded-lg shadow-sm p-2 mt-1 text-sm placeholder-gray-700" required></textarea>
                     @error('message')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
@@ -67,7 +70,7 @@
                         </svg>
                     </button>
                 </div>
-            
+
 
 
                 <!-- Success Message -->
@@ -77,3 +80,6 @@
             </form>
         </div>
     </div>
+
+
+</div>
