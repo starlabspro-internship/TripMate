@@ -17,7 +17,7 @@
     <x-end-section/>
 
 </x-app-layout>
-@if (!Auth::check() && request()->is('/'))
+@if (!Auth::check() && request()->is('/') || request()->is('home'))
 <x-footer />
 @endif
 @endguest
