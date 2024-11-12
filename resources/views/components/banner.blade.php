@@ -14,9 +14,7 @@
                         {{ $description }}
                     </p>
 
-                    <a href="{{ $buttonLink }}" class="bg-[#66AAC3] hover:bg-blue-700 shadow-lg inline-block  font-medium py-2 px-4 rounded-md flex-shrink-0 mt-2">
-                        {{ $buttonText }}
-                    </a>
+
                 </div>
             </div>
         </div>
