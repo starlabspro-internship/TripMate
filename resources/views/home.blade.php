@@ -14,6 +14,7 @@
     <x-icons />
     <x-contact />
 
+    <x-swiper />
     <x-end-section/>
 
 </x-app-layout>
