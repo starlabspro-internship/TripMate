@@ -28,7 +28,22 @@
                         class="relative inline-block h-8 w-8 !rounded-full object-cover object-center"
                     />
                     <p class="relative inline-block  object-cover object-center">{{$trip->departure_time}}</p>
-                <div class="flex-col mt-5 pb-4">
+                </div>
+                <div class="flex-col pb-4">
+                    <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">
+                        <img
+                            src="{{ asset('storage/icons/map.svg') }}"
+                            alt="avatar"
+                            class="mx-2 relative inline-block h-10 w-10 !rounded-full object-cover object-center"
+                        />
+                    </a>
+                    @if ($trip->meeting)
+                    <p class="relative inline-block  object-cover object-center">{{$trip->meeting}}</p>
+                    @else
+                    <p class="relative inline-block  object-cover object-center">Talk in chat</p>
+                    @endif
+                </div>
+                <div class="flex-col pb-4">
                     <img
                         src="{{ asset('storage/icons/eu.svg') }}"
                         alt="avatar"

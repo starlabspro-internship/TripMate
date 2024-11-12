@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\TripController;
@@ -13,7 +14,7 @@ Route::middleware('ifnotauth')->prefix('trips')->name('trips.')->controller(Trip
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::get('/update', 'update')->name('update');
+    Route::put('/update', 'update')->name('update');
     Route::get('/destroy', 'destroy')->name('destroy');
     Route::get('/{trip}/edit', 'edit')->name('edit');
     Route::get('/{trip}', 'show')->name('show');
@@ -25,21 +26,22 @@ Route::middleware('ifnotauth')->prefix('bookings')->name('booking.')->controller
     Route::delete('/{id}', 'destroy')->name('destroy');
 });
 
+
 Route::get('/home', function(){
-    return view('home');
-});
-
-
-
-Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect('/dashboard');
+    }
     return view('home');
 })->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['ifnotauth', 'verified'])->name('dashboard');
+Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect('/dashboard');
+    }
+    return view('home');
+})->name('home');
 
-Route::get('/dashboard', [SuperAdminController::class, 'count'])->middleware(['ifnotauth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [SuperAdminController::class, 'count'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->prefix('profile')->group(function () {
     Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
