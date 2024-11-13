@@ -92,6 +92,17 @@
         <input id="password_confirmation" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="password" name="password_confirmation" placeholder="Confirm Password" required />
     </div>
 </div>
+        
+
+        <div class="form-group">
+                 {!! app('captcha')->display() !!}
+        </div>
+
+        @if ($errors->has('g-recaptcha-response'))
+    <div class="alert alert-danger">
+        {{ $errors->first('g-recaptcha-response') }}
+    </div>
+@endif
 
                 <div class="flex items-center justify-end mt-4">
                     {{-- <button type="submit" class="mx-auto px-16 flex items-center justify-center mb-6 border border-gray-300 hover:border-gray-900 hover:bg-blue-800 text-gray-700 hover:text-white text-base py-2 rounded-lg tracking-wide font-medium cursor-pointer transition ease-in duration-500"> --}}
@@ -117,5 +128,7 @@
             maxDate: new Date(), // Prevent future dates
         });
     });
+
+
 </script>
 </x-app-layout>

@@ -1,86 +1,123 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
-        </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
-        </p>
-    </header>
-
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
-        @csrf
-    </form>
-
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
-        @csrf
-        @method('patch')
-
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required  autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        <!-- Mobile Menu -->
+        <div class="block md:hidden bg-blue-600 text-white p-4">
+            <div class="block md:hidden bg-blue-600 text-white px-0 py-2 rounded space-y-4">
+                <a href="{{ route('dashboard') }}" class="block text-white hover:text-blue-300 text-lg pl-4">Dashboard</a>
+                <a href="{{ route('profile.edit') }}" class="block text-white hover:text-blue-300 text-lg pl-4">Profile</a>
+            </div>
+            
         </div>
 
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+        <div class="flex flex-col md:flex-row">
+            <!-- Sidebar -->
+            <div class="bg-blue-600 text-white p-6 md:w-1/4 w-full md:block hidden">
+                <h2 class="text-2xl font-bold mb-6">My Profile</h2> 
+            </div>
+            <!-- Main Content -->
+            <div class="w-full md:w-3/4">
+                <div class="bg-white p-4 md:p-6 rounded-lg shadow-md mx-auto w-11/12 md:w-full">
+                    <h2 class="text-2xl font-bold mb-4 md:mb-6">Edit Profile</h2>
 
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Your email address is unverified.') }}
-
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
-
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
+                    @if(session('status'))
+                        <div class="text-green-500 mb-4">{{ session('status') }}</div>
                     @endif
+
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
+                        <!-- Profile Image and Edit Button -->
+                <div class="md:ml-auto flex-col items-center mr-20 text-center">
+                    <!-- Profile Image -->
+                    @if(auth()->user()->image)
+                    <img id="profileImage" 
+                        src="{{ asset('storage/' . auth()->user()->image) }}" 
+                        alt="User Image" 
+                        class="border-2 border-[#76A8B2] w-40 h-40 rounded-full">
+
+                    @else
+                        <img id="profileImage"
+                            src="https://eu.ui-avatars.com/api/?name={{ auth()->user()->name }}+{{ auth()->user()->lastname }}&size=250"
+                            alt="Default Image"
+                            class="border-2 border-[#76A8B2] w-40 h-40 rounded-full">
+                    @endif
+                    <div class="flex flex-col items-start pt-4 px-6 justify-start w-full">
+                        <div class="flex items-center justify-end mb-10 md:mb-10">
+                            <label for="image" class="inline-block px-4 py-2 bg-blue-500 text-white font-medium rounded-md cursor-pointer hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 translate-y-[-5px]">
+                                Edit Image
+                            </label>
+                        </div>
+
+                        <div class="flex items-center mb-4 md:mb-0">
+                            <input id="image" class="hidden" type="file" name="image" accept="image/*" onchange="previewImage(event)">
+                        </div>
+
+                    </div>
+                
+                    
                 </div>
-            @endif
+            
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                            <!-- First Name -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">First Name</label>
+                                <input type="text" name="name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" value="{{ old('name', $user->name) }}">
+                                <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                            </div>
+
+                            <!-- Last Name -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Last Name</label>
+                                <input type="text" name="lastname" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" value="{{ old('lastname', $user->lastname) }}">
+                                <x-input-error class="mt-2" :messages="$errors->get('lastname')" />
+                            </div>
+
+                            <!-- Email (readonly) -->
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" name="email" value="{{ old('email', $user->email) }}" readonly class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                                <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700">Phone Number</label>
+                                <input type="text" name="phone" id="phone" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" value="{{ old('phone', $user->phone ) }}">
+                                <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+                            </div>
+
+                            <!-- Address -->
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700">Address</label>
+                                <input type="text" name="address" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" value="{{ old('address', $user->address) }}">
+                                <x-input-error class="mt-2" :messages="$errors->get('address')" />
+                            </div>
+
+                            <!-- City -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">City</label>
+                                <input type="text" name="city" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" value="{{ old('city', $user->city) }}">
+                                <x-input-error class="mt-2" :messages="$errors->get('city')" />
+                            </div>
+
+                            <!-- Birthday -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Birthday</label>
+                                <input type="date" name="birthday" value="{{ old('birthday', $user->birthday) }}" readonly class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                                <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
+                            </div>
+
+                            
+                            <!-- Save Button -->
+                        <div class="mt-4 md:mt-6 col-span-1 md:col-span-2">
+                            <button type="submit" class="bg-blue-500 text-white py-2 px-6  rounded-md font-bold hover:bg-blue-600">Save</button>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <div>
-            <x-secondary-button class="bg-gray-100 hover:scale-105 transition duration-500 hover:bg-gray-200 flex justify-center items-center mr-3"
-                                onclick="document.getElementById('image-upload').click()">
-                {{ __('Edit Image') }}
-            </x-secondary-button>
-            <input type="file" id="image-upload" name="image" accept="image/*" class="hidden" onchange="previewImage(event)">
-        </div>
-
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
-
-            @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
-            @endif
-        </div>
-    </form>
-    <script>
-        function previewImage(event) {
-            const image = document.getElementById('profileImage');
-            const file = event.target.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    image.src = e.target.result; // Update the image preview
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
+    </div>
+</header>
 </section>

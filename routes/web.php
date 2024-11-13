@@ -70,7 +70,7 @@ Route::delete('/users/{user}', [SuperAdminController::class, 'superDelete'])->na
  Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
  Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
-
+Auth::routes(['verify' => true]);
 
 
 require __DIR__.'/auth.php';

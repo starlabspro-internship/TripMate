@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
@@ -33,33 +34,28 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
+    public function update(ProfileUpdateRequest $request): RedirectResponse{
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+        $validatedData = $request->validated();
+      
 
-        $request->validate([
-            'image'=>'required',
-        ]);
-        $user = Auth::user();
 
-        if (request()->hasFile('image')) {
-            if ($user->image){
+        $user = $request->user();
+        $user->fill($validatedData);
+
+        if ($request->hasFile('image')) {
+            if ($user->image) {
                 Storage::disk('public')->delete($user->image);
             }
+    
+        $path = $request->file('image')->store('images', 'public'); 
+        $user->image = $path;
+    }
 
-            $path = $request->file('image')->store('images', 'public');
-            $user->image = $path;
-            $user->save();
-        }
-
-        $request->user()->save();
+        $user->save();
 
         return Redirect::route('profile.index')->with('status', 'profile-updated');
-    }
+}
 
     /**
      * Delete the user's account.
