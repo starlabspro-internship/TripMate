@@ -5,7 +5,6 @@
             <div class="block md:hidden bg-blue-600 text-white px-0 py-2 rounded space-y-4">
                 <a href="{{ route('dashboard') }}" class="block text-white hover:text-blue-300 text-lg pl-4">Dashboard</a>
                 <a href="{{ route('profile.edit') }}" class="block text-white hover:text-blue-300 text-lg pl-4">Profile</a>
-                <a href="{{ route('contact') }}" class="block text-white hover:text-blue-300 text-lg pl-4">Contact us</a>
             </div>
             
         </div>
