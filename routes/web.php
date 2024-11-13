@@ -8,6 +8,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\ContactController;
+use Illuminate\Support\Facades\Auth;
 
 Route::middleware('ifnotauth')->prefix('trips')->name('trips.')->controller(TripController::class)->group(function () {
     Route::get('/', 'index')->name('index');
@@ -68,7 +69,7 @@ Route::delete('/users/{user}', [SuperAdminController::class, 'superDelete'])->na
  Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
  Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
-
+Auth::routes(['verify' => true]);
 
 
 require __DIR__.'/auth.php';
