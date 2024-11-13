@@ -61,10 +61,11 @@ protected function deletePastTrips()
             'origin_city_id' => 'required|exists:cities,id',
             'destination_city_id' => 'required|exists:cities,id',
             'departure_time' => 'required|date',
-            'meeting' => 'required|string|max:255',
             'arrival_time' => 'required|date|after:departure_time',
             'available_seats' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
         ]);
     
         Trip::create($request->all());
@@ -104,9 +105,10 @@ protected function deletePastTrips()
             'destination_city_id' => 'exists:cities,id',
             'departure_time' => 'date',
             'arrival_time' => 'date|after:departure_time',
-            'meeting' => 'required|string|max:255',
             'available_seats' => 'integer|min:1',
             'price' => 'numeric|min:0',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
         ]);
         $trip->update($request->except('driver_id')); 
         return response()->json(['success' => true, 'redirect' => route('trips.index')]);

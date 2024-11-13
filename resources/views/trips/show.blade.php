@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form action="{{ route('booking.store') }}" method="POST"  class="bg-gray-200 my-20 m-5 rounded-2xl p-20 md:mt-20 md:mb-5 md:mx-40 lg:mt-20 lg:mb-5 lg:mx-40">
+    <form action="{{ route('booking.store') }}" method="POST"  class="bg-gray-200 my-20 m-5 rounded-2xl md:p-10 p-5 md:mt-20 md:mb-5 md:mx-20 lg:mt-20 lg:p-20 lg:mb-5 lg:mx-30">
         @csrf
         <input type="hidden" name="trip_id" value="{{ $trip->id }}">
         <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
@@ -11,8 +11,10 @@
                     />
                 </a>
         <div>
-            <img class="max-w-xl  ml-5 float-end hidden lg:block rounded-2xl" src="{{ Vite::asset('resources/images/Vushtrri.jpg') }}" alt="..">
-            <div class="flex text-black text-xl capitalize space-x-6 justify-between mt-4">
+            <div class="relative py-2">
+                <div id="map" class=" py-5 h-[300px] w-full mb-8 md:float-end lg:block rounded-2xl md:max-w-lg md:h-[300px] md:w-[300px] md:end-0 lg:h-[400px] lg:w-[400px]"></div>
+             </div>
+            <div class="flex my-2 text-black text-xl capitalize space-x-6 justify-between mt-4">
                 <div class="flex items-center space-x-2">
                     <p>{{$trip->origincity->name}}</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20px" viewBox="0 -5 24 24" id="meteor-icon-kit__regular-long-arrow-right" fill="none">
@@ -28,20 +30,6 @@
                         class="relative inline-block h-8 w-8 !rounded-full object-cover object-center"
                     />
                     <p class="relative inline-block  object-cover object-center">{{$trip->departure_time}}</p>
-                </div>
-                <div class="flex-col pb-4">
-                    <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">
-                        <img
-                            src="{{ asset('storage/icons/map.svg') }}"
-                            alt="avatar"
-                            class="mx-2 relative inline-block h-10 w-10 !rounded-full object-cover object-center"
-                        />
-                    </a>
-                    @if ($trip->meeting)
-                    <p class="relative inline-block  object-cover object-center">{{$trip->meeting}}</p>
-                    @else
-                    <p class="relative inline-block  object-cover object-center">Talk in chat</p>
-                    @endif
                 </div>
                 <div class="flex-col pb-4">
                     <img
@@ -72,14 +60,14 @@
                 <div class="flex-col  pb-6">
                     <h1 class="text-lg py-3">Choose the number of seats:</h1>
                     <input class=" px-3 py-1 border border-gray-700 rounded-lg bg-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:border-transparent text-gray-700"
-                     type="number" name="seats_booked" min="1" max="{{ $available_seats }}" required>
+                     type="number" name="seats_booked" min="1" max="{{ $available_seats }}" value="1" required>
                 </div>
                 @else
-                <p class="text-red-500">There are no seats available for this trip.</p>
+                <p class="text-red-500 py-4">There are no seats available for this trip.</p>
                 @endif
              @if ($available_seats>0)
             <div>
-                <button class="w-full rounded-md bg-blue-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2 md:w-40"
+                <button class="w-full rounded-md bg-blue-800  py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2 md:w-40"
                  type="submit">
                     Book
                   </button>
@@ -89,4 +77,21 @@
             @endif
         </div>
     </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var latitude = {{ $trip->latitude }};
+            var longitude = {{ $trip->longitude }};
+            
+            var map = L.map('map').setView([latitude, longitude], 13);
+            
+            L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            L.marker([latitude, longitude]).addTo(map)
+                .bindPopup("Meeting Location")
+                .openPopup();
+        });
+    </script>
 </x-app-layout>

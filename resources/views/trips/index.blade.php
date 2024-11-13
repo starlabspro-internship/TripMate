@@ -10,13 +10,13 @@
             @endif
             <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mt-4 md:mt-0">
                 <a href="{{ route('trips.index') }}" 
-                   class="w-28 px-4 py-1 text-sm rounded-full transition duration-200 
+                   class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
                           {{ request()->routeIs('trips.index') ? 'bg-blue-100 text-blue-600' : 'bg-blue-200 text-gray-500' }}
                           hover:bg-blue-300 text-center">
                     Passenger
                 </a>
                 <a href="{{ route('trips.create') }}" 
-                   class="w-28 px-4 py-1 text-sm rounded-full transition duration-200 
+                   class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
                           {{ request()->routeIs('trips.create') ? 'bg-blue-100 text-blue-600' : 'bg-gray-200 text-gray-700' }}
                           hover:bg-gray-400 text-center">
                     Driver

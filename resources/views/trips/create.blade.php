@@ -13,6 +13,34 @@
                     dateFormat: "Y-m-d H:i",
                     time_24hr: true
                 });
+                // Initialize the map
+                var map = L.map('map').setView([42.5269444444, 21.0072222222], 8);
+                L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
+                    maxZoom: 200,
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+    
+                // Marker for selecting location
+                var marker = L.marker([0, 0], { draggable: true }).addTo(map);
+    
+                // Function to update coordinates on form
+                function updateCoordinates(lat, lng) {
+                    document.getElementById('latitude').value = lat;
+                    document.getElementById('longitude').value = lng;
+                    marker.setLatLng([lat, lng]);
+                }
+    
+                // Update coordinates on map click
+                map.on('click', function(e) {
+                    var { lat, lng } = e.latlng;
+                    updateCoordinates(lat, lng);
+                });
+    
+                // Update coordinates when marker is dragged
+                marker.on('dragend', function(e) {
+                    var { lat, lng } = e.target.getLatLng();
+                    updateCoordinates(lat, lng);
+                });
             });
         </script>
     </head>
@@ -21,13 +49,13 @@
             <h1 class="text-3xl font-bold text-white">Create Trips</h1>
             <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mt-4 md:mt-0">
                 <a href="{{ route('trips.index') }}" 
-                   class="w-28 px-4 py-1 text-sm rounded-full transition duration-200 
+                   class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
                           {{ request()->routeIs('trips.index') ? 'bg-gray-100 text-gray-600' : 'bg-gray-200 text-gray-700' }}
                           hover:bg-gray-400 text-center">
                     Passenger
                 </a>
                 <a href="{{ route('trips.create') }}" 
-                   class="w-28 px-4 py-1 text-sm rounded-full transition duration-200 
+                   class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
                           {{ request()->routeIs('trips.create') ? 'bg-blue-100 text-blue-600' : 'bg-gray-200 text-gray-700' }}
                           hover:bg-blue-300 text-center">
                     Driver
@@ -52,8 +80,8 @@
             <form action="{{ route('trips.store') }}" method="POST" class="space-y-6 ">
                 @csrf
                 <input type="hidden" name="driver_id" value="{{ auth()->id() }}">
-                <div class="flex flex-row justify-stretch">
-                    <div class=" flex flex-col w-full relative">
+                <div class="flex flex-row justify-stretch place-items-center w-full">
+                    <div class=" flex flex-col md:w-full relative w-1/3">
                         <select name="origin_city_id" id="origin_city_id" 
                                 class="border border-gray-300 rounded-md bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                             <option value="" class="text-gray-500">From:</option>
@@ -62,12 +90,12 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="  mr-5 ml-5 pt-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30px" viewBox="0 -5 24 24" id="meteor-icon-kit__regular-long-arrow-right" fill="none">
+                    <div class="flex items-center justify-center w-1/3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" width="30" height="30px" viewBox="0 -5 24 24" id="meteor-icon-kit__regular-long-arrow-right" fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5858 8H1C0.447715 8 0 7.5523 0 7C0 6.4477 0.447715 6 1 6H20.5858L16.2929 1.70711C15.9024 1.31658 15.9024 0.68342 16.2929 0.29289C16.6834 -0.09763 17.3166 -0.09763 17.7071 0.29289L23.7071 6.2929C24.0976 6.6834 24.0976 7.3166 23.7071 7.7071L17.7071 13.7071C17.3166 14.0976 16.6834 14.0976 16.2929 13.7071C15.9024 13.3166 15.9024 12.6834 16.2929 12.2929L20.5858 8z" fill="#758CA3"/>
                         </svg>
-                    </div>                      
-                    <div class=" flex flex-col w-full relative">
+                    </div>                 
+                    <div class=" flex flex-col md:w-full w-1/3 relative">
                         <select name="destination_city_id" id="destination_city_id" 
                                 class="border border-gray-300 rounded-md  bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                             <option value="" class="text-gray-500">To:</option>
@@ -109,20 +137,7 @@
                                 <rect x="13" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
                             </svg>
                     </div>
-                </div>
-                <div class="flex flex-row w-full relative">
-                    <input type="text" id="meeting" name="meeting" 
-                           class="border border-gray-300 rounded-md w-full px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition" 
-                           placeholder="Meeting At:" value=""  >
-                            <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">
-                                <img
-                                    src="{{ asset('storage/icons/map.svg') }}"
-                                    alt="avatar"
-                                    class="mx-2 relative inline-block h-10 w-10 !rounded-full object-cover object-center"
-                                />
-                            </a>
-                </div>
-                
+                </div>          
                 <div class="flex  md:flex-row md:space-y-0 space-x-4">
                     <div class="flex flex-col w-full">
                         <div class="relative">
@@ -152,7 +167,11 @@
                             </svg>
                         </div>
                     </div>
-                </div>      
+                </div>    
+                    <p class="">Meeting At:</p>
+                    <div id="map" class="mb-1 h-[400px]"></div>
+                    <input type="hidden" id="latitude" name="latitude" />
+                    <input type="hidden" id="longitude" name="longitude" />  
                 <div class="flex  flex-col items-center space-y-4">
                     <div class="flex flex-row items-center justify-center space-x-4">
                         <a href="{{ route('trips.index') }}">
@@ -161,12 +180,6 @@
                                     Publish
                             </button>
                         </a>   
-                        {{-- <a href="{{ route('trips.index') }}">
-                            <button type="button" 
-                                    class="px-3 py-1 text-md rounded-lg transition duration-200 bg-red-600 text-white hover:bg-red-400 w-[150px] h-[45px] max-w-full">
-                                Cancel
-                            </button>
-                        </a>                         --}}
                     </div>
                 </div>          
             </form>
