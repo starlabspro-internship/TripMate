@@ -78,8 +78,8 @@
         </div>
 
         <!-- Swiper Navigation and Pagination -->
-        <div class="swiper-button-next !text-[#34d49c] !hidden sm:!flex"></div>
-        <div class="swiper-button-prev !text-[#34d49c] !hidden sm:!block"></div>
+        <div class="swiper-button-next !text-[#f0bc0d] !hidden sm:!flex"></div>
+        <div class="swiper-button-prev !text-[#f0bc0d] !hidden sm:!block"></div>
 
         <div class="swiper-pagination mt-15 ">
 
