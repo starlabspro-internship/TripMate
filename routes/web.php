@@ -9,7 +9,6 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\ContactController;
-use Illuminate\Support\Facades\Auth;
 
 Route::middleware('ifnotauth')->prefix('trips')->name('trips.')->controller(TripController::class)->group(function () {
     Route::get('/', 'index')->name('index');
