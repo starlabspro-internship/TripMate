@@ -1,22 +1,22 @@
 <x-app-layout>
     @auth
-    <div class="container mx-auto p-6">
+    <div class="container mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-center mb-6 mt-12 w-full space-y-4 md:space-y-0">
-        <h1 class="text-3xl font-bold text-white">Available Rides</h1>
+        <h1 class="text-3xl font-bold text-black p-6">Available Rides</h1>
             @if (session('error'))
             <div class="text-red-500 text-xl ">
                 {{ session('error') }}
             </div>
             @endif
-            <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mt-4 md:mt-0">
+            <div class="flex gap-2 md:flex-row  md:space-y-0 md:space-x-2 mt-4 md:mt-0">
                 <a href="{{ route('trips.index') }}" 
-                   class="w-28 px-4 py-1 text-sm rounded-full transition duration-200 
+                   class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
                           {{ request()->routeIs('trips.index') ? 'bg-blue-100 text-blue-600' : 'bg-blue-200 text-gray-500' }}
                           hover:bg-blue-300 text-center">
                     Passenger
                 </a>
                 <a href="{{ route('trips.create') }}" 
-                   class="w-28 px-4 py-1 text-sm rounded-full transition duration-200 
+                   class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
                           {{ request()->routeIs('trips.create') ? 'bg-blue-100 text-blue-600' : 'bg-gray-200 text-gray-700' }}
                           hover:bg-gray-400 text-center">
                     Driver
@@ -90,7 +90,7 @@
                     @if($trip->users->image)
                         <img src="{{ asset('storage/' . $trip->users->image) }}" alt="{{ $trip->users->name }}" class="w-12 h-12 rounded-full mb-2">
                     @else
-                        <img src="{{ asset('storage/images/default-user.png') }}" alt="Default User" class="w-12 h-12 rounded-full mb-2">
+                        <img class="relative inline-block h-12 w-12  object-cover object-center rounded-full" src="{{ asset('https://eu.ui-avatars.com/api/' . $trip->users->name  . '+' . $trip->users->lastname) }}" alt="Default Image">
                     @endif
                     <div class="ml-2">
                         <h3 class="text-lg font-semibold text-gray-900">{{ $trip->users->name ?? 'N/A' }} {{ $trip->users->lastname ?? '' }}

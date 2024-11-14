@@ -1,6 +1,6 @@
 <x-app-layout>
     <div>
-        <form action="{{ route('booking.store') }}" method="POST"  class="bg-gray-200 my-20 m-5 rounded-2xl p-20 md:mt-20 md:mb-5 md:mx-40 lg:mt-20 lg:mb-5 lg:mx-40">
+        <form action="{{ route('booking.store') }}" method="POST"  class="bg-gray-200 my-20 m-5 rounded-2xl md:p-10 p-5 md:mt-20 md:mb-5 md:mx-20 lg:mt-20 lg:p-10  lg:mb-5 lg:mx-30">
             @csrf
             <input type="hidden" name="trip_id" value="{{ $trip->id }}">
             <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
@@ -12,7 +12,9 @@
                 />
             </a>
             <div>
-                <img class="max-w-lg  ml-5 float-end hidden lg:block rounded-2xl" src="{{ Vite::asset('resources/images/Vushtrri.jpg') }}" alt="..">
+                <div class="relative py-2 ">
+                    <div id="map" class=" py-5 h-[300px] w-full mb-8 md:float-end lg:block rounded-2xl md:max-w-lg md:h-[300px] md:w-[300px] md:end-0 lg:h-[400px] lg:w-[400px]"></div>
+                </div>
                     <div class="flex text-black text-xl capitalize space-x-6 justify-between mt-4">
                         <div class="flex items-center space-x-2">
                             <p>{{$trip->origincity->name}}</p>
@@ -54,7 +56,7 @@
                     @endif
             </div>
         </form>
-        <div class="flex flex-col md:flex-row items-center mt-6 space-x-2">
+        <div class="flex flex-col md:flex-row items-center mt-6 space-x-2 mb-[55px]">
             <a  
                 class="w-full rounded-md my-2 bg-white py-2 px-4 border border-transparent text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-green-300 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                 Chat
@@ -68,6 +70,22 @@
                     </button>
                 </form>
         </div>
-        </ul>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var latitude = {{ $trip->latitude }};
+            var longitude = {{ $trip->longitude }};
+            
+            var map = L.map('map').setView([latitude, longitude], 13);
+            
+            L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            L.marker([latitude, longitude]).addTo(map)
+                .bindPopup("Meeting Location")
+                .openPopup();
+        });
+    </script>
 </x-app-layout>

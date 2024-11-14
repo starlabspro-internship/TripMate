@@ -1,4 +1,4 @@
-<div class="fixed w-full z-30 flex bg-white dark:bg-[#0F172A] p-2 items-center justify-between h-16 px-4 sm:px-10">
+<div class="fixed w-full  flex bg-white dark:bg-[#0F172A] p-2 items-center justify-between h-16 px-4 sm:px-10 z-[9999]">
     <!-- Logo -->
     <div class="logo ml-2 sm:ml-12 dark:text-white transform ease-in-out duration-500 flex-none h-full flex items-center justify-center text-xl font-semibold">
         TripMate
@@ -60,7 +60,7 @@
             @if(auth()->user()->image)
                 <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="User Image" class="rounded-full">
             @else
-                <img src="{{ asset('https://eu.ui-avatars.com/api/' . auth()->user()->name . '+' . auth()->user()->lastname . '&size=250') }}" alt="Default Image" class="rounded-full">
+                <img src="{{ 'https://eu.ui-avatars.com/api/?name=' . urlencode(auth()->user()->name . ' ' . auth()->user()->lastname) . '&size=250' }}" alt="Default Image" class="rounded-full">
             @endif
         </div>
 
