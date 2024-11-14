@@ -4,6 +4,8 @@ import './swiper';
 import Alpine from 'alpinejs';
 import Intersect from '@alpinejs/intersect';
 import 'font-awesome/css/font-awesome.css';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";

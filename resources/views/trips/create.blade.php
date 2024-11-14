@@ -6,12 +6,14 @@
                 flatpickr("#departure_time", {
                     enableTime: true,
                     dateFormat: "Y-m-d H:i",
-                    time_24hr: true
+                    time_24hr: true,
+                    minDate: "today"
                 });
                 flatpickr("#arrival_time", {
                     enableTime: true,
                     dateFormat: "Y-m-d H:i",
-                    time_24hr: true
+                    time_24hr: true,
+                    minDate: "today"
                 });
                 // Initialize the map
                 var map = L.map('map').setView([42.5269444444, 21.0072222222], 8);

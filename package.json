@@ -22,6 +22,7 @@
         "@alpinejs/intersect": "^3.14.3",
         "flatpickr": "^4.6.13",
         "font-awesome": "^4.7.0",
+        "leaflet": "^1.9.4",
         "swiper": "^11.1.14"
     }
 }
