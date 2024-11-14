@@ -77,6 +77,9 @@ protected function deletePastTrips()
         if (!$trip) {
             return redirect()->route('trips.index')->with('error', 'Trip not found');
         }
+        if (auth()->id() !== $trip->driver_id) {
+            return redirect()->route('trips.index')->with('error', 'You do not have permission to edit this trip.');
+        }
         $cities = City::all();
         $drivers = User::all();
     
@@ -89,6 +92,9 @@ protected function deletePastTrips()
         $trip = Trip::with(['users', 'origincity', 'destinationcity', 'bookings'])->find($id);
         if (!$trip) {
             return redirect()->route('trips.index')->with('error', 'Trip not found');
+        }
+        if (auth()->id() === $trip->driver_id) {
+            return redirect()->route('trips.index')->with('error', 'You cannot book your own trip.');
         }
         $available_seats = $trip->available_seats;
         foreach($trip->bookings as $booking) {
@@ -117,6 +123,9 @@ protected function deletePastTrips()
 
     public function destroy($id){
         $trip = Trip::findOrFail($id);
+        if (auth()->id() !== $trip->driver_id) {
+            return redirect()->route('trips.index')->with('error', 'You do not have permission to delete this trip.');
+        }
         $trip->delete();
     
         return redirect('/trips')->with('success', 'Trip deleted successfully');

@@ -90,7 +90,7 @@
                     @if($trip->users->image)
                         <img src="{{ asset('storage/' . $trip->users->image) }}" alt="{{ $trip->users->name }}" class="w-12 h-12 rounded-full mb-2">
                     @else
-                        <img src="{{ asset('storage/images/default-user.png') }}" alt="Default User" class="w-12 h-12 rounded-full mb-2">
+                        <img class="relative inline-block h-12 w-12  object-cover object-center rounded-full" src="{{ asset('https://eu.ui-avatars.com/api/' . $trip->users->name  . '+' . $trip->users->lastname) }}" alt="Default Image">
                     @endif
                     <div class="ml-2">
                         <h3 class="text-lg font-semibold text-gray-900">{{ $trip->users->name ?? 'N/A' }} {{ $trip->users->lastname ?? '' }}

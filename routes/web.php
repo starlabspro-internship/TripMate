@@ -14,8 +14,8 @@ Route::middleware('ifnotauth')->prefix('trips')->name('trips.')->controller(Trip
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::put('/update', 'update')->name('update');
-    Route::get('/destroy', 'destroy')->name('destroy');
+    Route::put('/{id}', 'update')->name('update');
+    Route::delete('/{id}', 'destroy')->name('destroy');
     Route::get('/{trip}/edit', 'edit')->name('edit');
     Route::get('/{trip}', 'show')->name('show');
 });
@@ -41,7 +41,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/dashboard', [SuperAdminController::class, 'count'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [SuperAdminController::class, 'count'])->middleware('auth')->name('dashboard');
 
 Route::middleware('auth')->prefix('profile')->group(function () {
     Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');

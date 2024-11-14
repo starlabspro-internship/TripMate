@@ -169,7 +169,7 @@
                     </div>
                 </div>    
                     <p class="">Meeting At:</p>
-                    <div id="map" class="mb-1 h-[400px]"></div>
+                    <div id="map" class="relative mb-1 h-[300px] overflow-hidden"></div>
                     <input type="hidden" id="latitude" name="latitude" />
                     <input type="hidden" id="longitude" name="longitude" />  
                 <div class="flex  flex-col items-center space-y-4">
