@@ -49,6 +49,34 @@
                         console.error('Error:', error); 
                     });
                 });
+                // Initialize the map
+                var map = L.map('map').setView([42.5269444444, 21.0072222222], 8);
+                L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
+                    maxZoom: 200,
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+    
+                // Marker for selecting location
+                var marker = L.marker([0, 0], { draggable: true }).addTo(map);
+    
+                // Function to update coordinates on form
+                function updateCoordinates(lat, lng) {
+                    document.getElementById('latitude').value = lat;
+                    document.getElementById('longitude').value = lng;
+                    marker.setLatLng([lat, lng]);
+                }
+    
+                // Update coordinates on map click
+                map.on('click', function(e) {
+                    var { lat, lng } = e.latlng;
+                    updateCoordinates(lat, lng);
+                });
+    
+                // Update coordinates when marker is dragged
+                marker.on('dragend', function(e) {
+                    var { lat, lng } = e.target.getLatLng();
+                    updateCoordinates(lat, lng);
+                });
             });
         </script>        
     </head>
@@ -152,18 +180,6 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-row w-full relative">
-                <input type="text" id="meeting" name="meeting" 
-                       class="border border-gray-300 rounded-md w-full px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition" 
-                       placeholder="Meeting At:" value="{{ $trip->meeting }}"  >
-                        <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">
-                            <img
-                                src="{{ asset('storage/icons/map.svg') }}"
-                                alt="avatar"
-                                class="mx-2 relative inline-block h-10 w-10 !rounded-full object-cover object-center"
-                            />
-                        </a>
-            </div>
         <div class="flex justify-between space-x-2">
             <div class="relative w-1/2">
                 <input type="number" id="available_seats" name="available_seats" 
@@ -190,7 +206,11 @@
                         </svg>
                     </div>
                 </div>
-            <div class="flex flex-col items-center space-y-4">
+                <p class="">Meeting At:</p>
+                    <div id="map" class="mb-1 h-[400px]" ></div>
+                    <input type="hidden" id="latitude" name="latitude" />
+                    <input type="hidden" id="longitude" name="longitude" />
+                    <div class="flex flex-col items-center space-y-4">
                 <button type="submit" 
                     class="px-3 py-1 text-xs rounded-full transition duration-200 bg-blue-500 text-white hover:bg-blue-600 w-[70px] h-[28px] max-w-full">
                         Update

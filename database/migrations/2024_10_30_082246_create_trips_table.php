@@ -20,9 +20,10 @@ return new class extends Migration
             $table->foreignIdFor(City::class, 'destination_city_id')->constrained()->onDelete('cascade');
             $table->dateTime('departure_time');
             $table->dateTime('arrival_time');
-            $table->text('meeting')->nullable();
             $table->integer('available_seats');
             $table->decimal('price', 8, 2);
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
             $table->timestamps();
         });
     }
