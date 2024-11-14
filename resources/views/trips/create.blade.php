@@ -44,10 +44,10 @@
             });
         </script>
     </head>
-    <div class="container mx-auto p-6">
-        <div class="flex flex-col md:flex-row justify-between items-center mb-6 mt-12 w-full space-y-4 md:space-y-0">
-            <h1 class="text-3xl font-bold text-white">Create Trips</h1>
-            <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mt-4 md:mt-0">
+    <div class="container mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center mt-12 w-full space-y-4 md:space-y-0">
+            <h1 class="text-3xl font-bold text-black p-6">Create Trips</h1>
+            <div class="flex gap-2 md:flex-row  md:space-y-0 md:space-x-2 mt-4 md:mt-0">
                 <a href="{{ route('trips.index') }}" 
                    class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
                           {{ request()->routeIs('trips.index') ? 'bg-gray-100 text-gray-600' : 'bg-gray-200 text-gray-700' }}
