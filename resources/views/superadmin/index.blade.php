@@ -4,13 +4,13 @@
 
         <div class="w-full flex flex-col sm:flex-row justify-between items-center mb-3 mt-12 pl-3">
             <div class="flex gap-14 sm:mb-4 ">
-                <button @click="currentTab = 'users'" :class="currentTab === 'users' ? 'underline' : ''" class="text-md sm:text-xl font-bold text-white">
+                <button @click="currentTab = 'users'" :class="currentTab === 'users' ? 'underline' : ''" class="text-md sm:text-xl font-bold text-black">
                     Users
                 </button>
-                <button @click="currentTab = 'bookings'" :class="currentTab === 'bookings' ? 'underline' : ''" class="text-md sm:text-xl font-bold text-white">
+                <button @click="currentTab = 'bookings'" :class="currentTab === 'bookings' ? 'underline' : ''" class="text-md sm:text-xl font-bold text-black">
                     Bookings
                 </button>
-                <button @click="currentTab = 'trips'" :class="currentTab === 'trips' ? 'underline' : ''" class="text-md sm:text-xl font-bold text-white">
+                <button @click="currentTab = 'trips'" :class="currentTab === 'trips' ? 'underline' : ''" class="text-md sm:text-xl font-bold text-black">
                     Trips
                 </button>
             </div>
@@ -49,7 +49,7 @@
                     <th class="p-4 text-sm font-normal leading-none text-white">City</th>
                     <th class="p-4 text-sm font-normal leading-none text-white">Email</th>
                     <th class="p-4 text-sm font-normal leading-none text-white">Joined</th>
-                    <th class="p-4 text-sm font-normal leading-none text-white">Role</th>
+                    <th class="p-4 text-sm font-normal leading-none text-white">Super Admin</th>
                     <th class="p-4 text-sm font-normal leading-none text-white">Edit</th>
                     <th class="p-4 text-sm font-normal leading-none text-white">Delete</th>
                 </tr>
@@ -58,14 +58,16 @@
                 <template x-for="user in filteredUsers()" :key="user.id">
                 <tr class="bg-green-50">
                     <td class="p-4 border-b border-slate-200 py-5">
-                        <img :src="`/storage/${user.image}`" alt="user" class="w-16 h-16 object-cover rounded" />
+                        <img class="w-14 h-14 object-cover rounded-full"
+                             :src="user.image ? `{{ asset('storage/') }}/${user.image}` : `https://eu.ui-avatars.com/api/${user.name}+${user.lastname}`"
+                             alt="User Image">
                     </td>
-                    <td class="p-4 border-b border-slate-200 py-5" x-text="`${user.name} ${user.lastname}`"></td>
-                    <td class="p-4 border-b border-slate-200 py-5" x-text="user.phone"></td>
-                    <td class="p-4 border-b border-slate-200 py-5" x-text="user.city"></td>
-                    <td class="p-4 border-b border-slate-200 py-5" x-text="user.email"></td>
-                    <td class="p-4 border-b border-slate-200 py-5" x-text="formatDate(user.created_at)"></td>
-                    <td class="p-4 border-b border-slate-200 py-5" x-text="user.role"></td>
+                    <td class="p-4 border-b border-slate-200 py-5" x-text="`${user.name || ''} ${user.lastname || ''}`"></td>
+                    <td class="p-4 border-b border-slate-200 py-5" x-text="user.phone || ''"></td>
+                    <td class="p-4 border-b border-slate-200 py-5" x-text="user.city || ''"></td>
+                    <td class="p-4 border-b border-slate-200 py-5" x-text="user.email || ''"></td>
+                    <td class="p-4 border-b border-slate-200 py-5" x-text="formatDate(user.created_at) || ''"></td>
+                    <td class="p-4 border-b border-slate-200 py-5" x-text="user.is_super_admin == 1 ? 'Yes' : 'No'"></td>
                     <td class="p-4 border-b border-slate-200 py-5">
                         <a :href="`{{ route('superadmin.edit', '') }}/${user.id}`">
                         <button type="button" class="text-slate-500 hover:text-slate-700">
