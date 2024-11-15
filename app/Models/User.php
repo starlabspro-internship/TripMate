@@ -23,11 +23,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function trips()
     {
-        return $this->hasMany(Trip::class);
+        return $this->hasMany(Trip::class, 'driver_id');
     }
     public function bookings()
     {
-        return $this->hasMany(Booking::class);
+        return $this->hasMany(Booking::class, 'passenger_id' );
     }
     public function mesazhat()
     {
@@ -38,7 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->is_super_admin == 1;
     }
-    
+
 
     protected $fillable = [
         'image',

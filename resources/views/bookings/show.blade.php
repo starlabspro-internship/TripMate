@@ -39,7 +39,7 @@
                         />
                         <p class="relative inline-block  object-cover object-center">{{$trip->price}}</p>
                     </div>
-                    <div class="text-black  space-y-1 justify-between mt-4">    
+                    <div class="text-black  space-y-1 justify-between mt-4">
                         <h1 class="text-lg">Driver:</h1>
                         @if ($trip->users->image)
                             <img
@@ -56,15 +56,15 @@
                     @endif
             </div>
         </form>
-        <div class="flex flex-col md:flex-row items-center mt-6 space-x-2 mb-[55px]">
-            <a  
+        <div class="flex flex-col md:flex-row items-center mt-6 space-x-2">
+            <a  href="{{route('chatify')}}"
                 class="w-full rounded-md my-2 bg-white py-2 px-4 border border-transparent text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-green-300 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                 Chat
             </a>
                 <form action="{{ route('booking.destroy', $booking->id) }}" method="POST" class="flex items-center">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" 
+                    <button type="submit"
                             class="rounded-md bg-red-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-red-400 active:shadow-none disabled:pointer-events-none disabled:opacity-50 md:w-40">
                         Delete Booking
                     </button>
@@ -75,14 +75,14 @@
         document.addEventListener('DOMContentLoaded', function() {
             var latitude = {{ $trip->latitude }};
             var longitude = {{ $trip->longitude }};
-            
+
             var map = L.map('map').setView([latitude, longitude], 13);
-            
+
             L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-            
+
             L.marker([latitude, longitude]).addTo(map)
                 .bindPopup("Meeting Location")
                 .openPopup();

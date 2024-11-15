@@ -31,15 +31,15 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
 {
     $request->validate([
-        'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+        'image' => ['required', 'image'],
         'name' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/', 'max:255'],
         'lastname' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
         'password' => ['required', 'string', 'min:8', 'max:20', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'confirmed'],
-        'phone' => ['nullable', 'string', 'regex:/^\+?[0-9\s-]*$/', 'max:20'],
-        'birthday' => ['nullable', 'date', 'before:' . now()->subYears(16)->toDateString()],
+        'phone' => ['nullable', 'string', 'regex:/^\+?[0-9\s-]*$/', 'max:20', 'unique:'.User::class],
+        'birthday' => ['nullable', 'date', 'before:' . now()->subYears(16)->format('Y-m-d')],
         'city' => ['nullable', 'string', 'max:255'],
-        'g-recaptcha-response' => ['required', 'captcha'],
+        'g-recaptcha-response' => [ 'required','captcha'],
     ], [
         'name.regex' => 'The first name should only contain letters and spaces.',
         'lastname.regex' => 'The last name should only contain letters and spaces.',
@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
         'image.mimes' => 'The profile picture must be a JPG, JPEG, or PNG file.',
         'image.max' => 'The profile picture must be smaller than 2MB.',
     ]);
-    
+
 
     // Handle image upload
     $path = $request->file('image')->store('image', 'public');
@@ -64,14 +64,14 @@ class RegisteredUserController extends Controller
         'phone' => $request->phone,
         'birthday' => $request->birthday,
         'city' => $request->city,
-        'recaptcha_verified' => true,
-    ]);
 
+    ]);
+    $user->update(['recaptcha_verified' => 'verified']);
     event(new Registered($user));
 
     Auth::login($user);
 
-    return redirect()->route('dashboard');
+    return redirect(route('dashboard'));
 }
 
 }
