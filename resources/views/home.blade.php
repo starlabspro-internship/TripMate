@@ -7,7 +7,7 @@
         button-link="/about"
     />
     <x-cars />
-    <x-our-services/>
+
     <x-statistic-box/>
     <x-partners />
     <x-safety />
