@@ -57,7 +57,7 @@
             </div>
         </form>
         <div class="flex flex-col md:flex-row items-center mt-6 space-x-2">
-            <a  href="{{route('chatify')}}"
+            <a  href="{{route('chat')}}"
                 class="w-full rounded-md my-2 bg-white py-2 px-4 border border-transparent text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-green-300 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                 Chat
             </a>
