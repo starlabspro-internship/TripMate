@@ -4,7 +4,7 @@
             {{ __('Profile') }}
         </h2>
     </x-slot>
-    <div class="py-12">
+    <a href="{{ url()->previous() }}" class="absolute left-20 top-20 bg-blue-700 text-white px-3 py-1 rounded hidden sm:inline-block">Back</a>    <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="flex p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl w-full">

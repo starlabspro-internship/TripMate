@@ -4,15 +4,21 @@
         <div class="block md:hidden bg-blue-600 text-white p-4">
             <div class="block md:hidden bg-blue-600 text-white px-0 py-2 rounded space-y-4">
                 <a href="{{ route('dashboard') }}" class="block text-white hover:text-blue-300 text-lg pl-4">Dashboard</a>
-                <a href="{{ route('profile.edit') }}" class="block text-white hover:text-blue-300 text-lg pl-4">Profile</a>
-            </div>
-            
+                <a href="{{ route('trips.index') }}" clas="block text-white hover:text-blue-300 text-lg pl-4">Trips</a>
+            </div>  
         </div>
-
         <div class="flex flex-col md:flex-row">
             <!-- Sidebar -->
             <div class="bg-blue-600 text-white p-6 md:w-1/4 w-full md:block hidden">
                 <h2 class="text-2xl font-bold mb-6">My Profile</h2> 
+                <nav class="space-y-4">
+                    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2 text-white hover:text-blue-300">
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="{{ route('trips.index') }}" class="flex items-center space-x-2 text-white hover:text-blue-300">
+                        <span>Trips</span>
+                    </a>
+                </nav>
             </div>
             <!-- Main Content -->
             <div class="w-full md:w-3/4">
