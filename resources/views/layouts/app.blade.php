@@ -8,7 +8,7 @@
         <title>TripMate</title>
 
         <!-- Scripts -->
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
         @vite('resources/js/app.js')
     </head>
     <body class="min-h-screen bg-[#f5f5f5] dark:bg-[#0F172A] font-planer antialiased w-full md:absolute md:w-navbar">
