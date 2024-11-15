@@ -82,7 +82,7 @@
                 {{ session('success') }}
             </div>
         @endif
-<div id="rides-list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 hover">
+<div id="rides-list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 hover px-4">
     @foreach ($trips as $trip)
     <div class="ride-card bg-white p-6 rounded-lg transition-transform duration-300 transform hover:scale-105 shadow-md flex flex-col justify-between" data-departure="{{ $trip->departure_time }}">
         <div class="mb-4 flex justify-between items-start">
