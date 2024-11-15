@@ -1,87 +1,253 @@
-<div class=" bg-white mx-auto items-center text-center">
-    <h1 class="md:text-5xl text-2xl bg-white font-sans font-bold text-center pt-36 mb-12">What our Community says?</h1>
+<section class="py-24 ">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-center items-center gap-y-8 lg:gap-y-0 flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between lg:gap-x-8 max-w-sm sm:max-w-2xl lg:max-w-full mx-auto">
+            <div class="w-full lg:w-2/5">
 
-    <div class=" bg-white flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 space-x-4 md:space-x-28 pb-8">
+                <h2 class="text-4xl font-bold text-gray-900 leading-[3.25rem] mb-8"> Customers gave their
+                    <span class="text-transparent bg-clip-text bg-gradient-to-tr from-yellow-500 to-yellow-400">Feedback</span>
 
-        <div class="swiper">
-            <div class="swiper-wrapper sm:px-10 py-8 px-4">
+                </h2>
 
-                <div class="card-item p-4 rounded-lg shadow-2xl swiper-slide max-w-[16rem] sm:max-w-xs w-full mx-auto h-80 sm:h-72 mt-6 mb-6 bg-gradient-to-r from-white-200 to-indigo-300 text-black">
-                    <img src="https://images.squarespace-cdn.com/content/v1/5cf0d08d5fc69d000172462a/1602248693535-KTGCFTA50807510I5LVN/image-asset.octet-stream?format=500w" alt="User Image" class="mx-auto w-28 sm:w-36 h-28 sm:h-36 rounded-full mb-4 sm:mb-6 border-4 border-emerald-400">
-                    <h2 class="md:text-xl text-lg font-semibold text-center">Art Morina</h2>
-                    <p class="md:text-xl text-sm text-black font-medium my-4 mb-6 text-center h-[150px] md:h-[250px]">Përshendetje! Deshta me ju përgezu për punën që e keni bërë deri tani. Unë udhëtoj që 17 vjet dhe me këtë aplikacion që e keni bo, me të vërtet i keni ndihmuar shumë qytetarëve të Kosovës.Kam pas eksperiencë të mirë dhe më i lirë se autobusi. Faleminderit shumë.</p>
-                    <p class="stars md:text-4xl text-2xl mt-2 bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent text-center">★★★★★</p>
-                </div>
+                <!-- Slider controls -->
+                <div class="flex items-center justify-center lg:justify-start gap-10">
+                    <button id="slider-button-left"
+                            class="swiper-button-prev group flex justify-center items-center border border-solid border-yellow-400 w-12 h-12 transition-all duration-500 rounded-lg hover:bg-yellow-400"
+                            data-carousel-prev>
+                        <svg class="h-6 w-6 text-yellow-400 group-hover:text-white" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20.9999 12L4.99992 12M9.99992 6L4.70703 11.2929C4.3737 11.6262 4.20703 11.7929 4.20703 12C4.20703 12.2071 4.3737 12.3738 4.70703 12.7071L9.99992 18"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
 
-                <div class="card-item p-4 rounded-lg shadow-2xl swiper-slide max-w-[16rem] sm:max-w-xs w-full mx-auto h-80 sm:h-72 mt-6 mb-6 bg-gradient-to-r from-white-200 to-indigo-300 text-black">
-
-                    <img src="https://www.pngitem.com/pimgs/m/404-4042710_circle-profile-picture-png-transparent-png.png" alt="User Image" class="mx-auto w-28 sm:w-36 h-28 sm:h-36 rounded-full mb-4 sm:mb-6 border-4 border-emerald-400">
-                    <h2 class="md:text-xl text-lg font-semibold text-center">Andi Bytyqi</h2>
-                    <p class="md:text-xl text-sm  text-black font-medium my-4 mb-6 text-center h-[150px] md:h-[250px]">Shumë shpesh e kam përdorur TripMate. Kam pas eksperiencë të mirë. M'ka rra mu njoftu me njerëz të ndryshëm, me ndëgju muzika të ndryshme. Transporti është më i lirë se autobusi. Faleminderit për krijimin e këtij aplikacionit të mrekullueshëm. </p>
-                    <p class="stars md:text-4xl text-2xl mt-2 bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent text-center">
-                        ★★★★★
-                    </p>
-                </div>
-
-                <div class="card-item p-4 rounded-lg shadow-2xl swiper-slide max-w-[16rem] sm:max-w-xs w-full mx-auto h-80 sm:h-72 mt-6 mb-6 bg-gradient-to-r from-white-200 to-indigo-300 text-black">
-
-                    <img src="https://img.freepik.com/photos-premium/profile-du-client-gestion-actifs_1104763-33440.jpg?semt=ais_hybrid" alt="User Image" class=" mx-auto w-28 sm:w-36 h-28 sm:h-36 rounded-full mb-4 sm:mb-6 border-4 border-emerald-400">
-                    <h2 class="md:text-xl text-lg font-semibold text-center">Adea Shala</h2>
-                    <p class="md:text-xl text-sm  text-black font-medium my-4 mb-6 text-center h-[150px] md:h-[250px]">Në fillim kom hezitu me postu në këtë grup se kom mendu që për femra osht ma problem me udhtu me persona të panjohur, ama gjithcka u kon n'rregull, s'kom pas ndonjë parregullsi. Tepër nice. Faleminderit për krijimin e këtij aplikacionit të mrekullueshëm. </p>
-                    <p class="stars md:text-4xl text-2xl mt-2 bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent text-center">
-                        ★★★★★
-                    </p>
-                </div>
-
-                <div class="card-item p-4 rounded-lg shadow-2xl swiper-slide max-w-[16rem] sm:max-w-xs w-full mx-auto h-80 sm:h-72 mt-6 mb-6 bg-gradient-to-r from-white-200 to-indigo-300 text-black">
-
-                    <img src="https://img.freepik.com/premium-photo/young-beautiful-european-american-woman-skin-care-makeup-white-background_1311488-8699.jpg?semt=ais_hybrid" alt="User Image" class="mx-auto w-28 sm:w-36 h-28 sm:h-36 rounded-full mb-4 sm:mb-6 border-4 border-emerald-400">
-                    <h2 class="md:text-xl text-lg font-semibold text-center">Flaka Gashi</h2>
-                    <p class="md:text-xl text-sm  text-black font-medium my-4 mb-6 text-center h-[150px] md:h-[250px]">TripMate është një aplikacion fantastik për të planifikuar dhe organizuar udhëtimet. Funksionet janë intuitive dhe të thjeshta për t'u përdorur, ndërsa veçoritë për vendet për t'u vizituar. Faleminderit për krijimin e këtij aplikacionit të mrekullueshëm.</p>
-                    <p class="stars md:text-4xl text-2xl mt-2 bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent text-center">
-                        ★★★★★
-                    </p>
-                </div>
-
-                <div class="card-item p-4 rounded-lg shadow-2xl swiper-slide max-w-[16rem] sm:max-w-xs w-full mx-auto h-80 sm:h-72 mt-6 mb-6 bg-gradient-to-r from-white-200 to-indigo-300 text-black">
-
-                    <img src="https://p.kindpng.com/picc/s/41-415494_profile-picture-in-circle-hd-png-download.png" alt="User Image" class=" mx-auto w-28 sm:w-36 h-28 sm:h-36 rounded-full mb-4 sm:mb-6 border-4 border-emerald-400">
-                    <h2 class="md:text-xl text-lg font-semibold text-center">Ella Müller</h2>
-                    <p class="md:text-xl text-sm  text-black font-medium my-4 mb-6 text-center h-[150px] md:h-[250px]">Die Verwendung einer reise app wie TripMate bot mir als Tourist Navigation, lokale Einblicke und Sicherheitstipps, um die Erkundung neuer Orte viel einfacher zu machen.Vielen Dank, dass Sie diese wundervolle und interessante Anwendung erstellt haben.</p>
-                    <p class="stars md:text-4xl text-2xl mt-2 bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent text-center">
-                        ★★★★★
-                    </p>
-                </div>
-
-                <div class="card-item p-4 rounded-lg shadow-2xl swiper-slide max-w-[16rem] sm:max-w-xs w-full mx-auto h-80 sm:h-72 mt-6 mb-6 bg-gradient-to-r from-white-200 to-indigo-300 text-black">
-
-                    <img src="https://img.freepik.com/premium-photo/arafed-man-with-hoodie-gray-shirt-generative-ai_1034062-61784.jpg" alt="User Image" class=" mx-auto w-28 sm:w-36 h-28 sm:h-36 rounded-full mb-4 sm:mb-6 border-4 border-emerald-400">
-                    <h2 class="md:text-xl text-lg font-semibold text-center">Antonio Torino</h2>
-                    <p class="md:text-xl text-sm  text-black font-medium my-4 mb-6 text-center h-[150px] md:h-[250px]">L'utilizzo di un'app di viaggio come TripMate mi ha fornito come turista navigazione, conoscenza locale e suggerimenti sulla sicurezza per rendere molto più semplice l'esplorazione di nuovi posti. Grazie per aver creato questa fantastica e interessante app.</p>
-                    <p class="stars md:text-4xl text-2xl mt-2 bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent text-center">
-                        ★★★★★
-                    </p>
-                </div>
-
-                <div class="card-item p-4 rounded-lg shadow-2xl swiper-slide max-w-[16rem] sm:max-w-xs w-full mx-auto h-80 sm:h-72 mt-6 mb-6 bg-gradient-to-r from-white-200 to-indigo-300 text-black">
-
-                    <img src="https://png.pngitem.com/pimgs/s/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png" alt="User Image" class="mx-auto w-28 sm:w-36 h-28 sm:h-36 rounded-full mb-4 sm:mb-6 border-4 border-emerald-400">
-                    <h2 class="md:text-xl text-lg font-semibold text-center">Noah Smith</h2>
-                    <p class="md:text-xl text-sm  text-black font-medium my-4 mb-6 text-center h-[150px] md:h-[250px]">As a tourist in Kosovo, I really liked the TripMate application and I felt safe to travel. I have used TripMate quite often. I could connect with other travelers, find reliable ride options, and save money also.Thank you for creating this wonderful app. </p>
-                    <p class="stars md:text-4xl text-2xl mt-2 bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent text-center">
-                        ★★★★★
-                    </p>
+                    </button>
+                    <button id="slider-button-right"
+                            class="swiper-button-next group flex justify-center items-center border border-solid border-yellow-400 w-12 h-12 transition-all duration-500 rounded-lg hover:bg-yellow-400"
+                            data-carousel-next>
+                        <svg class="h-6 w-6 text-yellow-400 group-hover:text-white" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M3 12L19 12M14 18L19.2929 12.7071C19.6262 12.3738 19.7929 12.2071 19.7929 12C19.7929 11.7929 19.6262 11.6262 19.2929 11.2929L14 6"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
                 </div>
             </div>
 
-            <!-- Swiper Navigation and Pagination -->
-            <div class="swiper-button-next !text-[#f0bc0d] !hidden sm:!flex"></div>
-            <div class="swiper-button-prev !text-[#f0bc0d] !hidden sm:!block"></div>
+            <div class="w-full lg:w-3/5">
+                <!--Slider wrapper-->
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
 
-            <div class="swiper-pagination mt-15 ">
 
+                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[385px] lg:min-h-[550px]">
+                            <div class="flex items-center gap-5 mb-5 sm:mb-9">
+                                <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-20 sm:h-24 border-4 border-yellow-400"
+                                     src="https://images.squarespace-cdn.com/content/v1/5cf0d08d5fc69d000172462a/1602248693535-KTGCFTA50807510I5LVN/image-asset.octet-stream?format=500w"
+                                     alt="avatar">
+                            </div>
+
+                            <div class="grid gap-1">
+                                <h5 class="text-gray-900 font-bold  transition-all duration-500">Art Morina</h5>
+                            </div>
+                            <div class="flex items-center justify-center mb-5 sm:mb-9 gap-2 text-yellow-400 transition-all duration-500">
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+
+                            </div>
+                            <p class="text-black-600 text-sm sm:text-base">
+                                Përshendetje! Deshta me ju përgezu për punën që e keni bërë deri tani. Unë udhëtoj që 17 vjet dhe me këtë aplikacion që e keni bo, me të vërtet a keni ndihmuar shumë.
+                            </p>
+                        </div>
+
+
+                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[385px] lg:min-h-[550px]">
+                            <div class="flex items-center gap-5 mb-5 sm:mb-9">
+                                <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-24 sm:h-24 border-4 border-yellow-400"
+                                     src="https://www.pngitem.com/pimgs/m/404-4042710_circle-profile-picture-png-transparent-png.png"
+                                     alt="avatar">
+                            </div>
+
+                            <div class="grid gap-1">
+                                <h5 class="text-gray-900 font-bold  transition-all duration-500">Andi Bytyqi</h5>
+                            </div>
+                            <div class="flex items-center justify-center mb-5 sm:mb-9 gap-2 text-yellow-400 transition-all duration-500">
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+
+                            </div>
+                            <p class="text-black-600 text-sm sm:text-base ">
+                                Shumë shpesh e kam përdorur TripMate. Kam pas eksperiencë të mirë. M'ka rra mu njoftu me njerëz të ndryshëm, me ndëgju muzika të ndryshme.
+                            </p>
+                        </div>
+
+
+                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[385px] lg:min-h-[550px]">
+                            <div class="flex items-center gap-5 mb-5 sm:mb-9">
+                                <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-20 sm:h-24 border-4 border-yellow-400"
+                                     src="https://img.freepik.com/photos-premium/profile-du-client-gestion-actifs_1104763-33440.jpg?semt=ais_hybrid"
+                                     alt="avatar">
+                            </div>
+
+                            <div class="grid gap-1">
+                                <h5 class="text-gray-900 font-bold  transition-all duration-500">Adea Shala</h5>
+                            </div>
+                            <div class="flex items-center justify-center mb-5 sm:mb-9 gap-2 text-yellow-400 transition-all duration-500">
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+
+                            </div>
+                            <p class="text-black-600 text-sm sm:text-base ">
+                                Në fillim kom hezitu me postu në këtë grup se kom mendu që për femra osht ma problem me udhtu me persona të panjohur, ama gjithcka u kon n'rregull.
+                            </p>
+                        </div>
+
+
+                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[385px] lg:min-h-[550px]">
+                            <div class="flex items-center gap-5 mb-5 sm:mb-9">
+                                <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-20 sm:h-24 border-4 border-yellow-400"
+                                     src="https://img.freepik.com/premium-photo/young-beautiful-european-american-woman-skin-care-makeup-white-background_1311488-8699.jpg?semt=ais_hybrid"
+                                     alt="avatar">
+                            </div>
+
+                            <div class="grid gap-1">
+                                <h5 class="text-gray-900 font-bold  transition-all duration-500">Flaka Gashi</h5>
+                            </div>
+                            <div class="flex items-center justify-center mb-5 sm:mb-9 gap-2 text-yellow-400 transition-all duration-500">
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+
+                            </div>
+                            <p class="text-black-600 text-sm sm:text-base ">
+                                TripMate është një aplikacion fantastik për të planifikuar dhe organizuar udhëtimet. Funksionet janë intuitive dhe të thjeshta për t'u përdorur.
+                            </p>
+                        </div>
+
+
+                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[385px] lg:min-h-[550px]">
+                            <div class="flex items-center gap-5 mb-5 sm:mb-9">
+                                <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-20 sm:h-24 border-4 border-yellow-400"
+                                     src="https://img.freepik.com/premium-photo/arafed-man-with-hoodie-gray-shirt-generative-ai_1034062-61784.jpg"
+                                     alt="avatar">
+                            </div>
+
+                            <div class="grid gap-1">
+                                <h5 class="text-gray-900 font-bold  transition-all duration-500">Antonio Torino</h5>
+                            </div>
+                            <div class="flex items-center justify-center mb-5 sm:mb-9 gap-2 text-yellow-400 transition-all duration-500">
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+
+                            </div>
+                            <p class="text-black-600 text-sm sm:text-base ">
+                                L'utilizzo di un'app di viaggio come TripMate mi ha fornito come turista navigazione, conoscenza locale e suggerimenti sulla sicurezza per rendere molto più..
+                            </p>
+                        </div>
+
+
+                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[385px] lg:min-h-[550px]">
+                            <div class="flex items-center gap-5 mb-5 sm:mb-9">
+                                <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-20 sm:h-24 border-4 border-yellow-400"
+                                     src="https://png.pngitem.com/pimgs/s/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png"
+                                     alt="avatar">
+                            </div>
+
+                            <div class="grid gap-1">
+                                <h5 class="text-gray-900 font-bold  transition-all duration-500">Noah Smith</h5>
+                            </div>
+                            <div class="flex items-center justify-center mb-5 sm:mb-9 gap-2 text-yellow-400 transition-all duration-500">
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                                <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z" fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <p class="text-black-600 text-sm sm:text-base ">
+                                As a tourist in Kosovo, I really liked the TripMate application and I felt safe to travel. I have used TripMate quite often. I could connect with other travelers also.
+                            </p>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
-</div>
+</section>
