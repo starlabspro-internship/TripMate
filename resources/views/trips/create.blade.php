@@ -23,7 +23,12 @@
                 }).addTo(map);
     
                 // Marker for selecting location
-                var marker = L.marker([0, 0], { draggable: true }).addTo(map);
+                var marker = L.marker([42.5269444444, 21.0072222222], { draggable: true }).addTo(map);
+                    marker.bindPopup(`
+                        <span class="italic text-indigo-500 text-xs ">
+                            Choose the meeting location <br> by selecting a point on the map.
+                        </span>
+                    `).openPopup();
     
                 // Function to update coordinates on form
                 function updateCoordinates(lat, lng) {
