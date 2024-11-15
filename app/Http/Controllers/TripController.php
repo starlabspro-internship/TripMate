@@ -64,10 +64,10 @@ protected function deletePastTrips()
             'arrival_time' => 'required|date|after:departure_time',
             'available_seats' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
+            'driver_comments'=> 'required|nullable|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
         ]);
-    
         Trip::create($request->all());
     
         return redirect('/trips')->with('success', 'Trip created successfully');
@@ -113,6 +113,7 @@ protected function deletePastTrips()
             'arrival_time' => 'date|after:departure_time',
             'available_seats' => 'integer|min:1',
             'price' => 'numeric|min:0',
+            'driver_comments'=> 'nullable|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
         ]);

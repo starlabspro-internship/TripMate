@@ -178,6 +178,11 @@
                         </svg>
                     </div>
                 </div>
+                <div class="flex flex-col w-full">
+                    <textarea type="text" id="driver_comments" name="driver_comments" 
+                               class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
+                               placeholder="Add any comments or instructions about the trip to help your passenger." >{{ old('driver_comments', $trip->driver_comments) }}</textarea>
+                </div>
                 <p class="">Meeting At:</p>
                     <div id="map" class="mb-1 h-[400px]" ></div>
                     <input type="hidden" id="latitude" name="latitude" />

@@ -31,7 +31,15 @@
                             class="relative inline-block h-8 w-8 !rounded-full object-cover object-center"
                         />
                         <p class="relative inline-block  object-cover object-center">{{$trip->departure_time}}</p>
-                    <div class="flex-col mt-5 pb-4">
+                        <div class="flex flex-row  items-center self-center bg-gray-100  rounded-lg">
+                            <img
+                                src="{{ asset('storage/icons/comm.svg') }}"
+                                alt="avatar"
+                                class="relative inline-block h-6 w-6  object-cover object-center"
+                            />
+                            <p class="relative inline-block  object-cover object-center">{{$trip->driver_comments}}</p>
+                        </div>
+                    <div class="flex-col pb-4">
                         <img
                             src="{{ asset('storage/icons/eu.svg') }}"
                             alt="avatar"
