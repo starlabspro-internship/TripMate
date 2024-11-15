@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role')->nullable();
-            $table->string('phone', 20)->nullable();
+            $table->string('phone', 20)->nullable()->unique();
             $table->date('birthday')->nullable();
+            $table->enum('recaptcha_verified', ['verified', 'unverified'] )->default('unverified')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
