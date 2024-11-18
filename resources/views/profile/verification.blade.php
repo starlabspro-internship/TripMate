@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="bg-gradient-to-r from-blue-600 to-blue-400 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-gradient-to-r from-blue-600 to-green-400 flex items-center justify-center min-h-screen p-4">
         <div class="max-w-md w-full bg-white rounded-lg shadow-md p-6 text-center">
 
             <div class="text-green-500 mb-4">
@@ -17,8 +17,8 @@
             <p class="text-gray-500 mt-2 font-serif">Your profile has been successfully verified. Thank you for completing the verification process.</p>
 
 
-            <a href="{{ route('profile.index') }}" class="inline-block mt-4 px-6 py-2 bg-green-500 text-white font-serif rounded-lg hover:bg-green-600 transition duration-200">
-                Back to Profile
+            <a href="{{ route('dashboard') }}" class="inline-block mt-4 px-6 py-2 bg-green-500 text-white font-serif rounded-lg hover:bg-green-600 transition duration-200">
+                Continue
             </a>
         </div>
     </div>

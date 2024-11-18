@@ -10,16 +10,16 @@ class VerificationCodeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $code;
+    public $verificationCode;
 
-    public function __construct($code)
+    public function __construct($verificationCode)
     {
-        $this->code = $code;
+        $this->verificationCode = $verificationCode;
     }
 
     public function build()
     {
-        return $this->subject('Your Verification Code')
-            ->view('emails.verification_code'); // View for the email
+        return $this->view('profile.verification')
+        ->with(['verificationCode' => $this->verificationCode]);
     }
 }
