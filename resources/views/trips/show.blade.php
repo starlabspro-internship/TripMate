@@ -31,7 +31,7 @@
                     />
                     <p class="relative inline-block  object-cover object-center">{{$trip->departure_time}}</p>
                 </div>
-                <div class="flex flex-row  items-center self-center bg-gray-100  rounded-lg">
+                <div class="flex flex-row  items-center self-center   rounded-lg">
                     <img
                         src="{{ asset('storage/icons/comm.svg') }}"
                         alt="avatar"

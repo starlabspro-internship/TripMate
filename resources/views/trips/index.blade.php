@@ -8,7 +8,7 @@
                 {{ session('error') }}
             </div>
             @endif
-            <div class="flex gap-2 md:flex-row  md:space-y-0 md:space-x-2 mt-4 md:mt-0">
+            <div class="flex gap-2 md:flex-row md:mr-[20px] md:space-y-0 md:space-x-2 mt-4 md:mt-0">
                 <a href="{{ route('trips.index') }}" 
                    class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
                           {{ request()->routeIs('trips.index') ? 'bg-blue-100 text-blue-600' : 'bg-blue-200 text-gray-500' }}

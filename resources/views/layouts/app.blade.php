@@ -29,7 +29,9 @@
             @endisset
             <!-- Page Content -->
             <main>
+                @if (!Auth::check())
                 {{ $slot }}
+                @endif
             </main>
         </div>
     </body>
