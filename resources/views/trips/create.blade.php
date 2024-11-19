@@ -3,18 +3,6 @@
     <head>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                flatpickr("#departure_time", {
-                    enableTime: true,
-                    dateFormat: "Y-m-d H:i",
-                    time_24hr: true,
-                    minDate: "today"
-                });
-                flatpickr("#arrival_time", {
-                    enableTime: true,
-                    dateFormat: "Y-m-d H:i",
-                    time_24hr: true,
-                    minDate: "today"
-                });
                 // Initialize the map
                 var map = L.map('map').setView([42.5269444444, 21.0072222222], 8);
                 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
@@ -114,7 +102,7 @@
                 </div>
                 <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
                     <div class="flex flex-col w-full relative">
-                        <input type="text" id="departure_time" name="departure_time" 
+                        <input type="text" id="date-picker" name="departure_time" 
                                class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
                                placeholder="Departure Time:" value="{{ old('departure_time') }}" required>
                         <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
@@ -130,7 +118,7 @@
                     </div>
                 
                     <div class="flex flex-col w-full relative">
-                        <input type="text" id="arrival_time" name="arrival_time" 
+                        <input type="text" id="date-picker" name="arrival_time" 
                                class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
                                placeholder="Arrival Time:" value="{{ old('arrival_time') }}" required>
                                <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
@@ -207,7 +195,4 @@
         </div>
     </div>
     @endauth
-    @guest
-    <a href="{{ route('login') }}"></a>
-    @endguest
 </x-app-layout>

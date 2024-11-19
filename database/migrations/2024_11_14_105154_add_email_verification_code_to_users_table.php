@@ -14,7 +14,6 @@ public function up()
 {
     Schema::table('users', function (Blueprint $table) {
         $table->string('email_verification_code')->nullable();
-        $table->timestamp('email_verified_at')->nullable();
     });
 }
 
@@ -22,7 +21,6 @@ public function down()
 {
     Schema::table('users', function (Blueprint $table) {
         $table->dropColumn('email_verification_code');
-        $table->dropColumn('email_verified_at');
     });
 }
 };

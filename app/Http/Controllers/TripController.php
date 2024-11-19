@@ -8,6 +8,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
+use Carbon\Carbon;
+use App\Models\Booking;
+use Stripe\StripeClient;
+
 
 class TripController extends Controller
 {
@@ -15,7 +21,6 @@ class TripController extends Controller
 {
     $cities = City::all();
     $trips = Trip::with('bookings'); 
-    $this->deletePastTrips();
 
     $trips->where('departure_time', '>=', now()); 
 
@@ -45,10 +50,6 @@ class TripController extends Controller
 
     return view('trips.index', compact('cities', 'trips'));
 }
-protected function deletePastTrips()
-{
-    Trip::where('departure_time', '<', now())->delete();
-}
 
     public function create(){
         $cities = City::all();
@@ -59,11 +60,11 @@ protected function deletePastTrips()
         $request->validate([
             'driver_id' => 'required|exists:users,id',
             'origin_city_id' => 'required|exists:cities,id',
-            'destination_city_id' => 'required|exists:cities,id',
+            'destination_city_id' => 'required|exists:cities,id|different:origin_city_id',
             'departure_time' => 'required|date',
             'arrival_time' => 'required|date|after:departure_time',
-            'available_seats' => 'required|integer|min:1',
-            'price' => 'required|numeric|min:0',
+            'available_seats' => 'required|integer|min:1|max:7',
+            'price' => 'required|numeric|min:0|max:50',
             'driver_comments'=> 'nullable|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
@@ -108,14 +109,15 @@ protected function deletePastTrips()
         $trip = Trip::findOrFail($id);
         $request->validate([
             'origin_city_id' => 'exists:cities,id',
-            'destination_city_id' => 'exists:cities,id',
+            'destination_city_id' => 'exists:cities,id|different:origin_city_id',
             'departure_time' => 'date',
             'arrival_time' => 'date|after:departure_time',
-            'available_seats' => 'integer|min:1',
-            'price' => 'numeric|min:0',
+            'available_seats' => 'integer|min:1|max:7',
+            'price' => 'numeric|min:0|max:50',
             'driver_comments'=> 'nullable|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
+
         ]);
         $trip->update($request->except('driver_id')); 
         return response()->json(['success' => true, 'redirect' => route('trips.index')]);
@@ -127,9 +129,25 @@ protected function deletePastTrips()
         if (auth()->id() !== $trip->driver_id) {
             return redirect()->route('trips.index')->with('error', 'You do not have permission to delete this trip.');
         }
+        $bookings = Booking::where('trip_id', $trip->id)->where('status', 'paid')->get();
+    
+        if ($bookings->isNotEmpty()) {
+            $stripe = new StripeClient(config('services.stripe.secret'));
+            foreach ($bookings as $booking) {
+                if (now()->greaterThanOrEqualTo($trip->departure_time)) {
+                    return redirect()->route('trips.index')->with('error', 'Trip cannot be deleted because it has already departed.');
+                }
+                try {
+                    $refund = $stripe->refunds->create([
+                        'payment_intent' => $booking->stripe_charge_id,
+                    ]);
+                    $booking->update(['status' => 'refunded']);
+                } catch (\Exception $e) {
+                    return redirect()->back()->with('error', 'Refund failed for a booking: ' . $e->getMessage());
+                }
+            }
+        }
         $trip->delete();
-    
-        return redirect('/trips')->with('success', 'Trip deleted successfully');
+        return redirect('/trips')->with('success', 'Trip deleted successfully and all bookings have been refunded.');
     }
-    
 }

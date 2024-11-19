@@ -13,7 +13,7 @@ use App\Models\Booking;
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use Notifiable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -58,7 +58,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'city',
         'address',
         'google_id',
-        'role',
         'recaptcha_verified',
         'email_verification_code',
         'email_verified_at',

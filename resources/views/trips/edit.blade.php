@@ -2,19 +2,7 @@
     @auth
     <head>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Initialize flatpickr for date and time fields
-                flatpickr("#departure_time", {
-                    enableTime: true,
-                    dateFormat: "Y-m-d H:i",
-                    time_24hr: true
-                });
-                flatpickr("#arrival_time", {
-                    enableTime: true,
-                    dateFormat: "Y-m-d H:i",
-                    time_24hr: true
-                });
-
+             document.addEventListener('DOMContentLoaded', function() {
                 // Handle form submission with AJAX
                 document.getElementById('edit-trip-form').addEventListener('submit', function(e) {
                     e.preventDefault(); // Prevent default form submission
@@ -50,7 +38,7 @@
                     });
                 });
             });
-        </script>        
+        </script>
     </head>
                 <div class="container mx-auto">
                     <div class="flex flex-col md:flex-row justify-between items-center mt-1 w-full space-y-4 md:space-y-0">
@@ -81,7 +69,7 @@
                 <div class="flex justify-between items-center space-x-2">
                     <div class="w-full md:w-1/2">
                     <label for="origin_city_id" class="block text-gray-700">From:</label>
-                        <select id="origin_city_id" name="origin_city_id" required class="w-full border border-gray-300 p-2 rounded bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                        <select name="origin_city_id" id="origin-city" required class="w-full border border-gray-300 p-2 rounded bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
                         <option value="" class="text-gray-500">Select origin city</option>
                             @foreach ($cities as $city)
                                 <option value="{{ $city->id }}" {{ $trip->origin_city_id == $city->id ? 'selected' : '' }}>
@@ -101,7 +89,7 @@
             </div>
             <div class="w-full md:w-1/2">
                 <label for="destination_city_id" class="block text-gray-700">To:</label>
-                    <select id="destination_city_id" name="destination_city_id" required class="w-full border border-gray-300 p-2 rounded bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                    <select name="destination_city_id" id="destination-city" required class="w-full border border-gray-300 p-2 rounded bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
                     <option value="" class="text-gray-500">Select destination city</option>
                         @foreach ($cities as $city)
                             <option value="{{ $city->id }}" {{ $trip->destination_city_id == $city->id ? 'selected' : '' }}>
@@ -115,7 +103,7 @@
             <div class="flex flex-col w-full relative">
                 <label for="departure_time" class="block text-gray-700">Departure:</label>
                     <div class="relative">
-                        <input type="text" id="departure_time" name="departure_time" 
+                        <input type="text" id="date-picker" name="departure_time" 
                         value="{{ $trip->departure_time }}" required 
                         class="border border-gray-300 rounded-md px-3 py-2 pl-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 w-full" 
                         placeholder="Departure Time:">
@@ -135,7 +123,7 @@
             <div class="flex flex-col w-full relative">
                 <label for="arrival_time" class="block text-gray-700">Arrival:</label>
                     <div class="relative">
-                        <input type="text" id="arrival_time" name="arrival_time" 
+                        <input type="text" id="date-picker" name="arrival_time" 
                         value="{{ $trip->arrival_time }}" required 
                         class="border border-gray-300 rounded-md px-3 py-2 pl-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 w-full" 
                         placeholder="Arrival Time:">

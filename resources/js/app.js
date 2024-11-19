@@ -1,20 +1,13 @@
 import './bootstrap';
 import './dashboard';
 import './swiper';
+import './flatpickr';
+import './cityswap'; 
 import Alpine from 'alpinejs';
 import Intersect from '@alpinejs/intersect';
-import 'font-awesome/css/font-awesome.css';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
-document.addEventListener('DOMContentLoaded', function () {
-    flatpickr("#date-picker", {
-        dateFormat: "Y-m-d",
-    });
-});
 //kodi per load spinner te butoni submit ne contact form
 const form = document.getElementById('myForm');
     const button = document.getElementById('submitButton');
