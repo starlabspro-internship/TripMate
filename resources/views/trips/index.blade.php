@@ -1,7 +1,7 @@
 <x-app-layout>
     @auth
     <div class="container mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-center mb-6 mt-12 w-full space-y-4 md:space-y-0">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6 mt-1 w-full space-y-4 md:space-y-0">
         <h1 class="text-3xl font-bold text-black p-6">Available Rides</h1>
             @if (session('error'))
             <div class="text-red-500 text-xl ">
@@ -82,7 +82,7 @@
                 {{ session('success') }}
             </div>
         @endif
-<div id="rides-list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 hover px-4">
+<div id="rides-list" class="grid grid-cols-1 mb-4 gap-6 sm:grid-cols-2 lg:grid-cols-3 hover px-4">
     @foreach ($trips as $trip)
     <div class="ride-card bg-white p-6 rounded-lg transition-transform duration-300 transform hover:scale-105 shadow-md flex flex-col justify-between" data-departure="{{ $trip->departure_time }}">
         <div class="mb-4 flex justify-between items-start">

@@ -53,7 +53,7 @@
         </script>        
     </head>
                 <div class="container mx-auto">
-                    <div class="flex flex-col md:flex-row justify-between items-center mt-12 w-full space-y-4 md:space-y-0">
+                    <div class="flex flex-col md:flex-row justify-between items-center mt-1 w-full space-y-4 md:space-y-0">
                         <h1 class="text-3xl font-bold p-6 text-black">Edit Trip</h1>
                         <div class="flex gap-2 md:flex-row  md:space-y-0 md:space-x-2 mt-4 md:mt-0">
                             <a href="{{ route('trips.index') }}" 

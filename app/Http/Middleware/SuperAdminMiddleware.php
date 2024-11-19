@@ -23,6 +23,6 @@ class SuperAdminMiddleware
             return $next($request);
         }
     
-        return redirect('/');
+        return redirect('profile');
     }
 }

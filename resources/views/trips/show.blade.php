@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form action="{{ route('booking.store') }}" method="POST"  class="bg-gray-200 my-20 m-5 rounded-2xl md:p-10 p-5 md:mt-20 md:mb-5 md:mx-20 lg:mt-20 lg:p-20 lg:mb-5 lg:mx-30">
+    <form action="{{ route('booking.store') }}" method="POST"  class="bg-gray-300 my-5 m-5 rounded-2xl md:p-10 p-5 md:mt-5 md:mb-5  lg:mt-5 lg:mb-5 lg:mx-30">
         @csrf
         <input type="hidden" name="trip_id" value="{{ $trip->id }}">
         <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
@@ -12,7 +12,7 @@
                 </a>
         <div>
             <div class="relative py-2">
-                <div id="map" class=" py-5 h-[300px] w-full mb-8 md:float-end lg:block rounded-2xl md:max-w-lg md:h-[300px] md:w-[300px] md:end-0 lg:h-[400px] lg:w-[400px]"></div>
+                <div id="map" class=" py-5 h-[300px] w-full mb-8 md:float-end lg:block rounded-2xl md:max-w-lg md:h-[300px] md:w-[300px] md:end-0 lg:h-[350px] lg:w-[350px]"></div>
              </div>
             <div class="flex my-2 text-black text-xl capitalize space-x-6 justify-between mt-4">
                 <div class="flex items-center space-x-2">
@@ -37,7 +37,12 @@
                         alt="avatar"
                         class="relative inline-block h-6 w-6 mx-1 object-cover object-center"
                     />
-                    <p class="relative inline-block px-1 object-cover object-center">{{$trip->driver_comments}}</p>
+                    @if ($trip->driver_comments)
+                        <p class="relative inline-block px-1 object-cover object-center">{{$trip->driver_comments}}</p>
+                    @else
+                        <p class="relative inline-block px-1 object-cover object-center">Talk in  chat</p>
+                    @endif
+                    {{-- <p class="relative inline-block px-1 object-cover object-center">{{$trip->driver_comments}}</p> --}}
                 </div>
                 <div class="flex-col pb-4 pt-5">
                     <img

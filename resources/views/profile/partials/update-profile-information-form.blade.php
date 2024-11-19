@@ -11,14 +11,6 @@
             <!-- Sidebar -->
             <div class="bg-blue-600 text-white p-6 md:w-1/4 w-full md:block hidden">
                 <h2 class="text-2xl font-bold mb-6">My Profile</h2> 
-                <nav class="space-y-4">
-                    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2 text-white hover:text-blue-300">
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="{{ route('trips.index') }}" class="flex items-center space-x-2 text-white hover:text-blue-300">
-                        <span>Trips</span>
-                    </a>
-                </nav>
             </div>
             <!-- Main Content -->
             <div class="w-full md:w-3/4">
