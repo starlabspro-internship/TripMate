@@ -14,6 +14,8 @@ class Booking extends Model
       'passenger_id',
       'seats_booked',
       'status',
+      'total_price',
+      'session_id',
   ];
   
    public function passenger()

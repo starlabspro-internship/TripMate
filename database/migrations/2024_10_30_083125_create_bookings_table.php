@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Trip::class, 'trip_id')->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Trip::class, 'trip_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignIdFor(User::class, 'passenger_id')->constrained()->onDelete('cascade');
             $table->integer('seats_booked');
+            $table->decimal('total_price', 8, 2);
+            $table->string('session_id')->nullable();
             $table->string('status')->default('active');
+            $table->string('stripe_charge_id')->nullable();
             $table->timestamps();
         });
     }
