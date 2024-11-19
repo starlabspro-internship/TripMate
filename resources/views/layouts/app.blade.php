@@ -15,20 +15,27 @@
     </head>
     <body class="min-h-screen bg-[#f5f5f5] dark:bg-[#0F172A] font-planer antialiased w-full md:absolute md:w-navbar">
 
-        <div class=" flex flex-col ">
-
-            @if(Auth::check())
+        <div class="flex flex-col">
+            <!-- Display navigation only if user is authenticated and not on `enter.code` page -->
+            @if(Auth::check() && !request()->routeIs('enter.code'))
                 @include('layouts.navigation')
+
             @elseif (!Auth::check() && request()->is('/') || request()->is('home'))
+
                 @include('components.navbar')
             @endif
+            
+            <!-- Display the header only if it's set and not on `enter.code` page -->
             @isset($header)
-                <header class="bg-white shadow w-full">
-                    <div class=" py-6 px-4 sm:px-6 ">
-                        {{ $header }}
-                    </div>
-                </header>
+                @if (!request()->routeIs('enter.code'))
+                    <header class="bg-white shadow w-full">
+                        <div class="py-6 px-4 sm:px-6">
+                            {{ $header }}
+                        </div>
+                    </header>
+                @endif
             @endisset
+
             <!-- Page Content -->
             <main>
                 {{ $slot }}
@@ -36,4 +43,4 @@
         </div>
     </body>
 </html>
-{{--66AAC3--}}
+<!-- Color Code: #66AAC3 -->
