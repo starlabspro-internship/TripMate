@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form action="{{ route('booking.store') }}" method="POST"  class="bg-gray-200 my-20 m-5 rounded-2xl md:p-10 p-5 md:mt-20 md:mb-5 md:mx-20 lg:mt-20 lg:p-20 lg:mb-5 lg:mx-30">
+    <form action="{{ route('bookings.store') }}" method="POST"  class="bg-gray-200 my-20 m-5 rounded-2xl md:p-10 p-5 md:mt-20 md:mb-5 md:mx-20 lg:mt-20 lg:p-20 lg:mb-5 lg:mx-30">
         @csrf
         <input type="hidden" name="trip_id" value="{{ $trip->id }}">
         <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">

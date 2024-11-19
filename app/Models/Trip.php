@@ -20,6 +20,10 @@ class Trip extends Model
         'latitude',
         'longitude',
     ];
+    protected $casts = [
+        'departure_time' => 'datetime',
+        'arrival_time' => 'datetime',
+    ];
     public function users()
     {
         return $this->belongsTo(User::class, 'driver_id');
