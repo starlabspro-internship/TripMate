@@ -18,23 +18,29 @@ class ContactController extends Controller
     }
 
     public function submit(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'subject' => 'required|string|max:255',
-            'message' => 'required|string|max:5000',
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string|regex:/^[\pL\s]+$/u|max:255',
+        'email' => 'required|email',
+        'subject' => 'required|string|max:255',
+        'message' => 'required|string|not_regex:/http[s]?:\/\/[^\s]+/i|max:5000',
+    ], [
+        'name.required' => 'The name field is required.',
+        'email.required' => 'The email field is required.',
+        'email.email' => 'Please provide a valid email address.',
+        'subject.required' => 'The subject field is required.',
+        'message.required' => 'The message field is required.',
+    ]);
 
-        $contact = Contact::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'subject' => $request->input('subject'),
-            'message' => $request->input('message'),
-        ]);
+    $contact = Contact::create([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'subject' => $request->input('subject'),
+        'message' => $request->input('message'),
+    ]);
 
-        Mail::to($contact->email)->send(new InquiryMail($contact));
+    Mail::to($contact->email)->send(new InquiryMail($contact));
+    return back()->with('status', 'Your message has been sent successfully!');
+}
 
-        return back()->with('status', 'Your message has been sent successfully!');
-    }
 }
