@@ -78,4 +78,53 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
+
+
+    public function showVerifyPage()
+    {
+        return view('profile.verify-user'); 
+    }
+    
+
+    
+    public function uploadDocument(Request $request)
+{
+    $request->validate([
+        'image_data' => 'required|string', 
+    ]);
+
+    $imageData = $request->input('image_data');
+
+    
+    $imageData = preg_replace('/^data:image\/\w+;base64,/', '', $imageData);
+    $imageData = base64_decode($imageData);
+
+    if (!$imageData) {
+        return response()->json(['message' => 'Invalid image data'], 400);
+    }
+
+ 
+    $fileName = 'id_document_' . auth()->id() . '_' . time() . '.jpg';
+
+    
+    $filePath = storage_path('app/public/uploads/id_documents');
+    if (!file_exists($filePath)) {
+        mkdir($filePath, 0777, true); 
+    }
+
+    
+    file_put_contents($filePath . '/' . $fileName, $imageData);
+
+   
+    auth()->user()->update(['id_document' => 'uploads/id_documents/' . $fileName]);
+
+    return response()->json(['message' => 'Document uploaded successfully']);
+
+
 }
+
+}
+
+    
+
+

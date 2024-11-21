@@ -45,8 +45,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->is_super_admin == 1;
     }
-
-
+    
     protected $fillable = [
         'image',
         'name',
@@ -61,7 +60,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'recaptcha_verified',
         'email_verification_code',
         'email_verified_at',
-        'verification_code'
+        'verification_code',
+        'id_document',
+        'verification_status'
+
     ];
 
     /**
