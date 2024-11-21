@@ -36,7 +36,7 @@ class UserVerifiedNotification extends Notification
     {
         return (new MailMessage)
         ->subject('Verification Approved')
-        ->line('Congratulations! Your driver verification has been approved.')
+        ->line('Congratulations! Your verification has been approved.')
         ->action('View Profile', url('/profile'))
         ->line('Thank you for using our application!');
     }
