@@ -79,6 +79,13 @@ class ProfileController extends Controller
     }
 
 
+
+    public function showVerifyPage()
+    {
+        return view('profile.verify-user'); 
+    }
+    
+
     
     public function uploadDocument(Request $request)
 {
@@ -102,18 +109,22 @@ class ProfileController extends Controller
     
     $filePath = storage_path('app/public/uploads/id_documents');
     if (!file_exists($filePath)) {
-        mkdir($filePath, 0777, true); // Create directory if it doesn't exist
+        mkdir($filePath, 0777, true); 
     }
 
-    // Save the file
+    
     file_put_contents($filePath . '/' . $fileName, $imageData);
 
    
     auth()->user()->update(['id_document' => 'uploads/id_documents/' . $fileName]);
 
     return response()->json(['message' => 'Document uploaded successfully']);
+
+
+}
+
 }
 
     
-}
+
 

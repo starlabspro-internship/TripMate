@@ -1,31 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
     (() => {
-      
+        const scaleFactor = 0.75;
+
+        
         Webcam.set({
-            width: 320,
-            height: 240,
+            width: 700 * scaleFactor,
+            height: 400 * scaleFactor,
             image_format: 'jpeg',
             jpeg_quality: 90,
-            flip_horiz: true
+            flip_horiz: true,
         });
         Webcam.attach('#camera');
+    
         
         const cameraContainer = document.getElementById('camera');
         const captureButton = document.getElementById('capture');
         const imageDataField = document.getElementById('image_data');
         const capturedImageContainer = document.getElementById('captured-image-container');
+        const capturedImage = document.getElementById('captured-image');
         const retakeButton = document.getElementById('retake');
-        const submitButton = document.querySelector('button[type="submit"]');
+        const uploadForm = document.getElementById('uploadForm');
+    
         
-        
-        captureButton.addEventListener('click', function () {
-            Webcam.snap(function (data_uri) {
-                const capturedImage = document.getElementById('captured-image');
+        captureButton.addEventListener('click', () => {
+            Webcam.snap((data_uri) => {
                 if (capturedImage) {
                     capturedImage.src = data_uri;
                     capturedImageContainer.classList.remove('hidden');
                     imageDataField.value = data_uri;
-        
+    
+                    
                     cameraContainer.style.display = 'none';
                     captureButton.style.display = 'none';
                 } else {
@@ -33,26 +37,49 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         });
+    
         
-        
-        
-        retakeButton.addEventListener('click', function () {
+        retakeButton.addEventListener('click', () => {
             Webcam.reset();
             Webcam.attach('#camera');
-        
-            
+    
             capturedImageContainer.classList.add('hidden');
             cameraContainer.style.display = 'block';
             captureButton.style.display = 'inline-block';
         });
-        
-        
-        submitButton.addEventListener('click', function (event) {
-            if (!imageDataField.value) {
+    
+       
+        if (uploadForm) {
+            uploadForm.addEventListener('submit', (event) => {
                 event.preventDefault();
-                alert("Please capture an image before uploading.");
-            }
-        });
+    
+                const formData = new FormData(uploadForm);
+    
+                fetch(uploadForm.action, {
+                    method: "POST",
+                    body: formData,
+                })
+                    .then(response => response.json())
+                    .then((data) => {
+                        alert(data.message || "Your document has been uploaded successfully.");
+                        if (data.success) {
+                            Webcam.reset();
+                            if (capturedImage) {
+                                capturedImage.src = "";
+                            }
+                            imageDataField.value = "";
+    
+                            
+                            capturedImageContainer.classList.add('hidden');
+                            cameraContainer.style.display = 'block';
+                            captureButton.style.display = 'inline-block';
+                        }
+                    })
+                    .catch(() => {
+                        alert("An error occurred. Please try again.");
+                    });
+            });
+        }
         
     })();
 });

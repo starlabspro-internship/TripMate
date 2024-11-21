@@ -10,7 +10,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\DriverController;
+use App\Http\Controllers\UserVerifyController;
+
+
+
 
 Auth::routes(['verify' => true]);
 
@@ -57,7 +60,10 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
  Route::post('/upload-id-document', [ProfileController::class, 'uploadDocument'])->name('profile.upload-id-document');
+Route::get('/verify-profile', [ProfileController::class, 'showVerifyPage'])->name('profile.verify-user');
+
 
 });
 
@@ -99,9 +105,12 @@ Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
 })->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
 
 Route::middleware(['auth', 'superadmin'])->prefix('superadmin')->group(function () {
-    Route::get('/drivers', [DriverController::class, 'indexPending'])->name('superadmin.drivers.index-drivers');
-    Route::post('/drivers/{user}/verify', [DriverController::class, 'verify'])->name('superadmin.drivers.verify');
-    Route::post('/drivers/{user}/reject', [DriverController::class, 'reject'])->name('superadmin.drivers.reject');
+
+    Route::get('/users', [UserVerifyController::class, 'indexPending'])->name('superadmin.users.index-users');
+    Route::post('/users/{user}/verify', [UserVerifyController::class, 'verify'])->name('superadmin.users.verify');
+    Route::post('/users/{user}/reject', [UserVerifyController::class, 'reject'])->name('superadmin.users.reject');
 });
+
+
 
 require __DIR__.'/auth.php';

@@ -6,7 +6,6 @@ import './dashboard';
 import './swiper';
 import './flatpickr';
 import './cityswap'; 
-import './uploadDocument';
 import './documentModal';
 import './successErrorMessage';
 import './camera'; 
