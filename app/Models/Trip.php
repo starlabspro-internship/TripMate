@@ -17,6 +17,7 @@ class Trip extends Model
         'arrival_time',
         'available_seats',
         'price',
+        'driver_comments',
         'latitude',
         'longitude',
     ];

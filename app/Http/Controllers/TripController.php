@@ -65,10 +65,10 @@ class TripController extends Controller
             'arrival_time' => 'required|date|after:departure_time',
             'available_seats' => 'required|integer|min:1|max:7',
             'price' => 'required|numeric|min:0|max:50',
+            'driver_comments'=> 'nullable|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
         ]);
-    
         Trip::create($request->all());
     
         return redirect('/trips')->with('success', 'Trip created successfully');
@@ -114,6 +114,7 @@ class TripController extends Controller
             'arrival_time' => 'date|after:departure_time',
             'available_seats' => 'integer|min:1|max:7',
             'price' => 'numeric|min:0|max:50',
+            'driver_comments'=> 'nullable|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
 

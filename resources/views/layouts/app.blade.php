@@ -4,8 +4,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
         <title>TripMate</title>
 
@@ -38,7 +36,9 @@
 
             <!-- Page Content -->
             <main>
+                @if (!Auth::check())
                 {{ $slot }}
+                @endif
             </main>
         </div>
     </body>

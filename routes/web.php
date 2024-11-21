@@ -52,7 +52,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/dashboard', [SuperAdminController::class, 'count'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [SuperAdminController::class, 'count'])->middleware(['auth', 'superadmin'])->name('dashboard');
 
 Route::middleware('auth')->prefix('profile')->group(function () {
     Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -70,7 +70,7 @@ Route::get('/verify-profile', [ProfileController::class, 'showVerifyPage'])->nam
 Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('auth/google/callback', [SocialAuthController::class, 'googleCallback'])->name('login.google.callback');
 
-Route::prefix('superadmin')->name('superadmin.')->group(function () {
+Route::prefix('superadmin')->middleware('superadmin')->name('superadmin.')->group(function () {
     Route::get('/', [SuperAdminController::class, 'index'])->name('index');
     Route::get('/edit/{user}', [SuperAdminController::class, 'edit'])->name('edit');
     Route::patch('/{user}', [SuperAdminController::class, 'update'])->name('update');

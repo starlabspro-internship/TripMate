@@ -42,7 +42,7 @@
         <div x-show="currentTab === 'users'" class="relative flex flex-col w-full h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-md rounded-lg bg-clip-border ">
             <table class="w-full text-left table-auto min-w-max">
                 <thead>
-                <tr class="border-b border-slate-300 bg-emerald-900">
+                <tr class="border-b border-slate-300 bg-blue-500">
                     <th class="p-4 text-sm font-normal leading-none text-white">Image</th>
                     <th class="p-4 text-sm font-normal leading-none text-white">Name</th>
                     <th class="p-4 text-sm font-normal leading-none text-white">Phone</th>
@@ -56,7 +56,7 @@
                 </thead>
                 <tbody>
                 <template x-for="user in filteredUsers()" :key="user.id">
-                <tr class="bg-green-50">
+                <tr class="bg-blue-50">
                     <td class="p-4 border-b border-slate-200 py-5">
                         <img class="w-14 h-14 object-cover rounded-full"
                              :src="user.image ? `{{ asset('storage/') }}/${user.image}` : `https://eu.ui-avatars.com/api/${user.name}+${user.lastname}`"
@@ -78,7 +78,7 @@
                         </a>
                     </td>
                     <td class="p-4 border-b border-slate-200 py-5">
-                        <form :action="`{{ route('users.destroy', '') }}/${user.id}`" method="POST" @submit="return confirm('Are you sure you want to delete this user?');">
+                        <form :action="`{{ route('users.destroy', '') }}/${user.id}`" method="POST" @submit.prevent="confirmDelete($event)">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-slate-500 hover:text-slate-700">
@@ -98,7 +98,7 @@
         <div id="bookings" x-show="currentTab === 'bookings'" class="relative flex flex-col w-full h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
             <table class="w-full text-left table-auto min-w-max">
                 <thead>
-                <tr class="border-b border-slate-300 bg-emerald-900">
+                <tr class="border-b border-slate-300 bg-blue-500">
                     <th class="p-4 text-sm font-normal leading-none text-white">Trip Id</th>
                     <th class="p-4 text-sm font-normal leading-none text-white">Passenger</th>
                     <th class="p-4 text-sm font-normal leading-none text-white">Seats Booked</th>
@@ -108,13 +108,13 @@
                 </thead>
                 <tbody>
                 <template x-for="booking in filteredBookings()" :key="booking.id">
-                    <tr class="bg-green-50">
+                    <tr class="bg-blue-50">
                         <td class="p-4 border-b border-slate-200 py-5" x-text="booking.trip_id"></td>
                         <td class="p-4 border-b border-slate-200 py-5" x-text="booking.passenger.name"></td>
                         <td class="p-4 border-b border-slate-200 py-5" x-text="booking.seats_booked"></td>
                         <td class="p-4 border-b border-slate-200 py-5" x-text="booking.status"></td>
                         <td class="p-4 border-b border-slate-200 py-5">
-                            <form :action="`{{ route('booking.delete', '') }}/${booking.id}`" method="POST" @submit="return confirm('Are you sure you want to delete this user?');">
+                            <form :action="`{{ route('booking.delete', '') }}/${booking.id}`" method="POST" @submit.prevent="confirmDelete($event)">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-slate-500 hover:text-slate-700">
@@ -133,7 +133,7 @@
         <div id="trips" x-show="currentTab === 'trips'" class="relative flex flex-col w-full h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
             <table class="w-full text-left table-auto min-w-max">
                 <thead>
-                <tr class="border-b border-slate-300 bg-emerald-900">
+                <tr class="border-b border-slate-300 bg-blue-500">
                     <th class="p-4 text-sm font-normal leading-none text-white">Driver</th>
                     <th class="p-4 text-sm font-normal leading-none text-white">Origin City</th>
                     <th class="p-4 text-sm font-normal leading-none text-white">Destination City</th>
@@ -147,7 +147,7 @@
                 </thead>
                 <tbody>
                 <template x-for="trip in filteredTrips()" :key="trip.id">
-                    <tr class="bg-green-50">
+                    <tr class="bg-blue-50">
                         <td class="p-4 border-b border-slate-200 py-5" x-text="trip.users.name"></td>
                         <td class="p-4 border-b border-slate-200 py-5" x-text="trip.origincity.name"></td>
                         <td class="p-4 border-b border-slate-200 py-5" x-text="trip.destinationcity.name"></td>
@@ -165,7 +165,7 @@
                             </a>
                         </td>
                         <td class="p-4 border-b border-slate-200 py-5">
-                            <form :action="`{{ route('trip.delete', '') }}/${trip.id}`" method="POST" @submit="return confirm('Are you sure you want to delete this user?');">
+                            <form :action="`{{ route('trip.delete', '') }}/${trip.id}`" method="POST" @submit.prevent="confirmDelete($event)">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-slate-500 hover:text-slate-700">
@@ -235,6 +235,13 @@
                     }
                 };
             }
+                function confirmDelete(event) {
+                    if (confirm('Are you sure you want to delete?')) {
+                        event.target.submit();
+                    } else {
+                        event.preventDefault();
+                    }
+                }
         </script>
 
 
