@@ -104,7 +104,7 @@ Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
     return redirect()->route('verification.failure');
 })->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
 
-Route::middleware(['auth', 'superadmin'])->prefix('superadmin')->group(function () {
+Route::middleware(['superadmin'])->prefix('superadmin')->group(function () {
 
     Route::get('/users', [UserVerifyController::class, 'indexPending'])->name('superadmin.users.index-users');
     Route::post('/users/{user}/verify', [UserVerifyController::class, 'verify'])->name('superadmin.users.verify');
