@@ -48,7 +48,6 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.index');
 Route::get('/dashboard', [SuperAdminController::class, 'count'])->middleware(['auth', 'superadmin'])->name('dashboard');
 
 Route::middleware('auth')->prefix('profile')->group(function () {
