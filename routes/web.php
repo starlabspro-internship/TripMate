@@ -10,6 +10,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\UserVerifyController;
+
+
+
 
 Auth::routes(['verify' => true]);
 
@@ -55,6 +59,12 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
     Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+ Route::post('/upload-id-document', [ProfileController::class, 'uploadDocument'])->name('profile.upload-id-document');
+Route::get('/verify-profile', [ProfileController::class, 'showVerifyPage'])->name('profile.verify-user');
+
+
 });
 
 Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('login.google');
@@ -93,5 +103,14 @@ Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
     }
     return redirect()->route('verification.failure');
 })->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
+
+Route::middleware(['superadmin'])->prefix('superadmin')->group(function () {
+
+    Route::get('/users', [UserVerifyController::class, 'indexPending'])->name('superadmin.users.index-users');
+    Route::post('/users/{user}/verify', [UserVerifyController::class, 'verify'])->name('superadmin.users.verify');
+    Route::post('/users/{user}/reject', [UserVerifyController::class, 'reject'])->name('superadmin.users.reject');
+});
+
+
 
 require __DIR__.'/auth.php';

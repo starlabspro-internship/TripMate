@@ -24,5 +24,6 @@ class SuperAdminMiddleware
         }
     
         return redirect('/');
+
     }
 }
