@@ -78,7 +78,7 @@
                         </a>
                     </td>
                     <td class="p-4 border-b border-slate-200 py-5">
-                        <form :action="`{{ route('users.destroy', '') }}/${user.id}`" method="POST" @submit="return confirm('Are you sure you want to delete this user?');">
+                        <form :action="`{{ route('users.destroy', '') }}/${user.id}`" method="POST" @submit.prevent="confirmDelete($event)">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-slate-500 hover:text-slate-700">
@@ -114,7 +114,7 @@
                         <td class="p-4 border-b border-slate-200 py-5" x-text="booking.seats_booked"></td>
                         <td class="p-4 border-b border-slate-200 py-5" x-text="booking.status"></td>
                         <td class="p-4 border-b border-slate-200 py-5">
-                            <form :action="`{{ route('booking.delete', '') }}/${booking.id}`" method="POST" @submit="return confirm('Are you sure you want to delete this user?');">
+                            <form :action="`{{ route('booking.delete', '') }}/${booking.id}`" method="POST" @submit.prevent="confirmDelete($event)">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-slate-500 hover:text-slate-700">
@@ -165,7 +165,7 @@
                             </a>
                         </td>
                         <td class="p-4 border-b border-slate-200 py-5">
-                            <form :action="`{{ route('trip.delete', '') }}/${trip.id}`" method="POST" @submit="return confirm('Are you sure you want to delete this user?');">
+                            <form :action="`{{ route('trip.delete', '') }}/${trip.id}`" method="POST" @submit.prevent="confirmDelete($event)">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-slate-500 hover:text-slate-700">
@@ -235,6 +235,13 @@
                     }
                 };
             }
+                function confirmDelete(event) {
+                    if (confirm('Are you sure you want to delete?')) {
+                        event.target.submit();
+                    } else {
+                        event.preventDefault();
+                    }
+                }
         </script>
 
 

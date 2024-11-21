@@ -2,7 +2,7 @@
     <div class="bg-green-100 min-h-screen">
     <div class="container mx-auto px-4 py-6 ">
         <h2 class="text-2xl font-semibold text-center mt-16 mb-6">
-            {{ "Upcoming Bookings of " . auth()->user()->name }}
+            {{ "Upcoming Bookings for " . auth()->user()->name ."'s Trips"}}
         </h2>
         <div class="flex justify-center gap-2 mb-4">
             <button onclick="filterBookings('all')" 

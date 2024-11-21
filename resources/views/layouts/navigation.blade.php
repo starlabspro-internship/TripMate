@@ -28,7 +28,7 @@
                         class="relative inline-block h-7 w-7  object-cover object-center"
                     />
     
-                    <span class="mx-3">Profil</span>
+                    <span class="mx-3">Profile</span>
                 </a>
     
                 <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('trips.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
@@ -40,6 +40,26 @@
                     />
     
                     <span class="mx-3">Available Rides</span>
+                </a>
+                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('bookings.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                    href="{{ route('bookings.index') }}">
+                    <img
+                        src="{{ asset('storage/icons/booking.svg') }}"
+                        alt="avatar"
+                        class="relative inline-block h-7 w-7  object-cover object-center"
+                    />
+    
+                    <span class="mx-3">My Bookings</span>
+                </a>
+                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('bookings.myTrips') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                    href="{{ route('bookings.myTrips') }}">
+                    <img
+                        src="{{ asset('storage/icons/trips.svg') }}"
+                        alt="avatar"
+                        class="relative inline-block h-7 w-7  object-cover object-center"
+                    />
+    
+                    <span class="mx-3">My Trips Bookings</span>
                 </a>
                 @if( Auth::user()->isSuperAdmin())
                 <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('superadmin.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
@@ -57,7 +77,7 @@
             </nav>
         </div>
         <div class="flex flex-col flex-1 overflow-hidden ">
-            <header class="flex items-center justify-between px-6 py-4 bg-white border-b-4 border-indigo-600">
+            <header class="flex items-center justify-between px-6 py-4 bg-white border-b-2 border-gray-800">
                 <div class="flex items-center">
                     <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
                         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,15 +139,13 @@
                         @endif
                     </div>
             
-                    <!-- Name of the user -->
-                    <div class="block text-sm md:text-md text-black dark:text-white flex items-center z-[999] ">
-                        <div class="text-black dark:text-white">{{ Auth::user()->name }}</div>
                     
-                        <!-- Profile Dropdown -->
+                    <div  class=" text-sm md:text-md text-black dark:text-white flex items-center z-[999] ">                    
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button class="inline-flex  items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white dark:bg-[#0F172A] hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                    <div class="-ml-3">
+                                    <div class="flex items-center space-x-2  -ml-3 ">
+                                        <div class="text-black dark:text-white">{{ Auth::user()->name }}</div>
                                         <svg class="fill-current h-5 w-5 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
