@@ -34,6 +34,7 @@ Route::middleware('ifnotauth')->prefix('bookings')->name('bookings.')->controlle
     Route::get('/cancel', 'cancel')->name('cancel');
     Route::get('/success', 'success')->name('success');
     Route::post('/store', 'store')->name('store');
+    Route::post('/reserve', 'reserve')->name('reserve');
     Route::get('/{id}', 'show')->name('show');
     Route::delete('/{id}', 'destroy')->name('destroy');
 });
