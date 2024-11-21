@@ -36,7 +36,7 @@ class UserRejectedNotification extends Notification
     {
         return (new MailMessage)
         ->subject('Verification Rejected')
-        ->line('We regret to inform you that your driver verification has been rejected.')
+        ->line('We regret to inform you that your verification has been rejected.')
         ->line('Please check the requirements and try again.')
         ->action('View Profile', url('/profile'))
         ->line('Thank you for using our application!');
