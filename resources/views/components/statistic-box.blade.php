@@ -1,5 +1,5 @@
 
-        <div class="flex flex-col md:flex-row items-center justify-between w-full  p-6 bg-white space-y-6 md:space-y-0">
+        <div class="flex flex-col md:flex-row items-center justify-between w-full mt-10 p-6 bg-white space-y-6 md:space-y-0">
 
 
             <div class="flex flex-col items-center text-center w-full md:w-1/3 space-y-2">

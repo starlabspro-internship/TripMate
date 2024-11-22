@@ -55,7 +55,6 @@ class MessagesController extends Controller
     }
 
 
-
     /**
      * Fetch data (user, favorite.. etc).
      *
@@ -64,15 +63,16 @@ class MessagesController extends Controller
      */
     public function idFetchData(Request $request)
     {
+
         $favorite = Chatify::inFavorite($request['id']);
         $fetch = User::where('id', $request['id'])->first();
         if($fetch){
-            $userAvatar = Chatify::getUserWithAvatar($fetch)->avatar;
+            $userImage = $fetch->image ? asset('storage/' . $fetch->image) : 'https://eu.ui-avatars.com/api/' . $fetch->name . '+' . $fetch->lastname;
         }
         return Response::json([
             'favorite' => $favorite,
             'fetch' => $fetch ?? null,
-            'user_avatar' => $userAvatar ?? null,
+            'user_avatar' => $userImage ?? null,
         ]);
     }
 
@@ -119,17 +119,29 @@ class MessagesController extends Controller
         $userBookings = Booking::where('passenger_id', $currentUserId)
             ->orWhere('passenger_id', $recipientId)
             ->get();
-
+        Log::info('User bookings retrieved:', [
+            'currentUserId' => $currentUserId,
+            'recipientId' => $recipientId,
+            'userBookings' => $userBookings->toArray(),
+        ]);
         // Retrieve the trip where either the current user or the recipient is the driver
         $driverTrip = Trip::where('driver_id', $currentUserId)
             ->orWhere('driver_id', $recipientId)
             ->first();
-
+        Log::info('Driver trip retrieved:', [
+            'currentUserId' => $currentUserId,
+            'recipientId' => $recipientId,
+            'driverTrip' => $driverTrip ? $driverTrip->toArray() : null,
+        ]);
         // Check if the user has any booking that matches the driver's trip
         $canMessageDriver = false;
         foreach ($userBookings as $userBooking) {
             if ($driverTrip && $userBooking->trip->id === $driverTrip->id) {
                 $canMessageDriver = true;
+                Log::info('Matching booking-trip combination found:', [
+                    'userBookingId' => $userBooking->id,
+                    'tripId' => $driverTrip->id,
+                ]);
                 break;
             }
         }
@@ -204,7 +216,6 @@ class MessagesController extends Controller
             'tempID' => $request['temporaryMsgId'],
         ]);
     }
-
     /**
      * fetch [user/group] messages from database
      *

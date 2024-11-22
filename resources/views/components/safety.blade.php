@@ -9,6 +9,6 @@
                 </p>
             </div>
             <div class="w-1/3 hidden lg:block">
-                <img class="w-64 h-64" src="{{asset('storage/images/verified1.png')}}">
+                <img class="w-64 h-64"  src="{{ asset('storage/image/v.png') }}">
             </div>
         </div>

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+}
+#logo{
+    filter: brightness(0);
+}
 .banner {
     border-bottom: solid black;
 }
@@ -94,4 +100,7 @@
 
 .swiper-slide.swiper-slide-active {
     border-color: rgb(255 240 31 / var(--tw-border-opacity)) !important;
+}
+#map{
+    z-index: 0;
 }

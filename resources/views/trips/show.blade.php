@@ -52,7 +52,7 @@
                     />
                     <p class="relative inline-block  object-cover object-center">&nbsp;&nbsp;{{$trip->price}}</p>
                 </div>
-                <div class="text-black  space-y-1 justify-between ">    
+                <div class="text-black  space-y-1 justify-between ">
                     <h1 class="text-lg">Driver:</h1>
                     @if ($trip->users->image)
                         <img
@@ -67,7 +67,7 @@
                 <div class="flex-col mt-5 space-t-5 ">
                     {{-- <h1 class="text-lg">Seats:</h1> --}}
                     <p class="relative inline-block  object-cover object-center" > {{$available_seats}} free seats</p>
-                    
+
                 </div>
                 @if ($available_seats > 0)
                 <div class="flex-col  pb-6">
@@ -84,26 +84,26 @@
                     type="submit">
                         Book Now
                     </button>
-                </div>                           
+                </div>
                 @else
             @endif
         </div>
     </form>
-    
-    <form action="{{ route('bookings.reserve') }}" method="POST"  class="bg-gray-200 my-20 m-5 rounded-2xl md:p-10 p-5 md:mt-20 md:mb-5 md:mx-20 lg:mt-20 lg:p-20 lg:mb-5 lg:mx-30">
+
+    <form action="{{ route('bookings.reserve') }}" method="POST"  class="bg-gray-200  rounded-2xl  p-2  md:mb-5 md:mx-20  lg:mb-5 lg:mx-30">
         @csrf
         <input type="hidden" name="trip_id" value="{{ $trip->id }}">
         <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
         <div class="flex justify-between items-center space-x-4">
-            <p>If you want to reserve your seat and pay in person, choose the "Reserve Your Seat" option. This allows you to secure your seat now and handle payment conveniently when you arrive.</p>
+            <p class="w-4/5">If you want to reserve your seat and pay in person, choose the "Reserve Your Seat" option. This allows you to secure your seat now and handle payment conveniently when you arrive.</p>
             @if ($available_seats > 0)
             <div class="flex items-center space-x-4 pb-6">
-                <input 
-                    class="border border-gray-700 rounded-lg bg-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-800 text-gray-700 p-2" 
+                <input
+                    class="border border-gray-700 rounded-lg bg-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-800 text-gray-700 p-2"
                     type="number" name="seats_booked" min="1" max="{{ $available_seats }}" value="1" required
                     placeholder="Seats to book">
-                <button 
-                    class="rounded-md bg-blue-800 py-2 px-4 text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 disabled:pointer-events-none disabled:opacity-50"
+                <button
+                    class="rounded-md bg-blue-800 py-2 px-6 text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 disabled:pointer-events-none disabled:opacity-50"
                     type="submit">
                     Reserve Seat
                 </button>
@@ -112,22 +112,22 @@
             <p class="text-red-500 py-4">There are no seats available for this trip.</p>
             @endif
         </div>
-        
+
     </form>
-    
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var latitude = {{ $trip->latitude }};
             var longitude = {{ $trip->longitude }};
-            
+
             var map = L.map('map').setView([latitude, longitude], 13);
-            
+
             L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-            
+
             L.marker([latitude, longitude]).addTo(map)
                 .bindPopup("Meeting Location")
                 .openPopup();
