@@ -6,16 +6,16 @@
         </h2>
         <div class="flex justify-center gap-2 mb-4">
             <button onclick="filterBookings('all')" 
-                    class="px-4 py-2 rounded-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium text-sm">
-                all
+                    class="px-4 py-2 rounded-2xl bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium text-sm">
+                All
             </button>
             <button onclick="filterBookings('paid')" 
-                    class="px-4 py-2 rounded-full bg-green-600 hover:bg-green-700 text-white font-medium text-sm">
-                paid
+                    class="px-4 py-2 rounded-2xl bg-green-600 hover:bg-green-700 text-white font-medium text-sm">
+                Paid
             </button>
             <button onclick="filterBookings('refunded')" 
-                    class="px-4 py-2 rounded-full bg-red-600 hover:bg-red-700 text-white font-medium text-sm">
-                refunded
+                    class="px-4 py-2 rounded-2xl bg-red-600 hover:bg-red-700 text-white font-medium text-sm">
+                Refunded
             </button>
         </div>
         <div id="bookings-container" class="space-y-4">
@@ -52,13 +52,13 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4013 7.5H19C19.2761 7.5 19.5 7.27614 19.5 7C19.5 6.72386 19.2761 6.5 19 6.5H15.0415C15.1017 6.85896 15.2257 7.19631 15.4013 7.5ZM13.2289 7.5C13.1282 7.17938 13.0589 6.84484 13.0247 6.5H5C4.72386 6.5 4.5 6.72386 4.5 7C4.5 7.27614 4.72386 7.5 5 7.5H13.2289ZM5 11.5C4.72386 11.5 4.5 11.7239 4.5 12C4.5 12.2761 4.72386 12.5 5 12.5H19C19.2761 12.5 19.5 12.2761 19.5 12C19.5 11.7239 19.2761 11.5 19 11.5H5ZM5 16.5C4.72386 16.5 4.5 16.7239 4.5 17C4.5 17.2761 4.72386 17.5 5 17.5H19C19.2761 17.5 19.5 17.2761 19.5 17C19.5 16.7239 19.2761 16.5 19 16.5H5Z" fill="#222222"/>
                                 <circle cx="18" cy="6" r="3" fill="#222222"/>
-                                </svg>&nbsp;&nbsp;{{ ($booking->status) }}</p>
+                                </svg>&nbsp;&nbsp;{{ ucfirst($booking->status) }}</p>
                         </div>
                         <svg class="w-5 h-5 text-gray-500 transform transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 15l-6-6h12l-6 6z"/>
                         </svg>
                     </div>
-                    <div class="details hidden px-4 py-2">
+                    <div class="details hidden px-4 py-2 text-gray-800">
                         <p class="flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mb-0.5 ml-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                                 <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

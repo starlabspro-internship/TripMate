@@ -36,6 +36,18 @@ class BookingController extends Controller
         return view('bookings.myTripsBookings', compact('bookings'));
     }
 
+    public function reserve(Request $request){
+        $trip = Trip::findOrFail($request->trip_id);
+        $booking = Booking::create([
+            'trip_id' => $request->trip_id,
+            'passenger_id' => auth()->id(), 
+            'seats_booked' => $request->seats_booked, 
+            'status' => 'reserved', 
+            'total_price' => $trip->price * $request->seats_booked, 
+        ]);
+        return redirect()->route('bookings.show', ['id' => $booking->id])->with('bookings', $booking);
+    }
+    
 
     public function show($id){
         $booking = Booking::with(['trip', 'passenger'])->find($id);
