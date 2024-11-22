@@ -66,7 +66,9 @@ class SuperAdminController extends Controller
 
     public function superDelete(User $user){
         $user->delete();
-        return redirect()->route('superadmin.index');
+        return redirect()->route('superadmin.index')->with([
+            'success' => 'User successfully deleted.',
+        ]);
     }
 
     public function edittrip(Trip $trip){
@@ -100,11 +102,15 @@ class SuperAdminController extends Controller
     }
     public function tripDelete(Trip $trip){
         $trip->delete();
-        return redirect()->route('superadmin.index', ['tab' => 'trips']);
+        return redirect()->route('superadmin.index', ['tab' => 'trips'])->with([
+            'success' => 'Trip successfully deleted.',
+        ]);
     }
     public function bookingDelete(Booking $booking){
         $booking->delete();
-        return redirect()->route('superadmin.index', ['tab' => 'bookings']);
+        return redirect()->route('superadmin.index', ['tab' => 'bookings'])->with([
+            'success' => 'Booking successfully deleted.',
+        ]);
     }
 
     public function count()

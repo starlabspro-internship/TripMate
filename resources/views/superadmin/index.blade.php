@@ -1,7 +1,16 @@
 <x-app-layout>
     <div x-data="userSearch()" class="max-w-[1024px] mx-auto mt-28">
 
-
+        @if (session('error'))
+            <div class="bg-red-100 text-red-700 border border-red-200 p-4 rounded mb-6">
+                {{ session('error') }}
+            </div>
+        @endif
+        @if(session('success'))
+            <div class="bg-green-100 text-green-700 border border-green-200 p-4 rounded mb-6">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="w-full flex flex-col sm:flex-row justify-between items-center mb-3 mt-12 pl-3">
             <div class="flex gap-14 sm:mb-4 ">
                 <button @click="currentTab = 'users'" :class="currentTab === 'users' ? 'underline' : ''" class="text-md sm:text-xl font-bold text-black">
@@ -78,7 +87,7 @@
                         </a>
                     </td>
                     <td class="p-4 border-b border-slate-200 py-5">
-                        <form :action="`{{ route('users.destroy', '') }}/${user.id}`" method="POST" @submit.prevent="confirmDelete($event)">
+                        <form :action="`{{ route('superadmin.users.destroy', '') }}/${user.id}`" method="POST" @submit.prevent="confirmDelete($event)">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-slate-500 hover:text-slate-700">
@@ -114,7 +123,7 @@
                         <td class="p-4 border-b border-slate-200 py-5" x-text="booking.seats_booked"></td>
                         <td class="p-4 border-b border-slate-200 py-5" x-text="booking.status"></td>
                         <td class="p-4 border-b border-slate-200 py-5">
-                            <form :action="`{{ route('booking.delete', '') }}/${booking.id}`" method="POST" @submit.prevent="confirmDelete($event)">
+                            <form :action="`{{ route('superadmin.booking.delete', '') }}/${booking.id}`" method="POST" @submit.prevent="confirmDelete($event)">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-slate-500 hover:text-slate-700">
@@ -165,7 +174,7 @@
                             </a>
                         </td>
                         <td class="p-4 border-b border-slate-200 py-5">
-                            <form :action="`{{ route('trip.delete', '') }}/${trip.id}`" method="POST" @submit.prevent="confirmDelete($event)">
+                            <form :action="`{{ route('superadmin.trip.delete', '') }}/${trip.id}`" method="POST" @submit.prevent="confirmDelete($event)">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-slate-500 hover:text-slate-700">

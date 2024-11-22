@@ -1,7 +1,7 @@
-    <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 z-[9999]">
+<div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 " >
         <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden"></div>
-    
-        <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class=" z-[9999] fixed inset-y-0 left-0 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0">
+
+    <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed z-[100] inset-y-0 left-0 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0">
             <div class="flex items-center justify-center mt-8">
                 <div class="flex items-center">
                     <img src="{{ asset('storage/image/tripmate.png') }}" class=" flex  mx-1 font-mono text-2xl font-bold w-[140px] " href="/"></img>
@@ -16,7 +16,7 @@
                         alt="avatar"
                         class="relative inline-block h-7 w-7  object-cover object-center"
                     />
-    
+
                     <span class="mx-3">Dashboard</span>
                 </a>
                 @endif
@@ -27,10 +27,10 @@
                         alt="avatar"
                         class="relative inline-block h-7 w-7  object-cover object-center"
                     />
-    
+
                     <span class="mx-3">Profile</span>
                 </a>
-    
+
                 <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('trips.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
                     href="{{ route('trips.index') }}">
                     <img
@@ -38,7 +38,7 @@
                         alt="avatar"
                         class="relative inline-block h-6 w-7  object-cover object-center"
                     />
-    
+
                     <span class="mx-3">Available Rides</span>
                 </a>
                 <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('bookings.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
@@ -48,7 +48,7 @@
                         alt="avatar"
                         class="relative inline-block h-7 w-7  object-cover object-center"
                     />
-    
+
                     <span class="mx-3">My Bookings</span>
                 </a>
                 <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('bookings.myTrips') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
@@ -58,7 +58,7 @@
                         alt="avatar"
                         class="relative inline-block h-7 w-7  object-cover object-center"
                     />
-    
+
                     <span class="mx-3">My Trips Bookings</span>
                 </a>
                 @if( Auth::user()->isSuperAdmin())
@@ -70,10 +70,34 @@
                         class="relative inline-block h-6 w-6  object-cover object-center"
                     />
                     </svg>
-    
+
                     <span class="mx-3">Tables</span>
                 </a>
                 @endif
+                    @if( Auth::user()->isSuperAdmin())
+                        <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('superadmin.users.index-users') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                           href="{{ route('superadmin.users.index-users') }}">
+                            <img
+                                src="{{ asset('storage/icons/verify.svg') }}"
+                                alt="avatar"
+                                class="relative inline-block h-6 w-6  object-cover object-center"
+                            />
+                            </svg>
+
+                            <span class="mx-3">Verifications</span>
+                        </a>
+                    @endif
+                    <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs(config('chatify.routes.prefix')) ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                       href="{{ route(config('chatify.routes.prefix')) }}">
+                        <img
+                            src="{{ asset('storage/icons/chat.svg') }}"
+                            alt="avatar"
+                            class="relative inline-block h-6 w-6  object-cover object-center"
+                        />
+                        </svg>
+
+                        <span class="mx-3">Chat</span>
+                    </a>
             </nav>
         </div>
         <div class="flex flex-col flex-1 overflow-hidden ">
@@ -86,11 +110,11 @@
                         </svg>
                     </button>
                 </div>
-                <div class="flex-none h-full text-center flex items-center space-x-4 sm:space-x-4 z-[999]">
+                <div class="flex-none h-full text-center flex items-center space-x-4 sm:space-x-4 z-[10]">
                     <!-- Language Selector with Flags and Names -->
                     <section>
-                        <div x-data="{ 
-                                open: false, 
+                        <div x-data="{
+                                open: false,
                                 selectedCountry: { name: 'English', flag: '{{ asset('images/flags/en.png') }}' },
                                 countries: [
                                     { name: 'English', flag: '{{ asset('images/flags/en.png') }}' },
@@ -99,12 +123,12 @@
                                     { name: 'Français', flag: '{{ asset('images/flags/fr.png') }}' },
                                 ],
                                 getShortName(name) {
-                                    return name.slice(0, 2); 
+                                    return name.slice(0, 2);
                                 }
                             }"
                             class="relative w-34 mx-auto">
                             <!-- Selected Country -->
-                            <button @click="open = !open" 
+                            <button @click="open = !open"
                                     class=" w-full flex justify-between items-center px-2 py-1 bg-gray-100 text-gray-700 rounded-lg border border-gray-300 sm:px-2 sm:py-1 text-lg">
                                 <div class="flex items-center space-x-2">
                                     <img :src="selectedCountry.flag" alt="" class="w-5 h-auto">
@@ -115,12 +139,12 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                 </svg>
                             </button>
-                        
+
                             <!-- Dropdown -->
                             <div x-show="open" @click.outside="open = false" class="absolute w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-60 overflow-auto">
                                 <template x-for="country in countries" :key="country.name">
-                                    <div @click="selectedCountry = country; open = false" 
-                                        :class="{ 'hidden': country.name === selectedCountry.name }" 
+                                    <div @click="selectedCountry = country; open = false"
+                                        :class="{ 'hidden': country.name === selectedCountry.name }"
                                         class="cursor-pointer px-4 py-2 hover:bg-gray-100 flex items-center space-x-2">
                                         <img :src="country.flag" alt="" class="w-5 h-auto">
                                         <span :class="{'text-sm': country.name !== selectedCountry.name}" class="block sm:hidden" x-text="getShortName(country.name)"></span>
@@ -138,9 +162,9 @@
                             <img src="{{ 'https://eu.ui-avatars.com/api/?name=' . urlencode(auth()->user()->name . ' ' . auth()->user()->lastname) . '&size=250' }}" alt="Default Image" class="rounded-full">
                         @endif
                     </div>
-            
-                    
-                    <div  class=" text-sm md:text-md text-black dark:text-white flex items-center z-[999] ">                    
+
+
+                    <div  class=" text-sm md:text-md text-black dark:text-white flex items-center z-[999] ">
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button class="inline-flex  items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white dark:bg-[#0F172A] hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -159,7 +183,7 @@
                                 <x-dropdown-link :href="route('profile.edit')">
                                     {{ __('Change Preferences') }}
                                 </x-dropdown-link>
-            
+
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">

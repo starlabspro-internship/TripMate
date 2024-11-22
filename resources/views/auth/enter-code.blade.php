@@ -7,8 +7,8 @@
             <form method="POST" action="{{ route('enter.code') }}" class="mt-6">
                 @csrf
                 <!-- Button to redirect to Mailtrap Inbox -->
-                <a href="https://mailtrap.io/inboxes/3283810/messages" class="w-full mt-4 bg-blue-600 text-white p-2 rounded-lg text-center inline-block">
-                    Go to Mailtrap Inbox to verify your email
+                <a href="https://mailtrap.io/inboxes/" class="w-full mt-4 bg-blue-600 text-white p-2 rounded-lg text-center inline-block">
+                    Go to Mail to verify your email
                 </a>
             </form>
         </div>

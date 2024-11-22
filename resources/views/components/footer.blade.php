@@ -1,10 +1,10 @@
 
 <footer class="relative bg-gradient-to-r from-indigo-400 via-teal-500 to-red-300 bg-[length:200%] animate-gradient-background overflow-hidden text-white py-14">
     <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm mt-14 text-center md:text-left">
-        
+
         <!-- Logo Section -->
         <div class="flex items-start justify-center md:col-span-1">
-            <h2 class="text-lg sm:text-xl font-semibold">LOGO</h2>
+            <img  src="{{ asset('storage/image/tripmate.png') }}" class="w-[200px] h-[80px]">
         </div>
 
         <div>
@@ -27,7 +27,7 @@
                 </li>
             </ul>
         </div>
-        
+
         <!-- Social Media Section -->
         <div>
             <h4 class="uppercase font-bold text-xs sm:text-sm mb-3 tracking-wide text-gray-100">SOCIAL MEDIA</h4>
@@ -49,7 +49,7 @@
                 </li>
             </ul>
         </div>
-        
+
         <!-- Learn More Section -->
         <div>
             <h4 class="uppercase font-bold text-xs sm:text-sm mb-3 tracking-wide text-gray-100">LEARN MORE</h4>
@@ -79,6 +79,6 @@
             <p>Copyright TRIP MATE. {{ date('Y') }}. All Rights Reserved.</p>
         </div>
     </div>
-    
+
 </footer>
 

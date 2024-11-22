@@ -54,7 +54,7 @@
                 </div>
             @endif
             <div class="mt-6 text-center">
-                <a href="{{ route('trips.index') }}" class="text-blue-500 hover:text-blue-700">Back to Trips</a>
+                <a href="{{ route('bookings.show', $booking->id ) }}" class="text-blue-500 hover:text-blue-700">go to your booking</a>
             </div>
         </div>
     </div>

@@ -1,3 +1,4 @@
+
 <x-app-layout>
     @auth
     <head>
@@ -8,7 +9,7 @@
                     e.preventDefault(); // Prevent default form submission
 
                     console.log('Update button clicked'); // Check if this line runs
-                    
+
                     let formData = new FormData(this);
 
                     // Send AJAX request
@@ -34,7 +35,7 @@
                         }
                     })
                     .catch(error => {
-                        console.error('Error:', error); 
+                        console.error('Error:', error);
                     });
                 });
             });
@@ -44,14 +45,14 @@
                     <div class="flex flex-col md:flex-row justify-between items-center mt-1 w-full space-y-4 md:space-y-0">
                         <h1 class="text-3xl font-bold p-6 text-black">Edit Trip</h1>
                         <div class="flex gap-2 md:flex-row  md:space-y-0 md:space-x-2 mt-4 md:mt-0">
-                            <a href="{{ route('trips.index') }}" 
-                               class="w-28 px-4 py-1 text-sm rounded-full transition duration-200 
+                            <a href="{{ route('trips.index') }}"
+                               class="w-28 px-4 py-1 text-sm rounded-full transition duration-200
                                   {{ request()->routeIs('trips.index') ? 'bg-gray-100 text-gray-600' : 'bg-gray-200 text-gray-700' }}
                                   hover:bg-gray-400 text-center">
                                 Passenger
                             </a>
-                            <a href="{{ route('trips.create') }}" 
-                              class="w-28 px-4 py-1 text-sm rounded-full transition duration-200 
+                            <a href="{{ route('trips.create') }}"
+                              class="w-28 px-4 py-1 text-sm rounded-full transition duration-200
                              {{ request()->routeIs('trips.create') ? 'bg-blue-100 text-blue-600' : 'bg-gray-200 text-gray-700' }}
                                  hover:bg-blue-300 text-center">
                                    Driver
@@ -65,7 +66,7 @@
                         <form id="edit-trip-form" action="{{ route('trips.update', $trip->id) }}" method="POST" class="space-y-6">
                         @csrf
                         @method('PUT')
-                
+
                 <div class="flex justify-between items-center space-x-2">
                     <div class="w-full md:w-1/2">
                     <label for="origin_city_id" class="block text-gray-700">From:</label>
@@ -79,11 +80,11 @@
                 </select>
             </div>
             <div class="flex justify-center items-center mt-5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="40px" viewBox="0 -5 24 24" id="meteor-icon-kit__regular-long-arrow-right" fill="none">
-                    <path 
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30px" viewBox="0 -5 24 24" id="meteor-icon-kit__regular-long-arrow-right" fill="none">
+                    <path
                     fill-rule="evenodd"
-                    clip-rule="evenodd" 
-                    d="M20.5858 8H1C0.447715 8 0 7.5523 0 7C0 6.4477 0.447715 6 1 6H20.5858L16.2929 1.70711C15.9024 1.31658 15.9024 0.68342 16.2929 0.29289C16.6834 -0.09763 17.3166 -0.09763 17.7071 0.29289L23.7071 6.2929C24.0976 6.6834 24.0976 7.3166 23.7071 7.7071L17.7071 13.7071C17.3166 14.0976 16.6834 14.0976 16.2929 13.7071C15.9024 13.3166 15.9024 12.6834 16.2929 12.2929L20.5858 8z" 
+                    clip-rule="evenodd"
+                    d="M20.5858 8H1C0.447715 8 0 7.5523 0 7C0 6.4477 0.447715 6 1 6H20.5858L16.2929 1.70711C15.9024 1.31658 15.9024 0.68342 16.2929 0.29289C16.6834 -0.09763 17.3166 -0.09763 17.7071 0.29289L23.7071 6.2929C24.0976 6.6834 24.0976 7.3166 23.7071 7.7071L17.7071 13.7071C17.3166 14.0976 16.6834 14.0976 16.2929 13.7071C15.9024 13.3166 15.9024 12.6834 16.2929 12.2929L20.5858 8z"
                     fill="#758CA3"/>
                 </svg>
             </div>
@@ -99,51 +100,49 @@
                     </select>
                 </div>
             </div>
-        <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+        <div class="flex flex-col justify-between space-y-4 md:flex-row md:space-y-0 md:space-x-2">
             <div class="flex flex-col w-full relative">
                 <label for="departure_time" class="block text-gray-700">Departure:</label>
-                    <div class="relative">
-                        <input type="text" id="date-picker" name="departure_time" 
-                        value="{{ $trip->departure_time }}" required 
-                        class="border border-gray-300 rounded-md px-3 py-2 pl-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 w-full" 
-                        placeholder="Departure Time:">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
-                                <rect x="3" y="6" width="18" height="15" rx="2" stroke="#33363F" stroke-width="2"/>
-                                <path d="M3 10C3 8.11438 3 7.17157 3.58579 6.58579C4.17157 6 5.11438 6 7 6H17C18.8856 6 19.8284 6 20.4142 6.58579C21 7.17157 21 8.11438 21 10H3Z" fill="#33363F"/>
-                                <path d="M7 3L7 6" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M17 3L17 6" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
-                                <rect x="7" y="12" width="4" height="2" rx="0.5" fill="#33363F"/>
-                                <rect x="7" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
-                                <rect x="13" y="12" width="4" height="2" rx="0.5" fill="#33363F"/>
-                                <rect x="13" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
-                            </svg>
-                        </div>
-                    </div>
-    
-            <div class="flex flex-col w-full relative">
-                <label for="arrival_time" class="block text-gray-700">Arrival:</label>
-                    <div class="relative">
-                        <input type="text" id="date-picker" name="arrival_time" 
-                        value="{{ $trip->arrival_time }}" required 
-                        class="border border-gray-300 rounded-md px-3 py-2 pl-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 w-full" 
-                        placeholder="Arrival Time:">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
-                            <rect x="3" y="6" width="18" height="15" rx="2" stroke="#33363F" stroke-width="2"/>
-                            <path d="M3 10C3 8.11438 3 7.17157 3.58579 6.58579C4.17157 6 5.11438 6 7 6H17C18.8856 6 19.8284 6 20.4142 6.58579C21 7.17157 21 8.11438 21 10H3Z" fill="#33363F"/>
-                            <path d="M7 3L7 6" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M17 3L17 6" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
-                            <rect x="7" y="12" width="4" height="2" rx="0.5" fill="#33363F"/>
-                            <rect x="7" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
-                            <rect x="13" y="12" width="4" height="2" rx="0.5" fill="#33363F"/>
-                            <rect x="13" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
-                        </svg>
-                    </div>
+                <div class="flex flex-col w-full relative">
+                    <input type="text" id="date-picker" name="departure_time"
+                           class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                           placeholder="Arrival Time:" value="{{ $trip->departure_time->format('d.m.Y H:i ') }}" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+                        <rect x="3" y="6" width="18" height="15" rx="2" stroke="#33363F" stroke-width="2"/>
+                        <path d="M3 10C3 8.11438 3 7.17157 3.58579 6.58579C4.17157 6 5.11438 6 7 6H17C18.8856 6 19.8284 6 20.4142 6.58579C21 7.17157 21 8.11438 21 10H3Z" fill="#33363F"/>
+                        <path d="M7 3L7 6" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M17 3L17 6" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                        <rect x="7" y="12" width="4" height="2" rx="0.5" fill="#33363F"/>
+                        <rect x="7" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
+                        <rect x="13" y="12" width="4" height="2" rx="0.5" fill="#33363F"/>
+                        <rect x="13" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
+                    </svg>
                 </div>
+            </div>
+            <div class="flex flex-col w-full relative">
+                <label for="departure_time" class="block text-gray-700">Arrival:</label>
+                <div class="flex flex-col w-full relative">
+                    <input type="text" id="date-picker" name="arrival_time"
+                           class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                           placeholder="Arrival Time:" value="{{ $trip->arrival_time->format('d.m.Y H:i ') }}" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+                        <rect x="3" y="6" width="18" height="15" rx="2" stroke="#33363F" stroke-width="2"/>
+                        <path d="M3 10C3 8.11438 3 7.17157 3.58579 6.58579C4.17157 6 5.11438 6 7 6H17C18.8856 6 19.8284 6 20.4142 6.58579C21 7.17157 21 8.11438 21 10H3Z" fill="#33363F"/>
+                        <path d="M7 3L7 6" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M17 3L17 6" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                        <rect x="7" y="12" width="4" height="2" rx="0.5" fill="#33363F"/>
+                        <rect x="7" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
+                        <rect x="13" y="12" width="4" height="2" rx="0.5" fill="#33363F"/>
+                        <rect x="13" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
+                    </svg>
+                </div>
+            </div>
+
             </div>
         <div class="flex justify-between space-x-2">
             <div class="relative w-1/2">
-                <input type="number" id="available_seats" name="available_seats" 
-                    class="border border-gray-300 rounded-md px-2 py-2 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
+                <input type="number" id="available_seats" name="available_seats"
+                    class="border border-gray-300 rounded-md px-2 py-2 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                     min="1" placeholder="Available Seats:" value="{{ old('available_seats', $trip->available_seats) }}" required>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" class="absolute right-2 top-2">
                             <path opacity="0.4" d="M17.9981 7.16C17.9381 7.15 17.8681 7.15 17.8081 7.16C16.4281 7.11 15.3281 5.98 15.3281 4.58C15.3281 3.15 16.4781 2 17.9081 2C19.3381 2 20.4881 3.16 20.4881 4.58C20.4781 5.98 19.3781 7.11 17.9981 7.16Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -155,8 +154,8 @@
                         </svg>
                     </div>
             <div class="relative w-1/2">
-                <input type="text" id="price" name="price" 
-                    class="border border-gray-300 rounded-md px-2 py-2 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
+                <input type="text" id="price" name="price"
+                    class="border border-gray-300 rounded-md px-2 py-2 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                     placeholder="Price:" value="{{ old('price', $trip->price) }}" required>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" class="absolute right-2 top-2">
                             <circle opacity="0.5" cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5"/>
@@ -167,8 +166,8 @@
                     </div>
                 </div>
                 <div class="flex flex-col w-full">
-                    <textarea type="text" id="driver_comments" name="driver_comments" 
-                               class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
+                    <textarea type="text" id="driver_comments" name="driver_comments"
+                               class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                                placeholder="Add any comments or instructions about the trip to help your passenger." >{{ old('driver_comments', $trip->driver_comments) }}</textarea>
                 </div>
                 <p class="">Meeting At:</p>
@@ -176,34 +175,38 @@
                     <input type="hidden" id="latitude" name="latitude" />
                     <input type="hidden" id="longitude" name="longitude" />
                     <div class="flex flex-col items-center space-y-4">
-                <button type="submit" 
+                <button type="submit"
                     class="px-3 py-1 text-xs rounded-lg transition duration-200 bg-blue-500 text-white hover:bg-blue-600 w-[100px] h-[40px] max-w-full">
                         Update
                 </button>
             </div>
         </form>
-            <form action="{{ route('trips.destroy', $trip->id) }}" method="POST" class="flex flex-col items-center space-y-4 mt-1">
-                @csrf
-                @method('DELETE')
-                <button type="submit" 
-                        class="px-3 py-1 text-xs rounded-lg transition duration-200 bg-red-500 text-white hover:bg-red-600 w-[100px] h-[40px] max-w-full">
-                    Delete
-                </button>
-            </form>
+                        <form id="delete-form-{{ $trip->id }}"
+                              action="{{ route('trips.destroy', $trip->id) }}"
+                              method="POST"
+                              class="flex flex-col items-center space-y-4 mt-1">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button"
+                                    onclick="confirmDelete({{ $trip->id }})"
+                                    class="px-3 py-1 text-xs rounded-lg transition duration-200 bg-red-500 text-white hover:bg-red-600 w-[100px] h-[40px] max-w-full">
+                                Delete
+                            </button>
+                        </form>
         </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var latitude = {{ $trip->latitude }};
             var longitude = {{ $trip->longitude }};
-            
+
             var map = L.map('map').setView([latitude, longitude], 13);
-            
+
             L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-            
+
             var marker = L.marker([latitude, longitude], { draggable: true }).addTo(map)
                 .bindPopup("Drag me to update location")
                 .openPopup();
@@ -211,12 +214,12 @@
             marker.on('dragend', function(e) {
                 var { lat, lng } = e.target.getLatLng();
                 document.getElementById('latitude').value = lat;
-                document.getElementById('longitude').value = lng; 
+                document.getElementById('longitude').value = lng;
             });
 
             map.on('click', function(e) {
-                var { lat, lng } = e.latlng; 
-                marker.setLatLng([lat, lng]); 
+                var { lat, lng } = e.latlng;
+                marker.setLatLng([lat, lng]);
                 document.getElementById('latitude').value = lat;
                 document.getElementById('longitude').value = lng;
             });
@@ -226,4 +229,24 @@
         });
     </script>
     @endauth
+        <script>
+            function confirmDelete(tripId) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        console.log('here')
+                        // Submit the form
+                        document.getElementById(`delete-form-${tripId}`).submit();
+                    }
+                });
+            }
+        </script>
+
 </x-app-layout>
