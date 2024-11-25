@@ -3,46 +3,29 @@
     <head>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                flatpickr("#departure_time", {
-                    enableTime: true,
-                    dateFormat: "Y-m-d H:i",
-                    time_24hr: true,
-                    minDate: "today"
-                });
-                flatpickr("#arrival_time", {
-                    enableTime: true,
-                    dateFormat: "Y-m-d H:i",
-                    time_24hr: true,
-                    minDate: "today"
-                });
                 // Initialize the map
                 var map = L.map('map').setView([42.5269444444, 21.0072222222], 8);
                 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
                     maxZoom: 200,
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(map);
-    
-                // Marker for selecting location
+
                 var marker = L.marker([42.5269444444, 21.0072222222], { draggable: true }).addTo(map);
-                    marker.bindPopup(`
-                        <span class="italic text-indigo-500 text-xs ">
-                            Choose the meeting location <br> by selecting a point on the map.
-                        </span>
-                    `).openPopup();
-    
+                marker.bindPopup('<span class="italic text-indigo-500 text-xs ">Choose the meeting location <br> by selecting a point on the map.</span>').openPopup();
+
                 // Function to update coordinates on form
                 function updateCoordinates(lat, lng) {
                     document.getElementById('latitude').value = lat;
                     document.getElementById('longitude').value = lng;
                     marker.setLatLng([lat, lng]);
                 }
-    
+
                 // Update coordinates on map click
                 map.on('click', function(e) {
                     var { lat, lng } = e.latlng;
                     updateCoordinates(lat, lng);
                 });
-    
+
                 // Update coordinates when marker is dragged
                 marker.on('dragend', function(e) {
                     var { lat, lng } = e.target.getLatLng();
@@ -55,14 +38,14 @@
         <div class="flex flex-col md:flex-row justify-between items-center mt-1 w-full space-y-4 md:space-y-0">
             <h1 class="text-3xl font-bold text-black p-6">Create Trips</h1>
             <div class="flex gap-2 md:flex-row  md:space-y-0 md:space-x-2 mt-4 md:mt-0">
-                <a href="{{ route('trips.index') }}" 
-                   class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
+                <a href="{{ route('trips.index') }}"
+                   class="w-28 px-4 py-1 text-sm rounded-md transition duration-200
                           {{ request()->routeIs('trips.index') ? 'bg-gray-100 text-gray-600' : 'bg-gray-200 text-gray-700' }}
                           hover:bg-gray-400 text-center">
                     Passenger
                 </a>
-                <a href="{{ route('trips.create') }}" 
-                   class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
+                <a href="{{ route('trips.create') }}"
+                   class="w-28 px-4 py-1 text-sm rounded-md transition duration-200
                           {{ request()->routeIs('trips.create') ? 'bg-blue-100 text-blue-600' : 'bg-gray-200 text-gray-700' }}
                           hover:bg-blue-300 text-center">
                     Driver
@@ -79,17 +62,17 @@
                         alt="avatar"
                         class="relative inline-block h-auto w-20 p-2"
                     />
-                <p class="p-2 md:text-md text-sm inline-block"> 
+                <p class="p-2 md:text-md text-sm inline-block">
                     Post your trip 24 hours in advance to double your chances of finding travel companions!
                     Plan ahead, travel stress-free, and enjoy every moment of your journey!
                 </p>
             </div>
-            <form action="{{ route('trips.store') }}" method="POST" class="space-y-6 ">
+            <form action="{{ route('trips.store') }}" method="POST" class="space-y-6 " onsubmit="return confirmSubmission(event)" >
                 @csrf
                 <input type="hidden" name="driver_id" value="{{ auth()->id() }}">
                 <div class="flex flex-row justify-stretch place-items-center w-full">
                     <div class=" flex flex-col md:w-full relative w-1/3">
-                        <select name="origin_city_id" id="origin_city_id" 
+                        <select name="origin_city_id" id="origin_city_id"
                                 class="border border-gray-300 rounded-md bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                             <option value="" class="text-gray-500">From:</option>
                             @foreach ($cities as $city)
@@ -101,9 +84,9 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" width="30" height="30px" viewBox="0 -5 24 24" id="meteor-icon-kit__regular-long-arrow-right" fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5858 8H1C0.447715 8 0 7.5523 0 7C0 6.4477 0.447715 6 1 6H20.5858L16.2929 1.70711C15.9024 1.31658 15.9024 0.68342 16.2929 0.29289C16.6834 -0.09763 17.3166 -0.09763 17.7071 0.29289L23.7071 6.2929C24.0976 6.6834 24.0976 7.3166 23.7071 7.7071L17.7071 13.7071C17.3166 14.0976 16.6834 14.0976 16.2929 13.7071C15.9024 13.3166 15.9024 12.6834 16.2929 12.2929L20.5858 8z" fill="#758CA3"/>
                         </svg>
-                    </div>                 
+                    </div>
                     <div class=" flex flex-col md:w-full w-1/3 relative">
-                        <select name="destination_city_id" id="destination_city_id" 
+                        <select name="destination_city_id" id="destination_city_id"
                                 class="border border-gray-300 rounded-md  bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                             <option value="" class="text-gray-500">To:</option>
                             @foreach ($cities as $city)
@@ -114,8 +97,8 @@
                 </div>
                 <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
                     <div class="flex flex-col w-full relative">
-                        <input type="text" id="departure_time" name="departure_time" 
-                               class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
+                        <input type="text" id="date-picker" name="departure_time"
+                               class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                                placeholder="Departure Time:" value="{{ old('departure_time') }}" required>
                         <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                             <rect x="3" y="6" width="18" height="15" rx="2" stroke="#33363F" stroke-width="2"/>
@@ -128,10 +111,10 @@
                             <rect x="13" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
                         </svg>
                     </div>
-                
+
                     <div class="flex flex-col w-full relative">
-                        <input type="text" id="arrival_time" name="arrival_time" 
-                               class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
+                        <input type="text" id="date-picker" name="arrival_time"
+                               class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                                placeholder="Arrival Time:" value="{{ old('arrival_time') }}" required>
                                <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                                 <rect x="3" y="6" width="18" height="15" rx="2" stroke="#33363F" stroke-width="2"/>
@@ -144,12 +127,12 @@
                                 <rect x="13" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
                             </svg>
                     </div>
-                </div>          
+                </div>
                 <div class="flex  md:flex-row md:space-y-0 space-x-4">
                     <div class="flex flex-col w-full">
                         <div class="relative">
-                            <input type="number" id="available_seats" name="available_seats" 
-                                   class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
+                            <input type="number" id="available_seats" name="available_seats"
+                                   class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                                    min="1" placeholder="Available Seats:" value="{{ old('available_seats') }}" required>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" class="absolute right-2 top-2">
                                 <path opacity="0.4" d="M17.9981 7.16C17.9381 7.15 17.8681 7.15 17.8081 7.16C16.4281 7.11 15.3281 5.98 15.3281 4.58C15.3281 3.15 16.4781 2 17.9081 2C19.3381 2 20.4881 3.16 20.4881 4.58C20.4781 5.98 19.3781 7.11 17.9981 7.16Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -163,8 +146,8 @@
                     </div>
                     <div class="flex flex-col w-full">
                         <div class="relative">
-                            <input type="float" id="price" name="price" 
-                                   class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
+                            <input type="float" id="price" name="price"
+                                   class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                                    placeholder="Price:" value="{{ old('price') }}" required>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" class="absolute right-2 top-2">
                                 <circle opacity="0.5" cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5"/>
@@ -174,26 +157,26 @@
                             </svg>
                         </div>
                     </div>
-                </div>    
+                </div>
                 <div class="flex flex-col w-full">
-                    <textarea type="text" id="driver_comments" name="driver_comments" 
-                               class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
+                    <textarea type="text" id="driver_comments" name="driver_comments"
+                               class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                                placeholder="Add any comments or instructions about the trip to help your passenger." value="{{ old('driver_comments') }}"></textarea>
                 </div>
                     <p class="">Meeting At:</p>
-                    <div id="map" class="relative mb-1 h-[300px] overflow-hidden"></div>
+                    <div id="map" class="relative mb-1 h-[400px] z-0 overflow-hidden" style="z-index: 0"></div>
                     <input type="hidden" id="latitude" name="latitude" />
-                    <input type="hidden" id="longitude" name="longitude" />  
+                    <input type="hidden" id="longitude" name="longitude" />
                 <div class="flex  flex-col items-center space-y-4">
                     <div class="flex flex-row items-center justify-center space-x-4">
                         <a href="{{ route('trips.index') }}">
-                            <button type="submit" 
+                            <button type="submit"
                                     class="px-3 py-1 text-md rounded-xl transition duration-200 bg-blue-500 text-white hover:bg-blue-300 w-[250px] h-[45px] max-w-full">
                                     Publish
                             </button>
-                        </a>   
+                        </a>
                     </div>
-                </div>          
+                </div>
             </form>
             @if($errors->any())
                 <div class="bg-red-100 text-red-700 border border-red-200 p-4 rounded mt-6">

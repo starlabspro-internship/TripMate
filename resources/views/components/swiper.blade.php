@@ -9,7 +9,7 @@
                 </h2>
 
                 <!-- Slider controls -->
-                <div class="flex items-center justify-center lg:justify-start gap-10">
+                <div class="flex items-center justify-center  gap-10">
                     <button id="slider-button-left"
                             class="swiper-button-prev group flex justify-center items-center border border-solid border-yellow-400 w-12 h-12 transition-all duration-500 rounded-lg hover:bg-yellow-400"
                             data-carousel-prev>
@@ -42,7 +42,7 @@
                     <div class="swiper-wrapper">
 
 
-                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[385px] lg:min-h-[550px]">
+                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[400px] md:min-h-[455px] lg:min-h-[550px] xl:min-h-[450px]">
                             <div class="flex items-center gap-5 mb-5 sm:mb-9">
                                 <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-20 sm:h-24 border-4 border-yellow-400"
                                      src="https://images.squarespace-cdn.com/content/v1/5cf0d08d5fc69d000172462a/1602248693535-KTGCFTA50807510I5LVN/image-asset.octet-stream?format=500w"
@@ -76,7 +76,7 @@
                         </div>
 
 
-                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[385px] lg:min-h-[550px]">
+                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[400px] md:min-h-[455px] lg:min-h-[550px] xl:min-h-[450px]">
                             <div class="flex items-center gap-5 mb-5 sm:mb-9">
                                 <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-24 sm:h-24 border-4 border-yellow-400"
                                      src="https://www.pngitem.com/pimgs/m/404-4042710_circle-profile-picture-png-transparent-png.png"
@@ -110,7 +110,7 @@
                         </div>
 
 
-                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[385px] lg:min-h-[550px]">
+                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[400px] md:min-h-[455px] lg:min-h-[550px] xl:min-h-[450px]">
                             <div class="flex items-center gap-5 mb-5 sm:mb-9">
                                 <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-20 sm:h-24 border-4 border-yellow-400"
                                      src="https://img.freepik.com/photos-premium/profile-du-client-gestion-actifs_1104763-33440.jpg?semt=ais_hybrid"
@@ -144,7 +144,7 @@
                         </div>
 
 
-                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[385px] lg:min-h-[550px]">
+                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[400px] md:min-h-[455px] lg:min-h-[550px] xl:min-h-[450px]">
                             <div class="flex items-center gap-5 mb-5 sm:mb-9">
                                 <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-20 sm:h-24 border-4 border-yellow-400"
                                      src="https://img.freepik.com/premium-photo/young-beautiful-european-american-woman-skin-care-makeup-white-background_1311488-8699.jpg?semt=ais_hybrid"
@@ -178,7 +178,7 @@
                         </div>
 
 
-                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[385px] lg:min-h-[550px]">
+                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[400px] md:min-h-[455px] lg:min-h-[550px] xl:min-h-[450px]">
                             <div class="flex items-center gap-5 mb-5 sm:mb-9">
                                 <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-20 sm:h-24 border-4 border-yellow-400"
                                      src="https://img.freepik.com/premium-photo/arafed-man-with-hoodie-gray-shirt-generative-ai_1034062-61784.jpg"
@@ -207,12 +207,12 @@
 
                             </div>
                             <p class="text-black-600 text-sm sm:text-base ">
-                                L'utilizzo di un'app di viaggio come TripMate mi ha fornito come turista navigazione, conoscenza locale e suggerimenti sulla sicurezza per rendere molto più..
+                                L'utilizzo di un'app di viaggio come TripMate mi ha fornito come turista navigazione, conoscenza locale e suggerimenti sulla sicurezza per rendere molto più.
                             </p>
                         </div>
 
 
-                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[385px] lg:min-h-[550px]">
+                        <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[400px] md:min-h-[455px] lg:min-h-[550px] xl:min-h-[450px]">
                             <div class="flex items-center gap-5 mb-5 sm:mb-9">
                                 <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-20 sm:h-24 border-4 border-yellow-400"
                                      src="https://png.pngitem.com/pimgs/s/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png"

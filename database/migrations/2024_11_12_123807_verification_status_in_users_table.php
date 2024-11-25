@@ -19,6 +19,7 @@ return new class extends Migration
 
             // Add the new 'verification_status' column as an enum
             $table->enum('verification_status', ['pending', 'verified', 'rejected'])->default('pending');
+            $table->string('id_document')->nullable();
         });
     }
 
@@ -30,7 +31,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             // Drop the 'verification_status' column
             $table->dropColumn('verification_status');
-
+            $table->dropColumn('id_document');
             // Restore the original 'verified' boolean column
             $table->boolean('verified')->default(false);
         });

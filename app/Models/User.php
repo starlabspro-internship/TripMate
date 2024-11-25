@@ -20,14 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
-
-     public function redirectTo()
-    {
-        if($this->hasVerifiedEmail()){
-        return route('profile.verification'); // Redirect to the profile verification page
-    }
-        return '/end-code';
-}
+    
     public function trips()
     {
         return $this->hasMany(Trip::class, 'driver_id');
@@ -86,6 +79,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'birthday' => 'date',
         ];
     }
 }

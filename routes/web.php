@@ -34,6 +34,7 @@ Route::middleware('ifnotauth')->prefix('bookings')->name('bookings.')->controlle
     Route::get('/cancel', 'cancel')->name('cancel');
     Route::get('/success', 'success')->name('success');
     Route::post('/store', 'store')->name('store');
+    Route::post('/reserve', 'reserve')->name('reserve');
     Route::get('/{id}', 'show')->name('show');
     Route::delete('/{id}', 'destroy')->name('destroy');
 });
@@ -76,12 +77,10 @@ Route::prefix('superadmin')->middleware('superadmin')->name('superadmin.')->grou
     Route::patch('/{user}', [SuperAdminController::class, 'update'])->name('update');
     Route::get('/{trip}/edit-trip', [SuperAdminController::class, 'edittrip'])->name('edit-trip');
     Route::patch('/trip/{trip}', [SuperAdminController::class, 'updateTrip'])->name('updateTrip');
+    Route::delete('/trips/{trip}', [SuperAdminController::class, 'tripDelete'])->name('trip.delete');
+    Route::delete('/bookings/{booking}', [SuperAdminController::class, 'bookingDelete'])->name('booking.delete');
+    Route::delete('/users/{user}', [SuperAdminController::class, 'superDelete'])->name('users.destroy');
 });
-
-Route::delete('/trips/{trip}', [SuperAdminController::class, 'tripDelete'])->name('trip.delete');
-Route::delete('/bookings/{booking}', [SuperAdminController::class, 'bookingDelete'])->name('booking.delete');
-Route::delete('/users/{user}', [SuperAdminController::class, 'superDelete'])->name('users.destroy');
-
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 

@@ -27,7 +27,7 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
-    
+
 
     /**
      * Handle an incoming registration request.
@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
     {
         // Validate the input fields
         $request->validate([
-            'image' => ['required'],
+            'image' => ['required', 'image'],
             'name' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/', 'max:255'],
             'lastname' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
             'phone' => ['nullable', 'string', 'regex:/^\+?[0-9\s-]*$/', 'max:20'],
             'birthday' => ['nullable', 'date', 'before:' . now()->subYears(16)->toDateString()],
             'city' => ['nullable', 'string', 'max:255'],
-            // 'g-recaptcha-response' => ['required', 'captcha'],
+            'g-recaptcha-response' => ['required', 'captcha'],
         ], [
             'name.regex' => 'The first name should only contain letters and spaces.',
             'lastname.regex' => 'The last name should only contain letters and spaces.',
@@ -77,14 +77,9 @@ class RegisteredUserController extends Controller
 
         // Create or update the user
         $user = User::updateOrCreate(
-            ['email' => $request->email], 
+            ['email' => $request->email],
             $userData
         );
-
-        Log::info('User Created or Updated:', ['user' => $user]);
-
-        // Send verification email with the code
-        //Mail::to($user->email)->send(new VerificationCodeMail($verificationCode));
 
         // Fire registered event and login user
         event(new Registered($user));
@@ -93,6 +88,6 @@ class RegisteredUserController extends Controller
         // Redirect to code entry page
         return redirect(route('enter-code'));
     }
-    
+
 
 }

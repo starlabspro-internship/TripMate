@@ -3,30 +3,29 @@
     <div class="container mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-center mb-6 mt-1 w-full space-y-4 md:space-y-0">
         <h1 class="text-3xl font-bold text-black p-6">Available Rides</h1>
-            @if (session('error'))
-            <div class="text-red-500 text-xl ">
-                {{ session('error') }}
-            </div>
-            @endif
             <div class="flex gap-2 md:flex-row md:mr-[20px] md:space-y-0 md:space-x-2 mt-4 md:mt-0">
-                <a href="{{ route('trips.index') }}" 
-                   class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
+                <a href="{{ route('trips.index') }}"
+                   class="w-28 px-4 py-1 text-sm rounded-md transition duration-200
                           {{ request()->routeIs('trips.index') ? 'bg-blue-100 text-blue-600' : 'bg-blue-200 text-gray-500' }}
                           hover:bg-blue-300 text-center">
                     Passenger
                 </a>
-                <a href="{{ route('trips.create') }}" 
-                   class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
+                @if(!auth()->user()->email_verified_at && !auth()->user()->google_id)
+
+                @else
+                    <a href="{{ route('trips.create') }}"
+                       class="w-28 px-4 py-1 text-sm rounded-md transition duration-200
                           {{ request()->routeIs('trips.create') ? 'bg-blue-100 text-blue-600' : 'bg-gray-200 text-gray-700' }}
                           hover:bg-gray-400 text-center">
-                    Driver
-                </a>
+                        Driver
+                    </a>
+                @endif
             </div>
         </div>
 <form action="{{ route('trips.index') }}" method="GET" class="mb-4 flex flex-col items-center w-full max-w-lg mx-auto px-4">
     <div class="flex flex-col md:flex-row md:items-center justify-center mb-6 w-full">
         <div class="w-full md:w-1/4 mb-2 md:mb-0 md:mr-2">
-            <select name="origin_city_id" id="origin-city" 
+            <select name="origin_city_id" id="origin-city"
                     class="border border-gray-300 rounded-md px-3 py-1.5 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
                 <option value="" class="text-gray-500">From:</option>
                 @foreach ($cities as $city)
@@ -37,17 +36,17 @@
         <div class="flex items-center justify-center mb-2 md:mb-0">
             <button type="button" class="swap-button p-1 mr-1" id="swap-cities">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="20px" viewBox="0 0 24 24" fill="none">
-                    <path 
-                        fill-rule="evenodd" 
-                        clip-rule="evenodd" 
-                        d="M16 3.93a.75.75 0 0 1 1.177-.617l4.432 3.069a.75.75 0 0 1 0 1.233l-4.432 3.069A.75.75 0 0 1 16 10.067V8H4a1 1 0 0 1 0-2h12V3.93zm-9.177 9.383A.75.75 0 0 1 8 13.93V16h12a1 1 0 1 1 0 2H8v2.067a.75.75 0 0 1-1.177.617l-4.432-3.069a.75.75 0 0 1 0-1.233l4.432-3.069z" 
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M16 3.93a.75.75 0 0 1 1.177-.617l4.432 3.069a.75.75 0 0 1 0 1.233l-4.432 3.069A.75.75 0 0 1 16 10.067V8H4a1 1 0 0 1 0-2h12V3.93zm-9.177 9.383A.75.75 0 0 1 8 13.93V16h12a1 1 0 1 1 0 2H8v2.067a.75.75 0 0 1-1.177.617l-4.432-3.069a.75.75 0 0 1 0-1.233l4.432-3.069z"
                         fill="#000000"
                     />
                 </svg>
             </button>
         </div>
         <div class="w-full md:w-1/4 mb-2 md:mb-0">
-            <select name="destination_city_id" id="destination-city" 
+            <select name="destination_city_id" id="destination-city"
                     class="border border-gray-300 rounded-md px-3 py-1.5 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
                 <option value="" class="text-gray-500">To:</option>
                 @foreach ($cities as $city)
@@ -57,26 +56,31 @@
         </div>
     </div>
         <div class="mb-4 w-2/3 flex justify-center">
-            <input type="text" id="filter-date" name="date" 
-                class="border border-gray-300 rounded-md px-3 py-1.5 w-full md:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 text-center" 
-                placeholder="Select a date" readonly 
+            <input type="text" id="filter-date" name="date"
+                class="border border-gray-300 rounded-md px-3 py-1.5 w-full md:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 text-center"
+                placeholder="Select a date" readonly
                 value="{{ request('date') }}">
             </div>
     <div class="flex items-center space-x-2">
-        <button type="submit" 
-                class="px-4 py-1 text-sm rounded-full transition duration-200 
+        <button type="submit"
+                class="px-4 py-1 text-sm rounded-full transition duration-200
                        {{ request()->routeIs('trips.index') ? 'bg-blue-100 text-blue-600' : 'bg-blue-500 text-white' }}
                        hover:bg-blue-300 w-full max-w-[100px]">
             Filter
         </button>
-        <a href="{{ route('trips.index') }}" 
-           class="px-4 py-1 text-sm rounded-full transition duration-200 
+        <a href="{{ route('trips.index') }}"
+           class="px-4 py-1 text-sm rounded-full transition duration-200
                   {{ request()->routeIs('trips.index') ? 'bg-gray-100 text-gray-600' : 'bg-gray-300 text-gray-700' }}
                   hover:bg-gray-400 w-full max-w-[100px] text-center">
             Reset
         </a>
     </div>
 </form>
+        @if (session('error'))
+            <div class="bg-red-100 text-red-700 border border-red-200 p-4 rounded mb-6">
+                {{ session('error') }}
+            </div>
+        @endif
         @if(session('success'))
             <div class="bg-green-100 text-green-700 border border-green-200 p-4 rounded mb-6">
                 {{ session('success') }}
@@ -105,7 +109,7 @@
                     @else
                         <a href="{{ route('trips.show', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Book Now</a>
                     @endif
-            </div>            
+            </div>
             <div class="mb-2 flex items-center">
                 <p class="text-blue-900 flex items-center mr-4 text-lg">
                     <strong>{{ $trip->origincity->name }} </strong>
@@ -128,7 +132,7 @@
                         <rect x="13" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
                     </svg>
                     <strong style="font-size: 1.1em;">{{ \Carbon\Carbon::parse($trip->departure_time)->format('d.m') }}</strong>&nbsp;&nbsp;&nbsp;
-                    
+
                     <svg xmlns="http://www.w3.org/2000/svg" class="mb-0.5" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                         <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M12 6V12" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

@@ -15,7 +15,6 @@ use Stripe\Refund;
 use Stripe\StripeClient;
 
 class BookingController extends Controller
-
 {
     public function index(){
         $userId = auth()->id();
@@ -23,7 +22,7 @@ class BookingController extends Controller
             ->where('passenger_id', $userId)
             ->orderBy('created_at', 'desc')
             ->get();
-        
+
         return view('bookings.index', compact('bookings'));
     }
     public function myTripsBookings(){
@@ -31,11 +30,23 @@ class BookingController extends Controller
             $query->where('driver_id', Auth::id());
         })
             ->with(['trip.originCity', 'trip.destinationCity', 'passenger'])
-            ->orderBy('created_at', 'desc') 
+            ->orderBy('created_at', 'desc')
             ->get();
         return view('bookings.myTripsBookings', compact('bookings'));
     }
 
+    public function reserve(Request $request){
+        $trip = Trip::findOrFail($request->trip_id);
+        $booking = Booking::create([
+            'trip_id' => $request->trip_id,
+            'passenger_id' => auth()->id(), 
+            'seats_booked' => $request->seats_booked, 
+            'status' => 'reserved', 
+            'total_price' => $trip->price * $request->seats_booked, 
+        ]);
+        return redirect()->route('bookings.show', ['id' => $booking->id])->with('bookings', $booking);
+    }
+    
 
     public function show($id){
         $booking = Booking::with(['trip', 'passenger'])->find($id);
@@ -52,8 +63,40 @@ class BookingController extends Controller
     }
 
     public function store(Request $request){
+
+        if (!auth()->user()->email_verified_at && !auth()->user()->google_id) {
+            return redirect('/trips')->with([
+                'error' => 'Your email address is not verified. Please verify your email before booking a trip.',
+            ]);
+        }
+
+        $tripi = Trip::find(request('trip_id'));
+
+        // Check for overlapping bookings for the same passenger
+        $hasBooking = Booking::where('passenger_id', request('passenger_id'))
+            ->whereHas('trip', function ($query) use ($tripi) {
+                $query->where('departure_time', '<', $tripi->arrival_time)
+                    ->where('arrival_time', '>', $tripi->departure_time);
+            })->exists();
+
+        if ($hasBooking) {
+            return redirect('/trips')->with([
+                'error' => 'You already have a booking during this time.',
+            ]);
+        }
+        $hasTrip = Trip::where('driver_id', request('passenger_id'))
+            ->where('departure_time', '<', $tripi->arrival_time)
+            ->where('arrival_time', '>', $tripi->departure_time)
+            ->exists();
+
+        if ($hasTrip) {
+            return redirect('/trips')->with([
+                'error' => 'You are driving another trip during this time.',
+            ]);
+        }
+
         $stripe = new StripeClient(config('services.stripe.secret'));
-    
+
         $trip = Trip::findOrFail($request->trip_id);
         $lineItems = [
             [
@@ -65,7 +108,7 @@ class BookingController extends Controller
                 'quantity' => $request->seats_booked,
             ]
         ];
-    
+
         $session = $stripe->checkout->sessions->create([
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
@@ -82,7 +125,7 @@ class BookingController extends Controller
             'total_price' => $trip->price * $request->seats_booked,
             'session_id' => $session->id,
         ]);
-    
+
         return redirect($session->url);
     }
 
@@ -97,21 +140,21 @@ class BookingController extends Controller
         }
 
         $booking = Booking::where('session_id', $sessionId)->where('status', 'unpaid')->first();
-    
+
         if (!$booking) {
             throw new NotFoundHttpException('Booking not found.');
         }
-    
+
         if (empty($session->payment_intent)) {
             return redirect()->route('bookings.index')->with('error', 'No payment intent found for this session.');
         }
-    
+
         $paymentIntentId = $session->payment_intent;
 
         $booking->status = 'paid';
-        $booking->stripe_charge_id = $paymentIntentId; 
+        $booking->stripe_charge_id = $paymentIntentId;
         $booking->save();
-    
+
         return view('bookings.checkout-success', compact('booking'));
     }
     public function cancel(){

@@ -1,21 +1,21 @@
 {{-- -------------------- Saved Messages -------------------- --}}
-@if($get == 'saved')
-    <table class="messenger-list-item" data-contact="{{ Auth::user()->id }}">
-        <tr data-action="0">
-            {{-- Avatar side --}}
-            <td>
-            <div class="saved-messages avatar av-m">
-                <span class="far fa-bookmark"></span>
-            </div>
-            </td>
-            {{-- center side --}}
-            <td>
-                <p data-id="{{ Auth::user()->id }}" data-type="user">Saved Messages <span>You</span></p>
-                <span>Save messages secretly</span>
-            </td>
-        </tr>
-    </table>
-@endif
+{{--@if($get == 'saved')--}}
+{{--    <table class="messenger-list-item" data-contact="{{ Auth::user()->id }}">--}}
+{{--        <tr data-action="0">--}}
+{{--            --}}{{-- Avatar side --}}
+{{--            <td>--}}
+{{--            <div class="saved-messages avatar av-m">--}}
+{{--                <span class="far fa-bookmark"></span>--}}
+{{--            </div>--}}
+{{--            </td>--}}
+{{--            --}}{{-- center side --}}
+{{--            <td>--}}
+{{--                <p data-id="{{ Auth::user()->id }}" data-type="user">Saved Messages <span>You</span></p>--}}
+{{--                <span>Save messages secretly</span>--}}
+{{--            </td>--}}
+{{--        </tr>--}}
+{{--    </table>--}}
+{{--@endif--}}
 
 {{-- -------------------- Contact list -------------------- --}}
 @if($get == 'users' && !!$lastMessage)
@@ -30,13 +30,9 @@ $lastMessageBody = strlen($lastMessageBody) > 30 ? mb_substr($lastMessageBody, 0
             @if($user->active_status)
                 <span class="activeStatus"></span>
             @endif
-        <div id="image">
-            @if($user->image)
-                <img src="{{ asset('storage/' . $user->image) }}" alt="User Image" style="width: 46.6px; height: 46.6px; object-fit: cover; border-radius: 50%">
-            @else
-                <img src="{{ asset('https://eu.ui-avatars.com/api/' . $user->name  . $user->lastname ) }}" alt="Default Image" style="width: 46.6px; height: 46.6px; object-fit: cover; border-radius: 50%">
-            @endif
-        </div>
+            <div class="avatar av-m"
+                 style="background-image: url('{{ asset($user->image ? 'storage/' . $user->image : 'https://eu.ui-avatars.com/api/' . $user->name . '+' . $user->lastname) }}');">
+            </div>
         </td>
         {{-- center side --}}
         <td>

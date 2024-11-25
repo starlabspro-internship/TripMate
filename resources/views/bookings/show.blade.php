@@ -1,6 +1,6 @@
 <x-app-layout>
     <div>
-        <form action="{{ route('booking.store') }}" method="POST"  class="bg-gray-300 my-5 m-5 rounded-2xl md:p-10 p-5 md:mt-5 md:mb-5  lg:p-10  lg:mb-5 lg:mx-30">
+        <form action="{{ route('bookings.store') }}" method="POST"  class="bg-gray-200 my-20 m-5 rounded-2xl md:p-10 p-5 md:mt-20 md:mb-5 md:mx-20 lg:mt-20 lg:p-10  lg:mb-5 lg:mx-30">
             @csrf
             <input type="hidden" name="trip_id" value="{{ $trip->id }}">
             <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
@@ -59,8 +59,8 @@
                         @endif
                         <p class="relative inline-block  object-cover object-center">{{$trip->users->name}}</p>
                     </div>
-                    @if (session('booking'))
-                        <p class="text-green-500">You have successfully reserved {{ session('booking')->seats_booked }} seats</p>
+                    @if (session('bookings'))
+                        <p class="text-green-500">You have successfully reserved {{ session('bookings')->seats_booked }} seats</p>
                     @endif
             </div>
         </form>
@@ -69,7 +69,7 @@
                 class="w-full rounded-md my-2 bg-white py-2 px-4 border border-transparent text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-green-300 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                 Chat
             </a>
-                <form action="{{ route('booking.destroy', $booking->id) }}" method="POST" class="flex items-center">
+                <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" class="flex items-center">
                     @csrf
                     @method('DELETE')
                     <button type="submit"
