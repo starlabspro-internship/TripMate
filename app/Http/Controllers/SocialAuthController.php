@@ -22,10 +22,14 @@ class SocialAuthController extends Controller
             $user = Socialite::driver('google')->user();
 
             Log::info('Google User Data: ', (array) $user);
+
+            $fullName = $user->name;
+            [$firstName, $lastName] = array_pad(explode(' ', $fullName, 2), 2, null);
             $authUser = User::firstOrCreate(
                 ['google_id' => $user->id],
                 [
-                    'name' => $user->name,
+                    'name' => $firstName,
+                    'lastname' => $lastName,
                     'email' => $user->email,
                     'avatar' => $user->avatar,
                     'password' => bcrypt('default_password')

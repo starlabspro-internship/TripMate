@@ -1,7 +1,7 @@
 <x-app-layout>
 <div class="fixed inset-0 bg-gradient-to-b from-green-900 to-blue-800 h-screen w-screen overflow-hidden"></div>
 <div class="relative min-h-screen sm:flex sm:flex-row justify-center bg-transparent rounded-3xl shadow-xl">
-    <div class="flex-col flex self-center lg:px-14 sm:max-w-4xl xl:max-w-md z-10" style="transform: translateY(-40px);"> 
+    <div class="flex-col flex self-center lg:px-14 sm:max-w-4xl xl:max-w-md z-10" style="transform: translateY(-40px);">
         <div class="self-start hidden lg:flex flex-col text-gray-300">
             <h1 class="my-3 font-semibold font-sans text-4xl">Create your account</h1>
             <p class="pr-3 text-sm opacity-75">Join us on this journey with TripMate!</p>
@@ -11,26 +11,27 @@
             <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="p-1 bg-white mx-auto border-4 border-transparent rounded-3xl mt-8 shadow-md transition duration-300 hover:shadow-lg mb-20 sm:mb-0">
             @csrf
             <div class="mb-7 font-sans ml-4">
-                <h3 class="text-2xl text-gray-800 mb-2 mt-4">Sign Up</h3> 
+                <h3 class="text-2xl text-gray-800 mb-2 mt-4">Sign Up</h3>
                 <p class="text-gray-400">Already have an account? <a href="{{ route('login') }}" class="text-sm text-blue-900 hover:text-blue-900">Sign In</a></p>
-            </div>            
+            </div>
             <div class="space-y-6 font-sans">
-<div class="mb-5 ml-2">
-    <label for="image" class="block mb-2 text-sm font-medium text-gray-700">Profile Picture</label>
-    <div class="flex items-center">
-        <input id="image" 
-               class="hidden" 
-               type="file" name="image" accept="image/*"  
-               onchange="updateFileName(this)" />
-            <label for="image" class="cursor-pointer flex items-center justify-center w-32 h-10 bg-gray-200 text-gray-500 rounded-lg hover:bg-gray-400 hover:text-white transition duration-300">
-            <span class="text-sm">Choose File</span>
-        </label>
-        <span id="file-name" class="ml-3 text-gray-500 text-sm"></span>
-    </div>
-    @error('image')
-        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-    @enderror
-</div>
+        <!-- Profile Image -->
+        <div class="flex justify-between w-full px-2 align-end">
+            <div >
+                <label for="image" class="block mb-5 text-md font-medium text-gray-700">Profile Picture</label>
+                <label for="image" class="mx-auto px-8 flex items-center justify-center border border-gray-600 bg-gray-200  hover:bg-gray-500 text-black hover:text-white text-base py-3 rounded-xl tracking-wide font-medium cursor-pointer transition ease-in duration-200">
+                    Choose Image
+                </label>
+            </div>
+            <div class="pr-4" >
+                <input id="image" class="hidden" type="file" name="image" accept="image/*" onchange="previewImage(event)">
+            <img id="profileImage"
+                 src=""
+                 alt=""
+                 class="border-2 border-gray-400 w-28 h-28 rounded-full hidden">
+            </div>
+        </div>
+
 <div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 mx-2">
     <div class="w-full md:w-1/2">
         <input id="name" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="name" placeholder="First Name" value="{{ old('name') }}" required autofocus />
@@ -56,9 +57,9 @@
 <!-- Birthday and City Row -->
 <div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 mt-4 mx-2">
     <div class="w-full md:w-1/2">
-        <input id="birthday" 
-               class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" 
-               type="text" name="birthday" value="{{ old('birthday') }}" required 
+        <input id="birthday"
+               class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none"
+               type="text" name="birthday" value="{{ old('birthday') }}" required
                placeholder="Select your birthday" />
         @error('birthday')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -71,7 +72,7 @@
         @enderror
     </div>
 </div>
-                
+
                 <!-- phone number -->
                 <div class="mx-2">
                     <input id="phone" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="phone" placeholder="Phone Number" value="{{old('phone')}}" required />
@@ -79,7 +80,7 @@
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
-                               
+
 <!-- Password and Confirm Password Row -->
 <div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 mt-4 mx-2">
     <div class="w-full md:w-1/2">
@@ -92,9 +93,9 @@
         <input id="password_confirmation" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="password" name="password_confirmation" placeholder="Confirm Password" required />
     </div>
 </div>
-        
 
-        <div class="form-group">
+
+        <div class="px-2 form-group">
                  {!! app('captcha')->display() !!}
         </div>
 
@@ -129,6 +130,22 @@
         });
     });
 
+        function previewImage(event) {
+        const image = document.getElementById('profileImage');
+        const file = event.target.files[0];
+
+        if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+        image.src = e.target.result; // Update the image preview
+        image.classList.remove('hidden'); // Show image
+    };
+        reader.readAsDataURL(file);
+    }else{
+            image.src = "";
+            image.classList.add('hidden'); // Hide image if no file
+        }
+    }
 
 </script>
 </x-app-layout>

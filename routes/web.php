@@ -34,6 +34,7 @@ Route::middleware('ifnotauth')->prefix('bookings')->name('bookings.')->controlle
     Route::get('/cancel', 'cancel')->name('cancel');
     Route::get('/success', 'success')->name('success');
     Route::post('/store', 'store')->name('store');
+    Route::post('/reserve', 'reserve')->name('reserve');
     Route::get('/{id}', 'show')->name('show');
     Route::delete('/{id}', 'destroy')->name('destroy');
 });
@@ -52,7 +53,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/dashboard', [SuperAdminController::class, 'count'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [SuperAdminController::class, 'count'])->middleware(['auth', 'superadmin'])->name('dashboard');
 
 Route::middleware('auth')->prefix('profile')->group(function () {
     Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -70,18 +71,16 @@ Route::get('/verify-profile', [ProfileController::class, 'showVerifyPage'])->nam
 Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('auth/google/callback', [SocialAuthController::class, 'googleCallback'])->name('login.google.callback');
 
-Route::prefix('superadmin')->name('superadmin.')->group(function () {
+Route::prefix('superadmin')->middleware('superadmin')->name('superadmin.')->group(function () {
     Route::get('/', [SuperAdminController::class, 'index'])->name('index');
     Route::get('/edit/{user}', [SuperAdminController::class, 'edit'])->name('edit');
     Route::patch('/{user}', [SuperAdminController::class, 'update'])->name('update');
     Route::get('/{trip}/edit-trip', [SuperAdminController::class, 'edittrip'])->name('edit-trip');
     Route::patch('/trip/{trip}', [SuperAdminController::class, 'updateTrip'])->name('updateTrip');
+    Route::delete('/trips/{trip}', [SuperAdminController::class, 'tripDelete'])->name('trip.delete');
+    Route::delete('/bookings/{booking}', [SuperAdminController::class, 'bookingDelete'])->name('booking.delete');
+    Route::delete('/users/{user}', [SuperAdminController::class, 'superDelete'])->name('users.destroy');
 });
-
-Route::delete('/trips/{trip}', [SuperAdminController::class, 'tripDelete'])->name('trip.delete');
-Route::delete('/bookings/{booking}', [SuperAdminController::class, 'bookingDelete'])->name('booking.delete');
-Route::delete('/users/{user}', [SuperAdminController::class, 'superDelete'])->name('users.destroy');
-
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 

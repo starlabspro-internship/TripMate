@@ -7,10 +7,10 @@
             <nav>
                 <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">MESSAGES</span> </a>
                 {{-- header buttons --}}
-                <nav class="m-header-right">
-                    <a href="#"><i class="fas fa-cog settings-btn"></i></a>
-                    <a href="#" class="listView-x"><i class="fas fa-times"></i></a>
-                </nav>
+{{--                <nav class="m-header-right">--}}
+{{--                    <a href="#"><i class="fas fa-cog settings-btn"></i></a>--}}
+{{--                    <a href="#" class="listView-x"><i class="fas fa-times"></i></a>--}}
+{{--                </nav>--}}
             </nav>
             {{-- Search input --}}
             <input type="text" class="messenger-search" placeholder="Search" />
@@ -25,9 +25,8 @@
            {{-- Lists [Users/Group] --}}
            {{-- ---------------- [ User Tab ] ---------------- --}}
            <div class="show messenger-tab users-tab app-scroll" data-view="users">
-               {{-- Favorites --}}
+{{--               --}}{{-- Favorites --}}
                <div class="favorites-section">
-                <p class="messenger-title"><span>Favorites</span></p>
                 <div class="messenger-favorites app-scroll-hidden"></div>
                </div>
                {{-- Contact --}}
@@ -59,7 +58,6 @@
                 </div>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
-                    <a href="#" class="add-to-favorite"><i class="fas fa-star"></i></a>
                     <a href="/"><i class="fas fa-home"></i></a>
                     <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a>
                 </nav>

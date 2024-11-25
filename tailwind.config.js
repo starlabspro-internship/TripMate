@@ -17,11 +17,10 @@ export default {
     theme: {
         extend: {
             colors: {
-                orange: '#E7944C',
                 aquamarine: '#38B2AC',
             },
             fontFamily: {
-                planer: ['Planer', 'sans-serif'], 
+                planer: ['Planer', 'sans-serif'],
             },
             backgroundSize: {
                 '200%': '200%',

@@ -1,6 +1,6 @@
 <x-app-layout>
     <div>
-        <form action="{{ route('booking.store') }}" method="POST"  class="bg-gray-200 my-20 m-5 rounded-2xl md:p-10 p-5 md:mt-20 md:mb-5 md:mx-20 lg:mt-20 lg:p-10  lg:mb-5 lg:mx-30">
+        <form action="{{ route('bookings.store') }}" method="POST"  class="bg-gray-200 my-20 m-5 rounded-2xl md:p-10 p-5 md:mt-20 md:mb-5 md:mx-20 lg:mt-20 lg:p-10  lg:mb-5 lg:mx-30">
             @csrf
             <input type="hidden" name="trip_id" value="{{ $trip->id }}">
             <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
@@ -13,7 +13,7 @@
             </a>
             <div>
                 <div class="relative py-2 ">
-                    <div id="map" class=" py-5 h-[300px] w-full mb-8 md:float-end lg:block rounded-2xl md:max-w-lg md:h-[300px] md:w-[300px] md:end-0 lg:h-[400px] lg:w-[400px]"></div>
+                    <div id="map" class=" py-5 h-[300px] w-full mb-8 md:float-end lg:block rounded-2xl md:max-w-lg md:h-[300px] md:w-[300px] md:end-0 lg:h-[350px] lg:w-[350px]"></div>
                 </div>
                     <div class="flex text-black text-xl capitalize space-x-6 justify-between mt-4">
                         <div class="flex items-center space-x-2">
@@ -31,7 +31,15 @@
                             class="relative inline-block h-8 w-8 !rounded-full object-cover object-center"
                         />
                         <p class="relative inline-block  object-cover object-center">{{$trip->departure_time}}</p>
-                    <div class="flex-col mt-5 pb-4">
+                        <div class="flex flex-row  items-center self-center  rounded-lg">
+                            <img
+                                src="{{ asset('storage/icons/comm.svg') }}"
+                                alt="avatar"
+                                class="relative inline-block h-6 w-6  object-cover object-center"
+                            />
+                            <p class="relative inline-block  object-cover object-center">{{$trip->driver_comments}}</p>
+                        </div>
+                    <div class="flex-col pb-4">
                         <img
                             src="{{ asset('storage/icons/eu.svg') }}"
                             alt="avatar"
@@ -51,8 +59,8 @@
                         @endif
                         <p class="relative inline-block  object-cover object-center">{{$trip->users->name}}</p>
                     </div>
-                    @if (session('booking'))
-                        <p class="text-green-500">You have successfully reserved {{ session('booking')->seats_booked }} seats</p>
+                    @if (session('bookings'))
+                        <p class="text-green-500">You have successfully reserved {{ session('bookings')->seats_booked }} seats</p>
                     @endif
             </div>
         </form>
@@ -61,7 +69,7 @@
                 class="w-full rounded-md my-2 bg-white py-2 px-4 border border-transparent text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-green-300 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                 Chat
             </a>
-                <form action="{{ route('booking.destroy', $booking->id) }}" method="POST" class="flex items-center">
+                <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" class="flex items-center">
                     @csrf
                     @method('DELETE')
                     <button type="submit"

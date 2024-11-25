@@ -1,4 +1,4 @@
-<div class="sm:flex items-center justify-center bg-white ">
+<div class="sm:flex items-center justify-center bg-white mt-4">
     <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-28 py-4">
 
             <!-- Verified Icon -->
