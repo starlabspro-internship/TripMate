@@ -17,9 +17,9 @@
                 <div class="md:ml-auto flex-col items-center mr-20 text-center">
                     <!-- Profile Image -->
                     @if(auth()->user()->image)
-                    <img id="profileImage" 
-                        src="{{ asset('storage/' . auth()->user()->image) }}" 
-                        alt="User Image" 
+                    <img id="profileImage"
+                        src="{{ asset('storage/' . auth()->user()->image) }}"
+                        alt="User Image"
                         class="border-2 border-[#76A8B2] w-40 h-40 rounded-full">
 
                     @else
@@ -36,14 +36,14 @@
                         </div>
 
                         <div class="flex items-center mb-4 md:mb-0">
-                            <input id="image" class="hidden" type="file" name="image" accept="image/*" onchange="previewImage(event)">
+                            <input id="image" class="hidden" type="file" name="image" onchange="previewImage(event)">
                         </div>
 
                     </div>
-                
-                    
+
+
                 </div>
-            
+
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                             <!-- First Name -->
@@ -95,7 +95,7 @@
                                 <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
                             </div>
 
-                            
+
                             <!-- Save Button -->
                         <div class="mt-4 md:mt-6 col-span-1 md:col-span-2">
                             <button type="submit" class="bg-blue-500 text-white py-2 px-6  rounded-md font-bold hover:bg-blue-600">Save</button>
