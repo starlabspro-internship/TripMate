@@ -4,7 +4,7 @@
 
         <!-- Logo Section -->
         <div class="flex items-start justify-center md:col-span-1">
-            <img  src="{{ asset('storage/image/tripmate.png') }}" class="w-[200px] h-[80px]">
+            <img  src="{{ asset('storage/landing/tripmate.png') }}" class="w-[200px] h-[80px]">
         </div>
 
         <div>

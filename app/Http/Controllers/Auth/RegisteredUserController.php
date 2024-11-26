@@ -56,7 +56,7 @@ class RegisteredUserController extends Controller
         ]);
 
         // Store profile picture
-        $path = $request->file('image')->store('images', 'public');
+        $path = $request->file('image')->store('profile', 'public');
 
         // Generate a random 6-character verification code
         $verificationCode = Str::random(6);

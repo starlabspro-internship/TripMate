@@ -1,5 +1,5 @@
 <nav x-data="{ open: false }" class="fixed top-0 left-0 right-0 lg:left-10 lg:right-10 text-white flex justify-between md:bg-gray-400 md:bg-opacity-50 bg-gray-500 items-center lg:px-5 py-3  bg-opacity-50 backdrop-blur-lg shadow-lg rounded-b-lg mx-auto z-50">
-    <img id="logo" src="{{ asset('storage/image/tripmate.png') }}" class=" flex  mx-1 font-mono text-2xl font-bold w-[140px] " href="/"></img>
+    <img id="logo" src="{{ asset('storage/landing/tripmate.png') }}" class=" flex  mx-1 font-mono text-2xl font-bold w-[140px] " href="/"></img>
     <div :class="{'h-fit': open, 'h-0': ! open}" class="absolute w-full  lg:backdrop-blur-none bg-gray-500 bg-opacity-50 md:bg-opacity-0  rounded-xl mt-4 md:mt-1 top-14 overflow-hidden   md:relative md:h-fit md:top-0">
         <ul class=" flex text-md lg:text-lg flex-col gap-4 py-4 px-4 md:py-0  md:flex-row md:justify-center md:gap-0 ">
                 <li class="mx-3">
@@ -46,6 +46,6 @@
                 Register
             </button>
         </div>
-        <img @click="open = ! open" src="{{ Vite::asset('resources/images/hamburger-icon.svg') }}" class="text-3xl pr-5 cursor-pointer md:hidden"></img>
+        <img @click="open = ! open" src="{{ Vite::asset('resources/icons/hamburger-icon.svg') }}" class="text-3xl pr-5 cursor-pointer md:hidden"></img>
     </div>
 </nav>

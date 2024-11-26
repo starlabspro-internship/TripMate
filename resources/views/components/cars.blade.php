@@ -11,7 +11,7 @@
         <div id="box" class="myBox mt-6 w-60 flex flex-col items-center justify-center rounded-2xl relative mx-auto" style="margin-left: 0;">
 
 
-            <img src="{{ asset('storage/image/r.png') }}" alt="Sample Image" class="w-32 h-32 mb-4" />
+            <img src="{{ asset('storage/landing/r.png') }}" alt="Sample Image" class="w-32 h-32 mb-4" />
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7m-9 2v10m-4-6h8" />
             <h2 class="text-2xl text-[#290e07]  mt-2 title font-[700]">
                 <a href="about:blank" target="_blank">Rate the trip</a>
@@ -21,7 +21,7 @@
         <div id="box" class="myBox mt-6 w-60 flex flex-col items-center justify-center rounded-2xl relative mx-auto" style="margin-left: 0;">
 
 
-            <img src="{{ asset('storage/image/op.png') }}" alt="Sample Image" class="w-32 h-32 mb-4" />
+            <img src="{{ asset('storage/landing/op.png') }}" alt="Sample Image" class="w-32 h-32 mb-4" />
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7m-9 2v10m-4-6h8" />
             <h2 class="text-2xl text-[#290e07]  mt-2 title font-[700]">
                 <a href="about:blank" target="_blank">Online Payment</a>
@@ -32,7 +32,7 @@
         <div id="box" class="myBox mt-6 w-60 flex flex-col items-center justify-center rounded-2xl relative mx-auto" style="margin-left: 0;">
 
 
-            <img src="{{ asset('storage/image/chat.png') }}" alt="Sample Image" class="w-32 h-32 mb-4"/>
+            <img src="{{ asset('storage/landing/chat.png') }}" alt="Sample Image" class="w-32 h-32 mb-4"/>
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7m-9 2v10m-4-6h8" />
             <h2 class="text-2xl text-[#290e07] font-bold mt-2 title font-[700]">
                 <a class="text-lg font-bold text-black mt-2">
