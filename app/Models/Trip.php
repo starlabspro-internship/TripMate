@@ -18,6 +18,7 @@ class Trip extends Model
         'available_seats',
         'price',
         'driver_comments',
+        'passenger_gender_preference',
         'latitude',
         'longitude',
     ];

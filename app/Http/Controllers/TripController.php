@@ -18,38 +18,47 @@ use Stripe\StripeClient;
 class TripController extends Controller
 {
     public function index(Request $request)
-{
-    $cities = City::all();
-    $trips = Trip::with('bookings');
+    {
+        $cities = City::all();
+        $trips = Trip::with('bookings');
 
-    $trips->where('departure_time', '>=', now());
+        $trips->where('departure_time', '>=', now());
 
-    if ($request->filled('date')) {
-        $date = $request->input('date');
-        $trips->whereDate('departure_time', $date);
-    }
-
-    if ($request->filled('origin_city_id')) {
-        $originCityId = $request->input('origin_city_id');
-        $trips->where('origin_city_id', $originCityId);
-    }
-
-    if ($request->filled('destination_city_id')) {
-        $destinationCityId = $request->input('destination_city_id');
-        $trips->where('destination_city_id', $destinationCityId);
-    }
-    $trips = $trips->orderBy('created_at', 'desc')->get();
-
-    foreach ($trips as $trip) {
-        $available_seats = $trip->available_seats;
-        foreach ($trip->bookings as $booking) {
-            $available_seats -= $booking->seats_booked;
+        if ($request->filled('date')) {
+            $date = $request->input('date');
+            $trips->whereDate('departure_time', $date);
         }
-        $trip->available_seats = $available_seats;
-    }
 
-    return view('trips.index', compact('cities', 'trips'));
-}
+        if ($request->filled('origin_city_id')) {
+            $originCityId = $request->input('origin_city_id');
+            $trips->where('origin_city_id', $originCityId);
+        }
+
+        if ($request->filled('destination_city_id')) {
+            $destinationCityId = $request->input('destination_city_id');
+            $trips->where('destination_city_id', $destinationCityId);
+        }
+
+        $userGender = auth()->user()->gender;
+
+        if ($userGender == 'male') {
+            $trips->where('passenger_gender_preference', '!=', 'female');
+        } elseif ($userGender == 'female') {
+            
+        }
+
+        $trips = $trips->orderBy('created_at', 'desc')->get();
+
+        foreach ($trips as $trip) {
+            $available_seats = $trip->available_seats;
+            foreach ($trip->bookings as $booking) {
+                $available_seats -= $booking->seats_booked;
+            }
+            $trip->available_seats = $available_seats;
+        }
+
+        return view('trips.index', compact('cities', 'trips'));
+    }
 
     public function create(){
         $cities = City::all();
@@ -101,6 +110,7 @@ class TripController extends Controller
             'driver_comments'=> 'nullable|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
+            'passenger_gender_preference' => 'nullable|in:female,all',
         ]);
         Trip::create($request->all());
 
@@ -150,6 +160,7 @@ class TripController extends Controller
             'driver_comments'=> 'nullable|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
+            'passenger_gender_preference' => 'nullable|in:female,all',
 
         ]);
         $trip->update($request->except('driver_id'));

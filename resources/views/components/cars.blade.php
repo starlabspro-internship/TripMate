@@ -1,5 +1,5 @@
 
-<div id="cars" class="text-center pt-10 mt-6 sm:mt-8">
+<div id="cars" class="text-center pt-10 mt-6 sm:mt-8 scroll-mt-10">
 
     <h1 class="mobile-app-text text-4xl w-full sm:w-1/2 px-4 sm:px-0 m-auto title font-extrabold text-[#290e07]">Features you will have</h1>
     <p class="text-base sm:text-lg mt-4 text-gray-700 w-full sm:w-1/2 m-auto title font-[500] mb-16">

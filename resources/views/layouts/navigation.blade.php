@@ -157,9 +157,9 @@
                     <!-- User photo -->
                     <div class="w-8 h-8 flex mr-4 hidden sm:block">
                         @if(auth()->user()->image)
-                            <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="User Image" class="rounded-full">
+                            <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="User Image" class="rounded-full w-8 h-8">
                         @else
-                            <img src="{{ 'https://eu.ui-avatars.com/api/?name=' . urlencode(auth()->user()->name . ' ' . auth()->user()->lastname) . '&size=250' }}" alt="Default Image" class="rounded-full">
+                            <img src="{{ 'https://eu.ui-avatars.com/api/?name=' . urlencode(auth()->user()->name . ' ' . auth()->user()->lastname) . '&size=250' }}" alt="Default Image" class="rounded-full w-8 h-8">
                         @endif
                     </div>
 

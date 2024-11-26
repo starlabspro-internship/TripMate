@@ -1,5 +1,5 @@
 
-<div class="flex items-center justify-center py-8 px-5 ">
+<div class="flex items-center justify-center py-8 px-5 scroll-mt-10">
 <div class="container mx-auto max-w-lg mt-30 mb-30 px-10 py-8 bg-white shadow-md rounded-lg border border-gray-200  overflow-y-auto lg:h-[624px] md:h-[720px]" >
         <div class="flex flex-col items-center">
             <h2 class="text-3xl font-medium mb-4 text-center text-gray-800">FAQ</h2>

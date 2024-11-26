@@ -48,6 +48,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'birthday',
         'city',
+        'gender',
         'address',
         'google_id',
         'recaptcha_verified',
@@ -56,7 +57,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'verification_code',
         'id_document',
         'verification_status'
-
     ];
 
     /**

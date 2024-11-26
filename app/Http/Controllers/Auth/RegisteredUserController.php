@@ -44,7 +44,8 @@ class RegisteredUserController extends Controller
             'phone' => ['nullable', 'string', 'regex:/^\+?[0-9\s-]*$/', 'max:20'],
             'birthday' => ['nullable', 'date', 'before:' . now()->subYears(16)->toDateString()],
             'city' => ['nullable', 'string', 'max:255'],
-            'g-recaptcha-response' => ['required', 'captcha'],
+            'gender' => ['required', 'in:male,female'],
+            // 'g-recaptcha-response' => ['required', 'captcha'],
         ], [
             'name.regex' => 'The first name should only contain letters and spaces.',
             'lastname.regex' => 'The last name should only contain letters and spaces.',
@@ -71,6 +72,7 @@ class RegisteredUserController extends Controller
             'phone' => $request->phone,
             'birthday' => $request->birthday,
             'city' => $request->city,
+            'gender' => $request->gender,
             'recaptcha_verified' => true,
             'email_verification_code' => $verificationCode,
         ];
