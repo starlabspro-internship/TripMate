@@ -25,7 +25,7 @@
 
 
         <div class="max-w-sm lg:w-1/4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 px-2 py-4 lg:max-h-54 xl:max-h-96 ">
-                <img class="object-cover rounded-t-lg w-96 h-44" src="{{ asset('storage/profile/ctc2.png') }}" alt="" />
+                <img class="object-cover rounded-t-lg w-96 h-44" src="{{ asset('storage/landing/ctc2.png') }}" alt="" />
             <div class="p-5">
                     <h5 class="mb-2 pt-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">City to City</h5>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Seamless intercity travel solutions that connect you with destinations efficiently.</p>

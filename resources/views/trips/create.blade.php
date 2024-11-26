@@ -171,7 +171,8 @@
                         <span>Female Only</span>
                     </label>
                     <label class="flex items-center space-x-2 mt-2">
-                        <input type="radio" name="passenger_gender_preference" value="all" class="radio" />
+                        <input type="radio" name="passenger_gender_preference" value="all" class="radio" 
+                        {{ old('passenger_gender_preference', 'all') == 'all' ? 'checked' : '' }}/>
                         <span>All</span>
                     </label>
                 </div>
