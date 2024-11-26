@@ -61,7 +61,7 @@ class SuperAdminController extends Controller
 
         $user->save();
 
-        return Redirect::route('superadmin.index')->with('status', 'profile-updated');
+        return Redirect::route('superadmin.index')->with('success', 'Profile updated');
     }
 
     public function superDelete(User $user){
@@ -97,13 +97,14 @@ class SuperAdminController extends Controller
 
         $trip->save();
 
-        return response()->json(['success' => true, 'redirect' => route('superadmin.index', ['tab' => 'trips']) ]);
+        return redirect()->route('superadmin.index', ['tab' => 'trips'])->with('success', 'Trip updated');
 
     }
     public function tripDelete(Trip $trip){
         $trip->delete();
         return redirect()->route('superadmin.index', ['tab' => 'trips'])->with([
             'success' => 'Trip successfully deleted.',
+            'description' => 'You deleted the trip.',
         ]);
     }
     public function bookingDelete(Booking $booking){
