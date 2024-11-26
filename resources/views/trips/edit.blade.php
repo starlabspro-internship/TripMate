@@ -170,6 +170,21 @@
                                class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                                placeholder="Add any comments or instructions about the trip to help your passenger." >{{ old('driver_comments', $trip->driver_comments) }}</textarea>
                 </div>
+                @if( Auth::user()->gender == 'female')
+                <div class="flex flex-col w-full">
+                    <legend class=" mb-2">Passengers:</legend>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="passenger_gender_preference" value="female" class="radio"
+                        {{ old('passenger_gender_preference', $trip->passenger_gender_preference) == 'female' ? 'checked' : '' }}/>
+                        <span>Female Only</span>
+                    </label>
+                    <label class="flex items-center space-x-2 mt-2">
+                        <input type="radio" name="passenger_gender_preference" value="all" class="radio"
+                        {{ old('passenger_gender_preference', $trip->passenger_gender_preference) == 'all' ? 'checked' : '' }} />
+                        <span>All</span>
+                    </label>
+                </div>
+                @endif
                 <p class="">Meeting At:</p>
                     <div id="map" class="mb-1 h-[400px]" ></div>
                     <input type="hidden" id="latitude" name="latitude" />

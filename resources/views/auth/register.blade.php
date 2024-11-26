@@ -72,15 +72,23 @@
         @enderror
     </div>
 </div>
-
-                <!-- phone number -->
-                <div class="mx-2">
-                    <input id="phone" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="phone" placeholder="Phone Number" value="{{old('phone')}}" required />
-                    @error('phone')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-
+<div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 mt-4 mx-2">
+    <div class="w-full md:w-1/2">
+        <input id="phone" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="phone" placeholder="Phone Number" value="{{old('phone')}}" required />        @error('phone')
+            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+        @enderror
+    </div>
+    <div class="w-full md:w-1/2">
+        <select id="gender" name="gender" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" required>
+            <option value="" disabled {{ old('gender') ? '' : 'selected' }}>Select Gender</option>
+            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+            <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+        </select>
+        @error('gender')
+            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+        @enderror
+    </div>
+</div>
 <!-- Password and Confirm Password Row -->
 <div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 mt-4 mx-2">
     <div class="w-full md:w-1/2">
