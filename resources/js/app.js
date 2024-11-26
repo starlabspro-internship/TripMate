@@ -16,11 +16,6 @@ import Intersect from '@alpinejs/intersect';
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
-
-
-import Swal from 'sweetalert2';
-window.Swal = Swal;
-
 window.Alpine = Alpine;
 
 Alpine.start();
