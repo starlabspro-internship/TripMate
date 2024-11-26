@@ -2,16 +2,6 @@
     <div class="container mx-auto mt-28 px-4 ">
         <h2 class="text-2xl font-bold mb-4 text-center">Pending Verification</h2>
 
-        @if(session('success'))
-            <div id="success-message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                {{ session('success') }}
-            </div>
-        @elseif(session('error'))
-            <div id="error-message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                {{ session('error') }}
-            </div>
-        @endif
-
         <!-- Pending Verification Table -->
         <div class="overflow-x-auto">
             <table class="w-1/2 bg-green-100 shadow-md rounded-lg overflow-hidden mb-6 mx-auto">
@@ -40,7 +30,7 @@
                                     @csrf
                                     <button type="submit" class="btn bg-green-900 text-white px-4 py-2 rounded hover:bg-green-700">Verify</button>
                                 </form>
-                                
+
                                 <form action="{{ route('superadmin.users.reject', $user) }}" method="POST" class="inline-block">
                                     @csrf
                                     <button type="submit" class="btn bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Reject</button>
@@ -90,5 +80,5 @@
         </div>
     </div>
 
-  
+
 </x-app-layout>

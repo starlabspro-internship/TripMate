@@ -67,6 +67,15 @@
                     Plan ahead, travel stress-free, and enjoy every moment of your journey!
                 </p>
             </div>
+            @if($errors->any())
+                <div id="error-message" class="text-gray-800 items-center mt-2 gap-2 bg-red-200 border-2 border-white/80 px-6 py-3 rounded-lg shadow-lg">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li >{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route('trips.store') }}" method="POST" class="space-y-6 " onsubmit="return confirmSubmission(event)" >
                 @csrf
                 <input type="hidden" name="driver_id" value="{{ auth()->id() }}">
@@ -192,15 +201,7 @@
                     </div>
                 </div>
             </form>
-            @if($errors->any())
-                <div class="bg-red-100 text-red-700 border border-red-200 p-4 rounded mt-6">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+
         </div>
     </div>
     @endauth

@@ -14,6 +14,18 @@
     <body class="min-h-screen bg-[#f5f5f5] dark:bg-[#0F172A] font-planer antialiased w-full md:absolute md:w-navbar">
 
         <div class="flex flex-col">
+            @if(Auth::check())
+                @include('components.success')
+            @endif
+            @if(Auth::check())
+                    @if (session('error'))
+                    @endif
+                    @if(session('success'))
+                    @endif
+                        @if($errors->any())
+
+                        @endif
+            @endif
             <!-- Display navigation only if user is authenticated and not on `enter.code` page -->
             @if(Auth::check() && !request()->routeIs('enter.code'))
                 @include('layouts.navigation')
@@ -22,7 +34,7 @@
 
                 @include('components.navbar')
             @endif
-            
+
             <!-- Display the header only if it's set and not on `enter.code` page -->
             @isset($header)
                 @if (!request()->routeIs('enter.code'))

@@ -1,45 +1,5 @@
 <x-app-layout>
     @auth
-        <head>
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    // Handle form submission with AJAX
-                    document.getElementById('edit-trip-form').addEventListener('submit', function (e) {
-                        e.preventDefault(); // Prevent default form submission
-
-                        console.log('Update button clicked'); // Check if this line runs
-
-                        let formData = new FormData(this);
-
-                        // Send AJAX request
-                        fetch("{{ route('trips.update', $trip->id) }}", {
-                            method: "POST",
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'Accept': 'application/json'
-                            },
-                            body: formData
-                        })
-                            .then(response => {
-                                console.log('Response received'); // Log when response is received
-                                return response.json();
-                            })
-                            .then(data => {
-                                console.log('Response received');
-                                if (data.success) {
-                                    alert('Trip updated successfully!');
-                                    window.location.href = data.redirect;
-                                } else {
-                                    alert('There was an error updating the trip.');
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                            });
-                    });
-                });
-            </script>
-        </head>
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center mt-1 w-full space-y-4 md:space-y-0">
                 <h1 class="text-3xl font-bold p-6 text-black">Edit Trip</h1>
