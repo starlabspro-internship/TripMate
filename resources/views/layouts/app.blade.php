@@ -9,6 +9,7 @@
 
         <!-- Scripts -->
         <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
         @vite('resources/js/app.js')
     </head>
     <body class="min-h-screen bg-[#f5f5f5] dark:bg-[#0F172A] font-planer antialiased w-full md:absolute md:w-navbar">
