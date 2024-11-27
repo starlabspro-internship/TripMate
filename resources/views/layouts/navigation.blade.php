@@ -1,103 +1,62 @@
-<div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 " >
-        <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden"></div>
-
-    <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed z-[100] inset-y-0 left-0 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0">
+<div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-900 ">
+        <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class=" fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden"></div>
+        <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed z-[100] inset-y-0 left-0 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0">
             <div class="flex items-center justify-center mt-8">
                 <div class="flex items-center">
-                    <img src="{{ asset('storage/landing/tripmate.png') }}" class=" flex  mx-1 font-mono text-2xl font-bold w-[140px] " href="/"></img>
+                    <img src="{{ asset('storage/landing/tripmate.png') }}" class="flex mx-1 font-mono text-2xl font-bold w-[140px]" href="/" />
                 </div>
             </div>
             <nav class="mt-10">
-                @if( Auth::user()->isSuperAdmin())
-                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('dashboard') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
-                    href="{{ route('dashboard') }}">
-                    <img
-                        src="{{ asset('storage/icons/dashboard.svg') }}"
-                        alt="avatar"
-                        class="relative inline-block h-7 w-7  object-cover object-center"
-                    />
-
+                @if(Auth::user()->isSuperAdmin())
+                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('dashboard') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('dashboard') }}">
+                    <img src="{{ asset('storage/icons/dashboard.svg') }}" alt="avatar" class="relative inline-block h-7 w-7 object-cover object-center" />
                     <span class="mx-3">Dashboard</span>
                 </a>
                 @endif
-                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('profile.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
-                    href="{{ route('profile.index') }}">
-                    <img
-                        src="{{ asset('storage/icons/profil.svg') }}"
-                        alt="avatar"
-                        class="relative inline-block h-7 w-7  object-cover object-center"
-                    />
-
+                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('profile.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('profile.index') }}">
+                    <img src="{{ asset('storage/icons/profil.svg') }}" alt="avatar" class="relative inline-block h-7 w-7 object-cover object-center" />
                     <span class="mx-3">Profile</span>
                 </a>
-
-                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('trips.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
-                    href="{{ route('trips.index') }}">
-                    <img
-                        src="{{ asset('storage/icons/car.svg') }}"
-                        alt="avatar"
-                        class="relative inline-block h-6 w-7  object-cover object-center"
-                    />
-
+        
+                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('trips.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('trips.index') }}">
+                    <img src="{{ asset('storage/icons/car.svg') }}" alt="avatar" class="relative inline-block h-6 w-7 object-cover object-center" />
                     <span class="mx-3">Available Rides</span>
                 </a>
-                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('bookings.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
-                    href="{{ route('bookings.index') }}">
-                    <img
-                        src="{{ asset('storage/icons/booking.svg') }}"
-                        alt="avatar"
-                        class="relative inline-block h-7 w-7  object-cover object-center"
-                    />
-
-                    <span class="mx-3">My Bookings</span>
-                </a>
-                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('bookings.myTrips') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
-                    href="{{ route('bookings.myTrips') }}">
-                    <img
-                        src="{{ asset('storage/icons/trips.svg') }}"
-                        alt="avatar"
-                        class="relative inline-block h-7 w-7  object-cover object-center"
-                    />
-
-                    <span class="mx-3">My Trips Bookings</span>
-                </a>
-                @if( Auth::user()->isSuperAdmin())
-                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('superadmin.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
-                    href="{{ route('superadmin.index') }}">
-                    <img
-                        src="{{ asset('storage/icons/table.svg') }}"
-                        alt="avatar"
-                        class="relative inline-block h-6 w-6  object-cover object-center"
-                    />
-                    </svg>
-
+        
+                <div x-data="{ open: false }" class="mt-4">
+                    <div @click="open = !open" class="flex items-center px-6 py-2 cursor-pointer text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
+                        <img src="{{ asset('storage/icons/book.svg') }}" alt="menu" class="relative inline-block h-7 w-7 object-cover object-center" />
+                        <span class="mx-3">Bookings</span>
+                        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 ml-auto" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06 0L10 10.94l3.71-3.73a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                        </svg>
+                        <svg x-show="open" :class="open ? 'rotate-180' : 'rotate-0'" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 ml-auto" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M14.77 12.79a.75.75 0 00-1.06 0L10 16.52 6.29 12.8a.75.75 0 10-1.06 1.06l4.25 4.25a.75.75 0 001.06 0l4.25-4.25a.75.75 0 000-1.06z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div x-show="open" class="pl-12">
+                        <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('bookings.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('bookings.index') }}">
+                            <img src="{{ asset('storage/icons/booking.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
+                            <span class="mx-3 text-sm">My Bookings</span>
+                        </a>
+                        <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('bookings.myTrips') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('bookings.myTrips') }}">
+                            <img src="{{ asset('storage/icons/trips.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
+                            <span class="mx-3 text-sm">My Trips Bookings</span>
+                        </a>
+                    </div>
+                </div>
+        
+                @if(Auth::user()->isSuperAdmin())
+                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('superadmin.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('superadmin.index') }}">
+                    <img src="{{ asset('storage/icons/table.svg') }}" alt="avatar" class="relative inline-block h-6 w-6 object-cover object-center" />
                     <span class="mx-3">Tables</span>
                 </a>
                 @endif
-                    @if( Auth::user()->isSuperAdmin())
-                        <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('superadmin.users.index-users') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
-                           href="{{ route('superadmin.users.index-users') }}">
-                            <img
-                                src="{{ asset('storage/icons/verify.svg') }}"
-                                alt="avatar"
-                                class="relative inline-block h-6 w-6  object-cover object-center"
-                            />
-                            </svg>
-
-                            <span class="mx-3">Verifications</span>
-                        </a>
-                    @endif
-                    <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs(config('chatify.routes.prefix')) ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
-                       href="{{ route(config('chatify.routes.prefix')) }}">
-                        <img
-                            src="{{ asset('storage/icons/chat.svg') }}"
-                            alt="avatar"
-                            class="relative inline-block h-6 w-6  object-cover object-center"
-                        />
-                        </svg>
-
-                        <span class="mx-3">Chat</span>
-                    </a>
+        
+                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs(config('chatify.routes.prefix')) ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route(config('chatify.routes.prefix')) }}">
+                    <img src="{{ asset('storage/icons/chat.svg') }}" alt="avatar" class="relative inline-block h-6 w-6 object-cover object-center" />
+                    <span class="mx-3">Chat</span>
+                </a>
             </nav>
         </div>
         <div class="flex flex-col flex-1 overflow-hidden ">
