@@ -1,5 +1,5 @@
 
-<div id="services" class="mt-12 py-1.5">
+<div id="services" class="mt-12 py-1.5 scroll-mt-10">
     <h1 class="font-sans font-bold text-5xl text-center pt-12 mb-12">Our Services</h1>
     <div class="flex flex-col gap-14 justify-center items-center mx-4 sm:flex-row sm:flex-wrap md:flex-row sm:gap-8 md:gap-16">
 

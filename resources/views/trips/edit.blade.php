@@ -1,45 +1,5 @@
 <x-app-layout>
     @auth
-        <head>
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    // Handle form submission with AJAX
-                    document.getElementById('edit-trip-form').addEventListener('submit', function (e) {
-                        e.preventDefault(); // Prevent default form submission
-
-                        console.log('Update button clicked'); // Check if this line runs
-
-                        let formData = new FormData(this);
-
-                        // Send AJAX request
-                        fetch("{{ route('trips.update', $trip->id) }}", {
-                            method: "POST",
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'Accept': 'application/json'
-                            },
-                            body: formData
-                        })
-                            .then(response => {
-                                console.log('Response received'); // Log when response is received
-                                return response.json();
-                            })
-                            .then(data => {
-                                console.log('Response received');
-                                if (data.success) {
-                                    alert('Trip updated successfully!');
-                                    window.location.href = data.redirect;
-                                } else {
-                                    alert('There was an error updating the trip.');
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                            });
-                    });
-                });
-            </script>
-        </head>
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center mt-1 w-full space-y-4 md:space-y-0">
                 <h1 class="text-3xl font-bold p-6 text-black">Edit Trip</h1>
@@ -202,13 +162,28 @@
                     </div>
                     <div class="flex flex-col w-full">
                     <textarea type="text" id="driver_comments" name="driver_comments"
-                              class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                              placeholder="Add any comments or instructions about the trip to help your passenger.">{{ old('driver_comments', $trip->driver_comments) }}</textarea>
-                    </div>
-                    <p class="">Meeting At:</p>
-                    <div id="map" class="mb-1 h-[400px]"></div>
-                    <input type="hidden" id="latitude" name="latitude"/>
-                    <input type="hidden" id="longitude" name="longitude"/>
+                               class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                               placeholder="Add any comments or instructions about the trip to help your passenger." >{{ old('driver_comments', $trip->driver_comments) }}</textarea>
+                </div>
+                @if( Auth::user()->gender == 'female')
+                <div class="flex flex-col w-full">
+                    <legend class=" mb-2">Passengers:</legend>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="passenger_gender_preference" value="female" class="radio"
+                        {{ old('passenger_gender_preference', $trip->passenger_gender_preference) == 'female' ? 'checked' : '' }}/>
+                        <span>Female Only</span>
+                    </label>
+                    <label class="flex items-center space-x-2 mt-2">
+                        <input type="radio" name="passenger_gender_preference" value="all" class="radio"
+                        {{ old('passenger_gender_preference', $trip->passenger_gender_preference) == 'all' ? 'checked' : '' }} />
+                        <span>All</span>
+                    </label>
+                </div>
+                @endif
+                <p class="">Meeting At:</p>
+                    <div id="map" class="mb-1 h-[400px]" ></div>
+                    <input type="hidden" id="latitude" name="latitude" />
+                    <input type="hidden" id="longitude" name="longitude" />
                     <div class="flex flex-col items-center space-y-4">
                         <button type="submit"
                                 class="px-3 py-1 text-xs rounded-lg transition duration-200 bg-blue-500 text-white hover:bg-blue-600 w-[100px] h-[40px] max-w-full">

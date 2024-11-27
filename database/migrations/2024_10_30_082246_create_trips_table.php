@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('available_seats');
             $table->decimal('price', 8, 2);
             $table->string('driver_comments')->nullable();
+            $table->string('passenger_gender_preference')->default('all');
             $table->decimal('latitude', 10, 7)->nullable();
             $table->decimal('longitude', 10, 7)->nullable();
             $table->timestamps();

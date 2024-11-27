@@ -16,33 +16,33 @@
                     @csrf
                     @method('patch')
 
-                    <div class="flex justify-between items-center space-x-2">
+                    <div class="flex justify-between items-center space-x-2 md:space-x-4">
                         <div class="w-full md:w-1/2">
                             <label for="arrival_time" class="block text-gray-700">Name:</label>
                             <input type="text" id="name" name="name"
                                    class="border border-gray-300 rounded-md px-2 py-2 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                                   min="1" placeholder="Available Seats:" value="{{ $user->name }}">
+                                   min="1" placeholder="Name" value="{{ $user->name }}">
                         </div>
                         <div class="w-full md:w-1/2">
                             <label for="arrival_time" class="block text-gray-700">Lastname:</label>
                             <input type="text" id="lastname" name="lastname"
                                    class="border border-gray-300 rounded-md px-2 py-2 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                                   min="1" placeholder="Available Seats:" value="{{  $user->lastname}}">
+                                   min="1" placeholder="Lastname" value="{{ $user->lastname}}">
                         </div>
                     </div>
                     <div class="relative">
                         <label for="arrival_time" class="block text-gray-700">Email:</label>
                         <input type="text" id="email" name="email"
                                class="border border-gray-300 rounded-md px-2 py-2 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                               min="1" placeholder="Available Seats:" value="{{ $user->email }}">
+                               min="1" placeholder="Email:" value="{{ $user->email }}">
                     </div>
                     <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
                         <div class="flex flex-col w-full relative">
-                            <label for="departure_time" class="block text-gray-700">City</label>
+                            <label for="departure_time" class="block text-gray-700">City:</label>
                             <div class="relative">
                                 <input type="text" id="city" name="city"
                                        class="border border-gray-300 rounded-md px-2 py-2 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                                       min="1" placeholder="Available Seats:" value="{{  $user->city }}">
+                                       min="1" placeholder="City" value="{{  $user->city }}">
                             </div>
                         </div>
 
@@ -51,7 +51,7 @@
                             <div class="relative">
                                 <input type="text" id="phone" name="phone"
                                        class="border border-gray-300 rounded-md px-2 py-2 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                                       min="1" placeholder="Available Seats:" value="{{ $user->phone }}">
+                                       min="1" placeholder="Phone" value="{{ $user->phone }}">
                             </div>
                         </div>
                     </div>
@@ -81,13 +81,13 @@
                             <div class="relative">
                                 <input type="text" id="role" name="role"
                                        class="border border-gray-300 rounded-md px-2 py-2 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                                       min="1" placeholder="Available Seats:" value="{{ $user->role }}">
+                                       min="1" placeholder="Role" value="{{ $user->role }}">
                             </div>
                         </div>
                     </div>
                     <div class="flex flex-col items-center space-y-4">
                         <button type="submit"
-                                class="px-3 py-1 text-xs rounded-full transition duration-200 bg-blue-500 text-white hover:bg-blue-600 w-[70px] h-[28px] max-w-full">
+                                class="px-3 py-1 text-xs rounded-lg transition duration-200 bg-blue-500 text-white hover:bg-blue-600 w-[80px] h-[30px] max-w-full">
                             Update
                         </button>
                     </div>

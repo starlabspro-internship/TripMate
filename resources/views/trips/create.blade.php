@@ -3,7 +3,6 @@
     <head>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-
                 // Initialize the map
                 var map = L.map('map').setView([42.5269444444, 21.0072222222], 8);
                 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
@@ -68,6 +67,15 @@
                     Plan ahead, travel stress-free, and enjoy every moment of your journey!
                 </p>
             </div>
+            @if($errors->any())
+                <div id="error-message" class="text-gray-800 items-center mt-2 gap-2 bg-red-200 border-2 border-white/80 px-6 py-3 rounded-lg shadow-lg">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li >{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route('trips.store') }}" method="POST" class="space-y-6 " onsubmit="return confirmSubmission(event)" >
                 @csrf
                 <input type="hidden" name="driver_id" value="{{ auth()->id() }}">
@@ -164,6 +172,20 @@
                                class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                                placeholder="Add any comments or instructions about the trip to help your passenger." value="{{ old('driver_comments') }}"></textarea>
                 </div>
+                @if( Auth::user()->gender == 'female')
+                <div class="flex flex-col w-full">
+                    <legend class=" mb-2">Passengers:</legend>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="passenger_gender_preference" value="female" class="radio" />
+                        <span>Female Only</span>
+                    </label>
+                    <label class="flex items-center space-x-2 mt-2">
+                        <input type="radio" name="passenger_gender_preference" value="all" class="radio" 
+                        {{ old('passenger_gender_preference', 'all') == 'all' ? 'checked' : '' }}/>
+                        <span>All</span>
+                    </label>
+                </div>
+                @endif
                     <p class="">Meeting At:</p>
                     <div id="map" class="relative mb-1 h-[400px] z-0 overflow-hidden" style="z-index: 0"></div>
                     <input type="hidden" id="latitude" name="latitude" />
@@ -179,15 +201,7 @@
                     </div>
                 </div>
             </form>
-            @if($errors->any())
-                <div class="bg-red-100 text-red-700 border border-red-200 p-4 rounded mt-6">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+
         </div>
     </div>
     @endauth

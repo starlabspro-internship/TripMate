@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail; 
+use Illuminate\Support\Facades\Mail;
 use App\Mail\InquiryMail;
 
 class ContactController extends Controller
@@ -45,7 +45,7 @@ class ContactController extends Controller
    
 
     Mail::to($contact->email)->send(new InquiryMail($contact));
-    return back()->with('status', 'Your message has been sent successfully!');
+    return back()->with('success', 'Your message has been sent successfully!');
 }
 
 }
