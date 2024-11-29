@@ -5,8 +5,9 @@
             document.addEventListener('DOMContentLoaded', function() {
                 // Initialize the map
                 var map = L.map('map').setView([42.5269444444, 21.0072222222], 8);
-                L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 200,
+                    minZoom: 8,
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(map);
 

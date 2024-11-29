@@ -151,7 +151,7 @@
         <!-- Main Content Section -->
         <div class="my-4 flex flex-col 2xl:flex-row space-y-4 2xl:space-y-0 2xl:space-x-4">
             <!-- Personal Info Section -->
-            <div class="w-full flex flex-col 2xl:w-1/3">
+            <div class="mb-4 w-full flex flex-col 2xl:w-1/3">
                 <div class="bg-white rounded-lg shadow-xl p-8 flex-1">
                     <h4 class="text-xl text-gray-900 font-bold">Personal Info</h4>
                     <ul class="mt-2 text-gray-700">
@@ -176,10 +176,6 @@
                             <span>{{ auth()->user()->phone }}</span>
                         </li>
                         <li class="flex border-b py-2">
-                            <span class="font-bold w-24">Email:</span>
-                            <span>{{ auth()->user()->email }}</span>
-                        </li>
-                        <li class="flex border-b py-2">
                             <span class="font-bold w-24">City:</span>
                             <span>{{ auth()->user()->city }}</span>
                         </li>
@@ -193,7 +189,7 @@
 
             <!-- Ride History Section -->
             <div x-data="tabs()"  class="flex flex-col w-full 2xl:w-2/3 overflow-y-auto max-h-[430px]">
-                <div class="container mx-auto px-2 py-4 bg-white rounded-lg shadow-xl flex-1 overflow-y-auto">
+                <div class="mb-4 container mx-auto px-2 py-4 bg-white rounded-lg shadow-xl flex-1 overflow-y-auto">
                     <h2 class="text-2xl font-semibold mb-4 text-gray-800">
                         {{ "Completed Rides Of " . auth()->user()->name }}
                     </h2>
