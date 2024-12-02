@@ -91,7 +91,7 @@
                             <!-- Birthday -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Birthday</label>
-                                <input type="date" name="birthday" value="{{ old('birthday', $user->birthday) }}" readonly class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                                    <input type="text" name="birthday" value="{{ \Carbon\Carbon::parse(old('birthday', $user->birthday))->format('Y-m-d') }}" readonly class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                                 <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
                             </div>
 
