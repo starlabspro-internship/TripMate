@@ -124,7 +124,7 @@
                     </button>
                 </div>
                 @else
-                <p class="text-red-500 py-4">There are no seats available for this trip.</p>
+                <p class="text-red-500 text-sm py-4">There are no seats available for this trip.</p>
                 @endif
             </div>
 

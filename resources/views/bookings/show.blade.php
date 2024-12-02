@@ -15,7 +15,7 @@
                     <input type="hidden" name="trip_id" value="{{ $trip->id }}">
                     <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
                         <div class="relative ">
-                            <div id="map" class=" h-[300px] w-full rounded-t-3xl md:rounded-l-none md:h-[435px] md:w-1/2 md:float-end lg:block md:rounded-r-3xl opacity-80"></div>
+                            <div id="map" class=" h-[300px] w-full rounded-t-3xl md:rounded-l-none md:h-[451px] md:w-1/2 md:float-end lg:block md:rounded-r-3xl opacity-80"></div>
                         </div>
                         <div class="p-10 ">
                             <div class="flex my-2 text-black text-xl capitalize space-x-6 justify-between">
@@ -67,16 +67,14 @@
                                     @endif
                                     <p class="relative inline-block px-2 object-cover object-center">{{$trip->users->name}}</p>
                                 </div>
-                                <div class="mt-3">
-                                    @if (session('bookings'))
-                                    <p class="text-green-500">You have successfully reserved {{ session('bookings')->seats_booked }} seats</p>
-                                    @endif
+                                <div class="mt-3">  
+                                    <p class="text-green-500">You have successfully reserved</p>
                                 </div>
                         </div>
                 </form>
-                <div class="flex flex-col md:flex-row items-center mx-4 mt-6 space-x-2">
+                <div class="flex flex-col md:flex-row items-center mx-4 pb-4 space-x-2">
                     <a  href="{{route('chat')}}"
-                        class="w-full rounded-md my-2 bg-white py-2 px-4 border border-transparent text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-green-300 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
+                        class="w-full rounded-lg my-2 bg-white py-2 px-4 border border-transparent text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-green-300 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                         Chat
                     </a>
                     @if(!empty($paymentIntentId))
@@ -84,7 +82,7 @@
                             onsubmit="return confirmSubmission()">
                         @csrf
                         <button type="submit"
-                            class="w-full  rounded-md my-2 bg-red-500 hover:bg-red-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700  active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
+                            class="w-full  rounded-lg my-2 bg-red-500 hover:bg-red-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700  active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                             Cancel & Refund
                         </button>
                         </form>
@@ -94,7 +92,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit"
-                                class="w-full rounded-md my-2 bg-red-500 hover:bg-red-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
+                                class="w-full rounded-lg my-2 bg-red-500 hover:bg-red-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                                 Cancel
                             </button>
                         </form>
