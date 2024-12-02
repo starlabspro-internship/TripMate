@@ -1,7 +1,7 @@
 <div class="w-full flex flex-col justify-center items-center text-center bg-cover bg-center py-12 relative">
     <!-- Video Background -->
     <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
-        <source src="{{ asset('storage/tringa.mp4') }}" type="video/mp4">
+        <source src="{{ asset('storage/videos/ride.mp4') }}" type="video/mp4">
     </video>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
