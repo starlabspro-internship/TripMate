@@ -187,13 +187,15 @@
                     search: '',
                     currentTab: new URLSearchParams(window.location.search).get('tab') || 'users',
                     users: @json($users),
+                    authUser: @json(auth()->id()) ,
                     bookings: @json($bookings),
                     trips: @json($trips),
                     filteredUsers() {
                         if (this.search === '') {
-                            return this.users;
+                            return this.users.filter(user => user.id !== this.authUser);
                         }
                         return this.users.filter(user =>
+                            user.id !== this.authUser &&(
                             (user.name && user.name.toLowerCase().includes(this.search.toLowerCase())) ||
                             (user.lastname && user.lastname.toLowerCase().includes(this.search.toLowerCase())) ||
                             (user.phone && user.phone.includes(this.search)) ||
@@ -201,6 +203,7 @@
                             (user.email && user.email.toLowerCase().includes(this.search.toLowerCase())) ||
                             (user.created_at && user.created_at.includes(this.search)) ||
                             (user.role && user.role.toLowerCase().includes(this.search.toLowerCase()))
+                                )
                         );
                     },
                     filteredBookings() {

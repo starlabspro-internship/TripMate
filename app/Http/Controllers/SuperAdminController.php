@@ -124,5 +124,41 @@ class SuperAdminController extends Controller
         return view('dashboard', compact('totalTrips', 'totalUsers', 'totalBookings','transactions'));
     }
 
+    public function indexBg()
+    {
+        $users = User::all();
+
+        return view('superadmin.bg-check', compact('users'));
+    }
+
+    public function bgVerify(User $user)
+    {
+        if (!$user->background_document) {
+            return redirect()->route('superadmin.bg-check')
+                ->with([
+                    'error' => 'Verification Failed',
+                    'description' => 'User cannot be verified as no document has been uploaded.'
+                ]);
+        }
+        $user->update(['background_status' => 'verified']);
+        return redirect()->route('superadmin.bg-check')
+            ->with('success', 'User verified successfully');
+    }
+
+    public function bgFlagged(User $user)
+    {
+        if (!$user->background_document) {
+            return redirect()->route('superadmin.bg-check')
+                ->with([
+                    'error' => 'Verification Failed',
+                    'description' => 'User cannot be flagged as no document has been uploaded.'
+                ]);
+        }
+        $user->update(['background_status' => 'flagged']);
+        return redirect()->route('superadmin.bg-check')
+            ->with('success', 'User has been flagged');
+    }
+
+
 }
 

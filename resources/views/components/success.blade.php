@@ -8,11 +8,11 @@
         hideTimeout: null
     }"
      x-init="
-        if (showSuccess) { hideTimeout = setTimeout(() => showSuccess = false, 100000); }
-        if (showError) { hideTimeout = setTimeout(() => showError = false, 100000); }
+        if (showSuccess) { hideTimeout = setTimeout(() => showSuccess = false, 3000); }
+        if (showError) { hideTimeout = setTimeout(() => showError = false, 3000); }
      "
      @mouseenter="clearTimeout(hideTimeout)"
-     @mouseleave="hideTimeout = setTimeout(() => { showSuccess = false; showError = false; }, 100000)"
+     @mouseleave="hideTimeout = setTimeout(() => { showSuccess = false; showError = false; }, 3000)"
      class="fixed bottom-11 right-6 z-50"
 >
     <div x-show="showSuccess" x-transition.opacity.duration.500ms class="flex items-center gap-2 fixed bottom-5 right-5 bg-gradient-to-b from-emerald-200 to-emerald-50 border-2 border-white/80 text-white px-6 py-3 rounded-lg shadow-lg">
@@ -26,7 +26,7 @@
             <polyline style="fill:none;stroke:#FFFFFF;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points=" 38,15 22,33 12,25 "></polyline> </g></svg>
         </div>
         <div class="grid">
-            <span class="text-black" x-text="successMessage"></span>
+            <span class="text-gray-800" x-text="successMessage"></span>
             <span class="text-gray-600" x-text="successDescription"></span>
         </div>
     </div>
@@ -49,7 +49,7 @@
                     17.52 12.7105 17.71Z" fill="#ff2424"></path> </g></svg>
         </div>
         <div class="grid">
-            <span class="text-gray-900" x-text="errorMessage"></span>
+            <span class="text-gray-800" x-text="errorMessage"></span>
             <span class="text-gray-600" x-text="errorDescription"></span>
         </div>
     </div>
