@@ -20,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
-    
+
     public function trips()
     {
         return $this->hasMany(Trip::class, 'driver_id');
@@ -38,7 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->is_super_admin == 1;
     }
-    
+
     protected $fillable = [
         'image',
         'name',
@@ -56,6 +56,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at',
         'verification_code',
         'id_document',
+        'background_status',
+        'background_document',
         'verification_status'
     ];
 

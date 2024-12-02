@@ -10,7 +10,6 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\InquiryMail;
 
 
 
@@ -37,7 +36,7 @@ class InquiryMail extends Mailable
     {
         return new Envelope(
             subject: 'Inquiry Mail',
-            from: 'info@tripmate.com' 
+            from: 'info@tripmate.com'
         );
     }
 
@@ -49,7 +48,7 @@ class InquiryMail extends Mailable
         return new Content(
             view: 'mail.inquiry-mail',
             with: [
-                'contact' => $this->contact 
+                'contact' => $this->contact
             ]
         );
     }

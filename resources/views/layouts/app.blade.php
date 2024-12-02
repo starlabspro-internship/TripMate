@@ -8,6 +8,8 @@
         <title>TripMate</title>
 
         <!-- Scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v4.0.0/dist/tesseract.min.js"></script>
         <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
         <!-- jQuery UI and jQuery Libraries (CDN) -->

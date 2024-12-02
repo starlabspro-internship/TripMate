@@ -14,7 +14,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($pendingUsers as $user)
+                    @foreach($pendingUsers->where('id', '!=', auth()->id()) as $user)
                         <tr>
                             <td class="p-4 text-center">{{ $user->name }}</td>
                             <td class="p-4 text-center">{{ ucfirst($user->verification_status) }}</td>
@@ -48,13 +48,13 @@
             <table class="w-1/2 bg-red-100 shadow-md rounded-lg overflow-hidden mb-6 mx-auto">
                 <thead class="bg-red-600 text-white">
                     <tr>
-                        <th class="p-4 text-sm font-semibold"> Name</th>
+                        <th class="p-4 text-sm font-semibold">Name</th>
                         <th class="p-4 text-sm font-semibold">Verification Status</th>
                         <th class="p-4 text-sm font-semibold">Document</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($rejectedUsers as $user)
+                    @foreach($rejectedUsers->where('id', '!=', auth()->id()) as $user)
                         <tr>
                             <td class="p-4 text-center">{{ $user->name }}</td>
                             <td class="p-4 text-center">{{ ucfirst($user->verification_status) }}</td>
