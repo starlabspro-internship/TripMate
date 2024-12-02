@@ -19,7 +19,7 @@
         <div class="flex justify-between w-full px-2 align-end">
             <div >
                 <label for="image" class="block mb-5 text-md font-medium text-gray-700">Profile Picture</label>
-                <label for="image" class="mx-auto px-8 flex items-center justify-center border border-gray-600 bg-gray-200  hover:bg-gray-500 text-black hover:text-white text-base py-3 rounded-xl tracking-wide font-medium cursor-pointer transition ease-in duration-200">
+                <label for="image" class="mx-auto px-3 flex items-center justify-center border border-gray-400 bg-gray-200  hover:bg-gray-400 text-gray-700 hover:text-white py-2 rounded-xl tracking-wide text-sm cursor-pointer transition ease-in duration-200">
                     Choose Image
                 </label>
             </div>
@@ -115,7 +115,7 @@
 
                 <div class="flex items-center justify-end mt-4">
                     {{-- <button type="submit" class="mx-auto px-16 flex items-center justify-center mb-6 border border-gray-300 hover:border-gray-900 hover:bg-blue-800 text-gray-700 hover:text-white text-base py-2 rounded-lg tracking-wide font-medium cursor-pointer transition ease-in duration-500"> --}}
-                        <button type="submit" class="mx-auto px-16 flex items-center justify-center mb-6 border bg-blue-500 hover:border-blue-900 hover:bg-blue-800 text-white text-base py-3 rounded-full tracking-wide font-medium cursor-pointer transition ease-in duration-500">
+                        <button type="submit" class="mx-auto px-14 flex items-center justify-center mb-6 border bg-blue-500 hover:border-blue-900 hover:bg-blue-800 text-white text-base py-2.5 rounded-full tracking-wide font-medium cursor-pointer transition ease-in duration-500">
                         {{ __('Register') }}
                     </button>
                 </div>
