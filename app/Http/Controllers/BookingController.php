@@ -34,19 +34,69 @@ class BookingController extends Controller
             ->get();
         return view('bookings.myTripsBookings', compact('bookings'));
     }
+    public function transactions(Request $request){
+        $query = Booking::with(['trip.origincity', 'trip.destinationcity', 'passenger']);
+        if ($request->has('date_from') && $request->has('date_to')) {
+            if ($request->input('date_from') && $request->input('date_to')) {
+                $query->whereBetween('created_at', [$request->input('date_from'), $request->input('date_to')]);
+            }
+        }
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+        if ($request->has('min_amount') && is_numeric($request->input('min_amount'))) {
+            $query->where('total_price', '>=', $request->input('min_amount'));
+        }
+        if ($request->has('max_amount') && is_numeric($request->input('max_amount'))) {
+            $query->where('total_price', '<=', $request->input('max_amount'));
+        }
+        $transactions = $query->get();
+        return view('superadmin.transactions.index', compact('transactions'));
+    }
+    
+    public function myTransactions(Request $request){
+        $userId = auth()->id();
+        $dateFrom = $request->input('date_from');
+        $dateTo = $request->input('date_to');
+        $status = $request->input('status');
+        $minAmount = $request->input('min_amount');
+        $maxAmount = $request->input('max_amount');
+        $moneySent = Booking::where('passenger_id', $userId)
+                    ->with(['trip.origincity', 'trip.destinationcity', 'passenger'])
+                    ->when($dateFrom, fn($query) => $query->whereDate('created_at', '>=', $dateFrom))
+                    ->when($dateTo, fn($query) => $query->whereDate('created_at', '<=', $dateTo))
+                    ->when($status, fn($query) => $query->where('status', $status))
+                    ->when($minAmount, fn($query) => $query->where('total_price', '>=', $minAmount))
+                    ->when($maxAmount, fn($query) => $query->where('total_price', '<=', $maxAmount))
+                    ->get();
+
+        $moneyReceived = Booking::whereHas('trip', function ($query) use ($userId) {
+            $query->where('driver_id', $userId);
+        })
+                    ->with(['trip.origincity', 'trip.destinationcity', 'passenger'])
+                    ->when($dateFrom, fn($query) => $query->whereDate('created_at', '>=', $dateFrom))
+                    ->when($dateTo, fn($query) => $query->whereDate('created_at', '<=', $dateTo))
+                    ->when($status, fn($query) => $query->where('status', $status))
+                    ->when($minAmount, fn($query) => $query->where('total_price', '>=', $minAmount))
+                    ->when($maxAmount, fn($query) => $query->where('total_price', '<=', $maxAmount))
+                    ->get();
+
+        return view('bookings.mytransactions', compact('moneySent', 'moneyReceived'));
+}
+    
 
     public function reserve(Request $request){
         $trip = Trip::findOrFail($request->trip_id);
         $booking = Booking::create([
             'trip_id' => $request->trip_id,
-            'passenger_id' => auth()->id(), 
-            'seats_booked' => $request->seats_booked, 
-            'status' => 'reserved', 
-            'total_price' => $trip->price * $request->seats_booked, 
+            'passenger_id' => auth()->id(),
+            'seats_booked' => $request->seats_booked,
+            'status' => 'reserved',
+            'total_price' => $trip->price * $request->seats_booked,
         ]);
         return redirect()->route('bookings.show', ['id' => $booking->id])->with('bookings', $booking);
     }
-    
+
 
     public function show($id){
         $booking = Booking::with(['trip', 'passenger'])->find($id);
@@ -66,7 +116,8 @@ class BookingController extends Controller
 
         if (!auth()->user()->email_verified_at && !auth()->user()->google_id) {
             return redirect('/trips')->with([
-                'error' => 'Your email address is not verified. Please verify your email before booking a trip.',
+                'error' => 'Booking Failed',
+                'description' => 'Your email address is not verified. Please verify your email before booking a trip.',
             ]);
         }
 
@@ -81,17 +132,20 @@ class BookingController extends Controller
 
         if ($hasBooking) {
             return redirect('/trips')->with([
-                'error' => 'You already have a booking during this time.',
+                'error' => 'Booking Failed',
+                'description' => 'You already have a booking during this time.',
             ]);
         }
         $hasTrip = Trip::where('driver_id', request('passenger_id'))
             ->where('departure_time', '<', $tripi->arrival_time)
             ->where('arrival_time', '>', $tripi->departure_time)
+
             ->exists();
 
         if ($hasTrip) {
             return redirect('/trips')->with([
-                'error' => 'You are driving another trip during this time.',
+                'error' => 'Booking Failed',
+                'description' => 'You are driving another trip during this time.',
             ]);
         }
 
@@ -164,11 +218,17 @@ class BookingController extends Controller
         $booking = Booking::findOrFail($bookingId);
         $departureTime = $booking->trip->departure_time;
         if (now()->greaterThanOrEqualTo($departureTime)) {
-            return redirect()->back()->with('error', 'Refund failed: The trip has already departed.');
+            return redirect()->back()->with([
+                'error' => 'Refund Failed',
+                'description' => 'This trip has already departed.',
+            ]);
         }
         $paymentIntentId = $booking->stripe_charge_id;
         if (empty($paymentIntentId)) {
-            return redirect()->back()->with('error', 'Refund failed: No PaymentIntent ID found for this booking.');
+            return redirect()->back()->with([
+                'error' => 'Refund Failed',
+                'description' => 'No PaymentIntent ID found for this booking.'
+            ]);
         }
         $stripe = new StripeClient(config('services.stripe.secret'));
         try {
@@ -178,7 +238,10 @@ class BookingController extends Controller
             $booking->update(['status' => 'refunded']);
             return redirect('/bookings')->with('status', 'Booking canceled and refunded successfully.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Refund failed: ' . $e->getMessage());
+            return redirect()->back()->with([
+                'error' => 'Refund Failed',
+                'description' =>  $e->getMessage()
+            ]);
         }
     }
 

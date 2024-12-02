@@ -44,7 +44,8 @@ class RegisteredUserController extends Controller
             'phone' => ['nullable', 'string', 'regex:/^\+?[0-9\s-]*$/', 'max:20'],
             'birthday' => ['nullable', 'date', 'before:' . now()->subYears(16)->toDateString()],
             'city' => ['nullable', 'string', 'max:255'],
-            'g-recaptcha-response' => ['required', 'captcha'],
+            'gender' => ['required', 'in:male,female'],
+            // 'g-recaptcha-response' => ['required', 'captcha'],
         ], [
             'name.regex' => 'The first name should only contain letters and spaces.',
             'lastname.regex' => 'The last name should only contain letters and spaces.',
@@ -56,7 +57,11 @@ class RegisteredUserController extends Controller
         ]);
 
         // Store profile picture
-        $path = $request->file('image')->store('image', 'public');
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $path = $request->file('image')->store('profile', 'public');
+        } else {
+            return redirect()->back()->with('error', 'No valid file uploaded.');
+        }
 
         // Generate a random 6-character verification code
         $verificationCode = Str::random(6);
@@ -71,6 +76,7 @@ class RegisteredUserController extends Controller
             'phone' => $request->phone,
             'birthday' => $request->birthday,
             'city' => $request->city,
+            'gender' => $request->gender,
             'recaptcha_verified' => true,
             'email_verification_code' => $verificationCode,
         ];

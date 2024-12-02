@@ -22,10 +22,10 @@
     },
     "dependencies": {
         "@alpinejs/intersect": "^3.14.3",
+        "chart.js": "^4.4.6",
         "flatpickr": "^4.6.13",
         "font-awesome": "^4.7.0",
         "leaflet": "^1.9.4",
-        "sweetalert2": "^11.14.5",
         "swiper": "^11.1.14",
         "webcamjs": "^1.0.26"
     }

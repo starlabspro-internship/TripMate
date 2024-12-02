@@ -18,7 +18,7 @@ return new class extends Migration
             }
 
             // Add the new 'verification_status' column as an enum
-            $table->enum('verification_status', ['pending', 'verified', 'rejected'])->default('pending');
+            $table->enum('verification_status', ['pending', 'verified', 'rejected'])->nullable()->default(null);
             $table->string('id_document')->nullable();
         });
     }

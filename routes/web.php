@@ -28,6 +28,7 @@ Route::middleware('auth')->prefix('trips')->name('trips.')->controller(TripContr
 });
 
 Route::middleware('ifnotauth')->prefix('bookings')->name('bookings.')->controller(BookingController::class)->group(function () {
+    Route::get('/transactions','myTransactions')->name('transactions');
     Route::get('/myTrips', 'myTripsBookings')->name('myTrips');
     Route::post('/{booking}/refund', 'refund')->name('refund');
     Route::get('/', 'index')->name('index');
@@ -60,7 +61,7 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
     Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
+    Route::post('/', [ProfileController::class, 'uploadBackground'])->name('profile.background');
 
  Route::post('/upload-id-document', [ProfileController::class, 'uploadDocument'])->name('profile.upload-id-document');
 Route::get('/verify-profile', [ProfileController::class, 'showVerifyPage'])->name('profile.verify-user');
@@ -80,6 +81,9 @@ Route::prefix('superadmin')->middleware('superadmin')->name('superadmin.')->grou
     Route::delete('/trips/{trip}', [SuperAdminController::class, 'tripDelete'])->name('trip.delete');
     Route::delete('/bookings/{booking}', [SuperAdminController::class, 'bookingDelete'])->name('booking.delete');
     Route::delete('/users/{user}', [SuperAdminController::class, 'superDelete'])->name('users.destroy');
+    Route::get('/bg-check', [SuperAdminController::class, 'indexBg'])->name('bg-check');
+    Route::post('/bg-check/{user}/verify', [SuperAdminController::class, 'bgVerify'])->name('bgverify');
+    Route::post('/bg-check/{user}/flag', [SuperAdminController::class, 'bgFlagged'])->name('bgflagged');
 });
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
@@ -108,7 +112,11 @@ Route::middleware(['superadmin'])->prefix('superadmin')->group(function () {
     Route::get('/users', [UserVerifyController::class, 'indexPending'])->name('superadmin.users.index-users');
     Route::post('/users/{user}/verify', [UserVerifyController::class, 'verify'])->name('superadmin.users.verify');
     Route::post('/users/{user}/reject', [UserVerifyController::class, 'reject'])->name('superadmin.users.reject');
+    Route::get('/transactions', [BookingController::class, 'transactions'])->name('superadmin.transactions');
 });
+Route::get('profile/upload-file', function () {
+    return view('profile.upload-file');
+})->name('profile.upload-file')->middleware('auth');
 
 
 

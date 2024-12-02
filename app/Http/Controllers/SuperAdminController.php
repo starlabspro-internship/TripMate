@@ -61,7 +61,7 @@ class SuperAdminController extends Controller
 
         $user->save();
 
-        return Redirect::route('superadmin.index')->with('status', 'profile-updated');
+        return Redirect::route('superadmin.index')->with('success', 'Profile updated');
     }
 
     public function superDelete(User $user){
@@ -97,13 +97,14 @@ class SuperAdminController extends Controller
 
         $trip->save();
 
-        return response()->json(['success' => true, 'redirect' => route('superadmin.index', ['tab' => 'trips']) ]);
+        return redirect()->route('superadmin.index', ['tab' => 'trips'])->with('success', 'Trip updated');
 
     }
     public function tripDelete(Trip $trip){
         $trip->delete();
         return redirect()->route('superadmin.index', ['tab' => 'trips'])->with([
             'success' => 'Trip successfully deleted.',
+            'description' => 'You deleted the trip.',
         ]);
     }
     public function bookingDelete(Booking $booking){
@@ -117,9 +118,47 @@ class SuperAdminController extends Controller
     {
         $totalBookings = Booking::count();
         $totalUsers = User::count();
-        $totalTrips = Trip::count();
-        return view('dashboard', compact('totalTrips', 'totalUsers', 'totalBookings'));
+        $totalTrips = Trip::count();        
+        $query = Booking::with(['trip.origincity', 'trip.destinationcity', 'passenger']);     
+        $transactions = $query->get();
+        return view('dashboard', compact('totalTrips', 'totalUsers', 'totalBookings','transactions'));
     }
+
+    public function indexBg()
+    {
+        $users = User::all();
+
+        return view('superadmin.bg-check', compact('users'));
+    }
+
+    public function bgVerify(User $user)
+    {
+        if (!$user->background_document) {
+            return redirect()->route('superadmin.bg-check')
+                ->with([
+                    'error' => 'Verification Failed',
+                    'description' => 'User cannot be verified as no document has been uploaded.'
+                ]);
+        }
+        $user->update(['background_status' => 'verified']);
+        return redirect()->route('superadmin.bg-check')
+            ->with('success', 'User verified successfully');
+    }
+
+    public function bgFlagged(User $user)
+    {
+        if (!$user->background_document) {
+            return redirect()->route('superadmin.bg-check')
+                ->with([
+                    'error' => 'Verification Failed',
+                    'description' => 'User cannot be flagged as no document has been uploaded.'
+                ]);
+        }
+        $user->update(['background_status' => 'flagged']);
+        return redirect()->route('superadmin.bg-check')
+            ->with('success', 'User has been flagged');
+    }
+
 
 }
 

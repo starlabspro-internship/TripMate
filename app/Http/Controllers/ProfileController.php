@@ -65,13 +65,13 @@ class ProfileController extends Controller
                 Storage::disk('public')->delete($user->image);
             }
 
-        $path = $request->file('image')->store('images', 'public');
+        $path = $request->file('image')->store('profile', 'public');
         $user->image = $path;
     }
 
         $user->save();
 
-        return Redirect::route('profile.index')->with('status', 'profile-updated');
+        return Redirect::route('profile.index')->with('success', 'Profile updated');
 }
 
     /**
@@ -133,13 +133,32 @@ class ProfileController extends Controller
     file_put_contents($filePath . '/' . $fileName, $imageData);
 
 
-    auth()->user()->update(['id_document' => 'uploads/id_documents/' . $fileName]);
+    auth()->user()->update(['id_document' => 'uploads/id_documents/' . $fileName,
+    'verification_status' => 'pending',]);
 
-    return response()->json(['message' => 'Document uploaded successfully']);
+    return response()->json([
+        'message' => 'Document uploaded successfully',
+        'success' => true,
+        'redirect_url' => route('profile.index'),
+    ]);
 
-
+    
 }
-
+    public function uploadBackground(Request $request)
+    {
+        $request->validate([
+            'background_document' => 'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
+        ]);
+        $user = Auth::user();
+        if ($request->hasFile('background_document')) {
+            if ($user->background_document) {
+                Storage::disk('public')->delete($user->background_document);
+            }
+            $filepath = $request->file('background_document')->store('bg_doc', 'public');
+            $user->update(['background_document' => $filepath, 'background_status' => 'pending' ]);
+        }
+        return Redirect::route('profile.index')->with('success', 'File Uploaded');
+    }
 }
 
 

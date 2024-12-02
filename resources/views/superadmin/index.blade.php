@@ -1,16 +1,5 @@
 <x-app-layout>
     <div x-data="userSearch()" class="max-w-[1024px] mx-auto mt-28">
-
-        @if (session('error'))
-            <div class="bg-red-100 text-red-700 border border-red-200 p-4 rounded mb-6">
-                {{ session('error') }}
-            </div>
-        @endif
-        @if(session('success'))
-            <div class="bg-green-100 text-green-700 border border-green-200 p-4 rounded mb-6">
-                {{ session('success') }}
-            </div>
-        @endif
         <div class="w-full flex flex-col sm:flex-row justify-between items-center mb-3 mt-12 pl-3">
             <div class="flex gap-14 sm:mb-4 ">
                 <button @click="currentTab = 'users'" :class="currentTab === 'users' ? 'underline' : ''" class="text-md sm:text-xl font-bold text-black">
@@ -198,13 +187,15 @@
                     search: '',
                     currentTab: new URLSearchParams(window.location.search).get('tab') || 'users',
                     users: @json($users),
+                    authUser: @json(auth()->id()) ,
                     bookings: @json($bookings),
                     trips: @json($trips),
                     filteredUsers() {
                         if (this.search === '') {
-                            return this.users;
+                            return this.users.filter(user => user.id !== this.authUser);
                         }
                         return this.users.filter(user =>
+                            user.id !== this.authUser &&(
                             (user.name && user.name.toLowerCase().includes(this.search.toLowerCase())) ||
                             (user.lastname && user.lastname.toLowerCase().includes(this.search.toLowerCase())) ||
                             (user.phone && user.phone.includes(this.search)) ||
@@ -212,6 +203,7 @@
                             (user.email && user.email.toLowerCase().includes(this.search.toLowerCase())) ||
                             (user.created_at && user.created_at.includes(this.search)) ||
                             (user.role && user.role.toLowerCase().includes(this.search.toLowerCase()))
+                                )
                         );
                     },
                     filteredBookings() {

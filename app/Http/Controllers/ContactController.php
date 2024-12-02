@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail; 
+use Illuminate\Support\Facades\Mail;
 use App\Mail\InquiryMail;
 
 class ContactController extends Controller
@@ -24,12 +24,15 @@ class ContactController extends Controller
         'email' => 'required|email',
         'subject' => 'required|string|max:255',
         'message' => 'required|string|not_regex:/http[s]?:\/\/[^\s]+/i|max:5000',
+        'g-recaptcha-response' => 'required|captcha',
     ], [
         'name.required' => 'The name field is required.',
         'email.required' => 'The email field is required.',
         'email.email' => 'Please provide a valid email address.',
         'subject.required' => 'The subject field is required.',
         'message.required' => 'The message field is required.',
+        'g-recaptcha-response.required' => 'Please complete the reCAPTCHA.',
+        'g-recaptcha-response.captcha' => 'reCAPTCHA verification failed. Please try again.',
     ]);
 
     $contact = Contact::create([
@@ -37,10 +40,12 @@ class ContactController extends Controller
         'email' => $request->input('email'),
         'subject' => $request->input('subject'),
         'message' => $request->input('message'),
+        'recaptcha_verified' => 'verified',
     ]);
+   
 
     Mail::to($contact->email)->send(new InquiryMail($contact));
-    return back()->with('status', 'Your message has been sent successfully!');
+    return back()->with('success', 'Your message has been sent successfully!');
 }
 
 }

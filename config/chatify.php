@@ -59,7 +59,7 @@ return [
     |-------------------------------------
     */
     'user_avatar' => [
-        'folder' => 'storage/images',
+        'folder' => 'storage/profile',
         'default' => 'avatar.png',
     ],
 

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="min-h-screen flex items-center justify-center bg-gray-50 pt-20 sm:pt-12 md:pt-12">
+    <div class=" flex items-center justify-center mt-28">
         <div class="max-w-7xl w-full p-6 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-lg shadow-lg mx-4 sm:mx-8 md:mx-12">
             <div class="flex items-center justify-center space-x-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,7 +54,7 @@
                 </div>
             @endif
             <div class="mt-6 text-center">
-                <a href="{{ route('bookings.show', $booking->id ) }}" class="text-blue-500 hover:text-blue-700">go to your booking</a>
+                <a href="{{ route('bookings.show', $booking->id ) }}" class="text-blue-500 hover:text-blue-700">Go to your Booking</a>
             </div>
         </div>
     </div>

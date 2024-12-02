@@ -18,79 +18,104 @@ use Stripe\StripeClient;
 class TripController extends Controller
 {
     public function index(Request $request)
-{
-    $cities = City::all();
-    $trips = Trip::with('bookings');
+    {
+        $cities = City::all();
+        $trips = Trip::with('bookings');
 
-    $trips->where('departure_time', '>=', now());
+        $trips->where('departure_time', '>=', now());
 
-    if ($request->filled('date')) {
-        $date = $request->input('date');
-        $trips->whereDate('departure_time', $date);
-    }
-
-    if ($request->filled('origin_city_id')) {
-        $originCityId = $request->input('origin_city_id');
-        $trips->where('origin_city_id', $originCityId);
-    }
-
-    if ($request->filled('destination_city_id')) {
-        $destinationCityId = $request->input('destination_city_id');
-        $trips->where('destination_city_id', $destinationCityId);
-    }
-    $trips = $trips->orderBy('created_at', 'desc')->get();
-
-    foreach ($trips as $trip) {
-        $available_seats = $trip->available_seats;
-        foreach ($trip->bookings as $booking) {
-            $available_seats -= $booking->seats_booked;
+        if ($request->filled('date')) {
+            $date = $request->input('date');
+            $trips->whereDate('departure_time', $date);
         }
-        $trip->available_seats = $available_seats;
-    }
 
-    return view('trips.index', compact('cities', 'trips'));
-}
+        if ($request->filled('origin_city_id')) {
+            $originCityId = $request->input('origin_city_id');
+            $trips->where('origin_city_id', $originCityId);
+        }
+
+        if ($request->filled('destination_city_id')) {
+            $destinationCityId = $request->input('destination_city_id');
+            $trips->where('destination_city_id', $destinationCityId);
+        }
+
+        $userGender = auth()->user()->gender;
+
+        if ($userGender == 'male') {
+            $trips->where('passenger_gender_preference', '!=', 'female');
+        } elseif ($userGender == 'female') {
+            
+        }
+
+        $trips = $trips->orderBy('created_at', 'desc')->get();
+
+        foreach ($trips as $trip) {
+            $available_seats = $trip->available_seats;
+            foreach ($trip->bookings as $booking) {
+                $available_seats -= $booking->seats_booked;
+            }
+            $trip->available_seats = $available_seats;
+        }
+
+        return view('trips.index', compact('cities', 'trips'));
+    }
 
     public function create(){
         $cities = City::all();
         $drivers = User::all();
         return view('trips.create', compact('cities', 'drivers'));
     }
-    public function store(Request $request){
-
-
+    public function store(Request $request)
+    {
         if (!auth()->user()->email_verified_at && !auth()->user()->google_id) {
             return redirect('/trips')->with([
-                'error' => 'Your email address is not verified. Please verify your email before creating a trip.',
+                'error' => 'Trip can`t be created',
+                'description' => 'Your email address is not verified. Please verify your email before booking a trip.',
             ]);
         }
 
-        $hasTrip = Trip::where('driver_id', request('driver_id'))
-            ->where(function ($query) use ($request) {
-                $query->where('departure_time', '<', $request->arrival_time)
-                            ->where('arrival_time', '>', $request->departure_time);
+        $driverId = $request->driver_id;
+        $departureTime = Carbon::createFromFormat('d-m-Y H:i', $request->departure_time)->format('Y-m-d H:i:s');
+        $arrivalTime = Carbon::createFromFormat('d-m-Y H:i', $request->arrival_time)->format('Y-m-d H:i:s');
+
+        \Log::debug('Koha e konvertune per trips.', [
+            'driver_id' => $driverId,
+            'departure_time' => $departureTime,
+            'arrival_time' => $arrivalTime
+        ]);
+
+        $hasTrip = Trip::where('driver_id', $driverId)
+            ->where('arrival_time', '>', now())
+            ->where(function ($query) use ($departureTime, $arrivalTime) {
+                $query->where('departure_time', '<', $arrivalTime)
+                    ->where('arrival_time', '>', $departureTime);
             })->exists();
 
         if ($hasTrip) {
+            \Log::debug('Detekto overlap trip.', [
+                'driver_id' => $driverId,
+                'departure_time' => $departureTime,
+                'arrival_time' => $arrivalTime
+            ]);
+
             return redirect('/trips')->with([
-                'error' => 'You are driving another trip during this time.',
+                'error' => 'Trip can`t be created',
+                'description' => 'You are driving another trip during this time.',
             ]);
         }
-
         $hasBooking = Booking::where('passenger_id', $request->driver_id)
-            ->whereHas('trip', function ($query) use ($request) {
-                $query->where('departure_time', '<', $request->arrival_time)
-                    ->where('arrival_time', '>', $request->departure_time);
+            ->whereHas('trip', function ($query) use ($departureTime, $arrivalTime) {
+                $query->where('departure_time', '<', $arrivalTime)
+                    ->where('arrival_time', '>', $departureTime);
             })->exists();
-
         if ($hasBooking) {
             return redirect('/trips')->with([
-                'error' => 'You already have a booking during this time.',
+                'error' => 'Trip can`t be created',
+                'description' => 'You already have a booking during this time.',
             ]);
         }
 
-
-        $request->validate([
+        $validatedData = $request->validate([
             'driver_id' => 'required|exists:users,id',
             'origin_city_id' => 'required|exists:cities,id',
             'destination_city_id' => 'required|exists:cities,id|different:origin_city_id',
@@ -98,11 +123,13 @@ class TripController extends Controller
             'arrival_time' => 'required|date|after:departure_time',
             'available_seats' => 'required|integer|min:1|max:7',
             'price' => 'required|numeric|min:0|max:50',
-            'driver_comments'=> 'nullable|string',
+            'driver_comments' => 'nullable|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
+            'passenger_gender_preference' => 'nullable|in:female,all',
         ]);
-        Trip::create($request->all());
+
+        Trip::create($validatedData);
 
         return redirect('/trips')->with('success', 'Trip created successfully');
     }
@@ -112,10 +139,20 @@ class TripController extends Controller
             return redirect()->route('trips.index')->with('error', 'Trip not found');
         }
         if (auth()->id() !== $trip->driver_id) {
-            return redirect()->route('trips.index')->with('error', 'You do not have permission to edit this trip.');
+            return redirect()->route('trips.index')->with([
+                'error' => 'Trip cannot be edited.',
+                'description' => 'You do not have permission to edit this trip.',
+            ]);
         }
         $cities = City::all();
         $drivers = User::all();
+
+        if (now()->greaterThanOrEqualTo($trip->departure_time)) {
+            return redirect()->route('trips.index')->with([
+                'error' => 'Trip cannot be edited.',
+                'description' => 'This trip has already departed.',
+            ]);
+        }
 
         return view('trips.edit', compact('trip', 'cities', 'drivers'));
     }
@@ -128,7 +165,10 @@ class TripController extends Controller
             return redirect()->route('trips.index')->with('error', 'Trip not found');
         }
         if (auth()->id() === $trip->driver_id) {
-            return redirect()->route('trips.index')->with('error', 'You cannot book your own trip.');
+            return redirect()->route('trips.index')->with([
+                'error' => 'Booking failed.',
+                'description' => 'You cannot book your own trip.',
+            ]);
         }
         $available_seats = $trip->available_seats;
         foreach($trip->bookings as $booking) {
@@ -150,17 +190,21 @@ class TripController extends Controller
             'driver_comments'=> 'nullable|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
+            'passenger_gender_preference' => 'nullable|in:female,all',
 
         ]);
         $trip->update($request->except('driver_id'));
-        return response()->json(['success' => true, 'redirect' => route('trips.index')]);
+        return redirect('/trips')->with('success', 'Trip updated successfully');
     }
 
 
     public function destroy($id){
         $trip = Trip::findOrFail($id);
         if (auth()->id() !== $trip->driver_id) {
-            return redirect()->route('trips.index')->with('error', 'You do not have permission to delete this trip.');
+            return redirect()->route('trips.index')->with([
+                'error' => 'Trip cannot be deleted.',
+                'description' => 'You do not have permission to delete this trip.',
+            ]);
         }
         $bookings = Booking::where('trip_id', $trip->id)->where('status', 'paid')->get();
 
@@ -168,7 +212,10 @@ class TripController extends Controller
             $stripe = new StripeClient(config('services.stripe.secret'));
             foreach ($bookings as $booking) {
                 if (now()->greaterThanOrEqualTo($trip->departure_time)) {
-                    return redirect()->route('trips.index')->with('error', 'Trip cannot be deleted because it has already departed.');
+                    return redirect()->route('trips.index')->with([
+                        'error' => 'Trip cannot be deleted.',
+                        'description' => 'This trip has already departed.',
+                    ]);
                 }
                 try {
                     $refund = $stripe->refunds->create([
@@ -176,12 +223,18 @@ class TripController extends Controller
                     ]);
                     $booking->update(['status' => 'refunded']);
                 } catch (\Exception $e) {
-                    return redirect()->back()->with('error', 'Refund failed for a booking: ' . $e->getMessage());
+                    return redirect()->back()->with([
+                        'error' => 'Refund failed',
+                        'description' => 'Refund failed for a booking: ' . $e->getMessage(),
+                    ]);
                 }
             }
         }
         $trip->delete();
-        return redirect('/trips')->with('success', 'Trip deleted successfully and all bookings have been refunded.');
+        return redirect('/trips')->with([
+            'success' => 'Trip deleted successfully.',
+            'description' => 'All bookings have been refunded.',
+        ]);
     }
 
     public function history()
