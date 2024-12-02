@@ -169,54 +169,40 @@
                 certificatePurpose: /përdoret për:\s*([A-Za-zÀ-ÖØ-öø-ÿ]+)(?=\s)/i,
             };
 
-            // Log the OCR text for debugging
-            console.log("OCR Text:", ocrText);
-
-            // Extract fields using regex patterns
             const extracted = {
                 firstName: (function() {
                     const result = ocrText.match(patterns.firstName);
-                    console.log("Name Match:", result);
                     return result ? result[1] : "Not found";
                 })(),
                 lastname: (function() {
                     const result = ocrText.match(patterns.lastname);
-                    console.log("Lastname Match:", result);
                     return result ? result[1] : "Not found";
                 })(),
                 personalNumber: (function() {
                     const result = ocrText.match(patterns.personalNumber);
-                    console.log("Personal Number Match:", result);
                     return result ? result[1] : "Not found";
                 })(),
                 dateOfBirth: (function() {
                     const result = ocrText.match(patterns.dateOfBirth);
-                    console.log("Date of Birth Match:", result);
                     return result ? result[1] : "Not found";
                 })(),
                 gender: (function() {
                     const result = ocrText.match(patterns.gender);
-                    console.log("Gender Match:", result);
                     return result ? result[1] : "Not found";
                 })(),
                 certificate: (function() {
                     const result = ocrText.match(patterns.certificate);
-                    console.log("Certificate Match:", result);
                     return result ? result : "Not found";
                 })(),
                 convicted: (function() {
                     const result = ocrText.match(patterns.convicted);
-                    console.log("Convicted Match:", result);
                     return result ? result : "Not found";
                 })(),
                 certificatePurpose: (function() {
                     const result = ocrText.match(patterns.certificatePurpose);
-                    console.log("Certificate Purpose Match:", result);
                     return result ? result[1] : "Not found";
                 })(),
             };
-
-            // Return the extracted data
             return extracted;
         }
 
