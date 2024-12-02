@@ -144,7 +144,21 @@ class ProfileController extends Controller
 
     
 }
-
+    public function uploadBackground(Request $request)
+    {
+        $request->validate([
+            'background_document' => 'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
+        ]);
+        $user = Auth::user();
+        if ($request->hasFile('background_document')) {
+            if ($user->background_document) {
+                Storage::disk('public')->delete($user->background_document);
+            }
+            $filepath = $request->file('background_document')->store('bg_doc', 'public');
+            $user->update(['background_document' => $filepath, 'background_status' => 'pending' ]);
+        }
+        return Redirect::route('profile.index')->with('success', 'File Uploaded');
+    }
 }
 
 
