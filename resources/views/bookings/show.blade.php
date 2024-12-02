@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="bg-image bg-no-repeat bg-cover bg-center min-h-screen p-[15px]"> 
+    <div class="bg-showImage bg-no-repeat bg-cover bg-center min-h-screen p-[15px]"> 
         <div class="mt-1 p-1 md:mx-[80px]">
                         <a href="/trips">
                             <img
