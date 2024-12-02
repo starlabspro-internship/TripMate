@@ -57,16 +57,16 @@
                     <x-input-error :messages="['Your login credentials are incorrect. Please try again.']" class="mt-4"/>
                 @endif
                    <!-- Main Login Button -->
-                        <button type="submit" class="mx-auto px-16 flex items-center justify-center mb-6 border  bg-blue-500 hover:border-blue-900 hover:bg-blue-800 text-white text-base py-3 rounded-full tracking-wide font-medium cursor-pointer transition ease-in duration-500">
+                        <button type="submit" class="mx-auto px-14 flex items-center justify-center border  bg-blue-500 hover:border-blue-900 hover:bg-blue-800 text-white text-base py-2.5 rounded-full tracking-wide font-medium cursor-pointer transition ease-in duration-500">
                         {{ __('Log in') }}
                     </button>
-                    <div class="flex items-center justify-center space-x-2 my-5">
+                    <div class="flex items-center justify-center space-x-1 my-2">
                         <span class="h-px w-16 bg-gray-100"></span>
                         <span class="text-gray-300 font-normal">or</span>
                         <span class="h-px w-16 bg-gray-100"></span>
                     </div>
                     <!-- Google Login Button -->
-                                <a href="{{ route('login.google') }}" class="mx-auto p-0.5 bg-white border border-transparent rounded-full mt-1 hover:border-blue-300 shadow transition duration-300 hover:shadow-lg w-40 flex items-center justify-center mb-1 md:mb-0 text-center text-xs">
+                                <a href="{{ route('login.google') }}" class="mx-auto  bg-white border border-transparent rounded-full mt-1 hover:border-blue-300 shadow transition duration-300 hover:shadow-lg w-40 flex items-center justify-center mb-1 md:mb-0 text-center text-xs">
                             <svg xmlns="http://www.w3.org/2000/svg" width="179" height="46" viewBox="0 0 179 46" fill="none">                      
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M32.64 22.2045C32.64 21.5664 32.5827 20.9527 32.4764 20.3636H24V23.845H28.8436C28.635 24.97 28.0009 25.9232 27.0477 26.5614V28.8195H29.9564C31.6582 27.2527 32.64 24.9454 32.64 22.2045Z" fill="#4285F4"/>
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M24 31C26.43 31 28.4673 30.1941 29.9564 28.8195L27.0477 26.5614C26.2418 27.1014 25.2109 27.4205 24 27.4205C21.6559 27.4205 19.6718 25.8373 18.9641 23.71H15.9573V26.0418C17.4382 28.9832 20.4818 31 24 31Z" fill="#34A853"/>

@@ -28,6 +28,7 @@ Route::middleware('auth')->prefix('trips')->name('trips.')->controller(TripContr
 });
 
 Route::middleware('ifnotauth')->prefix('bookings')->name('bookings.')->controller(BookingController::class)->group(function () {
+    Route::get('/transactions','myTransactions')->name('transactions');
     Route::get('/myTrips', 'myTripsBookings')->name('myTrips');
     Route::post('/{booking}/refund', 'refund')->name('refund');
     Route::get('/', 'index')->name('index');
@@ -108,6 +109,7 @@ Route::middleware(['superadmin'])->prefix('superadmin')->group(function () {
     Route::get('/users', [UserVerifyController::class, 'indexPending'])->name('superadmin.users.index-users');
     Route::post('/users/{user}/verify', [UserVerifyController::class, 'verify'])->name('superadmin.users.verify');
     Route::post('/users/{user}/reject', [UserVerifyController::class, 'reject'])->name('superadmin.users.reject');
+    Route::get('/transactions', [BookingController::class, 'transactions'])->name('superadmin.transactions');
 });
 
 

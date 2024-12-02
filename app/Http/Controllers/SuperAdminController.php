@@ -118,8 +118,10 @@ class SuperAdminController extends Controller
     {
         $totalBookings = Booking::count();
         $totalUsers = User::count();
-        $totalTrips = Trip::count();
-        return view('dashboard', compact('totalTrips', 'totalUsers', 'totalBookings'));
+        $totalTrips = Trip::count();        
+        $query = Booking::with(['trip.origincity', 'trip.destinationcity', 'passenger']);     
+        $transactions = $query->get();
+        return view('dashboard', compact('totalTrips', 'totalUsers', 'totalBookings','transactions'));
     }
 
 }

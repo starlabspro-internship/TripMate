@@ -135,6 +135,12 @@
                     </div>
                 </div>
                 @if (auth()->user()->verification_status==='pending')
+                <div class="w-full sm:w-1/4 border border-yellow-700 rounded-md p-3 my-3 mx-auto text-center shadow-sm hover:shadow-md transition-transform transform hover:scale-105">
+                    <p class="text-yellow-800 font-medium text-md">Your verification is still pending.</p>
+                    <p class="text-yellow-700 text-xs ">Please wait until your account is verified.</p>
+                </div>
+                @endif
+                @if (auth()->user()->verification_status=== null)
                     <a href="{{ route('profile.verify-user') }}"
                        class="w-full sm:w-1/3 bg-gray/20 backdrop-blur-md border border-[#A2D5F2] rounded-md p-2 my-1 mx-1 flex items-center justify-between shadow-sm hover:shadow-lg cursor-pointer hover:scale-105 transition duration-300 hover:border-sky-500">
                         <div>

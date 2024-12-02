@@ -34,6 +34,56 @@ class BookingController extends Controller
             ->get();
         return view('bookings.myTripsBookings', compact('bookings'));
     }
+    public function transactions(Request $request){
+        $query = Booking::with(['trip.origincity', 'trip.destinationcity', 'passenger']);
+        if ($request->has('date_from') && $request->has('date_to')) {
+            if ($request->input('date_from') && $request->input('date_to')) {
+                $query->whereBetween('created_at', [$request->input('date_from'), $request->input('date_to')]);
+            }
+        }
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+        if ($request->has('min_amount') && is_numeric($request->input('min_amount'))) {
+            $query->where('total_price', '>=', $request->input('min_amount'));
+        }
+        if ($request->has('max_amount') && is_numeric($request->input('max_amount'))) {
+            $query->where('total_price', '<=', $request->input('max_amount'));
+        }
+        $transactions = $query->get();
+        return view('superadmin.transactions.index', compact('transactions'));
+    }
+    
+    public function myTransactions(Request $request){
+        $userId = auth()->id();
+        $dateFrom = $request->input('date_from');
+        $dateTo = $request->input('date_to');
+        $status = $request->input('status');
+        $minAmount = $request->input('min_amount');
+        $maxAmount = $request->input('max_amount');
+        $moneySent = Booking::where('passenger_id', $userId)
+                    ->with(['trip.origincity', 'trip.destinationcity', 'passenger'])
+                    ->when($dateFrom, fn($query) => $query->whereDate('created_at', '>=', $dateFrom))
+                    ->when($dateTo, fn($query) => $query->whereDate('created_at', '<=', $dateTo))
+                    ->when($status, fn($query) => $query->where('status', $status))
+                    ->when($minAmount, fn($query) => $query->where('total_price', '>=', $minAmount))
+                    ->when($maxAmount, fn($query) => $query->where('total_price', '<=', $maxAmount))
+                    ->get();
+
+        $moneyReceived = Booking::whereHas('trip', function ($query) use ($userId) {
+            $query->where('driver_id', $userId);
+        })
+                    ->with(['trip.origincity', 'trip.destinationcity', 'passenger'])
+                    ->when($dateFrom, fn($query) => $query->whereDate('created_at', '>=', $dateFrom))
+                    ->when($dateTo, fn($query) => $query->whereDate('created_at', '<=', $dateTo))
+                    ->when($status, fn($query) => $query->where('status', $status))
+                    ->when($minAmount, fn($query) => $query->where('total_price', '>=', $minAmount))
+                    ->when($maxAmount, fn($query) => $query->where('total_price', '<=', $maxAmount))
+                    ->get();
+
+        return view('bookings.mytransactions', compact('moneySent', 'moneyReceived'));
+}
+    
 
     public function reserve(Request $request){
         $trip = Trip::findOrFail($request->trip_id);
