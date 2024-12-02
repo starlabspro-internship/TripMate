@@ -133,11 +133,16 @@ class ProfileController extends Controller
     file_put_contents($filePath . '/' . $fileName, $imageData);
 
 
-    auth()->user()->update(['id_document' => 'uploads/id_documents/' . $fileName]);
+    auth()->user()->update(['id_document' => 'uploads/id_documents/' . $fileName,
+    'verification_status' => 'pending',]);
 
-    return response()->json(['message' => 'Document uploaded successfully']);
+    return response()->json([
+        'message' => 'Document uploaded successfully',
+        'success' => true,
+        'redirect_url' => route('profile.index'),
+    ]);
 
-
+    
 }
 
 }

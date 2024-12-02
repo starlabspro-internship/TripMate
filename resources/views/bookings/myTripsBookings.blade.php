@@ -108,7 +108,7 @@
                         </svg><span>Booking Date:</span> {{ $booking->created_at->format('d/m/Y') }}</p>
                         @if ($booking->status == 'paid' && now()->lessThan($booking->trip->departure_time))
                         <form action="{{ route('bookings.refund', $booking->id) }}" method="POST"
-                              onsubmit="return confirm('Are you sure you want to cancel and refund this booking?');">
+                            onsubmit="return confirmSubmission()">
                             @csrf
                             <button type="submit"
                                 class="mt-4 w-auto bg-red-500 text-white py-1 px-3 rounded-full text-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
@@ -129,6 +129,9 @@
     </div>
 </div>
 <script >
+                function confirmSubmission(event) {
+                return confirm('Are you sure you want to cancel and refund this booking?');
+        }
     function filterBookings(status) {
         const bookings = document.querySelectorAll('#bookings-container .bg-white');
             bookings.forEach(booking => {

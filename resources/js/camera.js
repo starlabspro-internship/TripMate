@@ -76,6 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     .then((data) => {
                         alert(data.message || "Your document has been uploaded successfully.");
                         if (data.success) {
+                            if (data.redirect_url) {
+                                window.location.href = data.redirect_url;
+                            }
                             Webcam.reset();
                             if (capturedImage) {
                                 capturedImage.src = "";
@@ -95,9 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             }
                         }
                     })
-                    .catch(() => {
-                        alert("An error occurred. Please try again.");
-                    });
             });
         }
     })();

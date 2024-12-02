@@ -23,6 +23,6 @@ class SuperAdminMiddleware
             return $next($request);
         }
     
-        return redirect('profile');
+        return redirect('trips');
     }
 }

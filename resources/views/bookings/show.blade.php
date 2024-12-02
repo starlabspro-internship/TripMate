@@ -69,25 +69,30 @@
                 class="w-full rounded-md my-2 bg-white py-2 px-4 border border-transparent text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-green-300 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                 Chat
             </a>
-                <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" class="flex items-center">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit"
-                            class="rounded-md bg-red-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-red-400 active:shadow-none disabled:pointer-events-none disabled:opacity-50 md:w-40">
-                        Delete Booking
-                    </button>
-                </form>
+            <form action="{{ route('bookings.refund', $booking->id) }}" method="POST"
+                onsubmit="return confirmSubmission()">
+              @csrf
+              <button type="submit"
+                  {{-- class="mt-4 w-auto bg-red-500 text-white py-1 px-3 rounded-full text-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"> --}}
+                  class="w-full  rounded-md my-2 bg-red-500 hover:bg-red-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700  active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
+                  Cancel & Refund
+              </button>
+          </form>
         </div>
     </div>
     <script>
+                        function confirmSubmission(event) {
+                return confirm('Are you sure you want to cancel and refund this booking?');
+        }
         document.addEventListener('DOMContentLoaded', function() {
             var latitude = {{ $trip->latitude }};
             var longitude = {{ $trip->longitude }};
 
             var map = L.map('map').setView([latitude, longitude], 13);
 
-            L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
+                minZoom: 8,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
 

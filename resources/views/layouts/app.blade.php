@@ -10,6 +10,12 @@
         <!-- Scripts -->
         <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+        <!-- jQuery UI and jQuery Libraries (CDN) -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
+        
         @vite('resources/js/app.js')
     </head>
     <body class="min-h-screen bg-[#f5f5f5] dark:bg-[#0F172A] font-planer antialiased w-full md:absolute md:w-navbar">

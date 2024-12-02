@@ -13,3 +13,9 @@ import "flatpickr/dist/flatpickr.min.css";
         minDate: "today",
 
     });
+    flatpickr("#filter_date", {
+        dateFormat: "Y-m-d",
+        time_24hr: true,
+        maxDate: "today",
+
+    });
