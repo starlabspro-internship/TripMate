@@ -108,62 +108,54 @@
                 </div>
 
                 <!-- Transactions Section -->
+                
                 <div class="w-full md:w-1/3 lg:w-2/5 bg-white rounded-md shadow-sm p-4">
+                <a href="{{ route('superadmin.transactions') }}">
                     <h3 class="text-2xl font-semibold text-gray-800 mb-4">Recent Transactions</h3>
+                </a>
                     <div class="overflow-y-auto max-h-[380px]">
                         <table class="w-full border border-gray-200 rounded-md shadow-md overflow-hidden">
                             <thead>
-                            <tr class=" rounded-sm bg-gray-100 dark:bg-meta-4 ">
-                                <th class="border-b border-gray-300 px-4 py-3 text-left">Transaction</th>
-                                <th class="border-b border-gray-300 px-4 py-3 text-right">Amount</th>
-                                <th class="border-b border-gray-300 px-4 py-3 text-center">Date</th>
-                            </tr>
+                                <tr class="rounded-sm bg-gray-100 dark:bg-meta-4">
+                                    <th class="border-b border-gray-300 px-4 py-3 text-left">Transaction</th>
+                                    <th class="border-b border-gray-300 px-4 py-3 text-center">Amount</th>
+                                    <th class="border-b border-gray-300 px-4 py-3 text-center">Date</th>
+                                </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
-                            <!-- Example Rows (Replace with Dynamic Data) -->
-                            <tr class="hover:bg-gray-100">
-                                <td class="px-4 py-3 text-gray-700">Spotify</td>
-                                <td class="px-4 py-3 text-right text-green-600 font-medium">$2,500</td>
-                                <td class="px-4 py-3 text-center text-gray-500">Wed 3:00pm</td>
-                            </tr>
-                            <tr class="hover:bg-gray-100">
-                                <td class="px-4 py-3 text-gray-700">Invision</td>
-                                <td class="px-4 py-3 text-right text-green-600 font-medium">$5,000</td>
-                                <td class="px-4 py-3 text-center text-gray-500">Wed 1:00pm</td>
-                            </tr>
-                            <tr class="hover:bg-gray-100">
-                                <td class="px-4 py-3 text-gray-700">Jira</td>
-                                <td class="px-4 py-3 text-right text-green-600 font-medium">$3,400</td>
-                                <td class="px-4 py-3 text-center text-gray-500">Mon 7:40pm</td>
-                            </tr>
-                            <tr class="hover:bg-gray-100">
-                                <td class="px-4 py-3 text-gray-700">Slack</td>
-                                <td class="px-4 py-3 text-right text-green-600 font-medium">$1,000</td>
-                                <td class="px-4 py-3 text-center text-gray-500">Wed 5:00pm</td>
-                            </tr>
-                            <tr class="hover:bg-gray-100">
-                                <td class="px-4 py-3 text-gray-700">Dropbox</td>
-                                <td class="px-4 py-3 text-right text-green-600 font-medium">$4,200</td>
-                                <td class="px-4 py-3 text-center text-gray-500">Tue 2:20pm</td>
-                            </tr>
-                            <tr class="hover:bg-gray-100">
-                                <td class="px-4 py-3 text-gray-700">Dropbox</td>
-                                <td class="px-4 py-3 text-right text-green-600 font-medium">$4,200</td>
-                                <td class="px-4 py-3 text-center text-gray-500">Tue 2:20pm</td>
-                            </tr>
-                            <tr class="hover:bg-gray-100">
-                                <td class="px-4 py-3 text-gray-700">Dropbox</td>
-                                <td class="px-4 py-3 text-right text-green-600 font-medium">$4,200</td>
-                                <td class="px-4 py-3 text-center text-gray-500">Tue 2:20pm</td>
-                            </tr>
-                            <tr class="hover:bg-gray-100">
-                                <td class="px-4 py-3 text-gray-700">Dropbox</td>
-                                <td class="px-4 py-3 text-right text-green-600 font-medium">$4,200</td>
-                                <td class="px-4 py-3 text-center text-gray-500">Tue 2:20pm</td>
-                            </tr>
-                            <!-- Add more rows as needed -->
+                                <!-- Example Rows (Replace with Dynamic Data) -->
+                                @if($transactions->isEmpty())
+                                <tr>
+                                    <td colspan="3" class="text-center text-gray-600">No transactions available.</td>
+                                </tr>
+                                @else
+                                @foreach($transactions as $transaction)
+                                <tr>
+                                    @if($transaction->status === 'paid' || $transaction->status === 'refunded')
+                                    <td class="text-left">
+                                        <span class="ml-4 text-md my-4 text-gray-600 dark:text-white/80">
+                                            {{ $transaction->trip->origincity->name }} to {{ $transaction->trip->destinationcity->name }}
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span 
+                                        class="flex justify-center my-4
+                                        {{ $transaction->status === 'paid' ? 'text-green-500' : 'text-red-500' }}">
+                                        {{ $transaction->status === 'paid' ? '+' : '-' }}{{ $transaction->total_price }}€
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="flex justify-center my-4 text-sm text-gray-600 dark:text-white/80">
+                                            {{ $transaction->created_at->format('M d, Y') }}
+                                        </span>
+                                    </td>
+                                    @endif
+                                </tr>
+                                @endforeach
+                                @endif
                             </tbody>
                         </table>
+                        
                     </div>
                 </div>
 

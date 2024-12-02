@@ -52,16 +52,43 @@
                     <span class="mx-3">Tables</span>
                 </a>
                 @endif
-                @if( Auth::user()->isSuperAdmin())
-                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('superadmin.users.index-users') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('superadmin.users.index-users') }}">
-                    <img src="{{ asset('storage/icons/verify.svg') }}" alt="avatar" class="relative inline-block h-6 w-6  object-cover object-center" />
-                    <span class="mx-3">Verifications</span>
-                </a>
-                @endif
-                <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs(config('chatify.routes.prefix')) ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route(config('chatify.routes.prefix')) }}">
-                    <img src="{{ asset('storage/icons/chat.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
-                    <span class="mx-3">Chat</span>
-                </a>
+                    @if( Auth::user()->isSuperAdmin())
+                        <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('superadmin.users.index-users') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                           href="{{ route('superadmin.users.index-users') }}">
+                            <img
+                                src="{{ asset('storage/icons/verify.svg') }}"
+                                alt="avatar"
+                                class="relative inline-block h-6 w-6  object-cover object-center"
+                            />
+                            </svg>
+
+                            <span class="mx-3">Verifications</span>
+                        </a>
+                    @endif
+                    @if( Auth::user()->isSuperAdmin())
+                        <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('superadmin.transactions.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                           href="{{ route('superadmin.transactions') }}">
+                            <img
+                                src="{{ asset('storage/icons/transactions.svg') }}"
+                                alt="avatar"
+                                class="relative inline-block h-6 w-6  object-cover object-center"
+                            />
+                            </svg>
+
+                            <span class="mx-3">Transactions</span>
+                        </a>
+                    @endif
+                    <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs(config('chatify.routes.prefix')) ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                       href="{{ route(config('chatify.routes.prefix')) }}">
+                        <img
+                            src="{{ asset('storage/icons/chat.svg') }}"
+                            alt="avatar"
+                            class="relative inline-block h-6 w-6  object-cover object-center"
+                        />
+                        </svg>
+
+                        <span class="mx-3">Chat</span>
+                    </a>
             </nav>
         </div>
         <div class="flex flex-col flex-1 overflow-hidden ">
