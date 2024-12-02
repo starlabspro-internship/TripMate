@@ -14,7 +14,7 @@
                 <input type="hidden" name="trip_id" value="{{ $trip->id }}">
                 <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
                     <div class="relative ">
-                        <div id="map" class=" h-[300px] w-full rounded-t-3xl md:rounded-l-none md:h-[545px] md:w-1/2 md:float-end lg:block md:rounded-r-3xl opacity-80"></div>
+                        <div id="map" class=" h-[300px] w-full rounded-t-3xl md:rounded-l-none md:h-[544px] md:w-1/2 md:float-end lg:block md:rounded-r-3xl opacity-80"></div>
                     </div>
                     <div class="p-10 ">
                         <div class="flex my-2 text-black text-xl capitalize space-x-6 justify-between">
@@ -66,19 +66,23 @@
                                 @endif
                                 <p class="relative inline-block px-2 object-cover object-center">{{$trip->users->name}}</p>
                             </div>
-                            <div class="flex-col mt-5 space-t-5 ">
-                                {{-- <h1 class="text-lg">Seats:</h1> --}}
+                            <div class="flex-col mt-1 space-t-5 ">
+                                <h1 class="text-lg">Seats:</h1>
                                 <p class="relative inline-block  object-cover object-center" > {{$available_seats}} free seats</p>
 
                             </div>
                             @if ($available_seats > 0)
                             <div class="flex-col  pb-6">
-                                <h1 class="text-lg py-3">Choose the number of seats:</h1>
+                                <h1 class="text-lg pt-3">Choose the number of seats:</h1>
                                 <input class="  border border-gray-700 rounded-lg bg-gray-200 bg-opacity-25 shadow-sm focus:outline-none focus:ring-2 focus:border-transparent text-gray-700"
                                 type="number" name="seats_booked" min="1" max="{{ $available_seats }}" value="1" required>
                             </div>
                             @else
-                            <p class="text-red-500 py-4">There are no seats available for this trip.</p>
+                            <div class="flex-col  pb-6">
+                                <p class="text-red-500 py-2">There are no seats available for this trip.</p>
+                                <input class="  border border-gray-700 rounded-lg bg-gray-200 bg-opacity-25 shadow-sm focus:outline-none focus:ring-2 focus:border-transparent text-gray-700"
+                                type="number" name="seats_booked" min="1" max="{{ $available_seats }}" value="0" required disabled>
+                            </div>
                             @endif
                             @if ($available_seats>0)
                             <div>
@@ -88,7 +92,15 @@
                                 </button>
                             </div>
                             @else
-                        @endif
+                            <div>
+                                <button 
+                                    class="rounded-md bg-red-500 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-red-700 focus:shadow-none active:bg-red-700 hover:bg-red-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:bg-red-500 md:w-40"
+                                    type="submit"
+                                    disabled>
+                                    Book Now
+                                </button>
+                            </div>
+                            @endif
                     </div>
             </form>
         </div>
