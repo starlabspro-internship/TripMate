@@ -1,0 +1,35 @@
+name: Auto Deploy Laravel
+
+on:
+  push:
+    branches:
+      - main  # Adjust to your deployment branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        echo -e "Host 188.245.97.198\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
+    - name: Deploy to Server
+      run: |
+        ssh -o StrictHostKeyChecking=no root@188.245.97.198 << 'EOF'
+        cd /path/to/laravel/project
+        git pull origin main
+        composer install --optimize-autoloader --no-dev
+        php artisan migrate --force
+        php artisan cache:clear
+        php artisan config:clear
+        php artisan route:clear
+        php artisan queue:restart
+        EOF
+
