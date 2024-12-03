@@ -26,6 +26,14 @@ return new class extends Migration
             $table->string('passenger_gender_preference')->default('all');
             $table->decimal('latitude', 10, 7)->nullable();
             $table->decimal('longitude', 10, 7)->nullable();
+            $table->enum('status', ['Waiting', 'In Progress', 'Completed' , 'Failed'])->default('Waiting');
+            $table->dateTime('start_time')->nullable();  
+            $table->dateTime('end_time')->nullable();
+           
+
+           
+           
+
             $table->timestamps();
         });
     }

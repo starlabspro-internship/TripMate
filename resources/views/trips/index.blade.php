@@ -78,6 +78,7 @@
 </form>
 <div id="rides-list" class="grid grid-cols-1 mb-4 gap-6 sm:grid-cols-2 lg:grid-cols-3 hover px-4">
     @foreach ($trips as $trip)
+    
     <div class="ride-card bg-white p-6 rounded-lg transition-transform duration-300 transform hover:scale-105 shadow-md flex flex-col justify-between" data-departure="{{ $trip->departure_time }}">
         <div class="mb-4 flex justify-between items-start">
                 <div class="flex items-start">
@@ -95,10 +96,14 @@
                     </div>
                 </div>
                 @if ($trip->driver_id === auth()->id())
-                        <a href="{{ route('trips.edit', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Edit</a>
-                    @else
-                        <a href="{{ route('trips.show', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Book Now</a>
-                    @endif
+            <a href="{{ route('trips.edit', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Edit</a>
+        @else
+        @if($trip->status !== 'In Progress')
+        <a href="{{ route('trips.show', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Book Now</a>
+    @else
+        <span class="text-gray-500 text-lg font-semibold">Trip Started</span>
+    @endif
+        @endif
             </div>
             <div class="mb-2 flex items-center">
                 <p class="text-blue-900 flex items-center mr-4 text-lg">
@@ -109,6 +114,7 @@
                     <strong> {{ $trip->destinationcity->name }}</strong>
                 </p>
             </div>
+            
             <div class="flex justify-between items-center text-gray-700">
                 <p class="flex-1 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
@@ -156,9 +162,32 @@
                         />
                     @endif
                 </div>
+                
             </div>
+         
+            @if (auth()->id() === $trip->driver_id)
+    @if (Carbon\Carbon::parse($trip->departure_time)->isToday() && $trip->status === 'Waiting')
+        <form action="{{ route('trip.start', $trip->id) }}" method="POST">
+            @csrf
+            <button type="submit" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Start Trip</button>
+        </form>
+    @elseif ($trip->status === 'In Progress')
+        <form action="{{ route('trips.end', $trip->id) }}" method="POST" class="mt-4">
+            @csrf
+            <button type="submit" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">End Trip</button>
+        </form>
+    @endif
+@endif
+
+    
+
         </div>
+    
+                 
     @endforeach
+    
+ 
+        
 </div>
         <div id="no-rides" class="hidden text-center mt-6 text-gray-500">
             <p>No available rides for the selected date.</p>
