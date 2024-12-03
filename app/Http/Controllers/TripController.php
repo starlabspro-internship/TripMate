@@ -21,9 +21,22 @@ class TripController extends Controller
     {
         $cities = City::all();
         $trips = Trip::with('bookings');
+      
+        $trips->where(function ($query) {
+            $query->where('status', '!=', 'Completed') 
+                  ->orWhereNull('status'); 
+        });
 
-        $trips->where('departure_time', '>=', now());
+        Trip::where('status', 'Waiting')
+        ->where('arrival_time', '<', now())
+        ->update(['status' => 'Failed']);
 
+    $trips->where(function ($query) {
+        $query->where('status', '!=', 'Completed')
+              ->where('status', '!=', 'Failed')
+              ->orWhereNull('status'); 
+            });
+     
         if ($request->filled('date')) {
             $date = $request->input('date');
             $trips->whereDate('departure_time', $date);
@@ -85,11 +98,13 @@ class TripController extends Controller
         ]);
 
         $hasTrip = Trip::where('driver_id', $driverId)
-            ->where('arrival_time', '>', now())
-            ->where(function ($query) use ($departureTime, $arrivalTime) {
-                $query->where('departure_time', '<', $arrivalTime)
-                    ->where('arrival_time', '>', $departureTime);
-            })->exists();
+        ->where('status', '!=', 'Completed') 
+        ->where('arrival_time', '>', now())
+        ->where(function ($query) use ($departureTime, $arrivalTime) {
+            $query->where('departure_time', '<', $arrivalTime)
+                ->where('arrival_time', '>', $departureTime);
+        })->exists();
+  
 
         if ($hasTrip) {
             \Log::debug('Detekto overlap trip.', [
@@ -191,6 +206,7 @@ class TripController extends Controller
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'passenger_gender_preference' => 'nullable|in:female,all',
+         
 
         ]);
         $trip->update($request->except('driver_id'));
@@ -237,25 +253,67 @@ class TripController extends Controller
         ]);
     }
 
-    public function history()
-    {
-        $userId = auth()->id();
-        $bookings = Booking::with(['trip.origincity', 'trip.destinationcity'])
-            ->where('passenger_id', $userId)
-            ->whereHas('trip', function ($query) {
-                $query->where('arrival_time', '<', now());
-            })
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        $trips = Trip::with(['origincity', 'destinationcity'])
-            ->where('driver_id', $userId)
-            ->where('arrival_time', '<', now())
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        return view('profile.index', compact('bookings', 'trips'));
+//start and end trip 
+    public function start(Trip $trip)
+{
+    if (auth()->user()->id !== $trip->driver_id) {
+        return back()->with('error', 'You are not authorized to start this trip.');
     }
 
+    if (Carbon::parse($trip->departure_time)->isFuture()) {
+        return back()->with('error', 'This trip cannot be started yet. The trip is scheduled for a future date.');
+    }
+
+    if ($trip->status !== 'Waiting') {
+        return back()->with('error', 'Trip cannot be started.');
+    }
+
+    $trip->status = 'In Progress';
+    $trip->start_time = now();
+    $trip->save(); 
+
+    return back()->with('success', 'Trip started successfully.');
+}
+
+public function end(Trip $trip)
+{
+    if (auth()->user()->id !== $trip->driver_id) {
+        return back()->with('error', 'You are not authorized to end this trip.');
+    }
+
+    if ($trip->status !== 'In Progress') {
+        return back()->with('error', 'Trip cannot be ended.');
+    }
+
+    $trip->status = 'Completed';
+    $trip->arrival_time = now();
+    $trip->end_time= now();
+    $trip->save(); 
+
+    return back()->with('success', 'Trip ended successfully.');
+}
+
+
+
+public function history()
+{
+    $userId = auth()->id();
+
+    $bookings = Booking::with(['trip.origincity', 'trip.destinationcity'])
+        ->where('passenger_id', $userId)
+        ->whereHas('trip', function ($query) {
+            $query->where('status', 'Completed');
+        })
+        ->orderBy('updated_at', 'desc')
+        ->get();
+
+    $trips = Trip::with(['origincity', 'destinationcity'])
+        ->where('driver_id', $userId)
+        ->where('status', 'Completed')
+        ->orderBy('end_time', 'desc')
+        ->get();
+
+    return view('profile.index', compact('bookings', 'trips'));
+}
 
 }

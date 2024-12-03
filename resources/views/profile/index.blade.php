@@ -6,6 +6,11 @@
                      alt="Profile Background"
                      class="w-full h-full object-cover rounded-tl-lg rounded-tr-lg">
             </div>
+            @if(session('success'))
+                <div class="bg-green-100 text-green-700 border border-green-200 p-4 rounded mb-6">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="flex flex-col items-center -mt-20">
                 <div class="w-32 h-32">
                     @if(auth()->user()->image)
@@ -22,101 +27,13 @@
                 <div class="flex items-center space-x-2 mt-2">
                     <p class="text-2xl font-semibold">
                         {{ auth()->user()->name }} {{ auth()->user()->lastname }}
-                    <div class="relative inline-block group">
                         @if($user->verification_status === 'verified')
                             <svg xmlns="http://www.w3.org/2000/svg" fill="orange"
-                                 class="w-6 h-6 mb-2 text-orange inline ml-1" viewBox="0 0 24 24">
+                                 class="w-4 h-4 text-orange inline ml-2" viewBox="0 0 24 24">
                                 <path
                                     d="M12 0a12 12 0 1 0 12 12A12 12 0 0 0 12 0zm-1.7 18.3l-4.6-4.6 1.4-1.4 3.2 3.2 7.2-7.2 1.4 1.4z"/>
                             </svg>
-                            <span
-                                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2
-                                       hidden group-hover:inline-block bg-black text-white text-sm
-                                       px-2 py-1 rounded shadow-lg whitespace-nowrap">
-                                Verified
-                             </span>
-
                         @endif
-                    </div>
-                    <div class="relative inline-block group">
-                        @if($user->background_status === 'verified')
-                            <svg class="w-7 h-7 mb-2.5 text-orange inline ml-1"
-                                 viewBox="-9.63 0 337.39 337.39" xmlns="http://www.w3.org/2000/svg"
-                                 fill="#000000">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <defs>
-                                        <style>.cls-1 {
-                                                fill: #e7e7e7;
-                                            }
-
-                                            .cls-2 {
-                                                fill: #ced0d0;
-                                            }
-
-                                            .cls-3 {
-                                                fill: #000000;
-                                            }
-
-                                            .cls-4, .cls-8 {
-                                                fill: #ffffff;
-                                            }
-
-                                            .cls-5 {
-                                                fill: none;
-                                                stroke: #ffffff;
-                                                stroke-miterlimit: 10;
-                                                stroke-width: 2px;
-                                            }
-
-                                            .cls-6 {
-                                                fill: #6cea53;
-                                            }
-
-                                            .cls-7 {
-                                                fill: #7cd56d;
-                                            }
-
-                                            .cls-8 {
-                                                font-size: 155.97px;
-                                                font-family: Dosis-ExtraBold, Dosis;
-                                                font-weight: 700;
-                                            }</style>
-                                    </defs>
-                                    <title></title>
-                                    <g data-name="Layer 2" id="Layer_2">
-                                        <g data-name="Layer 1" id="Layer_1-2">
-                                            <path class="cls-1"
-                                                  d="M295.38,133.12s-14.83-10-39.7-15.78a62.18,62.18,0,1,0-68.88,0c-12,2.87-21,6.22-27.74,9.57-3.35-31.57-29.66-56.44-62.18-56.44A62.11,62.11,0,0,0,62.44,184.3c-24.87,5.74-39.7,15.78-39.7,15.78C13.65,205.34,6,217.78,6,228.3v62.18a19.19,19.19,0,0,0,19.13,19.13h143.5a19.19,19.19,0,0,0,19.13-19.13V242.65H293a19.19,19.19,0,0,0,19.13-19.13V161.34C312.13,150.81,305,137.9,295.38,133.12Z"></path>
-                                            <path class="cls-2"
-                                                  d="M309.62,161.34v62.18a19.19,19.19,0,0,1-19.13,19.13H185.26v47.84a19.2,19.2,0,0,1-19.15,19.13H22.62A19.18,19.18,0,0,1,3.49,290.49V264.34c8,3.11,16.67,4.74,25.19,6.29,32.42,5.83,70.1,9.46,94.27-12.91,11.37-10.51,18.3-25.81,31.62-33.69s29.66-6.59,44.92-8.51c37.25-4.67,69.84-29.66,90.44-61a178.23,178.23,0,0,0,9.59-16.45C305.58,144.2,309.62,153.43,309.62,161.34Z"></path>
-                                            <path class="cls-3"
-                                                  d="M168.63,318.13H25.13A25.16,25.16,0,0,1,0,293V230.81C0,218.54,8.58,204,19.56,197.5c1.6-1.06,12.31-7.87,29.91-13.38A68.16,68.16,0,0,1,96.88,67a68.55,68.55,0,0,1,66.83,53.79q4.73-1.9,10.15-3.59a68.18,68.18,0,1,1,94.79,0c17.11,5.36,27.71,12,29.76,13.28,11.08,5.75,19.72,20.34,19.72,33.41V226A25.16,25.16,0,0,1,293,251.16H193.76V293A25.16,25.16,0,0,1,168.63,318.13ZM96.88,79A56.25,56.25,0,0,0,40.7,135.15a55.6,55.6,0,0,0,25,46.64l11.73,7.71-13.67,3.16C40.45,198,26.24,207.47,26.1,207.56l-.35.22C18.3,212.1,12,222.64,12,230.81V293a13.15,13.15,0,0,0,13.13,13.13h143.5A13.15,13.15,0,0,0,181.76,293V239.16H293A13.15,13.15,0,0,0,306.13,226V163.85c0-8.6-6.27-19.28-13.42-22.85l-.35-.18-.32-.22c-.22-.14-14.41-9.54-37.69-14.91l-13.67-3.16,11.73-7.71a55.59,55.59,0,0,0,25-46.64,56.18,56.18,0,1,0-112.36,0,55.59,55.59,0,0,0,25,46.64l11.59,7.61-13.48,3.24a125.57,125.57,0,0,0-26.46,9.1L154,138.64l-.91-8.6A56.67,56.67,0,0,0,96.88,79Z"></path>
-                                            <path class="cls-4"
-                                                  d="M86.85,96.87a42.57,42.57,0,0,1,17-2.25c3.85.28,3.84-5.72,0-6a47,47,0,0,0-18.59,2.46c-3.64,1.23-2.08,7,1.6,5.79Z"></path>
-                                            <path class="cls-4"
-                                                  d="M76.75,168.75a42.23,42.23,0,0,1-17.17-30.13c-1.28-13.05,3.87-25,13.49-33.67,2.87-2.6-1.39-6.83-4.24-4.24-22.26,20.17-19.35,55.92,4.89,73.22,3.15,2.25,6.15-3,3-5.18Z"></path>
-                                            <path class="cls-5" d="M73.75,100.17"></path>
-                                            <path class="cls-6"
-                                                  d="M168.33,336.34s86.83-43.41,86.83-108.54V141l-86.83-21.71L81.51,141v86.83C81.51,292.93,168.33,336.34,168.33,336.34Z"></path>
-                                            <path class="cls-7"
-                                                  d="M255.16,186.56v36.29c0,65.13-86.83,108.54-86.83,108.54S81.51,288,81.51,222.86V186.56c0,65.13,86.82,108.54,86.82,108.54S255.16,251.69,255.16,186.56Z"></path>
-                                            <path class="cls-3"
-                                                  d="M168.33,337.39,165.65,336A234.93,234.93,0,0,1,121,305.35c-29.74-26-45.46-54.8-45.46-83.21V130.63l92.83-23.21,92.83,23.21v91.51c0,28.41-15.72,57.18-45.46,83.21A234.93,234.93,0,0,1,171,336ZM87.51,140v82.14c0,54.45,66.51,93.89,80.83,101.74,14.3-7.86,80.83-47.37,80.83-101.74V140l-80.83-20.21Z"></path>
-                                            <text class="cls-8" transform="translate(150.15 274.66)"></text>
-                                        </g>
-                                    </g>
-                                </g>
-                            </svg>
-                            <span
-                                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2
-                                       hidden group-hover:inline-block bg-black text-white text-sm
-                                       px-2 py-1 rounded shadow-lg whitespace-nowrap">
-                                Background Check
-                             </span>
-                        @endif
-                    </div>
                     </p>
 
                 </div>
@@ -217,16 +134,11 @@
                         </svg>
                     </div>
                 </div>
-                <div class="w-4/5 flex flex-col sm:flex-row sm:justify-center md:w-full gap-x-4">
                 @if (auth()->user()->verification_status==='pending')
-                        <div
-                            class="w-full sm:w-1/3 bg-gray/20 backdrop-blur-md border border-[#ffbf00] rounded-md p-2 my-1 mx-1 flex items-center justify-between shadow-sm ">
-                            <div>
-                                <h4 class="font-medium text-sm">Your verification is still pending.</h4>
-                                <p class="text-xs text-gray-500">Please wait until your account is verified.</p>
-                            </div>
-                            <span class="text-gray-500 text-base"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16.0303 10.0303C16.3232 9.73744 16.3232 9.26256 16.0303 8.96967C15.7374 8.67678 15.2626 8.67678 14.9697 8.96967L10.5 13.4393L9.03033 11.9697C8.73744 11.6768 8.26256 11.6768 7.96967 11.9697C7.67678 12.2626 7.67678 12.7374 7.96967 13.0303L9.96967 15.0303C10.2626 15.3232 10.7374 15.3232 11.0303 15.0303L16.0303 10.0303Z" fill="#ecbc36"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0574 1.25H11.9426C9.63424 1.24999 7.82519 1.24998 6.41371 1.43975C4.96897 1.63399 3.82895 2.03933 2.93414 2.93414C2.03933 3.82895 1.63399 4.96897 1.43975 6.41371C1.24998 7.82519 1.24999 9.63422 1.25 11.9426V12.0574C1.24999 14.3658 1.24998 16.1748 1.43975 17.5863C1.63399 19.031 2.03933 20.1711 2.93414 21.0659C3.82895 21.9607 4.96897 22.366 6.41371 22.5603C7.82519 22.75 9.63423 22.75 11.9426 22.75H12.0574C14.3658 22.75 16.1748 22.75 17.5863 22.5603C19.031 22.366 20.1711 21.9607 21.0659 21.0659C21.9607 20.1711 22.366 19.031 22.5603 17.5863C22.75 16.1748 22.75 14.3658 22.75 12.0574V11.9426C22.75 9.63423 22.75 7.82519 22.5603 6.41371C22.366 4.96897 21.9607 3.82895 21.0659 2.93414C20.1711 2.03933 19.031 1.63399 17.5863 1.43975C16.1748 1.24998 14.3658 1.24999 12.0574 1.25ZM3.9948 3.9948C4.56445 3.42514 5.33517 3.09825 6.61358 2.92637C7.91356 2.75159 9.62177 2.75 12 2.75C14.3782 2.75 16.0864 2.75159 17.3864 2.92637C18.6648 3.09825 19.4355 3.42514 20.0052 3.9948C20.5749 4.56445 20.9018 5.33517 21.0736 6.61358C21.2484 7.91356 21.25 9.62177 21.25 12C21.25 14.3782 21.2484 16.0864 21.0736 17.3864C20.9018 18.6648 20.5749 19.4355 20.0052 20.0052C19.4355 20.5749 18.6648 20.9018 17.3864 21.0736C16.0864 21.2484 14.3782 21.25 12 21.25C9.62177 21.25 7.91356 21.2484 6.61358 21.0736C5.33517 20.9018 4.56445 20.5749 3.9948 20.0052C3.42514 19.4355 3.09825 18.6648 2.92637 17.3864C2.75159 16.0864 2.75 14.3782 2.75 12C2.75 9.62177 2.75159 7.91356 2.92637 6.61358C3.09825 5.33517 3.42514 4.56445 3.9948 3.9948Z" fill="#ecbc36"></path> </g></svg></span>
-                        </div>
+                <div class="w-full sm:w-1/4 border border-yellow-700 rounded-md p-3 my-3 mx-auto text-center shadow-sm hover:shadow-md transition-transform transform hover:scale-105">
+                    <p class="text-yellow-800 font-medium text-md">Your verification is still pending.</p>
+                    <p class="text-yellow-700 text-xs ">Please wait until your account is verified.</p>
+                </div>
                 @endif
                 @if (auth()->user()->verification_status=== null)
                     <a href="{{ route('profile.verify-user') }}"
@@ -237,37 +149,15 @@
                         </div>
                         <span class="text-gray-500 text-base">&#8594;</span>
                     </a>
+
                 @endif
-                @if(auth()->user()->background_status==='none')
-                    <a href="{{ route('profile.upload-file') }}"
-                       class="w-full sm:w-1/3 bg-gray/20 backdrop-blur-md border border-[#A2D5F2] rounded-md p-2 my-1 mx-1 flex items-center justify-between shadow-sm hover:shadow-lg cursor-pointer hover:scale-105 transition duration-300 hover:border-sky-500">
-                        <div>
-                            <h4 class="font-medium text-sm">Verify Background Check</h4>
-                            <p class="text-xs text-gray-500">Upload your certificate on criminal
-                                convictions.</p>
-                        </div>
-                        <span class="text-gray-500 text-base">&#8594;</span>
-                    </a>
-                @endif
-                @if(auth()->user()->background_status==='pending')
-                    <div
-                        class="w-full sm:w-1/3 bg-gray/20 backdrop-blur-md border border-[#ffbf00] rounded-md p-2 my-1 mx-1 flex items-center justify-between shadow-sm ">
-                        <div>
-                            <h4 class="font-medium text-sm">Your file is being processed</h4>
-                            <p class="text-xs text-gray-500">You will be notified when it the processing is
-                                done.</p>
-                        </div>
-                        <span class="text-gray-500 text-base"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16.0303 10.0303C16.3232 9.73744 16.3232 9.26256 16.0303 8.96967C15.7374 8.67678 15.2626 8.67678 14.9697 8.96967L10.5 13.4393L9.03033 11.9697C8.73744 11.6768 8.26256 11.6768 7.96967 11.9697C7.67678 12.2626 7.67678 12.7374 7.96967 13.0303L9.96967 15.0303C10.2626 15.3232 10.7374 15.3232 11.0303 15.0303L16.0303 10.0303Z" fill="#ecbc36"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0574 1.25H11.9426C9.63424 1.24999 7.82519 1.24998 6.41371 1.43975C4.96897 1.63399 3.82895 2.03933 2.93414 2.93414C2.03933 3.82895 1.63399 4.96897 1.43975 6.41371C1.24998 7.82519 1.24999 9.63422 1.25 11.9426V12.0574C1.24999 14.3658 1.24998 16.1748 1.43975 17.5863C1.63399 19.031 2.03933 20.1711 2.93414 21.0659C3.82895 21.9607 4.96897 22.366 6.41371 22.5603C7.82519 22.75 9.63423 22.75 11.9426 22.75H12.0574C14.3658 22.75 16.1748 22.75 17.5863 22.5603C19.031 22.366 20.1711 21.9607 21.0659 21.0659C21.9607 20.1711 22.366 19.031 22.5603 17.5863C22.75 16.1748 22.75 14.3658 22.75 12.0574V11.9426C22.75 9.63423 22.75 7.82519 22.5603 6.41371C22.366 4.96897 21.9607 3.82895 21.0659 2.93414C20.1711 2.03933 19.031 1.63399 17.5863 1.43975C16.1748 1.24998 14.3658 1.24999 12.0574 1.25ZM3.9948 3.9948C4.56445 3.42514 5.33517 3.09825 6.61358 2.92637C7.91356 2.75159 9.62177 2.75 12 2.75C14.3782 2.75 16.0864 2.75159 17.3864 2.92637C18.6648 3.09825 19.4355 3.42514 20.0052 3.9948C20.5749 4.56445 20.9018 5.33517 21.0736 6.61358C21.2484 7.91356 21.25 9.62177 21.25 12C21.25 14.3782 21.2484 16.0864 21.0736 17.3864C20.9018 18.6648 20.5749 19.4355 20.0052 20.0052C19.4355 20.5749 18.6648 20.9018 17.3864 21.0736C16.0864 21.2484 14.3782 21.25 12 21.25C9.62177 21.25 7.91356 21.2484 6.61358 21.0736C5.33517 20.9018 4.56445 20.5749 3.9948 20.0052C3.42514 19.4355 3.09825 18.6648 2.92637 17.3864C2.75159 16.0864 2.75 14.3782 2.75 12C2.75 9.62177 2.75159 7.91356 2.92637 6.61358C3.09825 5.33517 3.42514 4.56445 3.9948 3.9948Z" fill="#ecbc36"></path> </g></svg></span>
-                    </div>
-                @endif
-                </div>
             </div>
         </div>
 
         <!-- Main Content Section -->
-        <div class="my-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+        <div class="my-4 flex flex-col 2xl:flex-row space-y-4 2xl:space-y-0 2xl:space-x-4">
             <!-- Personal Info Section -->
-            <div class="mb-4 w-full flex flex-col md:w-1/3">
+            <div class="mb-4 w-full flex flex-col 2xl:w-1/3">
                 <div class="bg-white rounded-lg shadow-xl p-8 flex-1">
                     <h4 class="text-xl text-gray-900 font-bold">Personal Info</h4>
                     <ul class="mt-2 text-gray-700">
@@ -304,7 +194,7 @@
             </div>
 
             <!-- Ride History Section -->
-            <div x-data="tabs()"  class="flex flex-col w-full md:w-2/3 overflow-y-auto max-h-[430px]">
+            <div x-data="tabs()"  class="flex flex-col w-full 2xl:w-2/3 overflow-y-auto max-h-[430px]">
                 <div class="mb-4 container mx-auto px-2 py-4 bg-white rounded-lg shadow-xl flex-1 overflow-y-auto">
                     <h2 class="text-2xl font-semibold mb-4 text-gray-800">
                         {{ "Completed Rides Of " . auth()->user()->name }}
@@ -320,7 +210,9 @@
                         </button>
                     </div>
                     <div id="bookings" class="space-y-4 ">
+                       
                         @foreach ($bookings as $ride)
+                        @if($ride->trip && $ride->trip->status === 'Completed')
                             <div
                                 id="passenger"
                                 x-show="currentTab === 'passenger'"
@@ -370,29 +262,24 @@
                                         </svg>
                                         {{ $ride->trip->arrival_time->format('H:i') }}
                                     </p>
-                                    <p class="flex items-center gap-2 ml-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
-                                            <path d="M16 8.94444C15.1834 7.76165 13.9037 7 12.4653 7C9.99917 7 8 9.23858 8 12C8 14.7614 9.99917 17 12.4653 17C13.9037 17 15.1834 16.2384 16 15.0556M7 10.5H11M7 13.5H11M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg><span>Price:</span> {{ $ride->trip->price }} €</p>
-                                    <p class="flex items-center gap-2 ml-1">
-                                        <!-- Passenger SVG -->
-                                        <svg fill="#000000" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 128 128" xml:space="preserve">
-                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
-                                            </g><g id="SVGRepo_iconCarrier">
-                                                <path d="M44.7,46.3c-2.1-13.7,17.6-17.8,20.8-3.9l5.4,26.8l20.1,0c5.8,0,8.9,4.7,8.9,9v36.4c0,8.9-12.6,8.8-12.6-0.2V86.2H61.6 c-6,0-9.7-4.1-10.6-8.8L44.7,46.3z"></path>
-                                                <path d="M54.1,30.3c6.5,0,11.8-5.2,11.9-11.8C66,12,60.7,6.7,54.1,6.7c-6.5,0-11.8,5.2-11.8,11.7C42.3,25,47.5,30.3,54.1,30.3"></path>
-                                                <path d="M28.4,60.6c-1.4-7.6,8.6-9.4,10-1.8l4.4,23.9c1,5,4.6,9.2,9.8,10.8c1.6,0.5,3.3,0.5,4.8,0.6l14.5,0.1 c7.7,0,7.7,10.1-0.1,10.1l-15.2-0.1c-2.3,0-4.7-0.3-7-1c-9-2.7-15.3-10.1-16.9-18.7L28.4,60.6z"></path> </g>
-                                    </svg>
-                                        <span>Role:</span> Passenger
+                                    <p class="flex items-center gap-2">
+                                        Driver's Start : {{ \Carbon\Carbon::parse($ride->trip->start_time)->format('H:i') }}
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                                        </svg>
+                                   
+                                        Driver's End : {{ \Carbon\Carbon::parse($ride->trip->end_time)->format('H:i') }}
                                     </p>
+                                    
                                 </div>
                             </div>
+                            @endif
 
                         @endforeach
 
                         @foreach ($trips as $ride)
-                            <div
+                          @if($ride->status === 'Completed')
+                               <div
                                 id="driver"
                                 x-show="currentTab === 'driver'"
                                 class="bg-white shadow-md rounded-lg border border-gray-200 overflow-hidden max-w-4xl mx-auto">
@@ -446,22 +333,21 @@
                                             <path d="M16 8.94444C15.1834 7.76165 13.9037 7 12.4653 7C9.99917 7 8 9.23858 8 12C8 14.7614 9.99917 17 12.4653 17C13.9037 17 15.1834 16.2384 16 15.0556M7 10.5H11M7 13.5H11M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg><span>Price:</span> {{ $ride->price }} €</p>
                                     <p class="flex items-center gap-2 ml-1">
-                                        <svg fill="#000000" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0">
-                                    </g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
-                                            </g><g id="SVGRepo_iconCarrier"> <g> <g>
-                                                        <path d="M256.001,215.765c-22.186,0-40.235,18.049-40.235,40.235s18.049,40.235,40.235,40.235 c22.186,0,40.235-18.049,40.235-40.235S278.187,215.765,256.001,215.765z M256.001,278.849c-12.599,0-22.849-10.25-22.849-22.849 s10.25-22.849,22.849-22.849S278.85,243.401,278.85,256S268.6,278.849,256.001,278.849z"></path> </g> </g> <g> <g> <path d="M362.318,479.584c-1.909-4.404-7.027-6.431-11.433-4.519c-29.929,12.971-61.853,19.549-94.885,19.549 c-63.735,0-123.658-24.82-168.725-69.888C42.208,379.659,17.387,319.735,17.387,256c0-59.338,21.868-116.157,61.576-159.99 c3.223-3.558,2.951-9.056-0.606-12.279c-3.558-3.223-9.056-2.952-12.279,0.606C23.467,131.375,0.001,192.339,0.001,256 c0,68.38,26.629,132.667,74.981,181.019C123.334,485.371,187.621,512,256.001,512c35.425,0,69.675-7.06,101.798-20.983 C362.205,489.108,364.227,483.99,362.318,479.584z"></path> </g> </g> <g> <g>
-                                                        <path d="M437.02,74.981C388.668,26.629,324.38,0,256.001,0C195.523,0,136.904,21.421,90.942,60.315 c-3.665,3.102-4.122,8.586-1.02,12.251c3.101,3.666,8.586,4.123,12.251,1.02c42.827-36.241,97.456-56.2,153.827-56.2 c63.737,0,123.658,24.821,168.725,69.888c45.068,45.068,69.889,104.989,69.889,168.725s-24.82,123.657-69.889,168.725 c-12.956,12.956-27.35,24.407-42.783,34.034c-4.073,2.541-5.316,7.904-2.775,11.977c1.648,2.643,4.483,4.093,7.385,4.093 c1.571,0,3.162-0.427,4.592-1.319c16.552-10.326,31.986-22.603,45.874-36.491c48.352-48.352,74.981-112.639,74.981-181.019 S485.372,123.333,437.02,74.981z"></path> </g> </g> <g> <g>
-                                                        <path d="M460.023,213.289c-0.067-0.525-0.178-1.041-0.338-1.543c-7.51-34.479-23.721-66.737-47.463-93.611 c-3.179-3.598-8.672-3.937-12.27-0.759c-3.598,3.179-3.937,8.672-0.759,12.27c18.228,20.632,31.616,44.724,39.53,70.573 c-47.57-16.571-112.901-25.936-182.722-25.936c-69.84,0-135.189,9.37-182.761,25.951 c23.919-78.237,96.796-135.305,182.761-135.305c43.719,0,84.899,14.443,119.086,41.771c3.75,2.997,9.22,2.388,12.218-1.363 c2.997-3.75,2.388-9.22-1.363-12.218c-36.768-29.39-82.916-45.576-129.941-45.576c-100.035,0-183.826,70.834-203.882,164.976 c-0.019,0.085-0.039,0.169-0.056,0.254c-2.953,13.951-4.519,28.409-4.519,43.227c0,3.299,0.086,6.579,0.239,9.841 c0.002,0.107,0.006,0.212,0.012,0.318c2.676,55.499,27.158,105.37,65.043,141.218c0.048,0.046,0.089,0.096,0.138,0.141 c0.044,0.041,0.092,0.074,0.136,0.114c13.669,12.889,29.076,23.949,45.825,32.8c0.449,0.297,0.931,0.549,1.437,0.759 c28.658,14.859,61.178,23.266,95.627,23.266c34.681,0,67.404-8.524,96.202-23.57c0.049-0.024,0.095-0.05,0.144-0.075 c17.028-8.913,32.679-20.108,46.544-33.18c0.045-0.039,0.093-0.073,
-                                    0.137-0.115c0.049-0.045,0.09-0.095,0.138-0.14 c37.882-35.847,62.363-85.713,65.042-141.207c0.007-0.112,0.01-0.225,0.013-0.338c0.152-3.259,0.239-6.535,0.239-9.83 C464.459,241.546,462.951,227.241,460.023,213.289z M112.954,206.801c40.936-9.768,90.596-15.129,143.047-15.129 s102.11,5.362,143.047,15.129c2.858,9.087,8.934,33.052,5.651,64.415c-14.247,11.526-25.978,28.839-32.308,49.81 c-3.242,10.742-4.771,21.647-4.7,32.156c-11.759,2.115-33.173,9.334-58.212,33.31c-17.153,3.933-35.126,5.947-53.476,5.947 c-18.351,0-36.323-2.016-53.476-5.948c-25.04-23.977-46.454-31.195-58.212-33.311c0.071-10.508-1.458-21.413-4.7-32.154 c-6.33-20.971-18.06-38.284-32.307-49.809C104.02,239.852,110.096,215.888,112.954,206.801z M68.223,220.643 c7.827-3.124,16.291-6.018,25.295-8.676c-2.624,11.244-5.212,27.945-4.423,48.308c-7.835-3.23-16.003-4.821-24.161-4.516 C64.948,243.765,66.083,232.029,68.223,220.643z M117.954,387.97c-29.123-30.451-48.29-70.492-52.248-114.843 c23.129-0.714,47.738,21.375,57.26,52.922C129.83,348.791,127.762,372.018,117.954,387.97z
-                                    M159.024,420.568 c-10.056-5.948-19.527-12.784-28.294-20.411c5.831-8.458,9.852-18.59,11.933-29.621c2.439,0.504,5.452,1.309,8.966,2.608 c7.61,2.815,18.857,8.476,32.047,19.722C170.053,402.067,162.8,412.74,159.024,420.568z M256.001,447.071 c-29.2,0-56.885-6.593-81.661-18.354c2.956-6.429,9.802-16.832,25.059-25.083c18.193,4.109,37.218,6.191,56.601,6.191 c19.384,0,38.408-2.082,56.602-6.191c15.255,8.248,22.104,18.652,25.059,25.081C312.886,440.477,285.2,447.071,256.001,447.071z M352.977,420.568c-3.776-7.828-11.03-18.5-24.652-27.703c13.19-11.245,24.437-16.906,32.047-19.722 c3.513-1.299,6.527-2.104,8.965-2.608c2.079,11.032,6.101,21.165,11.933,29.623C372.504,407.785,363.033,414.62,352.977,420.568z M394.047,387.969c-9.808-15.952-11.876-39.179-5.012-61.92c9.521-31.546,34.127-53.64,57.26-52.922 C442.335,317.478,423.17,357.518,394.047,387.969z M422.907,260.277c0.788-20.364-1.799-37.065-4.423-48.308 c8.993,2.654,17.449,5.544,25.27,8.665c2.173,11.51,3.299,23.263,3.314,35.127C438.911,255.456,430.743,257.047,422.907,260.277z"></path> </g> </g> </g>
+                                        
+
+                                
+                                <span>Started at:</span> {{ \Carbon\Carbon::parse($ride->start_time)->format('H:i') }}
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
                                 </svg>
-                                        <span>Role:</span> Driver
+                                <span>Ended at:</span> {{ \Carbon\Carbon::parse($ride->end_time)->format('H:i') }}
+                                     
                                     </p>
                                 </div>
-                            </div>
-
+                               </div>
+                          @endif
                         @endforeach
+                       
                     </div>
                 </div>
             </div>

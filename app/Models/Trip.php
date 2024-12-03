@@ -21,11 +21,17 @@ class Trip extends Model
         'passenger_gender_preference',
         'latitude',
         'longitude',
+        'status',
+        'start_time',
+        'end_time',   
     ];
     protected $casts = [
         'departure_time' => 'datetime',
         'arrival_time' => 'datetime',
+        'start_time' => 'datetime',
+        'end_time' => 'datetime',
     ];
+    
     public function users()
     {
         return $this->belongsTo(User::class, 'driver_id');
@@ -45,4 +51,20 @@ class Trip extends Model
     public function mesazhat(){
         return $this->hasMany(Message::class);
     }
+
+    public function start()
+    {
+        $this->status = 'In Progress';
+        $this->start_time = now();
+        $this->save();  
+    }
+    
+    public function end()
+    {
+        $this->status = 'Completed';
+        $this->end_time = now();
+        $this->save();  
+    }
+
+    
 }
