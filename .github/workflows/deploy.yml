@@ -26,7 +26,10 @@ jobs:
         cd /var/www/TripMate # Adjust this path
         git pull origin main
         composer install --optimize-autoloader --no-dev
-        php artisan migrate --force
+        php artisan migrate --force  # Run database migrations
+        php artisan db:seed --force  # Seed the database
+        npm install  # Install npm dependencies
+        npm run build  # Build the assets
         php artisan cache:clear
         php artisan config:clear
         php artisan route:clear
