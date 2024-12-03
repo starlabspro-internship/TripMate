@@ -77,7 +77,7 @@
                         class="w-full rounded-lg my-2 bg-white py-2 px-4 border border-transparent text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-green-300 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                         Chat
                     </a>
-                    @if(!empty($paymentIntentId))
+                    @if(!empty($booking->stripe_charge_id))
                         <form action="{{ route('bookings.refund', $booking->id) }}" method="POST"
                             onsubmit="return confirmSubmission()">
                         @csrf
@@ -86,8 +86,7 @@
                             Cancel & Refund
                         </button>
                         </form>
-                    @endif
-                    @if(empty($paymentIntentId))
+                    @else
                         <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" onsubmit="return confirmCancellation()">
                             @csrf
                             @method('DELETE')
