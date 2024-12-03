@@ -46,6 +46,6 @@
                 Register
             </button>
         </div>
-        <img @click="open = ! open" src="{{ Vite::asset('resources/icons/hamburger-icon.svg') }}" class="text-3xl pr-5 cursor-pointer md:hidden"></img>
+        <img @click="open = ! open" src="{{asset('storage/icons/hamburger-icon.svg') }}" class="text-3xl pr-5 cursor-pointer md:hidden"></img>
     </div>
 </nav>
