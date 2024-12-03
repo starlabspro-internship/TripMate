@@ -22,8 +22,8 @@ jobs:
 
     - name: Deploy to Server
       run: |
-        ssh -o StrictHostKeyChecking=no root@188.245.97.198 << 'EOF'
-        cd /path/to/laravel/project
+        ssh root@188.245.97.198 << 'EOF'
+        cd /var/www/TripMate # Adjust this path
         git pull origin main
         composer install --optimize-autoloader --no-dev
         php artisan migrate --force
@@ -32,4 +32,7 @@ jobs:
         php artisan route:clear
         php artisan queue:restart
         EOF
+
+    - name: Cleanup
+      run: rm -f ~/.ssh/id_rsa
 
