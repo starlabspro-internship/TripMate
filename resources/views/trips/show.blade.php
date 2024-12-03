@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="bg-showImage bg-no-repeat bg-cover bg-center min-h-screen p-[15px]"> 
-        <div class="mt-1 p-1 md:mx-[80px] rounded-3xl ">
+        <div class="mt-1 p-1 md:mx-[76px] rounded-3xl ">
             <a href="/trips">
                             <img
                                 src="{{ asset('storage/icons/back2.svg') }}"
@@ -93,19 +93,16 @@
                             </div>
                             @else
                             <div>
-                                <button 
-                                    class="rounded-md bg-red-500 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-red-700 focus:shadow-none active:bg-red-700 hover:bg-red-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:bg-red-500 md:w-40"
-                                    type="submit"
-                                    disabled>
-                                    Book Now
-                                </button>
+                                <div class="rounded-md bg-red-500 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md  focus:bg-red-700 focus:shadow-none  active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:bg-red-500 md:w-40 cursor-not-allowed opacity-50">
+                                    All Booked Up
+                                </div>
                             </div>
                             @endif
                     </div>
             </form>
         </div>
 
-        <form action="{{ route('bookings.reserve') }}" method="POST"  class="bg-gray-200  bg-opacity-80 rounded-2xl m-4  p-2  md:mb-5 md:mx-24  lg:mb-5 lg:mx-30">
+        <form action="{{ route('bookings.reserve') }}" method="POST"  class="bg-gray-200  bg-opacity-80 rounded-2xl m-5  p-2  md:mb-5 md:mx-24 ">
             @csrf
             <input type="hidden" name="trip_id" value="{{ $trip->id }}">
             <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
@@ -124,7 +121,7 @@
                     </button>
                 </div>
                 @else
-                <p class="text-red-500 text-sm py-4">There are no seats available for this trip.</p>
+                <p class="text-red-500 text-sm py-4">There are no seats available.</p>
                 @endif
             </div>
 

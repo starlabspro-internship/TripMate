@@ -1,13 +1,13 @@
 <x-app-layout>
-    <div class="bg-showImage bg-no-repeat bg-cover bg-center min-h-screen p-[15px]"> 
+    <div class="bg-showImage bg-no-repeat bg-cover bg-center h-screen overflow-hidden p-[15px]">
         <div class="mt-1 p-1 md:mx-[80px]">
-                        <a href="/trips">
+                        <a href="{{ route('trips.show', ['trip' => $trip->id]) }}">
                             <img
                                 src="{{ asset('storage/icons/back2.svg') }}"
                                 alt="avatar"
                                 class="relative inline-block h-7 w-7 !rounded-full object-cover object-center"
                             />
-                            <span class="text-white">Back to rides</span>
+                            <span class="text-white">Back to trip</span>
                         </a>
             <div class="bg-white bg-opacity-80  m-4  shadow-md  rounded-3xl">
                 <form action="{{ route('bookings.store') }}" method="POST"  class="">
