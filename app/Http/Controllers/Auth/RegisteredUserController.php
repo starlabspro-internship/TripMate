@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
     {
         // Validate the input fields
         $request->validate([
-            'image' => ['required', 'image'],
+            'image' => ['required', 'image', 'max:10240'],
             'name' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/', 'max:255'],
             'lastname' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],

@@ -17,7 +17,7 @@ export default {
     theme: {
         extend: {
             backgroundImage: {
-                'showImage': "url('/storage/profile/trips2.jpg')",
+                'showImage': "url('/storage/landing/trips2.jpg')",
             },
             colors: {
                 aquamarine: '#38B2AC',
