@@ -119,4 +119,19 @@ Route::get('profile/upload-file', function () {
     return view('profile.upload-file');
 })->name('profile.upload-file')->middleware('auth');
 
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/clear-cache-and-seed', function () {
+    // Clear caches
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    
+    // Run database seeder
+    Artisan::call('db:seed');
+
+    return 'Caches cleared and database seeded successfully!';
+});
+
 require __DIR__.'/auth.php';
