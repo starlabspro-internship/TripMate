@@ -6,13 +6,13 @@ DB_PASSWORD="123"
 DB_NAME="tripmate"
 BACKUP_DIR="/var/www/TripMate/database_backups"
 
-# backup dir
+# create backup directory if not exists
 mkdir -p $BACKUP_DIR
 
-#  backup with time and date
-BACKUP_FILE="backup_$(date +\%Y-\%m-\%d_\%H-\%M-\%S).sql.gz"
+# backup file with time and date (updated to include the full path)
+BACKUP_FILE="$BACKUP_DIR/backup_$(date +\%Y-\%m-\%d_\%H-\%M-\%S).sql.gz"
 
-#  mysql dump
+# mysql dump
 mysqldump -u $DB_USER -p$DB_PASSWORD $DB_NAME > $BACKUP_FILE
 
 # Compress
