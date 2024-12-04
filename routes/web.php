@@ -20,7 +20,7 @@ Auth::routes(['verify' => true]);
 Route::middleware('auth')->prefix('trips')->name('trips.')->controller(TripController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
-    Route::post('/store', 'store')->name('store');
+    Route::post('/store', 'store')->middleware('check.words')->name('store');
     Route::put('/{id}', 'update')->name('update');
     Route::delete('/{id}', 'destroy')->name('destroy');
     Route::get('/{trip}/edit', 'edit')->name('edit');
@@ -68,8 +68,6 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 
  Route::post('/upload-id-document', [ProfileController::class, 'uploadDocument'])->name('profile.upload-id-document');
 Route::get('/verify-profile', [ProfileController::class, 'showVerifyPage'])->name('profile.verify-user');
-
-
 });
 
 Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('login.google');
@@ -120,7 +118,5 @@ Route::middleware(['superadmin'])->prefix('superadmin')->group(function () {
 Route::get('profile/upload-file', function () {
     return view('profile.upload-file');
 })->name('profile.upload-file')->middleware('auth');
-
-
 
 require __DIR__.'/auth.php';
