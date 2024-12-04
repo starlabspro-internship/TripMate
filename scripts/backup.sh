@@ -10,7 +10,7 @@ BACKUP_DIR="/var/www/TripMate/database_backups"
 mkdir -p $BACKUP_DIR
 
 #  backup with time and date
-BACKUP_FILE="$BACKUP_DIR/backup_$(date +%F_%T).sql"
+BACKUP_FILE="backup_$(date +\%Y-\%m-\%d_\%H-\%M-\%S).sql.gz"
 
 #  mysql dump
 mysqldump -u $DB_USER -p$DB_PASSWORD $DB_NAME > $BACKUP_FILE
