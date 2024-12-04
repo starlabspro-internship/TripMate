@@ -20,22 +20,26 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         echo -e "Host 188.245.97.198\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
-    - name: Deploy to Server
+    - name: Test Application (Fail if any test fails)
+      run: |
+        # run test
+        php artisan test || exit 1  # stop if test fails
+
+    - name: Deploy to Server with Rollback
       run: |
         ssh root@188.245.97.198 << 'EOF'
-        cd /var/www/TripMate # Adjust this path
-        git pull origin main
-        composer install --optimize-autoloader --no-dev
-        php artisan migrate --force  # Run database migrations
-        php artisan db:seed --force  # Seed the database
-        npm install  # Install npm dependencies
-        npm run build  # Build the assets
-        php artisan cache:clear
-        php artisan config:clear
-        php artisan route:clear
-        php artisan queue:restart
+        cd /var/www/TripMate
+        git pull origin main || (echo "Git pull failed, rolling back" && git reset --hard HEAD^1)
+        composer install --optimize-autoloader --no-dev || (echo "Composer install failed, rolling back" && git reset --hard HEAD^1)
+        php artisan migrate --force || (echo "Migration failed, rolling back" && git reset --hard HEAD^1)
+        php artisan db:seed --force || (echo "Seeding failed, rolling back" && git reset --hard HEAD^1)
+        npm install || (echo "NPM install failed, rolling back" && git reset --hard HEAD^1)
+        npm run build || (echo "Build failed, rolling back" && git reset --hard HEAD^1)
+        php artisan cache:clear || (echo "Cache clear failed, rolling back" && git reset --hard HEAD^1)
+        php artisan config:clear || (echo "Config clear failed, rolling back" && git reset --hard HEAD^1)
+        php artisan route:clear || (echo "Route clear failed, rolling back" && git reset --hard HEAD^1)
+        php artisan queue:restart || (echo "Queue restart failed, rolling back" && git reset --hard HEAD^1)
         EOF
 
     - name: Cleanup
       run: rm -f ~/.ssh/id_rsa
-
