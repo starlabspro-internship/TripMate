@@ -78,22 +78,23 @@
                         Chat
                     </a>
                     @if(!empty($booking->stripe_charge_id))
-                        <form action="{{ route('bookings.refund', $booking->id) }}" method="POST"
-                            onsubmit="return confirmSubmission()">
+                        <form action="{{ route('bookings.refund', $booking->id) }}" method="POST">
                         @csrf
-                        <button type="submit"
+                        <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal"
                             class="w-full  rounded-lg my-2 bg-red-500 hover:bg-red-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700  active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                             Cancel & Refund
                         </button>
+                        @include('bookings.bookingModal')
                         </form>
                     @else
-                        <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" onsubmit="return confirmCancellation()">
+                        <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit"
+                            <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal"
                                 class="w-full rounded-lg my-2 bg-red-500 hover:bg-red-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                                 Cancel
                             </button>
+                            @include('bookings.bookingModal')
                         </form>
                     @endif
                 </div>
@@ -101,12 +102,34 @@
         </div>
     </div>
     <script>
-                function confirmSubmission(event) {
-                return confirm('Are you sure you want to cancel and refund this booking?');
-                }
-                function confirmCancellation(event) {
-                return confirm('Are you sure you want to cancel this booking?');
-                }
+        function openModal(modalId, overlayId) {
+            const modal = document.getElementById(modalId);
+            const overlay = document.getElementById(overlayId);
+
+            if (modal && overlay) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                overlay.classList.remove('hidden');
+            }
+        }
+
+        function closeModal(modalId, overlayId) {
+            const modal = document.getElementById(modalId);
+            const overlay = document.getElementById(overlayId);
+
+            if (modal && overlay) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        document.querySelectorAll('[data-modal-toggle]').forEach(button => {
+            button.addEventListener('click', () => {
+                const target = button.getAttribute('data-modal-target');
+                openModal(target, 'popup-modal-overlay');
+            });
+        });
         document.addEventListener('DOMContentLoaded', function() {
             var latitude = {{ $trip->latitude }};
             var longitude = {{ $trip->longitude }};

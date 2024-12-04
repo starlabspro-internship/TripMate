@@ -92,12 +92,6 @@ class TripController extends Controller
             })->exists();
 
         if ($hasTrip) {
-            \Log::debug('Detekto overlap trip.', [
-                'driver_id' => $driverId,
-                'departure_time' => $departureTime,
-                'arrival_time' => $arrivalTime
-            ]);
-
             return redirect('/trips')->with([
                 'error' => 'Trip can`t be created',
                 'description' => 'You are driving another trip during this time.',
