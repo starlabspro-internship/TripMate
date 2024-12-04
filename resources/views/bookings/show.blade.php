@@ -1,13 +1,13 @@
 <x-app-layout>
-    <div class="bg-showImage bg-no-repeat bg-cover bg-center min-h-screen p-[15px]"> 
+    <div class="bg-showImage bg-no-repeat bg-cover bg-center h-screen overflow-hidden p-[15px]">
         <div class="mt-1 p-1 md:mx-[80px]">
-                        <a href="/trips">
+                        <a href="{{ route('trips.show', ['trip' => $trip->id]) }}">
                             <img
                                 src="{{ asset('storage/icons/back2.svg') }}"
                                 alt="avatar"
                                 class="relative inline-block h-7 w-7 !rounded-full object-cover object-center"
                             />
-                            <span class="text-white">Back to rides</span>
+                            <span class="text-white">Back to trip</span>
                         </a>
             <div class="bg-white bg-opacity-80  m-4  shadow-md  rounded-3xl">
                 <form action="{{ route('bookings.store') }}" method="POST"  class="">
@@ -15,7 +15,7 @@
                     <input type="hidden" name="trip_id" value="{{ $trip->id }}">
                     <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
                         <div class="relative ">
-                            <div id="map" class=" h-[300px] w-full rounded-t-3xl md:rounded-l-none md:h-[435px] md:w-1/2 md:float-end lg:block md:rounded-r-3xl opacity-80"></div>
+                            <div id="map" class=" h-[300px] w-full rounded-t-3xl md:rounded-l-none md:h-[451px] md:w-1/2 md:float-end lg:block md:rounded-r-3xl opacity-80"></div>
                         </div>
                         <div class="p-10 ">
                             <div class="flex my-2 text-black text-xl capitalize space-x-6 justify-between">
@@ -67,36 +67,34 @@
                                     @endif
                                     <p class="relative inline-block px-2 object-cover object-center">{{$trip->users->name}}</p>
                                 </div>
-                                <div class="mt-3">
-                                    @if (session('bookings'))
-                                    <p class="text-green-500">You have successfully reserved {{ session('bookings')->seats_booked }} seats</p>
-                                    @endif
+                                <div class="mt-3">  
+                                    <p class="text-green-500">You have successfully reserved</p>
                                 </div>
                         </div>
                 </form>
-                <div class="flex flex-col md:flex-row items-center mx-4 mt-6 space-x-2">
+                <div class="flex flex-col md:flex-row items-center mx-4 pb-4 space-x-2">
                     <a  href="{{route('chat')}}"
-                        class="w-full rounded-md my-2 bg-white py-2 px-4 border border-transparent text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-green-300 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
+                        class="w-full rounded-lg my-2 bg-white py-2 px-4 border border-transparent text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-green-300 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                         Chat
                     </a>
-                    @if(!empty($paymentIntentId))
-                        <form action="{{ route('bookings.refund', $booking->id) }}" method="POST"
-                            onsubmit="return confirmSubmission()">
+                    @if(!empty($booking->stripe_charge_id))
+                        <form action="{{ route('bookings.refund', $booking->id) }}" method="POST">
                         @csrf
-                        <button type="submit"
-                            class="w-full  rounded-md my-2 bg-red-500 hover:bg-red-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700  active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
+                        <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                            class="w-full  rounded-lg my-2 bg-red-500 hover:bg-red-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700  active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                             Cancel & Refund
                         </button>
+                        @include('bookings.bookingModal')
                         </form>
-                    @endif
-                    @if(empty($paymentIntentId))
-                        <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" onsubmit="return confirmCancellation()">
+                    @else
+                        <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit"
-                                class="w-full rounded-md my-2 bg-red-500 hover:bg-red-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
+                            <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                                class="w-full rounded-lg my-2 bg-red-500 hover:bg-red-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
                                 Cancel
                             </button>
+                            @include('bookings.bookingModal')
                         </form>
                     @endif
                 </div>
@@ -104,12 +102,36 @@
         </div>
     </div>
     <script>
+        function openModal(modalId, overlayId) {
+            const modal = document.getElementById(modalId);
+            const overlay = document.getElementById(overlayId);
+
+            if (modal && overlay) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                overlay.classList.remove('hidden');
+            }
                 function confirmSubmission(event) {
                 return confirm('Are you sure you want to cancel and refund this booking?');
-                }
-                function confirmCancellation(event) {
-                return confirm('Are you sure you want to cancel this booking?');
-                }
+            }
+        }
+        function closeModal(modalId, overlayId) {
+            const modal = document.getElementById(modalId);
+            const overlay = document.getElementById(overlayId);
+
+            if (modal && overlay) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        document.querySelectorAll('[data-modal-toggle]').forEach(button => {
+            button.addEventListener('click', () => {
+                const target = button.getAttribute('data-modal-target');
+                openModal(target, 'popup-modal-overlay');
+            });
+        });
         document.addEventListener('DOMContentLoaded', function() {
             var latitude = {{ $trip->latitude }};
             var longitude = {{ $trip->longitude }};
