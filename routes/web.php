@@ -26,8 +26,9 @@ Route::middleware('auth')->prefix('trips')->name('trips.')->controller(TripContr
     Route::get('/{trip}/edit', 'edit')->name('edit');
     Route::get('/{trip}', 'show')->name('show');
     Route::post('/{trip}/end', 'end')->name('end');
+    Route::post('/{trip}/start', 'start')->name('start');
 });
-Route::post('/{trip}/start',  [TripController::class, 'start'])->name('trip.start');
+
 
 Route::middleware('ifnotauth')->prefix('bookings')->name('bookings.')->controller(BookingController::class)->group(function () {
     Route::get('/transactions','myTransactions')->name('transactions');
