@@ -96,14 +96,17 @@
                     </div>
                 </div>
                 @if ($trip->driver_id === auth()->id())
-            <a href="{{ route('trips.edit', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Edit</a>
-        @else
-        @if($trip->status !== 'In Progress')
-        <a href="{{ route('trips.show', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Book Now</a>
-    @else
-        <span class="text-gray-500 text-lg font-semibold">Trip Started</span>
-    @endif
-        @endif
+                <a href="{{ route('trips.edit', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Edit</a>
+            @else
+                @if ($trip->status === 'Failed')
+                    <span class="text-red-600 text-lg font-semibold">Trip Failed</span>
+                @elseif ($trip->status !== 'In Progress')
+                    <a href="{{ route('trips.show', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Book Now</a>
+                @else
+                    <span class="text-gray-500 text-lg font-semibold">Trip Started</span>
+                @endif
+            @endif
+            
             </div>
             <div class="mb-2 flex items-center">
                 <p class="text-blue-900 flex items-center mr-4 text-lg">
@@ -166,8 +169,10 @@
             </div>
          
             @if (auth()->id() === $trip->driver_id)
-    @if (Carbon\Carbon::parse($trip->departure_time)->isToday() && $trip->status === 'Waiting')
-        <form action="{{ route('trip.start', $trip->id) }}" method="POST">
+            @if ($trip->status === 'Failed')
+            <span class="text-red-600  font-semibold">Trip has  failed!</span>
+        @elseif  (Carbon\Carbon::parse($trip->departure_time)->isToday() && $trip->status === 'Waiting')
+        <form action="{{ route('trips.start', $trip->id) }}" method="POST">
             @csrf
             <button type="submit" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Start Trip</button>
         </form>

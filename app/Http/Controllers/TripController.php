@@ -33,8 +33,8 @@ class TripController extends Controller
 
     $trips->where(function ($query) {
         $query->where('status', '!=', 'Completed')
-              ->where('status', '!=', 'Failed')
-              ->orWhereNull('status'); 
+              ->orWhere('status', 'Failed') 
+              ->orWhereNull('status');
             });
      
         if ($request->filled('date')) {
@@ -266,6 +266,9 @@ class TripController extends Controller
 
     if ($trip->status !== 'Waiting') {
         return back()->with('error', 'Trip cannot be started.');
+    }
+    if ($trip->bookings()->count() < 1) {
+        return back()->with('error', 'The trip cannot be started because there are no bookings.');
     }
 
     $trip->status = 'In Progress';
