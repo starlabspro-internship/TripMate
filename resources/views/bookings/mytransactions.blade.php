@@ -18,7 +18,7 @@
           <div class="relative overflow-hidden rounded-2xl" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/card-visa.jpg')">
             <span class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 opacity-80"></span>
             <div class="relative z-10 flex-auto p-4">
-              <h5 class="pb-2 mt-6 mb-12 text-white">4242&nbsp;&nbsp;&nbsp;4242&nbsp;&nbsp;&nbsp;4242&nbsp;&nbsp;&nbsp;4242</h5>
+              <h5 class="pb-2 mt-6 mb-12 text-white">****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;4242</h5>
               <div class="flex">
                 <div class="mr-6">
                   <p class="mb-0 text-sm leading-normal text-white opacity-80">Card Holder</p>
@@ -49,9 +49,9 @@
                 <h6 class="mb-0 dark:text-white">Payment Method</h6>
               </div>
               <div class="flex-none w-1/2 max-w-full px-3 text-right">
-                <a class="inline-block px-5 py-2.5 font-bold leading-normal text-center text-white align-middle transition-all bg-transparent rounded-lg cursor-pointer text-sm ease-in shadow-md bg-150 bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 hover:shadow-xs active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25" href="javascript:;"> 
-                  Add New Card
-                </a>
+                <span class="inline-block px-5 py-2.5 leading-normal text-center text-white align-middle transition-all bg-transparent rounded-lg cursor-pointer text-sm ease-in shadow-md bg-150 bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 hover:shadow-xs active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25"> 
+                   Card Information
+                </span>
               </div>
             </div>
           </div>

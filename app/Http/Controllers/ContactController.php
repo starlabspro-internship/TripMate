@@ -6,6 +6,9 @@ use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\InquiryMail;
+use App\Mail\ReceiveMail;
+use App\Jobs\SendInquiryMail;
+use App\Jobs\SendReceiveMail;
 
 class ContactController extends Controller
 {
@@ -43,9 +46,9 @@ class ContactController extends Controller
         'recaptcha_verified' => 'verified',
     ]);
    
-
-    Mail::to($contact->email)->send(new InquiryMail($contact));
-    return back()->with('success', 'Your message has been sent successfully!');
+    SendInquiryMail::dispatch($contact)->onQueue('emails');
+    SendReceiveMail::dispatch($contact)->onQueue('admin-emails');
+    return back()->with('success', 'Message has been sent successfully!');
 }
 
 }
