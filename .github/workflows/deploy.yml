@@ -13,6 +13,12 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
 
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'  # Specify your PHP version here
+        extensions: mbstring, bcmath, mysqli  # Add any other PHP extensions required
+
     - name: Set up SSH
       run: |
         mkdir -p ~/.ssh
@@ -20,9 +26,12 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         echo -e "Host 188.245.97.198\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
+    - name: Install Composer Dependencies
+      run: |
+        composer install --optimize-autoloader --no-dev
+
     - name: Test Application (Fail if any test fails)
       run: |
-        # run test
         php artisan test || exit 1  # stop if test fails
 
     - name: Deploy to Server with Rollback
@@ -43,3 +52,4 @@ jobs:
 
     - name: Cleanup
       run: rm -f ~/.ssh/id_rsa
+
