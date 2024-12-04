@@ -25,3 +25,5 @@ yarn-error.log
 !/storage/app/public/
 !/storage/app/public/*
 storage/app/public/profile/
+storage/app/public/bg_doc/
+storage/app/public/uploads/id_documents/
