@@ -1,31 +1,21 @@
-<?php
-
-namespace Database\Seeders;
-
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-
-class DatabaseSeeder extends Seeder
+public function run(): void
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
-    {
-        // User::factory(10)->create();
-
-        User::factory()->create([
+    User::factory()->firstOrCreate(
+        ['email' => 'admin@gmail.com'],
+        [
             'name' => 'admin',
-            'email' => 'admin@gmail.com',
-        ]);
-        User::factory()->create([
+            'password' => Hash::make('adminpassword'),
+        ]
+    );
+
+    User::factory()->firstOrCreate(
+        ['email' => 'superadmin@gmail.com'],
+        [
             'name' => 'superadmin',
-            'email' => 'superadmin@gmail.com',
             'password' => Hash::make('superadmin'),
             'is_super_admin' => true,
-        ]);
-        $this->call(CitySeeder::class);
-    }
+        ]
+    );
+
+    $this->call(CitySeeder::class);
 }
