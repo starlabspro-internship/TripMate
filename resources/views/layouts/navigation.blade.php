@@ -43,6 +43,10 @@
                             <img src="{{ asset('storage/icons/trips.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
                             <span class="mx-3 text-sm">My Trips Bookings</span>
                         </a>
+                        <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('bookings.myTransactions') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('bookings.transactions') }}">
+                            <img src="{{ asset('storage/icons/credit-card.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
+                            <span class="mx-3 text-sm">My Transactions</span>
+                        </a>
                     </div>
                 </div>
                     @if(Auth::user()->isSuperAdmin())

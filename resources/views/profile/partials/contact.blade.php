@@ -40,6 +40,16 @@
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
     </div>
+    <div class="mb-2 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-2">
+        <div class="flex-1">
+        <div class="w-full" style="transform: scale(0.85); transform-origin: left;">
+                        {!! NoCaptcha::display() !!}
+   </div>
+            @error('g-recaptcha-response')
+                  <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+           @enderror
+            </div>
+      </div>
 
     <!-- Submit Button and Loading Spinner -->
     <div class="flex justify-start mb-5">

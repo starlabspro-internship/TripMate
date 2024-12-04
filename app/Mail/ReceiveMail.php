@@ -2,30 +2,28 @@
 
 namespace App\Mail;
 
-use App\Models\Contact;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Mailables\Address;
+use App\Models\Contact;
 
 
-
-class InquiryMail extends Mailable
+class ReceiveMail extends Mailable
 {
     use Queueable, SerializesModels;
-
-    // Declare a public property to hold the contact data
-    public Contact $contact;
 
     /**
      * Create a new message instance.
      */
+    
+     public Contact $contact;
+    
     public function __construct(Contact $contact)
     {
-        // Initialize the contact property with the provided data
         $this->contact = $contact;
     }
 
@@ -35,8 +33,8 @@ class InquiryMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Inquiry Mail',
-            from: config('mail.from.address')
+            subject: 'Receive Mail',
+            from: new Address($this->contact->email, $this->contact->name)
         );
     }
 
@@ -46,10 +44,8 @@ class InquiryMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.inquiry-mail',
-            with: [
-                'contact' => $this->contact
-            ]
+            view: 'mail.receive-mail',
+            with: ['contact' => $this->contact]
         );
     }
 
