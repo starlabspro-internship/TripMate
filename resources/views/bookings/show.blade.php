@@ -111,8 +111,10 @@
                 modal.classList.add('flex');
                 overlay.classList.remove('hidden');
             }
+                function confirmSubmission(event) {
+                return confirm('Are you sure you want to cancel and refund this booking?');
+            }
         }
-
         function closeModal(modalId, overlayId) {
             const modal = document.getElementById(modalId);
             const overlay = document.getElementById(overlayId);
