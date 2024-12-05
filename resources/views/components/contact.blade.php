@@ -76,10 +76,6 @@
                     </button>
                 </div>
 
-                <!-- Success Message -->
-                @if(session('status'))
-                    <p class="mt-2 text-aquamarine text-center">{{ session('status') }}</p>
-                @endif
             </form>
         </div>
     </div>
