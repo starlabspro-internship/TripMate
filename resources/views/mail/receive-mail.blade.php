@@ -26,6 +26,10 @@
             text-align: center;
             margin-bottom: 20px;
         }
+          a  {
+            color: white !important;
+            font-weight: bold;
+        }
         .message {
             color: #ffffff;
             line-height: 1.6;
