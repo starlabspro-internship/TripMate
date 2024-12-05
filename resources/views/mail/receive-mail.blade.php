@@ -58,7 +58,7 @@
             Name: <span class="bold-text">{{ $contact->name }}</span>
         </p>
         <p class="message">
-            Email: <span idclass="bold-text">{{ $contact->email }}</span>
+            Email: <span class="bold-text">{{ $contact->email }}</span>
         </p>
         <p class="message">
             Subject: <span class="bold-text">{{ $contact->subject }}</span>
