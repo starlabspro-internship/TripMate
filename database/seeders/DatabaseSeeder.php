@@ -16,16 +16,23 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-        ]);
-        User::factory()->create([
-            'name' => 'superadmin',
-            'email' => 'superadmin@gmail.com',
-            'password' => Hash::make('superadmin'),
-            'is_super_admin' => true,
-        ]);
+        User::firstOrCreate(
+            ['email' => "admin@gmail.com"],
+            [
+                'name' => 'admin',
+                'password' => Hash::make('adminpassword'),
+                'email' => 'admin@gmail.com',
+            ]
+        );
+        User::firstOrCreate(
+           ['email' => 'superadmin@gmail.com'],
+           
+           [
+              'name' => 'superadmin' ,
+               'password' => Hash::make('superadmin'),
+               'is_super_admin' => true,
+               ]
+           );
         $this->call(CitySeeder::class);
     }
 }
