@@ -26,6 +26,10 @@
             text-align: center;
             margin-bottom: 20px;
         }
+          a  {
+            color: white !important;
+            font-weight: bold;
+        }
         .message {
             color: #ffffff;
             line-height: 1.6;
@@ -54,7 +58,7 @@
             Name: <span class="bold-text">{{ $contact->name }}</span>
         </p>
         <p class="message">
-            Email: <span class="bold-text">{{ $contact->email }}</span>
+            Email: <span idclass="bold-text">{{ $contact->email }}</span>
         </p>
         <p class="message">
             Subject: <span class="bold-text">{{ $contact->subject }}</span>
