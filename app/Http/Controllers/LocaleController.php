@@ -18,7 +18,7 @@ class LocaleController extends Controller
         session(['localization' => $locale]);
 
           
-    logger('Selected Locale:', ['locale' => session('localization')]);
+
 
     
 
