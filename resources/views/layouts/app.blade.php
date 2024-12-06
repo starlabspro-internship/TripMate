@@ -7,6 +7,8 @@
 
         <title>TripMate</title>
 
+     
+
         <!-- Scripts -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v4.0.0/dist/tesseract.min.js"></script>
@@ -33,6 +35,7 @@
             <!-- Display navigation only if user is authenticated and not on `enter.code` page -->
             @if(Auth::check() && !request()->routeIs('enter.code'))
                 @include('layouts.navigation')
+         
 
             @elseif (!Auth::check() && request()->is('/') || request()->is('home'))
 
@@ -49,6 +52,7 @@
                     </header>
                 @endif
             @endisset
+
 
             <!-- Page Content -->
             <main>

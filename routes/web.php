@@ -11,6 +11,7 @@ use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\UserVerifyController;
+use App\Http\Controllers\LocaleController;
 
 
 
@@ -118,5 +119,15 @@ Route::middleware(['superadmin'])->prefix('superadmin')->group(function () {
 Route::get('profile/upload-file', function () {
     return view('profile.upload-file');
 })->name('profile.upload-file')->middleware('auth');
+
+
+
+Route::get('language/{locale}', function($locale){
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+})->name('localization');
+
+
 
 require __DIR__.'/auth.php';
