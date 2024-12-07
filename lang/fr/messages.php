@@ -242,6 +242,8 @@ return [
 'First Name:' => 'Prénom:',
 'Last Name:' => 'Nom de famille:',
 'My Transactions' => 'Mes transactions',
+'All Booked Up' => 'Complet',
+
 
 
 

@@ -133,4 +133,10 @@ return [
     'First Name:' => 'Vorname:',
     'Last Name:' => 'Nachname:',
     'My Transactions' => 'Meine Transaktionen',
+    'All Booked Up' => 'Alles ausgebucht',
+    'Tables' => 'Tabellen',
+    'Meeting At:' => 'Treffen um:',
+
+
+
 ];

@@ -245,6 +245,8 @@ return [
 'First Name:' => 'Emri:',
 'Last Name:' => 'Mbiemri:',
 'My Transactions' => 'Transaksionet e mia',
+'All Booked Up' => 'Të gjitha të rezervuara',
+
 
 
 

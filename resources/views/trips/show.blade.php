@@ -151,8 +151,8 @@
                                 type="number" name="seats_booked" min="1" max="{{ $available_seats }}" value="0" required disabled>
                             </div>
                             @endif
-                            @if ($available_seats>0)
-                            <div>
+                     @if ($available_seats>0)
+                              <div>
                                 <button class="rounded-md bg-blue-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40"
                                 type="submit">
                                 {{ __('messages.Book Now') }}
@@ -161,16 +161,11 @@
                             @else
                             <div>
                                 <div class="rounded-md bg-red-500 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md  focus:bg-red-700 focus:shadow-none  active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:bg-red-500 md:w-40 cursor-not-allowed opacity-50">
-                                    All Booked Up
+                                    @lang('messages.All Booked Up')
                                 </div>
-                                <button 
-                                    class="rounded-md bg-red-500 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-red-700 focus:shadow-none active:bg-red-700 hover:bg-red-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:bg-red-500 md:w-40"
-                                    type="submit"
-                                    disabled>
-                                      {{ __('messages.Book Now') }}
-                                </button>
+                                
                             </div>
-                            @endif
+                        @endif
                     </div>
             </form>
         </div>

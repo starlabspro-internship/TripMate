@@ -252,7 +252,11 @@ return [
 'Edit Image' => 'Edit Image',
 'First Name:' => 'First Name:',
 'Last Name:' => 'Last Name:',
-'My Transactions' => 'My Transactions',
+'My Transactions' => 'My Transactions', 
+'All Booked Up' => 'All Booked Up',
+'Meeting At:' => 'Meeting At:',
+
+
 
 
 
