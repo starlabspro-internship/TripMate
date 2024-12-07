@@ -1,31 +1,31 @@
 <x-app-layout>
     <div class="container mx-auto px-4 py-8">
-        <h1 class="flex justify-center text-4xl font-bold mb-6 text-gray-800">All Transactions</h1>
+        <h1 class="flex justify-center text-4xl font-bold mb-6 text-gray-800">{{ __('messages.All Transactions') }}</h1>
 
         <div class="flex justify-center items-center mb-4 mt-10">
 
             <form method="GET" action="{{ route('superadmin.transactions') }}" class="flex flex-wrap gap-4 items-center justify-center w-full space-x-4">
             <div class="flex flex-col">
-                <label for="date_from" class="block text-sm font-medium text-gray-700">From</label>
+                <label for="date_from" class="block text-sm font-medium text-gray-700">{{ __('messages.From:') }}</label>
                 <input type="date" id="filter_date" name="date_from" 
                        value="{{ request('date_from') }}" 
-                       placeholder="Select Date"
+                       placeholder="{{ __('messages.Select Date') }}"
                        class="mt-1 block w-32 sm:w-40 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm">
             </div>
             <div class="flex flex-col">
-                <label for="date_to" class="block text-sm font-medium text-gray-700">To</label>
+                <label for="date_to" class="block text-sm font-medium text-gray-700">{{ __('messages.To:') }}</label>
                 <input type="date" id="filter_date" name="date_to" 
                        value="{{ request('date_to') }}" 
-                       placeholder="Select Date"
+                       placeholder="{{ __('messages.Select Date') }}"
                        class="mt-1 block w-32 sm:w-40 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm">
             </div>
                 <div class="flex flex-col">
-                    <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                    <label for="status" class="block text-sm font-medium text-gray-700">{{ __('messages.Status') }}</label>
                     <select name="status" 
                         class="mt-1 block w-32 sm:w-40 px-1 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
-                        <option value="">All</option>
-                        <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>Paid</option>
-                        <option value="refunded" {{ request('status') == 'refunded' ? 'selected' : '' }}>Refunded</option>
+                        <option value="">{{ __('messages.All') }}</option>
+                        <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>{{ __('messages.Paid') }}</option>
+                        <option value="refunded" {{ request('status') == 'refunded' ? 'selected' : '' }}>{{ __('messages.Refunded') }}</option>
                     </select>
                 </div>
 
@@ -45,14 +45,14 @@
 
                 <div class="flex flex-col">
                     <button type="submit" class="px-4 py-2 mt-6 text-sm bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
-                        Filter
+                        {{ __('messages.Filter') }}
                     </button>
                 </div>
             </form>
         </div>
 
         @if($transactions->isEmpty())
-            <div class="text-center text-gray-600">No transactions available.</div>
+            <div class="text-center text-gray-600">{{ __('messages.No transactions available.') }}</div>
         @else
             <div class="flex-auto p-4 pb-0 overflow-y-auto max-h-[600px] w-full max-w-[900px] mx-auto">
                 <ul class="flex flex-col pl-0 mb-0 rounded-lg">

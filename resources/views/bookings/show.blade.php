@@ -7,7 +7,8 @@
                                 alt="avatar"
                                 class="relative inline-block h-7 w-7 !rounded-full object-cover object-center"
                             />
-                            <span class="text-white">Back to trip</span>
+                            <span class="text-white">{{ __('messages.Back to trip') }}</span>  
+                            
                         </a>
             <div class="bg-white bg-opacity-80  m-4  shadow-md  rounded-3xl">
                 <form action="{{ route('bookings.store') }}" method="POST"  class="">
@@ -44,7 +45,7 @@
                                     @if ($trip->driver_comments)
                                         <p class="relative inline-block px-1 object-cover object-center">{{$trip->driver_comments}}</p>
                                     @else
-                                        <p class="relative inline-block px-1  object-cover object-center">Talk in  chat</p>
+                                        <p class="relative inline-block px-1  object-cover object-center">{{ __('messages.Talk in chat') }}</p> 
                                     @endif
                                 </div>
                                 <div class="flex-col pb-4 space-y-5">
@@ -56,7 +57,7 @@
                                     <p class="relative inline-block  object-cover object-center">&nbsp;&nbsp;{{$trip->price}}</p>
                                 </div>
                                 <div class="text-black  space-y-1 justify-between ">
-                                    <h1 class="text-lg">Driver:</h1>
+                                    <h1 class="text-lg">{{ __('messages.Driver') }}</h1>
                                     @if ($trip->users->image)
                                         <img
                                             src="{{ asset('storage/' . $trip->users->image) }}" alt="{{ $trip->users->name }}"
@@ -68,7 +69,7 @@
                                     <p class="relative inline-block px-2 object-cover object-center">{{$trip->users->name}}</p>
                                 </div>
                                 <div class="mt-3">  
-                                    <p class="text-green-500">You have successfully reserved</p>
+                                    <p class="text-green-500">{{ __('messages.You have successfully reserved') }}</p>
                                 </div>
                         </div>
                 </form>
@@ -82,7 +83,7 @@
                         @csrf
                         <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal"
                             class="w-full  rounded-lg my-2 bg-red-500 hover:bg-red-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700  active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
-                            Cancel & Refund
+                            {{ __('messages.Cancel & Refund') }}
                         </button>
                         @include('bookings.bookingModal')
                         </form>
@@ -92,7 +93,7 @@
                             @method('DELETE')
                             <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal"
                                 class="w-full rounded-lg my-2 bg-red-500 hover:bg-red-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:w-40">
-                                Cancel
+                                {{ __('messages.Cancel') }}
                             </button>
                             @include('bookings.bookingModal')
                         </form>

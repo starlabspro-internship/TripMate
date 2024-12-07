@@ -1,8 +1,8 @@
 <x-app-layout>
     <div class="container px-6 py-8 mx-auto">
         <div class="text-center bg-white p-6 rounded-md shadow-sm mb-6">
-            <h1 class="text-4xl font-bold text-blue-700">Welcome, {{ Auth::user()->name }}!</h1>
-            <p class="text-lg text-gray-600 mt-2">"Start your journey, one trip at a time!"</p>
+            <h1 class="text-4xl font-bold text-blue-700">{{ __('messages.Welcome') }} , {{ Auth::user()->name }}!</h1>
+            <p class="text-lg text-gray-600 mt-2">{{ __('messages.Start your journey, one trip at a time!') }}</p>
         </div>
 
         <div class="mt-4">
@@ -16,7 +16,7 @@
                         <div class="mx-5">
                             <a href="{{ route('superadmin.index') }}">
                                 <h4 class="text-2xl font-semibold text-gray-700">{{$totalUsers}}</h4>
-                                <div class="text-gray-500">Total Users</div>
+                                <div class="text-gray-500">{{ __('messages.Total Users') }}</div>
                             </a>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                         <div class="mx-5">
                             <a href="{{ route('superadmin.index', ['tab' => 'trips']) }}">
                                 <h4 class="text-2xl font-semibold text-gray-700">{{$totalTrips}}</h4>
-                                <div class="text-gray-500">Total Trips</div>
+                                <div class="text-gray-500">{{ __('messages.Total Trips') }}</div>
                             </a>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                         <div class="mx-5">
                             <a href="{{ route('superadmin.index', ['tab' => 'bookings']) }}">
                                 <h4 class="text-2xl font-semibold text-gray-700">{{$totalBookings}}</h4>
-                                <div class="text-gray-500">Total Bookings</div>
+                                <div class="text-gray-500">{{ __('messages.Total Bookings') }}</div>
                             </a>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="mx-5">
                                 <a href="{{ route('superadmin.index', ['tab' => 'verifications']) }}">
-                                    <h4 class="text-2xl font-semibold text-gray-700">To Do List</h4>
+                                    <h4 class="text-2xl font-semibold text-gray-700">{{ __('messages.To Do List') }}</h4>
                                 </a>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                             </div>
                             <div class="mx-5">
                                 <a href="{{ route('superadmin.index', ['tab' => 'cancelled']) }}">
-                                    <h4 class="text-2xl font-semibold text-gray-700">Feedbacks</h4>
+                                    <h4 class="text-2xl font-semibold text-gray-700">{{ __('messages.Feedbacks') }}</h4>
                                 </a>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
             </div>
             <div>
                 <div class="mt-8">
-                    <h3 class="text-2xl font-medium text-gray-700 mb-4">Analytics</h3>
+                    <h3 class="text-2xl font-medium text-gray-700 mb-4">{{ __('messages.Analytics') }}</h3>
                     <div class="flex space-x-4">
                         <!-- First Chart -->
                         <div class="flex-1 bg-white p-6 rounded-md shadow-sm">
@@ -103,7 +103,7 @@
             <div class="flex mt-8 gap-4">
                 <!-- Map Section -->
                 <div class="w-full md:w-2/3 lg:w-3/5 bg-white p-3 rounded-md">
-                    <h3 class="text-2xl font-medium text-gray-700 mb-4">Map of Kosovo</h3>
+                    <h3 class="text-2xl font-medium text-gray-700 mb-4">{{ __('messages.Map of Kosovo') }}</h3>
                     <div id="map" class="w-full h-96 rounded-md shadow-sm"></div>
                 </div>
 
@@ -111,22 +111,22 @@
                 
                 <div class="w-full md:w-1/3 lg:w-2/5 bg-white rounded-md shadow-sm p-4">
                 <a href="{{ route('superadmin.transactions') }}">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Recent Transactions</h3>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">{{ __('messages.Recent Transactions') }}</h3>
                 </a>
                     <div class="overflow-y-auto max-h-[380px]">
                         <table class="w-full border border-gray-200 rounded-md shadow-md overflow-hidden">
                             <thead>
                                 <tr class="rounded-sm bg-gray-100 dark:bg-meta-4">
-                                    <th class="border-b border-gray-300 px-4 py-3 text-left">Transaction</th>
-                                    <th class="border-b border-gray-300 px-4 py-3 text-center">Amount</th>
-                                    <th class="border-b border-gray-300 px-4 py-3 text-center">Date</th>
+                                    <th class="border-b border-gray-300 px-4 py-3 text-left">{{ __('messages.Transactions') }}</th>
+                                    <th class="border-b border-gray-300 px-4 py-3 text-center">{{ __('messages.Amount') }}</th>
+                                    <th class="border-b border-gray-300 px-4 py-3 text-center">{{ __('messages.Date') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
                                 <!-- Example Rows (Replace with Dynamic Data) -->
                                 @if($transactions->isEmpty())
                                 <tr>
-                                    <td colspan="3" class="text-center text-gray-600">No transactions available.</td>
+                                    <td colspan="3" class="text-center text-gray-600">{{ __('messages.No transactions available.') }}</td>
                                 </tr>
                                 @else
                                 @foreach($transactions as $transaction)

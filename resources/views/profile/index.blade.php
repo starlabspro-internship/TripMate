@@ -136,16 +136,17 @@
                 </div>
                 @if (auth()->user()->verification_status==='pending')
                 <div class="w-full sm:w-1/4 border border-yellow-700 rounded-md p-3 my-3 mx-auto text-center shadow-sm hover:shadow-md transition-transform transform hover:scale-105">
-                    <p class="text-yellow-800 font-medium text-md">Your verification is still pending.</p>
-                    <p class="text-yellow-700 text-xs ">Please wait until your account is verified.</p>
+                    <p class="text-yellow-800 font-medium text-md">{{ __('messages.Your verification is still pending.') }}</p>
+                    <p class="text-yellow-700 text-xs">{{ __('messages.Please wait until your account is verified.') }}</p>
+                    
                 </div>
                 @endif
                 @if (auth()->user()->verification_status=== null)
                     <a href="{{ route('profile.verify-user') }}"
                        class="w-full sm:w-1/3 bg-gray/20 backdrop-blur-md border border-[#A2D5F2] rounded-md p-2 my-1 mx-1 flex items-center justify-between shadow-sm hover:shadow-lg cursor-pointer hover:scale-105 transition duration-300 hover:border-sky-500">
                         <div>
-                            <h4 class="font-medium text-sm">Verify Profile</h4>
-                            <p class="text-xs text-gray-500">Verify your profile for safety.</p>
+                            <h4 class="font-medium text-sm">{{ __('messages.Verify Profile') }}</h4>
+                            <p class="text-xs text-gray-500">{{ __('messages.Verify your profile for safety.') }}</p>
                         </div>
                         <span class="text-gray-500 text-base">&#8594;</span>
                     </a>
@@ -159,34 +160,35 @@
             <!-- Personal Info Section -->
             <div class="mb-4 w-full flex flex-col 2xl:w-1/3">
                 <div class="bg-white rounded-lg shadow-xl p-8 flex-1">
-                    <h4 class="text-xl text-gray-900 font-bold">Personal Info</h4>
+                    <h4 class="text-xl text-gray-900 font-bold">{{ __('messages.Personal Info') }}</h4>
                     <ul class="mt-2 text-gray-700">
                         <li class="flex border-y py-2">
-                            <span class="font-bold w-24">Full Name:</span>
+                            <span class="font-bold w-24">{{ __('messages.Full Name:') }}</span>
                             <span>{{ auth()->user()->name }} {{ auth()->user()->lastname }}</span>
                         </li>
                         <li class="flex border-b py-2">
-                            <span class="font-bold w-24">Birthday:</span>
+                            <span class="font-bold w-24">{{ __('messages.Birthday:') }}</span>
                             <span>{{ auth()->user()->birthday }}</span>
                         </li>
                         <li class="flex border-y py-2">
-                            <span class="font-bold w-24">Email:</span>
+                            <span class="font-bold w-24">{{ __('messages.Email:') }}</span>
                             <span>{{ auth()->user()->email }}</span>
                         </li>
                         <li class="flex border-b py-2">
-                            <span class="font-bold w-24">Joined:</span>
+                            <span class="font-bold w-24">{{ __('messages.Joined:') }}</span>
                             <span>{{ auth()->user()->created_at}}</span>
                         </li>
                         <li class="flex border-b py-2">
-                            <span class="font-bold w-24">Mobile:</span>
+                            <span class="font-bold w-24">{{ __('messages.Phone Number:') }}</span>
+                            
                             <span>{{ auth()->user()->phone }}</span>
                         </li>
                         <li class="flex border-b py-2">
-                            <span class="font-bold w-24">City:</span>
+                            <span class="font-bold w-24">{{ __('messages.City:') }}</span>
                             <span>{{ auth()->user()->city }}</span>
                         </li>
                         <li class="flex border-b py-2">
-                            <span class="font-bold w-24">Address:</span>
+                            <span class="font-bold w-24">{{ __('messages.Address:') }}</span>
                             <span>{{ auth()->user()->address }}</span>
                         </li>
                     </ul>
@@ -197,16 +199,18 @@
             <div x-data="tabs()"  class="flex flex-col w-full 2xl:w-2/3 overflow-y-auto max-h-[430px]">
                 <div class="mb-4 container mx-auto px-2 py-4 bg-white rounded-lg shadow-xl flex-1 overflow-y-auto">
                     <h2 class="text-2xl font-semibold mb-4 text-gray-800">
-                        {{ "Completed Rides Of " . auth()->user()->name }}
+                        {{ __('messages.Completed Rides Of') . ' ' . auth()->user()->name }}
+
+
                     </h2>
                     <div class="flex gap-2 mb-4">
                         <button @click="currentTab = 'driver'"
                                 class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm">
-                            Driver
+                                {{ __('messages.Driver') }}
                         </button>
                         <button @click="currentTab = 'passenger'"
                                 class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm">
-                            Passenger
+                                {{ __('messages.Passenger') }}
                         </button>
                     </div>
                     <div id="bookings" class="space-y-4 ">
@@ -263,12 +267,12 @@
                                         {{ $ride->trip->arrival_time->format('H:i') }}
                                     </p>
                                     <p class="flex items-center gap-2">
-                                        Driver's Start : {{ \Carbon\Carbon::parse($ride->trip->start_time)->format('H:i') }}
+                                        {{ __('messages.Started at:') }} {{ \Carbon\Carbon::parse($ride->trip->start_time)->format('H:i') }}
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M5 12h14M12 5l7 7-7 7"/>
                                         </svg>
                                    
-                                        Driver's End : {{ \Carbon\Carbon::parse($ride->trip->end_time)->format('H:i') }}
+                                        {{ __('messages.Ended at:') }} {{ \Carbon\Carbon::parse($ride->trip->end_time)->format('H:i') }}
                                     </p>
                                     
                                 </div>
@@ -331,16 +335,16 @@
                                     <p class="flex items-center gap-2 ml-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                                             <path d="M16 8.94444C15.1834 7.76165 13.9037 7 12.4653 7C9.99917 7 8 9.23858 8 12C8 14.7614 9.99917 17 12.4653 17C13.9037 17 15.1834 16.2384 16 15.0556M7 10.5H11M7 13.5H11M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg><span>Price:</span> {{ $ride->price }} €</p>
+                                        </svg><span>{{ __('messages.Price:') }}</span> {{ $ride->price }} €</p>
                                     <p class="flex items-center gap-2 ml-1">
                                         
 
                                 
-                                <span>Started at:</span> {{ \Carbon\Carbon::parse($ride->start_time)->format('H:i') }}
+                                <span>{{ __('messages.Started at:') }}</span> {{ \Carbon\Carbon::parse($ride->start_time)->format('H:i') }}
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M5 12h14M12 5l7 7-7 7"/>
                                 </svg>
-                                <span>Ended at:</span> {{ \Carbon\Carbon::parse($ride->end_time)->format('H:i') }}
+                                <span>{{ __('messages.Ended at:') }}</span> {{ \Carbon\Carbon::parse($ride->end_time)->format('H:i') }}
                                      
                                     </p>
                                 </div>

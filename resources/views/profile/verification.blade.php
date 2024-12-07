@@ -11,14 +11,14 @@
             </div>
 
 
-            <h1 class="text-2xl font-bold-serif">You've been verified</h1>
+            <h1 class="text-2xl font-bold-serif">{{ __('messages.You have been verified') }}</h1>
 
 
-            <p class="text-gray-500 mt-2 font-serif">Your profile has been successfully verified. Thank you for completing the verification process.</p>
+            <p class="text-gray-500 mt-2 font-serif">{{ __('messages.Your profile has been successfully verified. Thank you for completing the verification process.') }}</p>
 
 
             <a href="{{ route('dashboard') }}" class="inline-block mt-4 px-6 py-2 bg-green-500 text-white font-serif rounded-lg hover:bg-green-600 transition duration-200">
-                Continue
+                {{ __('messages.Continue') }}
             </a>
         </div>
     </div>

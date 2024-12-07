@@ -2,13 +2,15 @@
     @auth
     <div class="container mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-center mb-6 mt-1 w-full space-y-4 md:space-y-0">
-        <h1 class="text-3xl font-bold text-black p-6">Available Rides</h1>
+            <h1 class="text-3xl font-bold text-black p-6">{{ __('messages.Available Rides') }}</h1>
+
+
             <div class="flex gap-2 md:flex-row md:mr-[20px] md:space-y-0 md:space-x-2 mt-4 md:mt-0">
                 <a href="{{ route('trips.index') }}"
                    class="w-28 px-4 py-1 text-sm rounded-md transition duration-200
                           {{ request()->routeIs('trips.index') ? 'bg-blue-100 text-blue-600' : 'bg-blue-200 text-gray-500' }}
                           hover:bg-blue-300 text-center">
-                    Passenger
+                          {{ __('messages.Passenger') }}
                 </a>
                 @if(!auth()->user()->email_verified_at && !auth()->user()->google_id)
 
@@ -17,7 +19,7 @@
                        class="w-28 px-4 py-1 text-sm rounded-md transition duration-200
                           {{ request()->routeIs('trips.create') ? 'bg-blue-100 text-blue-600' : 'bg-gray-200 text-gray-700' }}
                           hover:bg-gray-400 text-center">
-                        Driver
+                          {{ __('messages.Driver') }}
                     </a>
                 @endif
             </div>
@@ -27,7 +29,7 @@
         <div class="w-full md:w-1/4 mb-2 md:mb-0 md:mr-2">
             <select name="origin_city_id" id="origin-city"
                     class="border border-gray-300 rounded-md px-3 py-1.5 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-                <option value="" class="text-gray-500">From:</option>
+                <option value="" class="text-gray-500">{{ __('messages.From:') }}</option>
                 @foreach ($cities as $city)
                     <option value="{{ $city->id }}" {{ request('origin_city_id') == $city->id ? 'selected' : '' }}>{{ $city->name }}</option>
                 @endforeach
@@ -48,7 +50,7 @@
         <div class="w-full md:w-1/4 mb-2 md:mb-0">
             <select name="destination_city_id" id="destination-city"
                     class="border border-gray-300 rounded-md px-3 py-1.5 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-                <option value="" class="text-gray-500">To:</option>
+                <option value="" class="text-gray-500">{{ __('messages.To:') }}</option>
                 @foreach ($cities as $city)
                     <option value="{{ $city->id }}" {{ request('destination_city_id') == $city->id ? 'selected' : '' }}>{{ $city->name }}</option>
                 @endforeach
@@ -58,7 +60,7 @@
         <div class="mb-4 w-2/3 flex justify-center">
             <input type="text" id="filter-date" name="date"
                 class="border border-gray-300 rounded-md px-3 py-1.5 w-full md:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 text-center"
-                placeholder="Select a date" readonly
+                placeholder="{{ __('messages.Select a date') }}" readonly
                 value="{{ request('date') }}">
             </div>
     <div class="flex items-center space-x-2">
@@ -66,13 +68,13 @@
                 class="px-4 py-1 text-sm rounded-full transition duration-200
                        {{ request()->routeIs('trips.index') ? 'bg-blue-100 text-blue-600' : 'bg-blue-500 text-white' }}
                        hover:bg-blue-300 w-full max-w-[100px]">
-            Filter
+                       {{ __('messages.Filter') }}
         </button>
         <a href="{{ route('trips.index') }}"
            class="px-4 py-1 text-sm rounded-full transition duration-200
                   {{ request()->routeIs('trips.index') ? 'bg-gray-100 text-gray-600' : 'bg-gray-300 text-gray-700' }}
                   hover:bg-gray-400 w-full max-w-[100px] text-center">
-            Reset
+                  {{ __('messages.Reset') }}
         </a>
     </div>
 </form>
@@ -96,16 +98,25 @@
                     </div>
                 </div>
                 @if ($trip->driver_id === auth()->id())
-                <a href="{{ route('trips.edit', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Edit</a>
+                @if ($trip->status !== 'Failed')
+                    <a href="{{ route('trips.edit', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">
+                        {{ __('messages.Edit') }}
+                    </a>
+                   
+                @endif
             @else
                 @if ($trip->status === 'Failed')
-                    <span class="text-red-600 text-lg font-semibold">Trip Failed</span>
+                    <span class="text-red-600 text-lg font-semibold">{{ __('messages.Trip Failed') }}</span>
                 @elseif ($trip->status !== 'In Progress')
-                    <a href="{{ route('trips.show', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">Book Now</a>
+                    <a href="{{ route('trips.show', $trip->id) }}" class="text-indigo-600 text-lg hover:text-indigo-800 font-semibold">
+                        {{ __('messages.Book Now') }}
+                    </a>
                 @else
-                    <span class="text-gray-500 text-lg font-semibold">Trip Started</span>
+                    <span class="text-gray-500 text-lg font-semibold">{{ __('messages.Trip Started') }}</span>
                 @endif
             @endif
+            
+
             
             </div>
             <div class="mb-2 flex items-center">
@@ -170,16 +181,16 @@
          
             @if (auth()->id() === $trip->driver_id)
             @if ($trip->status === 'Failed')
-            <span class="text-red-600  font-semibold">Trip has  failed!</span>
+            <span class="text-red-600  font-semibold">{{ __('messages.Trip Failed') }}!</span>
         @elseif  (Carbon\Carbon::parse($trip->departure_time)->isToday() && $trip->status === 'Waiting')
         <form action="{{ route('trips.start', $trip->id) }}" method="POST">
             @csrf
-            <button type="submit" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Start Trip</button>
+            <button type="submit" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">{{ __('messages.Start Trip') }}</button>
         </form>
     @elseif ($trip->status === 'In Progress')
         <form action="{{ route('trips.end', $trip->id) }}" method="POST" class="mt-4">
             @csrf
-            <button type="submit" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">End Trip</button>
+            <button type="submit" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">{{ __('messages.End Trip') }}</button>
         </form>
     @endif
 @endif
