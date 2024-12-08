@@ -27,15 +27,13 @@ jobs:
         git pull origin main
         composer install --optimize-autoloader --no-dev
         php artisan migrate --force
-        php artisan db:seed --force
-        php artisan queue:work --queue=emails,admin-emails
+        nohup php artisan queue:work --queue=emails,admin-emails > /dev/null 2>&1 &
         npm install
         npm run build
-        php artisan cache:clear
-        php artisan config:clear
-        php artisan route:clear
-        php artisan queue:restart
+        php artisan config:cache
+        php artisan route:cache
         EOF
 
     - name: Cleanup
       run: rm -f ~/.ssh/id_rsa
+
