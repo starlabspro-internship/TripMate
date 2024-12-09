@@ -1,42 +1,47 @@
 <x-app-layout>
-    <div class="container mx-auto mt-20 px-6">
-        <h2 class="text-3xl font-extrabold text-gray-800 text-center mb-8">Background Check</h2>
-
+    <div class="container mx-auto mt-5 px-[70px]">
+        <div class="flex justify-center items-center mb-8">
+            <h2 class="text-xl text-gray-700 text-center bg-white shadow-md py-1 px-20 rounded-full inline-block">
+                Background Check
+            </h2>
+        </div>
+        
+        
         <!-- Verification Table -->
-        <div class="overflow-x-auto bg-gray-300 rounded-t-lg">
-            <table class="w-full">
-                <thead class="bg-[#1d576f] text-white text-md font-semibold px-4 py-3 uppercase tracking-wide">
+        <div class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg bg-clip-border w-full">
+            <table class="w-full text-left table-auto border-collapse ">
+                <thead class="bg-white text-gray-400 px-4 py-3 tracking-wide">
                 <tr>
-                    <th class="px-6 py-4 text-left">Name</th>
-                    <th class="px-6 py-4 text-center">Verification Status</th>
-                    <th class="px-6 py-4 text-center">Document</th>
-                    <th class="px-6 py-4 text-center">Verify</th>
-                    <th class="px-6 py-4 text-center">Flag</th>
+                    <th class="px-6 py-4 text-sm font-normal leading-none text-left">Name</th>
+                    <th class="px-6 py-4 text-sm font-normal leading-none text-left">Verification Status</th>
+                    <th class="px-6 py-4 text-sm font-normal leading-none text-left">Document</th>
+                    <th class="px-6 py-4 text-sm font-normal leading-none text-left">Verify</th>
+                    <th class="px-6 py-4 text-sm font-normal leading-none text-left">Flag</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody class="">
                 @foreach($users->where('id', '!=', auth()->id()) as $user)
-                    <tr class="border-b border-gray-600 p-2.5 ">
-                        <td class="px-6 py-4 text-gray-800">{{ $user->name }} {{$user->lastname}}</td>
-                        <td class="px-6 py-4 text-center">
+                    <tr class="border-b border-gray-300 bg-gray-100 p-2.5 ">
+                        <td class="px-6 py-4 text-gray-700">{{ $user->name }} {{$user->lastname}}</td>
+                        <td class="px-6 py-4 text-left">
                             <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-md
                                 {{ $user->background_status === 'verified' ? ' text-green-800' : ' text-yellow-600' }}">
                                 {{ ucfirst($user->background_status) }}
                             </span>
                         </td>
-                        <td class="px-6 py-4 text-center flex justify-center">
+                        <td class="px-6 py-4 text-left flex text-left">
                                 @if($user->background_document)
                                     <button onclick="openDocumentModalBg('{{ asset('storage/' . $user->background_document) }}')"
-                                        class="underline flex  justify-center text-blue-950">
+                                        class="underline flex text-left rounded-md shadow text-blue-500">
                                         <span>View Document</span>
                                         <svg class="h-4 w-4 mt-1" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill=""><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>open-external</title> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="icon" fill="#172554" transform="translate(85.333333, 64.000000)"> <path d="M128,63.999444 L128,106.666444 L42.6666667,106.666667 L42.6666667,320 L256,320 L256,234.666444 L298.666,234.666444 L298.666667,362.666667 L4.26325641e-14,362.666667 L4.26325641e-14,64 L128,63.999444 Z M362.666667,1.42108547e-14 L362.666667,170.666667 L320,170.666667 L320,72.835 L143.084945,249.751611 L112.915055,219.581722 L289.83,42.666 L192,42.6666667 L192,1.42108547e-14 L362.666667,1.42108547e-14 Z" id="Combined-Shape"> </path> </g> </g> </g></svg>
                                     </button>
                             @else
-                                <span class="text-gray-500 italic">No Document</span>
+                                <span class="text-gray-700 italic">No Document</span>
                             @endif
                         </td>
-                        <td class="text-center">
+                        <td class="text-left">
                                 <form action="{{ route('superadmin.bgverify', $user) }}" method="POST">
                                     @csrf
                                     <button type="submit"
@@ -45,7 +50,7 @@
                                     </button>
                                 </form>
                         </td>
-                        <td class="px-6 py-4 flex justify-center space-x-4">
+                        <td class="px-6 py-4 flex text-left space-x-4">
                             <form action="{{ route('superadmin.bgflagged', $user) }}" method="POST">
                                 @csrf
                                 <button type="submit"
