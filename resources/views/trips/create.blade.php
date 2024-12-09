@@ -37,26 +37,26 @@
     </head>
     <div class="container mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-center mt-1 w-full space-y-4 md:space-y-0">
-            <h1 class="text-3xl font-bold text-black p-6">Create Trips</h1>
+            <h1 class="text-3xl font-bold text-black p-6">{{ __('messages.Create Trips') }}</h1>
             <div class="flex gap-2 md:flex-row  md:space-y-0 md:space-x-2 mt-4 md:mt-0">
                 <a href="{{ route('trips.index') }}"
                    class="w-28 px-4 py-1 text-sm rounded-md transition duration-200
                           {{ request()->routeIs('trips.index') ? 'bg-gray-100 text-gray-600' : 'bg-gray-200 text-gray-700' }}
                           hover:bg-gray-400 text-center">
-                    Passenger
+                          {{ __('messages.Passenger') }}
                 </a>
                 <a href="{{ route('trips.create') }}"
                    class="w-28 px-4 py-1 text-sm rounded-md transition duration-200
                           {{ request()->routeIs('trips.create') ? 'bg-blue-100 text-blue-600' : 'bg-gray-200 text-gray-700' }}
                           hover:bg-blue-300 text-center">
-                    Driver
+                          {{ __('messages.Driver') }}
                 </a>
             </div>
         </div>
     </div>
     <div class="flex items-center justify-center p-8">
         <div class="hover:shadow-2xl w-full max-w-lg ride-card bg-white p-6 rounded-lg transition-shadow duration-500 shadow-md flex flex-col justify-between">
-            <h1 class="text-xl font-semibold text-gray-800 mb-6 text-center leading-tight">Plan Your Next Journey</h1>
+            <h1 class="text-xl font-semibold text-gray-800 mb-6 text-center leading-tight">{{ __('messages.Plan Your Next Journey') }}</h1>
             <div class="flex font-light border-2 rounded-xl border-yellow-400 ">
                 <img
                         src="{{ asset('storage/icons/warn.svg') }}"
@@ -64,8 +64,7 @@
                         class="relative inline-block h-auto w-20 p-2"
                     />
                 <p class="p-2 md:text-md text-sm inline-block">
-                    Post your trip 24 hours in advance to double your chances of finding travel companions!
-                    Plan ahead, travel stress-free, and enjoy every moment of your journey!
+                    {{ __('messages.Post your trip 24 hours in advance to double your chances of finding travel companions! Plan ahead, travel stress-free, and enjoy every moment of your journey!') }}
                 </p>
             </div>
             @if($errors->any())
@@ -84,7 +83,7 @@
                     <div class=" flex flex-col md:w-full relative w-1/3">
                         <select name="origin_city_id" id="origin_city_id"
                                 class="border border-gray-300 rounded-md bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
-                            <option value="" class="text-gray-500">From:</option>
+                            <option value="" class="text-gray-500">{{ __('messages.From:') }}</option>
                             @foreach ($cities as $city)
                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
                             @endforeach
@@ -98,7 +97,7 @@
                     <div class=" flex flex-col md:w-full w-1/3 relative">
                         <select name="destination_city_id" id="destination_city_id"
                                 class="border border-gray-300 rounded-md  bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
-                            <option value="" class="text-gray-500">To:</option>
+                            <option value="" class="text-gray-500">{{ __('messages.To:') }}</option>
                             @foreach ($cities as $city)
                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
                             @endforeach
@@ -109,7 +108,7 @@
                     <div class="flex flex-col w-full relative">
                         <input type="text" id="date-picker" name="departure_time"
                                class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                               placeholder="Departure Time:" value="{{ old('departure_time') }}" required>
+                               placeholder="{{ __('messages.Departure Time:') }}" value="{{ old('departure_time') }}" required>
                         <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                             <rect x="3" y="6" width="18" height="15" rx="2" stroke="#33363F" stroke-width="2"/>
                             <path d="M3 10C3 8.11438 3 7.17157 3.58579 6.58579C4.17157 6 5.11438 6 7 6H17C18.8856 6 19.8284 6 20.4142 6.58579C21 7.17157 21 8.11438 21 10H3Z" fill="#33363F"/>
@@ -125,7 +124,7 @@
                     <div class="flex flex-col w-full relative">
                         <input type="text" id="date-picker" name="arrival_time"
                                class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                               placeholder="Arrival Time:" value="{{ old('arrival_time') }}" required>
+                               placeholder="{{ __('messages.Arrival Time:') }}" value="{{ old('arrival_time') }}" required>
                                <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                                 <rect x="3" y="6" width="18" height="15" rx="2" stroke="#33363F" stroke-width="2"/>
                                 <path d="M3 10C3 8.11438 3 7.17157 3.58579 6.58579C4.17157 6 5.11438 6 7 6H17C18.8856 6 19.8284 6 20.4142 6.58579C21 7.17157 21 8.11438 21 10H3Z" fill="#33363F"/>
@@ -143,7 +142,7 @@
                         <div class="relative">
                             <input type="number" id="available_seats" name="available_seats"
                                    class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                                   min="1" placeholder="Available Seats:" value="{{ old('available_seats') }}" required>
+                                   min="1" placeholder="{{ __('messages.Available Seats:') }}" value="{{ old('available_seats') }}" required>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" class="absolute right-2 top-2">
                                 <path opacity="0.4" d="M17.9981 7.16C17.9381 7.15 17.8681 7.15 17.8081 7.16C16.4281 7.11 15.3281 5.98 15.3281 4.58C15.3281 3.15 16.4781 2 17.9081 2C19.3381 2 20.4881 3.16 20.4881 4.58C20.4781 5.98 19.3781 7.11 17.9981 7.16Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path opacity="0.4" d="M16.9675 14.4402C18.3375 14.6702 19.8475 14.4302 20.9075 13.7202C22.3175 12.7802 22.3175 11.2402 20.9075 10.3002C19.8375 9.59016 18.3075 9.35016 16.9375 9.59016" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -158,7 +157,7 @@
                         <div class="relative">
                             <input type="float" id="price" name="price"
                                    class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                                   placeholder="Price:" value="{{ old('price') }}" required>
+                                   placeholder="{{ __('messages.Price:') }}" value="{{ old('price') }}" required>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" class="absolute right-2 top-2">
                                 <circle opacity="0.5" cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5"/>
                                 <path d="M15 6.80269C14.1175 6.29218 13.0929 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18C13.0929 18 14.1175 17.7078 15 17.1973" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
@@ -171,23 +170,23 @@
                 <div class="flex flex-col w-full">
                     <textarea type="text" id="driver_comments" name="driver_comments"
                                class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                               placeholder="Add any comments or instructions about the trip to help your passenger." value="{{ old('driver_comments') }}"></textarea>
+                               placeholder="{{ __('messages.Add any comments or instructions about the trip to help your passenger.') }}" value="{{ old('driver_comments') }}"></textarea>
                 </div>
                 @if( Auth::user()->gender == 'female')
                 <div class="flex flex-col w-full">
-                    <legend class=" mb-2">Passengers:</legend>
+                    <legend class=" mb-2">{{ __('messages.Passengers') }}</legend>
                     <label class="flex items-center space-x-2">
                         <input type="radio" name="passenger_gender_preference" value="female" class="radio" />
-                        <span>Female Only</span>
+                        <span>{{ __('messages.Female Only') }}</span>
                     </label>
                     <label class="flex items-center space-x-2 mt-2">
                         <input type="radio" name="passenger_gender_preference" value="all" class="radio" 
                         {{ old('passenger_gender_preference', 'all') == 'all' ? 'checked' : '' }}/>
-                        <span>All</span>
+                        <span>{{ __('messages.All') }}</span>
                     </label>
                 </div>
                 @endif
-                    <p class="">Meeting At:</p>
+                    <p class="">{{ __('messages.Meeting At:') }}</p>
                     <div id="map" class="relative mb-1 h-[400px] z-0 overflow-hidden" style="z-index: 0"></div>
                     <input type="hidden" id="latitude" name="latitude" />
                     <input type="hidden" id="longitude" name="longitude" />
@@ -196,7 +195,7 @@
                         <a href="{{ route('trips.index') }}">
                             <button type="submit"
                                     class="px-3 py-1 text-md rounded-xl transition duration-200 bg-blue-500 text-white hover:bg-blue-300 w-[250px] h-[45px] max-w-full">
-                                    Publish
+                                    {{ __('messages.Publish') }}
                             </button>
                         </a>
                     </div>

@@ -82,8 +82,8 @@ class TripController extends Controller
     {
         if (!auth()->user()->email_verified_at && !auth()->user()->google_id) {
             return redirect('/trips')->with([
-                'error' => 'Trip can`t be created',
-                'description' => 'Your email address is not verified. Please verify your email before booking a trip.',
+                'error' => __('messages.Trip can`t be created'),
+                'description' => __('messages.Your email address is not verified. Please verify your email before booking a trip.'),
             ]);
         }
 
@@ -114,8 +114,8 @@ class TripController extends Controller
             ]);
 
             return redirect('/trips')->with([
-                'error' => 'Trip can`t be created',
-                'description' => 'You are driving another trip during this time.',
+                'error' => __('messages.Trip can`t be created'),
+                'description' => __('messages.You are driving another trip during this time.'),
             ]);
         }
         $hasBooking = Booking::where('passenger_id', $request->driver_id)
@@ -125,8 +125,8 @@ class TripController extends Controller
             })->exists();
         if ($hasBooking) {
             return redirect('/trips')->with([
-                'error' => 'Trip can`t be created',
-                'description' => 'You already have a booking during this time.',
+                'error' => __('messages.Trip can`t be created'),
+                'description' => __('messages.You already have a booking during this time.'),
             ]);
         }
 
@@ -146,17 +146,18 @@ class TripController extends Controller
 
         Trip::create($validatedData);
 
-        return redirect('/trips')->with('success', 'Trip created successfully');
+        return redirect('/trips')->with('success', __('messages.Trip created successfully'));
+
     }
     public function edit($id){
         $trip = Trip::find($id);
         if (!$trip) {
-            return redirect()->route('trips.index')->with('error', 'Trip not found');
+            return redirect()->route('trips.index')->with('error', __('messages.Trip not found'));
         }
         if (auth()->id() !== $trip->driver_id) {
             return redirect()->route('trips.index')->with([
-                'error' => 'Trip cannot be edited.',
-                'description' => 'You do not have permission to edit this trip.',
+                'error' => __('messages.Trip cannot be edited.'),
+                'description' => __('You do not have permission to edit this trip.'),
             ]);
         }
         $cities = City::all();
@@ -164,8 +165,8 @@ class TripController extends Controller
 
         if (now()->greaterThanOrEqualTo($trip->departure_time)) {
             return redirect()->route('trips.index')->with([
-                'error' => 'Trip cannot be edited.',
-                'description' => 'This trip has already departed.',
+                'error' => __('messages.Trip cannot be edited.'),
+                'description' => __('messages.This trip has already departed.'),
             ]);
         }
 
@@ -177,12 +178,12 @@ class TripController extends Controller
     {
         $trip = Trip::with(['users', 'origincity', 'destinationcity', 'bookings'])->find($id);
         if (!$trip) {
-            return redirect()->route('trips.index')->with('error', 'Trip not found');
+            return redirect()->route('trips.index')->with('error', __('messages.Trip not found'));
         }
         if (auth()->id() === $trip->driver_id) {
             return redirect()->route('trips.index')->with([
-                'error' => 'Booking failed.',
-                'description' => 'You cannot book your own trip.',
+                'error' => __('messages.Booking failed.'),
+                'description' => __('messages.You cannot book your own trip.'),
             ]);
         }
         $available_seats = $trip->available_seats;
@@ -210,7 +211,7 @@ class TripController extends Controller
 
         ]);
         $trip->update($request->except('driver_id'));
-        return redirect('/trips')->with('success', 'Trip updated successfully');
+        return redirect('/trips')->with('success', __('messages.Trip updated successfully'));
     }
 
 
@@ -218,8 +219,8 @@ class TripController extends Controller
         $trip = Trip::findOrFail($id);
         if (auth()->id() !== $trip->driver_id) {
             return redirect()->route('trips.index')->with([
-                'error' => 'Trip cannot be deleted.',
-                'description' => 'You do not have permission to delete this trip.',
+                'error' => __('messages.Trip cannot be deleted.'),
+                'description' => __('messages.You do not have permission to delete this trip.'),
             ]);
         }
         $bookings = Booking::where('trip_id', $trip->id)->where('status', 'paid')->get();
@@ -229,8 +230,8 @@ class TripController extends Controller
             foreach ($bookings as $booking) {
                 if (now()->greaterThanOrEqualTo($trip->departure_time)) {
                     return redirect()->route('trips.index')->with([
-                        'error' => 'Trip cannot be deleted.',
-                        'description' => 'This trip has already departed.',
+                        'error' => __('messages.Trip cannot be deleted.'),
+                        'description' => __('messages.This trip has already departed.'),
                     ]);
                 }
                 try {
@@ -240,16 +241,16 @@ class TripController extends Controller
                     $booking->update(['status' => 'refunded']);
                 } catch (\Exception $e) {
                     return redirect()->back()->with([
-                        'error' => 'Refund failed',
-                        'description' => 'Refund failed for a booking: ' . $e->getMessage(),
+                        'error' => __('messages.Refund failed'),
+                        'description' => __('messages.Refund failed for a booking:') . $e->getMessage(),
                     ]);
                 }
             }
         }
         $trip->delete();
         return redirect('/trips')->with([
-            'success' => 'Trip deleted successfully.',
-            'description' => 'All bookings have been refunded.',
+            'success' => __('messages.Trip deleted successfully.'),
+            'description' => __('messages.All bookings have been refunded.'),
         ]);
     }
 
@@ -257,35 +258,35 @@ class TripController extends Controller
     public function start(Trip $trip)
 {
     if (auth()->user()->id !== $trip->driver_id) {
-        return back()->with('error', 'You are not authorized to start this trip.');
+        return back()->with('error', __('messages.You are not authorized to start this trip.'));
     }
 
     if (Carbon::parse($trip->departure_time)->isFuture()) {
-        return back()->with('error', 'This trip cannot be started yet. The trip is scheduled for a future date.');
+        return back()->with('error', __('messages.This trip cannot be started yet. The trip is scheduled for a future date.'));
     }
 
     if ($trip->status !== 'Waiting') {
-        return back()->with('error', 'Trip cannot be started.');
+        return back()->with('error', __('messages.Trip cannot be started.'));
     }
     if ($trip->bookings()->count() < 1) {
-        return back()->with('error', 'The trip cannot be started because there are no bookings.');
+        return back()->with('error', __('messages.The trip cannot be started because there are no bookings.'));
     }
 
     $trip->status = 'In Progress';
     $trip->start_time = now();
     $trip->save(); 
 
-    return back()->with('success', 'Trip started successfully.');
+    return back()->with('success',  __('messages.Trip started successfully.'));
 }
 
 public function end(Trip $trip)
 {
     if (auth()->user()->id !== $trip->driver_id) {
-        return back()->with('error', 'You are not authorized to end this trip.');
+        return back()->with('error', __('messages.You are not authorized to end this trip.'));
     }
 
     if ($trip->status !== 'In Progress') {
-        return back()->with('error', 'Trip cannot be ended.');
+        return back()->with('error', __('messages.Trip cannot be ended.'));
     }
 
     $trip->status = 'Completed';
@@ -293,7 +294,7 @@ public function end(Trip $trip)
     $trip->end_time= now();
     $trip->save(); 
 
-    return back()->with('success', 'Trip ended successfully.');
+    return back()->with('success', __('messages.Trip ended successfully.'));
 }
 
 
