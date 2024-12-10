@@ -18,14 +18,14 @@
           <div class="relative overflow-hidden rounded-2xl" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/card-visa.jpg')">
             <span class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 opacity-80"></span>
             <div class="relative z-10 flex-auto p-4">
-              <h5 class="pb-2 mt-6 mb-12 text-white">4242&nbsp;&nbsp;&nbsp;4242&nbsp;&nbsp;&nbsp;4242&nbsp;&nbsp;&nbsp;4242</h5>
+              <h5 class="pb-2 mt-6 mb-12 text-white">****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;4242</h5>
               <div class="flex">
                 <div class="mr-6">
-                  <p class="mb-0 text-sm leading-normal text-white opacity-80">Card Holder</p>
+                  <p class="mb-0 text-sm leading-normal text-white opacity-80">{{ __('messages.Card Holder') }}</p>
                   <h6 class="mb-0 text-white">{{ auth()->user()->name }} {{ auth()->user()->lastname }}</h6>
                 </div>
                 <div>
-                  <p class="mb-0 text-sm leading-normal text-white opacity-80">Expires</p>
+                  <p class="mb-0 text-sm leading-normal text-white opacity-80">{{ __('messages.Expires') }}</p>
                   <h6 class="mb-0 text-white">11/25</h6>
                 </div>
               </div>
@@ -46,12 +46,12 @@
           <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
             <div class="flex flex-wrap -mx-3">
               <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                <h6 class="mb-0 dark:text-white">Payment Method</h6>
+                <h6 class="mb-0 dark:text-white">{{ __('messages.Payment Method') }}</h6>
               </div>
               <div class="flex-none w-1/2 max-w-full px-3 text-right">
-                <a class="inline-block px-5 py-2.5 font-bold leading-normal text-center text-white align-middle transition-all bg-transparent rounded-lg cursor-pointer text-sm ease-in shadow-md bg-150 bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 hover:shadow-xs active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25" href="javascript:;"> 
-                  Add New Card
-                </a>
+                <span class="inline-block px-5 py-2.5 leading-normal text-center text-white align-middle transition-all bg-transparent rounded-lg cursor-pointer text-sm ease-in shadow-md bg-150 bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 hover:shadow-xs active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25"> 
+                  {{ __('messages.Card Information') }}
+                </span>
               </div>
             </div>
           </div>
@@ -90,26 +90,26 @@
       <div class="flex justify-center items-center mb-4 mt-10"> 
         <form method="GET" action="{{ route('bookings.transactions') }}" class="flex flex-wrap gap-4 items-center justify-center w-full space-x-4">
             <div class="flex flex-col">
-                <label for="date_from" class="block text-sm font-medium text-gray-700">From</label>
+                <label for="date_from" class="block text-sm font-medium text-gray-700">{{ __('messages.From:') }}</label>
                 <input type="date" id="filter_date" name="date_from" 
                        value="{{ request('date_from') }}" 
-                       placeholder="Select Date"
+                       placeholder="{{ __('messages.Select Date') }}"
                        class="mt-1 block w-32 sm:w-40 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm">
             </div>
             <div class="flex flex-col">
-                <label for="date_to" class="block text-sm font-medium text-gray-700">To</label>
+                <label for="date_to" class="block text-sm font-medium text-gray-700">{{ __('messages.To:') }}</label>
                 <input type="date" id="filter_date" name="date_to" 
                        value="{{ request('date_to') }}" 
-                       placeholder="Select Date"
+                       placeholder="{{ __('messages.Select Date') }}"
                        class="mt-1 block w-32 sm:w-40 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm">
             </div>
             <div class="flex flex-col">
-                <label for="status" class="block text-sm font-medium text-gray-700 ">Status</label>
+                <label for="status" class="block text-sm font-medium text-gray-700 ">{{ __('messages.Status') }}</label>
                 <select id="status" name="status" 
                         class="mt-1 block w-32 sm:w-40 px-1 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
-                    <option value="">All</option>
-                    <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>Paid</option>
-                    <option value="refunded" {{ request('status') == 'refunded' ? 'selected' : '' }}>Refunded</option>
+                    <option value="">{{ __('messages.All') }}</option>
+                    <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>{{ __('messages.Paid') }} </option>
+                    <option value="refunded" {{ request('status') == 'refunded' ? 'selected' : '' }}>{{ __('messages.Refunded') }}</option>
                 </select>
             </div>
     
@@ -127,7 +127,7 @@
             </div>
             <div class="flex flex-col">
                 <button type="submit" class="px-4 py-2 mt-6 text-sm bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
-                    Filter
+                  {{ __('messages.Filter') }}
                 </button>
             </div>
         </form>
@@ -140,13 +140,13 @@
             <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
               <div class="flex flex-wrap -mx-3">
                 <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                  <h6 class="mb-0 font-semibold leading-normal dark:text-white text-slate-700">Outgoing Transactions</h6>
+                  <h6 class="mb-0 font-semibold leading-normal dark:text-white text-slate-700">{{ __('messages.Outgoing Transactions') }}</h6>
                 </div>
               </div>
             </div>
             <div class="mb-12">
               @if($moneySent->isEmpty())
-              <div class="text-center text-gray-600">No records of payments made by you.</div>
+              <div class="text-center text-gray-600">{{ __('messages.No records of payments made by you.') }}</div>
           @else
               <div class="flex-auto p-4 pb-0">
                   <ul class="flex flex-col pl-0 mb-0 rounded-lg">
@@ -203,7 +203,7 @@
             <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
               <div class="flex flex-wrap -mx-3">
                 <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                  <h6 class="mb-0 font-semibold leading-normal dark:text-white text-slate-700">Incoming Transactions</h6>
+                  <h6 class="mb-0 font-semibold leading-normal dark:text-white text-slate-700">{{ __('messages.Incoming Transactions') }}</h6>
                 </div>
               </div>
             </div>

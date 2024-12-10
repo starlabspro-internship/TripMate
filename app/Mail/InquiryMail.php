@@ -36,7 +36,7 @@ class InquiryMail extends Mailable
     {
         return new Envelope(
             subject: 'Inquiry Mail',
-            from: 'info@tripmate.com'
+            from: config('mail.from.address')
         );
     }
 

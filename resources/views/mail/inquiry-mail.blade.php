@@ -8,11 +8,12 @@
         body {
             background-color: #f3f4f6;
             color: #1f2937;
+            font-family: 'Roboto', sans-serif;
         }
         .container {
             max-width: 600px;
             margin: 40px auto;
-            background: linear-gradient(135deg, #6f91ef, #1b3a73);
+            background: linear-gradient(135deg, #77b69a, #06401c);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
@@ -51,11 +52,12 @@
             Dear Customer <span class="bold-text">{{ $contact->name }}</span>,
         </p>
         <p class="message">
-            Thank you for reaching out regarding <span class="bold-text">{{ $contact->subject }}</span>. We are here to assist you about: <span class="bold-text"><br>{{ $contact->message }}</span>.
+            Thank you for contacting us about <span class="bold-text">{{ $contact->subject }}</span>.
+            We appreciate your inquiry and are here to assist you with any questions or concerns you may have.
         </p>
         <footer>
-            <p>We will get back to you soon!</p>
-            <p>TRIP MATE TEAM !</p>
+            <p>We will get back to you shortly!</p>
+            <p>The TripMate Team</p>
         </footer>
     </div>
 </body>
