@@ -126,27 +126,27 @@
             }
         }
 
-        document.querySelectorAll('[data-modal-toggle]').forEach(button => {
-            button.addEventListener('click', () => {
-                const target = button.getAttribute('data-modal-target');
-                openModal(target, 'popup-modal-overlay');
-            });
-        });
         document.addEventListener('DOMContentLoaded', function() {
             var latitude = {{ $trip->latitude }};
             var longitude = {{ $trip->longitude }};
-
             var map = L.map('map').setView([latitude, longitude], 13);
-
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 minZoom: 8,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-
-            L.marker([latitude, longitude]).addTo(map)
-                .bindPopup("Meeting Location")
-                .openPopup();
+            var customIcon = L.icon({
+                iconUrl: "{{ asset('storage/profile/icon.png') }}",
+                iconSize: [25, 36],
+                iconAnchor: [12, 36],
+                popupAnchor: [0, -36]
+            });
+            L.marker([latitude, longitude], { icon: customIcon }).addTo(map)
+                .bindPopup(`
+                    <div class="font-medium p-2 rounded-lg text-center">
+                        <span class="italic text-indigo-500 text-sm">Meeting Location</span>
+                    </div>
+                `);
         });
     </script>
 </x-app-layout>

@@ -43,6 +43,14 @@
                             <img src="{{ asset('storage/icons/trips.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
                             <span class="mx-3 text-sm">My Trips Bookings</span>
                         </a>
+                        <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('user.qr-code') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('user.qr-code', ['id' => auth()->user()->id]) }}">
+                            <img src="{{ asset('storage/icons/qr-code.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
+                            <span class="mx-3 text-sm">My Qr-Code</span>
+                        </a>
+                        <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('scan.qr') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('scan.qr', auth()->user()->id) }}">
+                            <img src="{{ asset('storage/icons/qr-code-scanning.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
+                            <span class="mx-3 text-sm">Scan Qr-Code</span>
+                        </a>
                     </div>
                 </div>
                     @if(Auth::user()->isSuperAdmin())

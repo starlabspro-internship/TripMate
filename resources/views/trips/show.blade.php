@@ -173,16 +173,16 @@
             @csrf
             <input type="hidden" name="trip_id" value="{{ $trip->id }}">
             <input type="hidden" name="passenger_id" value="{{ auth()->user()->id }}">
-            <div class="flex justify-between items-center space-x-4">
-                <p class="w-4/5 text-sm md:text-md ">If you want to reserve your seat and pay in person, choose the "Reserve Your Seat" option. This allows you to secure your seat now and handle payment conveniently when you arrive.</p>
+            <div class="flex flex-col md:flex-row justify-between items-center space-x-4">
+                <p class="w-full px-2 pt-1 md:pt-0 md:w-4/5 text-sm md:text-md ">If you want to reserve your seat and pay in person, choose the "Reserve Your Seat" option. This allows you to secure your seat now and handle payment conveniently when you arrive.</p>
                 @if ($available_seats > 0)
-                <div class="flex items-center space-x-4 pb-2 pt-2">
+                <div class="flex items-center space-x-2 pb-2 pt-2">
                     <input
-                        class="border border-gray-700 rounded-lg  bg-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-800 text-gray-700 p-2"
+                        class=" border border-gray-700 rounded-lg  bg-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-800 text-gray-700 p-2"
                         type="number" name="seats_booked" min="1" max="{{ $available_seats }}" value="1" required
                         placeholder="Seats to book">
                     <button
-                        class="whitespace-nowrap rounded-md bg-blue-800 py-2 px-6 text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700  disabled:pointer-events-none disabled:opacity-50"
+                        class=" whitespace-nowrap px-[20px] rounded-md bg-blue-800 py-2  md:px-6 text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700  disabled:pointer-events-none disabled:opacity-50"
                         type="submit">
                         Reserve Seat
                     </button>
@@ -204,12 +204,18 @@
                 minZoom: 8,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-            L.marker([latitude, longitude]).addTo(map)
-            .bindPopup(`
+            var customIcon = L.icon({
+                iconUrl: "{{ asset('storage/profile/icon.png') }}",
+                iconSize: [25, 36],
+                iconAnchor: [12, 36],
+                popupAnchor: [0, -36]
+            });
+            L.marker([latitude, longitude], { icon: customIcon }).addTo(map)
+                .bindPopup(`
                     <div class="font-medium p-2 rounded-lg text-center">
                         <span class="italic text-indigo-500 text-sm">Meeting Location</span>
                     </div>
-                `)
+                `);
         });
         document.addEventListener('DOMContentLoaded', function () {
          const modal = document.getElementById('driverModal');

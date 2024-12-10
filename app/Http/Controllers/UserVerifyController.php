@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Notifications\UserVerifiedNotification;
 use App\Notifications\UserRejectedNotification;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class UserVerifyController extends Controller
 {
@@ -80,6 +81,37 @@ class UserVerifyController extends Controller
                          ->with('success', 'User rejected');
 
 
+    }
+    public function qrCode()
+    {
+        $user = auth()->user();
+        $qrData = url("/user/check/{$user->uuid}");
+
+        $qrCode = QrCode::size(200)->generate($qrData);
+        return view('qr-code.qr-code', [
+            'qrCode' => $qrCode,
+            'user' => $user,
+            'email' => $user->email,
+            'image' => $user->image,
+        ]);
+    }
+
+    public function scan()
+    {
+        return view('qr-code.qr-codeScaning');
+    }
+
+    public function userStatus($uuid)
+    {   
+        $user = User::where('uuid', $uuid)->firstOrFail(); 
+
+        if ($user->image) {
+            $user->image = asset('storage/' . $user->image);
+        } else {
+            $user->image = 'https://eu.ui-avatars.com/api/?name=' . urlencode($user->name . ' ' . $user->lastname) . '&size=250';
+        }
+
+        return view('qr-code.user-status', compact('user'));
     }
 
 }

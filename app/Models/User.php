@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Trip;
 use App\Models\Message;
 use App\Models\Booking;
+use Illuminate\Support\Str;
 
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -83,5 +84,15 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
             'birthday' => 'date',
         ];
+    }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (!$model->uuid) {
+                $model->uuid = (string) Str::uuid();
+            }
+        });
     }
 }
