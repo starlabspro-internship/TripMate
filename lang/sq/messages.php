@@ -64,6 +64,7 @@ return [
 'Users, Booking, Trips' => 'Përdoruesit, Rezervimet, Udhëtimet',
 'Verifications' => 'Verifikimet',
 'Transactions' => 'Transaksionet',
+'Admin Panel' => 'Paneli i Adminit',
 'Chat' => 'Bisedo',
 'Dashboard' => 'Paneli Kryesor',
 'Background Check' => 'E kaluara penale',

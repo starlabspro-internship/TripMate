@@ -63,7 +63,7 @@
                 <div x-data="{ open: false }" class="mt-4">
                     <div @click="open = !open" class="flex items-center px-6 py-2 cursor-pointer text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
                         <img src="{{ asset('storage/icons/table.svg') }}" alt="menu" class="relative inline-block h-6 w-6 object-cover object-center" />
-                        <span class="mx-3">{{ __('messages.Tables') }}</span>
+                        <span class="mx-3">{{ __('messages.Admin Panel') }}</span>
                         <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 ml-auto" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06 0L10 10.94l3.71-3.73a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 010-1.06z" clip-rule="evenodd" />
                         </svg>
@@ -72,15 +72,15 @@
                         </svg>
                     </div>
                     <div x-show="open" class="pl-12">
-                        <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('superadmin.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('superadmin.index') }}">
+                        <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('superadmin.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('superadmin.index') }}">
                             <img src="{{ asset('storage/icons/table.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
                             <span class="mx-3 text-sm">{{ __('messages.Users, Booking, Trips') }}</span>
                         </a>
-                        <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('superadmin.users.index-users') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('superadmin.users.index-users') }}">
+                        <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('superadmin.users.index-users') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('superadmin.users.index-users') }}">
                             <img src="{{ asset('storage/icons/verify.svg') }}" alt="avatar" class="relative inline-block h-5 w-5  object-cover object-center" />
                             <span class="mx-3 text-sm">{{ __('messages.Verifications') }}</span>
                         </a>
-                        <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('superadmin.bg-check') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('superadmin.bg-check') }}">
+                        <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('superadmin.bg-check') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('superadmin.bg-check') }}">
                             <img src="{{ asset('storage/icons/secure.svg') }}" alt="avatar" class="relative inline-block h-5 w-5  object-cover object-center" />
                             <span class="mx-3 text-sm">{{ __('messages.Background Check') }}</span>
                         </a>

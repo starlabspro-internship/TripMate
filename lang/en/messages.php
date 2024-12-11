@@ -65,6 +65,7 @@ return [
 'Users, Booking, Trips' => 'Users, Booking, Trips',
 'Verifications' => 'Verifications',
 'Transactions' => 'Transactions',
+'Admin Panel' => 'Admin Panel',
 'Chat' => 'Chat',
 'Dashboard' => 'Dashboard',
 'Background Check' => 'Background Check',
