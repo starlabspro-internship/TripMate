@@ -1,8 +1,8 @@
 <x-app-layout>
     <div x-data="{ currentTab: 'pending', search: '', filteredUsers() { 
         
-        console.log(search); 
-    } }" class="container mx-auto mt-5 px-[70px]">
+        
+    } }" class="container mx-auto mt-5 px-20">
         
         <!-- Tab Buttons -->
         <div class="w-full flex justify-center items-center mb-6">
@@ -21,11 +21,11 @@
         </div>
         
         <!-- Search Bar -->
-        <div class="border-t border-gray-300 mx-auto" style="width: 98.8%;"></div>
+        <div class="border-t border-gray-300 mx-auto w-full"></div>
 
         <div class="w-full flex justify-left items-center mb-3 mt-5 ">
             <div class="mx-3">
-                <div class="w-full max-w-sm min-w-[300px] relative">
+                <div class="w-full max-w-sm min-w-30 relative">
                     <div class="relative">
                         <input
                             class="bg-white w-full pr-11 h-8 pl-3 py-2 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-full transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
@@ -49,17 +49,17 @@
             </div>
         </div>
 
-        <div class="border-t border-gray-300 mx-auto" style="width: 98.8%;"></div>
+        <div class="border-t border-gray-300 mx-auto w-full"></div>
 
         <!-- Pending Verification Table -->
-        <div x-show="currentTab === 'pending'" class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg bg-clip-border w-full">
+        <div x-show="currentTab === 'pending'" class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
        <table class="w-full text-left table-auto border-collapse">
                 <thead class="bg-white text-gray-400">
                     <tr>
-                        <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Name</th>
-                        <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Verification Status</th>
-                        <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Document</th>
-                        <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Actions</th>
+                        <th class="p-4 text-sm  leading-none text-gray-400 text-left">Name</th>
+                        <th class="p-4 text-sm  leading-none text-gray-400 text-left">Verification Status</th>
+                        <th class="p-4 text-sm  leading-none text-gray-400 text-left">Document</th>
+                        <th class="p-4 text-sm  leading-none text-gray-400 text-left">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -92,13 +92,13 @@
         </div>
 
         <!-- Rejected Users Table -->
-        <div x-show="currentTab === 'rejected'" class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg bg-clip-border w-full">
+        <div x-show="currentTab === 'rejected'" class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
             <table class="w-full text-left table-auto border-collapse">
                      <thead class="bg-white text-gray-400">
                     <tr>
-                        <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Name</th>
-                        <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Verification Status</th>
-                        <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Document</th>
+                        <th class="p-4 text-sm leading-none text-gray-400 text-left">Name</th>
+                        <th class="p-4 text-sm leading-none text-gray-400 text-left">Verification Status</th>
+                        <th class="p-4 text-sm leading-none text-gray-400 text-left">Document</th>
                     </tr>
                 </thead>
                 <tbody>

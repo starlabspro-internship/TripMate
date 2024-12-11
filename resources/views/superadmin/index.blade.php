@@ -1,6 +1,6 @@
 <x-app-layout>
-    <div x-data="userSearch()" class="px-[70px] mx-auto bg-clip-border">
-        <div class="w-full flex justify-center items-center mb-3 mt-12s ">
+    <div x-data="userSearch()" class="px-20 mx-auto ">
+        <div class="w-full flex justify-center items-center mb-3 mt-5 ">
             <div class="flex gap-1 bg-gray-300 px-0 py-0 rounded-full shadow-sm relative mt-5">
                 <button @click="currentTab = 'users'" :class="currentTab === 'users' ? 'bg-white text-gray-700  shadow-md' : 'bg-gray-300 text-white'" class="flex-1 px-20 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300">
                     Users
@@ -15,11 +15,11 @@
         </div>
 
         
-        <div class="border-t border-gray-300 mx-auto" style="width: 98.8%;"></div>
+        <div class="border-t border-gray-300 mx-auto w-full rounded-full"></div>
 
         <div class="w-full flex justify-left items-center mb-3 mt-5 ">
             <div class="mx-3">
-                <div class="w-full max-w-sm min-w-[300px] relative">
+                <div class="w-full max-w-sm min-w-20 relative">
                     <div class="relative">
                         <input
                                 class="bg-white w-full pr-11 h-8 pl-3 py-2 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-full transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
@@ -43,23 +43,23 @@
             </div>
         </div>
 
-        <div class="border-t border-gray-300 mx-auto" style="width: 98.8%;"></div>
-
+        {{--<div class="border-t border-gray-300 mx-auto" style="width: 98.8%;"></div>--}}
+        <div class="border-t border-gray-300 mx-auto w-full rounded-r-lg"></div>
 
         <div x-show="currentTab === 'users'" 
-        class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg bg-clip-border w-full">
+        class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
        <table class="w-full text-left table-auto border-collapse">
            <thead>
                <tr class="border-b border-slate-300 bg-white-500">
-                   <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Image</th>
-                   <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Name</th>
-                   <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Phone</th>
-                   <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">City</th>
-                   <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Email</th>
-                   <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Joined</th>
-                   <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Super Admin</th>
-                   <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Edit</th>
-                   <th class="p-4 text-sm font-normal leading-none text-gray-400 text-left">Delete</th>
+                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Image</th>
+                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Name</th>
+                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Phone</th>
+                   <th class="p-4 text-sm leading-none text-gray-400 text-left">City</th>
+                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Email</th>
+                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Joined</th>
+                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Super Admin</th>
+                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Edit</th>
+                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Delete</th>
                </tr>
            </thead>
            <tbody>
@@ -107,11 +107,11 @@
             <table class="w-full text-left table-auto min-w-max">
                 <thead>
                 <tr class="border-b border-slate-300 bg-white">
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Trip Id</th>
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Passenger</th>
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Seats Booked</th>
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Status</th>
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Delete</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Trip Id</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Passenger</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Seats Booked</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Status</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -142,15 +142,15 @@
             <table class="w-full text-left table-auto min-w-max">
                 <thead>
                 <tr class="border-b border-slate-300 bg-white">
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Driver</th>
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Origin City</th>
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Destination City</th>
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Departure Time</th>
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Arrival Time</th>
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Available Seats</th>
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Price</th>
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Edit</th>
-                    <th class="p-4 text-sm font-normal leading-none text-gray-400">Delete</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Driver</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Origin City</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Destination City</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Departure Time</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Arrival Time</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Available Seats</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Price</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Edit</th>
+                    <th class="p-4 text-sm leading-none text-gray-400">Delete</th>
                 </tr>
                 </thead>
                 <tbody>

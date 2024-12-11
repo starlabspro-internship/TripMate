@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container mx-auto mt-5 px-[70px]">
+    <div class="container mx-auto mt-5 px-20">
         <div class="flex justify-center items-center mb-8">
             <h2 class="text-xl text-gray-700 text-center bg-white shadow-md py-1 px-20 rounded-full inline-block">
                 Background Check
@@ -8,15 +8,15 @@
         
         
         <!-- Verification Table -->
-        <div class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg bg-clip-border w-full">
+        <div class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
             <table class="w-full text-left table-auto border-collapse ">
                 <thead class="bg-white text-gray-400 px-4 py-3 tracking-wide">
                 <tr>
-                    <th class="px-6 py-4 text-sm font-normal leading-none text-left">Name</th>
-                    <th class="px-6 py-4 text-sm font-normal leading-none text-left">Verification Status</th>
-                    <th class="px-6 py-4 text-sm font-normal leading-none text-left">Document</th>
-                    <th class="px-6 py-4 text-sm font-normal leading-none text-left">Verify</th>
-                    <th class="px-6 py-4 text-sm font-normal leading-none text-left">Flag</th>
+                    <th class="px-6 py-4 text-sm leading-none text-left">Name</th>
+                    <th class="px-6 py-4 text-sm leading-none text-left">Verification Status</th>
+                    <th class="px-6 py-4 text-sm leading-none text-left">Document</th>
+                    <th class="px-6 py-4 text-sm leading-none text-left">Verify</th>
+                    <th class="px-6 py-4 text-sm leading-none text-left">Flag</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -130,9 +130,7 @@
                 imageUrl,
                 'sqi',
                 {
-                    logger: (info) => {
-                        console.log(info); // Optional: Log progress
-                    },
+                  
                 }
             )
                 .then(({ data: { text } }) => {
