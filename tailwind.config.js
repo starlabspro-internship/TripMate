@@ -23,7 +23,7 @@ export default {
                 aquamarine: '#38B2AC',
             },
             fontFamily: {
-                planer: ['Planer', 'sans-serif'],
+                roboto: ['Roboto', 'sans-serif'],
             },
             backgroundSize: {
                 '200%': '200%',

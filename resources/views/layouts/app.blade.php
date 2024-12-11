@@ -22,7 +22,7 @@
         
         @vite('resources/js/app.js')
     </head>
-    <body class="min-h-screen bg-[#f5f5f5] dark:bg-[#0F172A] font-planer antialiased w-full md:absolute md:w-navbar">
+    <body class="min-h-screen bg-[#f5f5f5] dark:bg-[#0F172A] font-roboto antialiased w-full md:absolute md:w-navbar">
 
         <div class="flex flex-col">
             @include('components.success')

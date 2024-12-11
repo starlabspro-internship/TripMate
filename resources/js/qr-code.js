@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let htmlscanner = new Html5QrcodeScanner("my-qr-reader", {
         fps: 10,
-        qrbox: 250,
+        qrbox: 400,
         videoConstraints: {
             facingMode: "environment" 
         },

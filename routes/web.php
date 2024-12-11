@@ -122,7 +122,7 @@ Route::get('profile/upload-file', function () {
     return view('profile.upload-file');
 })->name('profile.upload-file')->middleware('auth');
 
-Route::get('/user/qr-code', [UserVerifyController::class, 'qrCode'])->middleware('auth')->name('user.qr-code');
+Route::get('/user/qr', [UserVerifyController::class, 'qrCode'])->middleware('auth')->name('user.qr-code');
 Route::get('/scan-qr', [UserVerifyController::class, 'scan'])->middleware('auth')->name('scan.qr');
 Route::get('/user/check/{uuid}', [UserVerifyController::class, 'userStatus'])->middleware('auth')->name('userStatus');
 

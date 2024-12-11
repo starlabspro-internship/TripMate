@@ -30,13 +30,14 @@ html {
 }
 
 @font-face {
-    font-family: 'Planer';
-    src: url('/fonts/Planer-Regular.ttf') format('opentype');
+    font-family: 'Roboto';
+    src: local('Roboto'), 
+         url('/fonts/roboto/Roboto-Regular.woff2') format('woff2');
     font-weight: 400;
-    font-style: oblique;
+    font-style: normal;
 }
-.title{
-    font-family: "Poppins", sans-serif;
+.title {
+    font-family: 'Roboto', sans-serif;
 }
 .myBox{
     padding: 3rem 2rem;
