@@ -256,7 +256,11 @@ return [
 'All Booked Up' => 'All Booked Up',
 'Meeting At:' => 'Meeting At:',
 
-
+'My QR-Code' => 'My QR-Code',
+'Scan QR-Code' => 'Scan QR-Code',
+'User Status' => 'User Status',
+'Phone:' => 'Phone:',
+'Gender:' => 'Gender:',
 
 
 

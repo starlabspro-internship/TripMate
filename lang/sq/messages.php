@@ -247,6 +247,12 @@ return [
 'My Transactions' => 'Transaksionet e mia',
 'All Booked Up' => 'Të gjitha të rezervuara',
 
+'My QR-Code' => 'QR-Kodi im',
+'Scan QR-Code' => 'Skano QR-Kodin',
+'User Status' => 'Statusi i përdoruesit',
+'Phone:' => 'Telefoni:',
+'Gender:' => 'Gjinia:',
+
 
 
 
