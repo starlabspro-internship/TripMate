@@ -64,6 +64,7 @@ return [
 'Users, Booking, Trips' => 'Përdoruesit, Rezervimet, Udhëtimet',
 'Verifications' => 'Verifikimet',
 'Transactions' => 'Transaksionet',
+'Admin Panel' => 'Paneli i Adminit',
 'Chat' => 'Bisedo',
 'Dashboard' => 'Paneli Kryesor',
 'Background Check' => 'E kaluara penale',
@@ -246,6 +247,12 @@ return [
 'Last Name:' => 'Mbiemri:',
 'My Transactions' => 'Transaksionet e mia',
 'All Booked Up' => 'Të gjitha të rezervuara',
+
+'My QR-Code' => 'QR-Kodi im',
+'Scan QR-Code' => 'Skano QR-Kodin',
+'User Status' => 'Statusi i përdoruesit',
+'Phone:' => 'Telefoni:',
+'Gender:' => 'Gjinia:',
 
 
 

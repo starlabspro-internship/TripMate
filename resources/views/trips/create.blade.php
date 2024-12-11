@@ -2,37 +2,44 @@
     @auth
     <head>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Initialize the map
-                var map = L.map('map').setView([42.5269444444, 21.0072222222], 8);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 200,
-                    minZoom: 8,
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
+                   document.addEventListener('DOMContentLoaded', function() {
+                        var map = L.map('map').setView([42.5269444444, 21.0072222222], 8);
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 17,
+                            minZoom: 8,
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        }).addTo(map);
 
-                var marker = L.marker([42.5269444444, 21.0072222222], { draggable: true }).addTo(map);
-                marker.bindPopup('<span class="italic text-indigo-500 text-xs ">Choose the meeting location <br> by selecting a point on the map.</span>').openPopup();
+                        var customIcon = L.icon({
+                            iconUrl: '{{ asset('storage/profile/icon.png') }}',
+                            iconSize: [25, 36], 
+                            iconAnchor: [16, 32], 
+                            popupAnchor: [0, -32] 
+                        });
 
-                // Function to update coordinates on form
-                function updateCoordinates(lat, lng) {
-                    document.getElementById('latitude').value = lat;
-                    document.getElementById('longitude').value = lng;
-                    marker.setLatLng([lat, lng]);
-                }
+                        var marker = L.marker([42.5269444444, 21.0072222222], { 
+                            draggable: true,
+                            icon: customIcon 
+                        }).addTo(map);
+                        
+                        marker.bindPopup('<span class="italic text-indigo-500 text-xs">Choose the meeting location <br> by selecting a point on the map.</span>').openPopup();
 
-                // Update coordinates on map click
-                map.on('click', function(e) {
-                    var { lat, lng } = e.latlng;
-                    updateCoordinates(lat, lng);
-                });
+                        function updateCoordinates(lat, lng) {
+                            document.getElementById('latitude').value = lat;
+                            document.getElementById('longitude').value = lng;
+                            marker.setLatLng([lat, lng]);
+                        }
 
-                // Update coordinates when marker is dragged
-                marker.on('dragend', function(e) {
-                    var { lat, lng } = e.target.getLatLng();
-                    updateCoordinates(lat, lng);
-                });
-            });
+                        map.on('click', function(e) {
+                            var { lat, lng } = e.latlng;
+                            updateCoordinates(lat, lng);
+                        });
+
+                        marker.on('dragend', function(e) {
+                            var { lat, lng } = e.target.getLatLng();
+                            updateCoordinates(lat, lng);
+                        });
+                    });
         </script>
     </head>
     <div class="container mx-auto">
@@ -194,7 +201,7 @@
                     <div class="flex flex-row items-center justify-center space-x-4">
                         <a href="{{ route('trips.index') }}">
                             <button type="submit"
-                                    class="px-3 py-1 text-md rounded-xl transition duration-200 bg-blue-500 text-white hover:bg-blue-300 w-[250px] h-[45px] max-w-full">
+                                    class="w-[150px] h-[40px] px-3 py-1 text-md rounded-xl transition duration-200 bg-blue-500 text-white hover:bg-blue-300 md:w-[250px] md:h-[45px] max-w-full">
                                     {{ __('messages.Publish') }}
                             </button>
                         </a>
