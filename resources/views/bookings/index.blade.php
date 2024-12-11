@@ -2,20 +2,23 @@
     <div class=" min-h-screen">
     <div class="container mx-auto px-4 py-6 ">
         <h2 class="text-2xl font-semibold text-center mt-16 mb-6">
-            {{ "Upcoming Bookings of " . auth()->user()->name }}
+            {{ __('messages.Upcoming Bookings of') . ' ' . auth()->user()->name }}
+            
+
+
         </h2>
         <div class="flex justify-center gap-2 mb-4">
             <button onclick="filterBookings('all')"
                     class="px-4 py-2 rounded-2xl bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium text-sm">
-                All
+                    {{ __('messages.All') }}
             </button>
             <button onclick="filterBookings('paid')"
                     class="px-4 py-2 rounded-2xl bg-green-600 hover:bg-green-700 text-white font-medium text-sm">
-                Paid
+                    {{ __('messages.Paid') }}
             </button>
             <button onclick="filterBookings('refunded')"
                     class="px-4 py-2 rounded-2xl bg-red-600 hover:bg-red-700 text-white font-medium text-sm">
-                Refunded
+                    {{ __('messages.Refunded') }}
             </button>
         </div>
         <div id="bookings-container" class="space-y-4">
@@ -75,11 +78,11 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 16 16" fill="none">
                             <path d="M8 7C9.65685 7 11 5.65685 11 4C11 2.34315 9.65685 1 8 1C6.34315 1 5 2.34315 5 4C5 5.65685 6.34315 7 8 7Z" fill="#000000"/>
                             <path d="M14 12C14 10.3431 12.6569 9 11 9H5C3.34315 9 2 10.3431 2 12V15H14V12Z" fill="#000000"/>
-                            </svg><span>Driver:</span> {{ $booking->trip->users->name}} {{ $booking->trip->users->lastname}}</p>
+                            </svg><span>{{ __('messages.Driver') }}:</span> {{ $booking->trip->users->name}} {{ $booking->trip->users->lastname}}</p>
                         <p class="flex items-center gap-2 ml-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                             <path d="M16 8.94444C15.1834 7.76165 13.9037 7 12.4653 7C9.99917 7 8 9.23858 8 12C8 14.7614 9.99917 17 12.4653 17C13.9037 17 15.1834 16.2384 16 15.0556M7 10.5H11M7 13.5H11M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg><span>Price:</span> {{ $booking->trip->price }} €</p>
+                            </svg><span>{{ __('messages.Price:') }}:</span> {{ $booking->trip->price }} €</p>
                         <p class="flex items-center gap-2 ml-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                             <path opacity="0.4" d="M17.9981 7.16C17.9381 7.15 17.8681 7.15 17.8081 7.16C16.4281 7.11 15.3281 5.98 15.3281 4.58C15.3281 3.15 16.4781 2 17.9081 2C19.3381 2 20.4881 3.16 20.4881 4.58C20.4781 5.98 19.3781 7.11 17.9981 7.16Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -88,13 +91,13 @@
                             <path opacity="0.4" d="M6.9975 14.4402C5.6275 14.6702 4.1175 14.4302 3.0575 13.7202C1.6475 12.7802 1.6475 11.2402 3.0575 10.3002C4.1275 9.59016 5.6575 9.35016 7.0275 9.59016" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M12.0001 14.6302C11.9401 14.6202 11.8701 14.6202 11.8101 14.6302C10.4301 14.5802 9.33008 13.4502 9.33008 12.0502C9.33008 10.6202 10.4801 9.47021 11.9101 9.47021C13.3401 9.47021 14.4901 10.6302 14.4901 12.0502C14.4801 13.4502 13.3801 14.5902 12.0001 14.6302Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M9.0907 17.7804C7.6807 18.7204 7.6807 20.2603 9.0907 21.2003C10.6907 22.2703 13.3107 22.2703 14.9107 21.2003C16.3207 20.2603 16.3207 18.7204 14.9107 17.7804C13.3207 16.7204 10.6907 16.7204 9.0907 17.7804Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>Seats Booked: {{ $booking->seats_booked }}</p>
+                        </svg>{{ __('messages.Seats Booked:') }} {{ $booking->seats_booked }}</p>
                         <p class="flex items-center gap-2 ml-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mb-0.5" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                             <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M12 6V12" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M16.24 16.24L12 12" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg><span>Booking Time:</span> {{ $booking->created_at->format('H:i') }}</p>
+                        </svg><span>{{ __('messages.Booking Time:') }}</span> {{ $booking->created_at->format('H:i') }}</p>
                         <p class="flex items-center gap-2 ml-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                             <rect x="3" y="6" width="18" height="15" rx="2" stroke="#33363F" stroke-width="2"/>
@@ -105,25 +108,25 @@
                             <rect x="7" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
                             <rect x="13" y="12" width="4" height="2" rx="0.5" fill="#33363F"/>
                             <rect x="13" y="16" width="4" height="2" rx="0.5" fill="#33363F"/>
-                        </svg><span>Booking Date:</span> {{ $booking->created_at->format('d/m/Y') }}</p>
+                        </svg><span>{{ __('messages.Booking Date:') }}</span> {{ $booking->created_at->format('d/m/Y') }}</p>
                         @if ($booking->status == 'paid' && now()->lessThan($booking->trip->departure_time))
                         <form action="{{ route('bookings.refund', $booking->id) }}" method="POST"
                               onsubmit="return confirmSubmission()">
                             @csrf
                             <button type="submit"
                                 class="mt-4 w-auto bg-red-500 text-white py-1 px-3 rounded-full text-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
-                                Cancel & Refund
+                                {{ __('messages.Cancel & Refund') }}
                             </button>
                         </form>
                     @else
                         <p class="mt-4 text-center text-sm text-gray-500">
-                            This booking cannot be modified at this time.
+                            {{ __('messages.This booking cannot be modified at this time.') }}
                         </p>
                     @endif
                     </div>
                 </div>
             @empty
-                <p class="text-center text-gray-500">No bookings available for your trips.</p>
+                <p class="text-center text-gray-500">     {{ __('messages.No bookings available for your trips.') }}</p>
             @endforelse
         </div>
     </div>

@@ -101,12 +101,12 @@ class BookingController extends Controller
     public function show($id){
         $booking = Booking::with(['trip', 'passenger'])->find($id);
         if (!$booking) {
-            return redirect()->route('bookings.index')->with('error', 'Booking not found');
+            return redirect()->route('bookings.index')->with('error', __('messages.Booking not found'));
         }
         $trip = Trip::find($booking->trip_id);
 
         if (!$trip) {
-            return redirect()->route('trips.index')->with('error', 'Trip not found');
+            return redirect()->route('trips.index')->with('error', __('messages.Trip not found'));
         }
 
         return view('bookings.show', compact('booking', 'trip'));
@@ -116,8 +116,8 @@ class BookingController extends Controller
 
         if (!auth()->user()->email_verified_at && !auth()->user()->google_id) {
             return redirect('/trips')->with([
-                'error' => 'Booking Failed',
-                'description' => 'Your email address is not verified. Please verify your email before booking a trip.',
+                'error' => __('messages.Booking Failed'),
+                'description' => __('messages.Your email address is not verified. Please verify your email before booking a trip.'),
             ]);
         }
 
@@ -132,8 +132,8 @@ class BookingController extends Controller
 
         if ($hasBooking) {
             return redirect('/trips')->with([
-                'error' => 'Booking Failed',
-                'description' => 'You already have a booking during this time.',
+                'error' => __('messages.Booking Failed'),
+                'description' => __('messages.You already have a booking during this time.'),
             ]);
         }
         $hasTrip = Trip::where('driver_id', request('passenger_id'))
@@ -144,8 +144,8 @@ class BookingController extends Controller
 
         if ($hasTrip) {
             return redirect('/trips')->with([
-                'error' => 'Booking Failed',
-                'description' => 'You are driving another trip during this time.',
+                'error' => __('messages.Booking Failed'),
+                'description' => __('messages.You are driving another trip during this time.'),
             ]);
         }
 
@@ -190,17 +190,17 @@ class BookingController extends Controller
         try {
             $session = $stripe->checkout->sessions->retrieve($sessionId);
         } catch (\Stripe\Exception\ApiErrorException $e) {
-            return redirect()->route('bookings.index')->with('error', 'Error retrieving session: ' . $e->getMessage());
+            return redirect()->route('bookings.index')->with('error', __('messages.Error retrieving session:'). $e->getMessage());
         }
 
         $booking = Booking::where('session_id', $sessionId)->where('status', 'unpaid')->first();
 
         if (!$booking) {
-            throw new NotFoundHttpException('Booking not found.');
+            throw new NotFoundHttpException(__('messages.Booking not found'));
         }
 
         if (empty($session->payment_intent)) {
-            return redirect()->route('bookings.index')->with('error', 'No payment intent found for this session.');
+            return redirect()->route('bookings.index')->with('error', __('messages.No payment intent found for this session.'));
         }
 
         $paymentIntentId = $session->payment_intent;
@@ -212,22 +212,22 @@ class BookingController extends Controller
         return view('bookings.checkout-success', compact('booking'));
     }
     public function cancel(){
-        return redirect()->route('home')->with('error', 'Payment was canceled.');
+        return redirect()->route('home')->with('error', __('messages.Payment was canceled.'));
     }
     public function refund($bookingId){
         $booking = Booking::findOrFail($bookingId);
         $departureTime = $booking->trip->departure_time;
         if (now()->greaterThanOrEqualTo($departureTime)) {
             return redirect()->back()->with([
-                'error' => 'Refund Failed',
-                'description' => 'This trip has already departed.',
+                'error' => __('messages.Refund Failed'),
+                'description' => __('messages.This trip has already departed.'),
             ]);
         }
         $paymentIntentId = $booking->stripe_charge_id;
         if (empty($paymentIntentId)) {
             return redirect()->back()->with([
-                'error' => 'Refund Failed',
-                'description' => 'No PaymentIntent ID found for this booking.'
+                'error' => __('messages.Refund Failed'),
+                'description' => __('messages.No PaymentIntent ID found for this booking.')
             ]);
         }
         $stripe = new StripeClient(config('services.stripe.secret'));
@@ -236,10 +236,10 @@ class BookingController extends Controller
                 'payment_intent' => $paymentIntentId,
             ]);
             $booking->update(['status' => 'refunded']);
-            return redirect('/bookings')->with('status', 'Booking canceled and refunded successfully.');
+            return redirect('/bookings')->with('status', __('messages.Booking canceled and refunded successfully.'));
         } catch (\Exception $e) {
             return redirect()->back()->with([
-                'error' => 'Refund Failed',
+                'error' => __('messages.Refund Failed'),
                 'description' =>  $e->getMessage()
             ]);
         }
@@ -284,6 +284,6 @@ class BookingController extends Controller
         $booking = Booking::find($id);
         $booking->delete();
 
-        return redirect('/trips')->with('success', 'Booking deleted successfully');
+        return redirect('/trips')->with('success', __('messages.Booking deleted successfully'));
     }
 }

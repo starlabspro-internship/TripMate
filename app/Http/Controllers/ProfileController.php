@@ -71,7 +71,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return Redirect::route('profile.index')->with('success', 'Profile updated');
+        return Redirect::route('profile.index')->with('success', __('messages.Profile updated'));
 }
 
     /**
@@ -117,7 +117,7 @@ class ProfileController extends Controller
     $imageData = base64_decode($imageData);
 
     if (!$imageData) {
-        return response()->json(['message' => 'Invalid image data'], 400);
+        return response()->json(['message' => __('messages.Invalid image data')], 400);
     }
 
 
@@ -137,7 +137,7 @@ class ProfileController extends Controller
     'verification_status' => 'pending',]);
 
     return response()->json([
-        'message' => 'Document uploaded successfully',
+        'message' => __('messages.Document uploaded successfully'),
         'success' => true,
         'redirect_url' => route('profile.index'),
     ]);
@@ -157,7 +157,7 @@ class ProfileController extends Controller
             $filepath = $request->file('background_document')->store('bg_doc', 'public');
             $user->update(['background_document' => $filepath, 'background_status' => 'pending' ]);
         }
-        return Redirect::route('profile.index')->with('success', 'File Uploaded');
+        return Redirect::route('profile.index')->with('success', __('messages.File Uploaded'));
     }
 }
 

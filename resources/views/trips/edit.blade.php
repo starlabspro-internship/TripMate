@@ -2,19 +2,19 @@
     @auth
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center mt-1 w-full space-y-4 md:space-y-0">
-                <h1 class="text-3xl font-bold p-6 text-black">Edit Trip</h1>
+                <h1 class="text-3xl font-bold p-6 text-black">{{ __('messages.Edit Trip') }}</h1>
                 <div class="flex gap-2 md:flex-row  md:space-y-0 md:space-x-2 mt-4 md:mt-0">
                     <a href="{{ route('trips.index') }}"
                        class="w-28 px-4 py-1 text-sm rounded-full transition duration-200
                                   {{ request()->routeIs('trips.index') ? 'bg-gray-100 text-gray-600' : 'bg-gray-200 text-gray-700' }}
                                   hover:bg-gray-400 text-center">
-                        Passenger
+                                  {{ __('messages.Passenger') }}
                     </a>
                     <a href="{{ route('trips.create') }}"
                        class="w-28 px-4 py-1 text-sm rounded-full transition duration-200
                              {{ request()->routeIs('trips.create') ? 'bg-blue-100 text-blue-600' : 'bg-gray-200 text-gray-700' }}
                                  hover:bg-blue-300 text-center">
-                        Driver
+                                 {{ __('messages.Driver') }}
                     </a>
                 </div>
             </div>
@@ -22,7 +22,7 @@
         <div class="flex items-center justify-center p-6">
             <div
                 class="hover:shadow-2xl w-full max-w-lg ride-card bg-white p-6 rounded-lg transition-shadow duration-500 shadow-md flex flex-col justify-between">
-                <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center">Modify Your Adventure</h1>
+                <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center">{{ __('messages.Modify Your Adventure') }}</h1>
                 <form id="edit-trip-form" action="{{ route('trips.update', $trip->id) }}" method="POST"
                       class="space-y-6">
                     @csrf
@@ -30,10 +30,10 @@
 
                     <div class="flex justify-between items-center space-x-2">
                         <div class="w-full md:w-1/2">
-                            <label for="origin_city_id" class="block text-gray-700">From:</label>
+                            <label for="origin_city_id" class="block text-gray-700">{{ __('messages.From:') }}</label>
                             <select name="origin_city_id" id="origin-city" required
                                     class="w-full border border-gray-300 p-2 rounded bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-                                <option value="" class="text-gray-500">Select origin city</option>
+                                <option value="" class="text-gray-500">{{ __('messages.Select origin city') }}</option>
                                 @foreach ($cities as $city)
                                     <option
                                         value="{{ $city->id }}" {{ $trip->origin_city_id == $city->id ? 'selected' : '' }}>
@@ -53,10 +53,10 @@
                             </svg>
                         </div>
                         <div class="w-full md:w-1/2">
-                            <label for="destination_city_id" class="block text-gray-700">To:</label>
+                            <label for="destination_city_id" class="block text-gray-700">{{ __('messages.To:') }}</label>
                             <select name="destination_city_id" id="destination-city" required
                                     class="w-full border border-gray-300 p-2 rounded bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-                                <option value="" class="text-gray-500">Select destination city</option>
+                                <option value="" class="text-gray-500">{{ __('messages.Select destination city') }}</option>
                                 @foreach ($cities as $city)
                                     <option
                                         value="{{ $city->id }}" {{ $trip->destination_city_id == $city->id ? 'selected' : '' }}>
@@ -68,11 +68,11 @@
                     </div>
                     <div class="flex flex-col justify-between space-y-4 md:flex-row md:space-y-0 md:space-x-2">
                         <div class="flex flex-col w-full relative">
-                            <label for="departure_time" class="block text-gray-700">Departure:</label>
+                            <label for="departure_time" class="block text-gray-700">{{ __('messages.Departure Time:') }}</label>
                             <div class="flex flex-col w-full relative">
                                 <input type="text" id="date-picker" name="departure_time"
                                        class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                                       placeholder="Arrival Time:"
+                                       placeholder="{{ __('messages.Departure Time:') }}"
                                        value="{{ $trip->departure_time->format('d.m.Y H:i ') }}" required>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px"
                                      height="20px" viewBox="0 0 24 24" fill="none">
@@ -90,11 +90,11 @@
                             </div>
                         </div>
                         <div class="flex flex-col w-full relative">
-                            <label for="departure_time" class="block text-gray-700">Arrival:</label>
+                            <label for="departure_time" class="block text-gray-700">{{ __('messages.Arrival Time:') }}</label>
                             <div class="flex flex-col w-full relative">
                                 <input type="text" id="date-picker" name="arrival_time"
                                        class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                                       placeholder="Arrival Time:"
+                                       placeholder="{{ __('messages.Arrival Time:') }}"
                                        value="{{ $trip->arrival_time->format('d.m.Y H:i ') }}" required>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px"
                                      height="20px" viewBox="0 0 24 24" fill="none">
@@ -117,7 +117,7 @@
                         <div class="relative w-1/2">
                             <input type="number" id="available_seats" name="available_seats"
                                    class="border border-gray-300 rounded-md px-2 py-2 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                                   min="1" placeholder="Available Seats:"
+                                   min="1" placeholder="{{ __('messages.Available Seats:') }}"
                                    value="{{ old('available_seats', $trip->available_seats) }}" required>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"
                                  fill="none" class="absolute right-2 top-2">
@@ -148,7 +148,7 @@
                         <div class="relative w-1/2">
                             <input type="text" id="price" name="price"
                                    class="border border-gray-300 rounded-md px-2 py-2 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                                   placeholder="Price:" value="{{ old('price', $trip->price) }}" required>
+                                   placeholder="{{ __('messages.Price:') }}" value="{{ old('price', $trip->price) }}" required>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"
                                  fill="none" class="absolute right-2 top-2">
                                 <circle opacity="0.5" cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5"/>
@@ -163,31 +163,31 @@
                     <div class="flex flex-col w-full">
                     <textarea type="text" id="driver_comments" name="driver_comments"
                                class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                               placeholder="Add any comments or instructions about the trip to help your passenger." >{{ old('driver_comments', $trip->driver_comments) }}</textarea>
+                               placeholder="{{ __('messages.Add any comments or instructions about the trip to help your passenger.') }}" >{{ old('driver_comments', $trip->driver_comments) }}</textarea>
                 </div>
                 @if( Auth::user()->gender == 'female')
                 <div class="flex flex-col w-full">
-                    <legend class=" mb-2">Passengers:</legend>
+                    <legend class=" mb-2">{{ __('messages.Passengers') }}</legend>
                     <label class="flex items-center space-x-2">
                         <input type="radio" name="passenger_gender_preference" value="female" class="radio"
                         {{ old('passenger_gender_preference', $trip->passenger_gender_preference) == 'female' ? 'checked' : '' }}/>
-                        <span>Female Only</span>
+                        <span>{{ __('messages.Female Only') }}</span>
                     </label>
                     <label class="flex items-center space-x-2 mt-2">
                         <input type="radio" name="passenger_gender_preference" value="all" class="radio"
                         {{ old('passenger_gender_preference', $trip->passenger_gender_preference) == 'all' ? 'checked' : '' }} />
-                        <span>All</span>
+                        <span>{{ __('messages.All') }}</span>
                     </label>
                 </div>
                 @endif
-                <p class="">Meeting At:</p>
+                <p class="">{{ __('messages.Meeting At:') }}</p>
                     <div id="map" class="mb-1 h-[400px]" ></div>
                     <input type="hidden" id="latitude" name="latitude" />
                     <input type="hidden" id="longitude" name="longitude" />
                     <div class="flex flex-col items-center space-y-4">
                         <button type="submit"
                                 class="px-3 py-1 text-xs rounded-lg transition duration-200 bg-blue-500 text-white hover:bg-blue-600 w-[100px] h-[40px] max-w-full">
-                            Update
+                                {{ __('messages.Update') }}
                         </button>
                     </div>
                 </form>
@@ -197,7 +197,7 @@
                     @method('DELETE')
                     <button type="submit"
                             class="px-3 py-1 text-xs rounded-lg transition duration-200 bg-red-500 text-white hover:bg-red-600 w-[100px] h-[40px] max-w-full">
-                        Delete
+                            {{ __('messages.Delete') }}
                     </button>
                 </form>
             </div>
