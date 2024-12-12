@@ -8,10 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
-
-
-
-
+use Illuminate\Support\Facades\URL;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -49,5 +46,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('captcha', function () {
             return "<?php echo app('captcha')->display(); ?>";
         });
+
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
     }
 }
