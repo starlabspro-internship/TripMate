@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'admin',
                 'password' => Hash::make('tripmate8'),
                 'email' => 'admin@gmail.com',
+                'email_verified_at' => now(),
             ]
         );
         User::firstOrCreate(
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
               'name' => 'superadmin' ,
                'password' => Hash::make('tripmate8'),
                'is_super_admin' => true,
+               'email_verified_at' => now(),
                ]
            );
         $this->call(CitySeeder::class);

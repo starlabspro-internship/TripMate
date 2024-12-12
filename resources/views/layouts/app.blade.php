@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>TripMate</title>
-        
+
         <link rel="icon" type="image/png" href="/storage/favicons/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/storage/favicons/favicon.svg" />
         <link rel="shortcut icon" href="/storage/favicons/favicon.ico" />
@@ -44,7 +44,7 @@
             <!-- Display navigation only if user is authenticated and not on `enter.code` page -->
             @if(Auth::check() && !request()->routeIs('enter.code'))
                 @include('layouts.navigation')
-         
+
 
             @elseif (!Auth::check() && request()->is('/') || request()->is('home'))
 
