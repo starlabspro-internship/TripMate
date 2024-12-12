@@ -117,10 +117,15 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             @foreach($users->where('id', '!=', auth()->id()) as $user)
-            @if($user->background_document)
-            extractTextFromImage('{{ asset('storage/' . $user->background_document) }}', '{{ $user->id }}');
-            @endif
-            @endforeach
+    @if($user->background_document)
+        @php
+            $imageUrl = app()->environment('local')
+                ? asset('storage/' . $user->background_document) 
+                : secure_asset('storage/' . $user->background_document); 
+        @endphp
+        extractTextFromImage('{{ $imageUrl }}', '{{ $user->id }}');
+    @endif
+@endforeach
         });
         function extractTextFromImage(imageUrl, userId) {
             const resultElement = document.getElementById(`ocr-result-${userId}`);
