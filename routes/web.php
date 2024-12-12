@@ -1,16 +1,19 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperAdminController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\BookingController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\ProfileController;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\UserVerifyController;
+use App\Http\Controllers\LocaleController;
 
 
 
@@ -118,5 +121,18 @@ Route::middleware(['superadmin'])->prefix('superadmin')->group(function () {
 Route::get('profile/upload-file', function () {
     return view('profile.upload-file');
 })->name('profile.upload-file')->middleware('auth');
+
+Route::get('/user/qr', [UserVerifyController::class, 'qrCode'])->middleware('auth')->name('user.qr-code');
+Route::get('/scan-qr', [UserVerifyController::class, 'scan'])->middleware('auth')->name('scan.qr');
+Route::get('/user/check/{uuid}', [UserVerifyController::class, 'userStatus'])->middleware('auth')->name('userStatus');
+
+
+Route::get('language/{locale}', function($locale){
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+})->name('localization');
+
+
 
 require __DIR__.'/auth.php';

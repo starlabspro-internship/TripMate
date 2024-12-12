@@ -10,6 +10,7 @@ import './loadSpinner';
 import Chart from 'chart.js/auto';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import './qr-code';
 
 import Alpine from 'alpinejs';
 import Intersect from '@alpinejs/intersect';
