@@ -7,8 +7,8 @@
                                 alt="avatar"
                                 class="relative inline-block h-7 w-7 !rounded-full object-cover object-center"
                             />
-                            <span class="text-white">{{ __('messages.Back to trip') }}</span>  
-                            
+                            <span class="text-white">{{ __('messages.Back to trip') }}</span>
+
                         </a>
             <div class="bg-white bg-opacity-80  m-4  shadow-md  rounded-3xl">
                 <form action="{{ route('bookings.store') }}" method="POST"  class="">
@@ -45,7 +45,7 @@
                                     @if ($trip->driver_comments)
                                         <p class="relative inline-block px-1 object-cover object-center">{{$trip->driver_comments}}</p>
                                     @else
-                                        <p class="relative inline-block px-1  object-cover object-center">{{ __('messages.Talk in chat') }}</p> 
+                                        <p class="relative inline-block px-1  object-cover object-center">{{ __('messages.Talk in chat') }}</p>
                                     @endif
                                 </div>
                                 <div class="flex-col pb-4 space-y-5">
@@ -68,7 +68,7 @@
                                     @endif
                                     <p class="relative inline-block px-2 object-cover object-center">{{$trip->users->name}}</p>
                                 </div>
-                                <div class="mt-3">  
+                                <div class="mt-3">
                                     <p class="text-green-500">{{ __('messages.You have successfully reserved') }}</p>
                                 </div>
                         </div>
@@ -126,6 +126,12 @@
                 overlay.classList.add('hidden');
             }
         }
+        document.querySelectorAll('[data-modal-toggle]').forEach(button => {
+            button.addEventListener('click', () => {
+                const target = button.getAttribute('data-modal-target');
+                openModal(target, 'popup-modal-overlay');
+            });
+        });
 
         document.addEventListener('DOMContentLoaded', function() {
             var latitude = {{ $trip->latitude }};
@@ -137,7 +143,7 @@
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
             var customIcon = L.icon({
-                iconUrl: "{{ asset('storage/profile/icon.png') }}",
+                iconUrl: "{{ asset('storage/icons/icon.png') }}",
                 iconSize: [25, 36],
                 iconAnchor: [12, 36],
                 popupAnchor: [0, -36]

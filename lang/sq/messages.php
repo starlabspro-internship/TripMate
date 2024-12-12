@@ -1,9 +1,15 @@
 <?php
 return [
-    
+
     'Profile' => 'Profili',
     'Available Rides' => 'Udhëtime',
     'Your verification is still pending.' => 'Verifikimi juaj është ende në pritje.',
+    'Please wait until your account is verified.' => 'Ju lutemi prisni derisa llogaria juaj të verifikohet.',
+    'Verify Background Check' => 'E kaluara penale' ,
+    'Upload your certificate on criminal convictions.' => 'Ngarkoni certifikatën tuaj mbi dënimet penale.',
+    'Upload' => 'Ngarko' ,
+    'Your file is being processed' => 'Dokumenti juaj po përpunohet' ,
+    'You will be notified when it the processing is done.' => 'Ju do të njoftoheni kur të përfundojë përpunimi.' ,
     'Verify Profile' => 'Verifiko Profilin',
     'Verify your profile for safety.' => 'Verifikoni profilin tuaj për siguri.',
     'Personal Info' => 'Informacione personale',
@@ -77,7 +83,8 @@ return [
 'Paid' => 'E paguar',
 'Refunded' => 'E rimbursuar',
 'Upcoming Bookings of' => 'Rezervimet e ardhshme të ',
-'Upcoming Bookings for' => 'Rezervimet e ardhshme për',
+'Upcoming Bookings for' => 'Rezervimet e ardhshme për ',
+'`s Trips' => '' ,
 
 'Seats Booked:' => 'Vendet e rezervuara:',
 'Booking Time:' => 'Koha e rezervimit:',
@@ -253,6 +260,45 @@ return [
 'User Status' => 'Statusi i përdoruesit',
 'Phone:' => 'Telefoni:',
 'Gender:' => 'Gjinia:',
+
+
+    'Mark All As Read' => 'Shëno të gjitha si të lexuara',
+    'No new notifications.' => 'Nuk ka njoftime të reja' ,
+
+//notification messages at bookings
+
+    'You have reserved a trip from' => 'Ju keni rezervuar një udhëtim nga ',
+    'to' => ' në ',
+    'with' => ' me ',
+    'seats reserved.' => ' vende të rezervuara. ',
+    'You have a new reservation from' => 'Ju keni një rezervim të ri nga ',
+    'Your ride from' => 'Udhëtimi juaj nga ',
+    'has been canceled. Your' => ' është anuluar ',
+    'have been refunded.' => ' € janë rimbursuar.',
+    'has canceled their booking from' => ' e ka anuluar rezervimin e tyre nga ',
+    'has been canceled.' => ' është anuluar. ',
+    'has canceled their reservation from' => ' e ka anuluar rezervimin e tyre nga ',
+    'You have booked a trip from' => 'Ju keni rezervuar një udhëtim nga ',
+    'seats booked. Total price:' => ' vende të rezervuara. Totali i çmimit: ',
+    'You have a new booking from' => 'Ju keni një rezervim të ri nga ' ,
+
+
+
+
+//notification messages at trips
+
+    'Your trip from' => 'Udhëtimi juaj nga ',
+    'has been created' => ' ështe krijuar.',
+    'has been canceled from the driver. Your' => ' është anuluar nga shoferi. ',
+    '€ has been refunded.' => '€ janë rimbursuar',
+
+//notification messages at superadmin
+
+    'Your background document has been verified successfully!' => 'Dokumeti juaj për të kaluarën penale është verifikuar me sukses!',
+    'Your background document has been flagged!' => 'Dokumeti juaj për të kaluarën penale nuk është verifikuar!',
+    'Your profile has been verified successfully!' => 'Profili juaj është verifikuar me sukses!',
+    'Your profile has been Rejected!' => 'Profili juaj nuk ka mundur të verifikohet!',
+
 
 
 

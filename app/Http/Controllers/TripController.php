@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\EndTrip;
+use App\Events\Notifications;
 use App\Models\Trip;
 use App\Models\City;
 use App\Models\User;
@@ -21,10 +23,10 @@ class TripController extends Controller
     {
         $cities = City::all();
         $trips = Trip::with('bookings');
-      
+
         $trips->where(function ($query) {
-            $query->where('status', '!=', 'Completed') 
-                  ->orWhereNull('status'); 
+            $query->where('status', '!=', 'Completed')
+                  ->orWhereNull('status');
         });
 
         Trip::where('status', 'Waiting')
@@ -33,10 +35,10 @@ class TripController extends Controller
 
     $trips->where(function ($query) {
         $query->where('status', '!=', 'Completed')
-              ->orWhere('status', 'Failed') 
+              ->orWhere('status', 'Failed')
               ->orWhereNull('status');
             });
-     
+
         if ($request->filled('date')) {
             $date = $request->input('date');
             $trips->whereDate('departure_time', $date);
@@ -57,7 +59,7 @@ class TripController extends Controller
         if ($userGender == 'male') {
             $trips->where('passenger_gender_preference', '!=', 'female');
         } elseif ($userGender == 'female') {
-            
+
         }
 
         $trips = $trips->orderBy('created_at', 'desc')->get();
@@ -91,27 +93,17 @@ class TripController extends Controller
         $departureTime = Carbon::createFromFormat('d-m-Y H:i', $request->departure_time)->format('Y-m-d H:i:s');
         $arrivalTime = Carbon::createFromFormat('d-m-Y H:i', $request->arrival_time)->format('Y-m-d H:i:s');
 
-        \Log::debug('Koha e konvertune per trips.', [
-            'driver_id' => $driverId,
-            'departure_time' => $departureTime,
-            'arrival_time' => $arrivalTime
-        ]);
 
         $hasTrip = Trip::where('driver_id', $driverId)
-        ->where('status', '!=', 'Completed') 
+        ->where('status', '!=', 'Completed')
         ->where('arrival_time', '>', now())
         ->where(function ($query) use ($departureTime, $arrivalTime) {
             $query->where('departure_time', '<', $arrivalTime)
                 ->where('arrival_time', '>', $departureTime);
         })->exists();
-  
+
 
         if ($hasTrip) {
-            \Log::debug('Detekto overlap trip.', [
-                'driver_id' => $driverId,
-                'departure_time' => $departureTime,
-                'arrival_time' => $arrivalTime
-            ]);
 
             return redirect('/trips')->with([
                 'error' => __('messages.Trip can`t be created'),
@@ -144,8 +136,14 @@ class TripController extends Controller
             'passenger_gender_preference' => 'nullable|in:female,all',
         ]);
 
-        Trip::create($validatedData);
+        $trip = Trip::create($validatedData);
 
+        $tripDetails = [
+            'originCity' => $trip->origincity->name,
+            'destinationCity' => $trip->destinationcity->name,
+        ];
+        $message = __('messages.Your trip from'). $tripDetails['originCity'] . __('messages.to'). $tripDetails['destinationCity']. __('messages.has been created');
+        event(new Notifications($message, auth()->id(), $tripDetails));
         return redirect('/trips')->with('success', __('messages.Trip created successfully'));
 
     }
@@ -207,7 +205,7 @@ class TripController extends Controller
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'passenger_gender_preference' => 'nullable|in:female,all',
-         
+
 
         ]);
         $trip->update($request->except('driver_id'));
@@ -239,6 +237,15 @@ class TripController extends Controller
                         'payment_intent' => $booking->stripe_charge_id,
                     ]);
                     $booking->update(['status' => 'refunded']);
+                    $tripDetails = [
+                        'originCity' => $trip->origincity->name,
+                        'destinationCity' => $trip->destinationcity->name,
+                        'price' => $booking->total_price,
+                    ];
+                    $message = __('messages.Your ride from'). $tripDetails['originCity'] .__('messages.to'). $tripDetails['destinationCity'] .__('messages.has been canceled from the driver. Your') . $tripDetails['price'] . __('messages.€ has been refunded.');
+
+                    event(new Notifications($message , $booking->passenger_id, $tripDetails));
+
                 } catch (\Exception $e) {
                     return redirect()->back()->with([
                         'error' => __('messages.Refund failed'),
@@ -248,13 +255,21 @@ class TripController extends Controller
             }
         }
         $trip->delete();
+
+        $tripDetails = [
+            'originCity' => $trip->origincity->name,
+            'destinationCity' => $trip->destinationcity->name,
+        ];
+        $message = __('messages.Your ride from'). $tripDetails['originCity'] .__('messages.to'). $tripDetails['destinationCity'] .__('messages.has been canceled.');
+
+        event(new Notifications($message , auth()->id(), $tripDetails));
         return redirect('/trips')->with([
             'success' => __('messages.Trip deleted successfully.'),
             'description' => __('messages.All bookings have been refunded.'),
         ]);
     }
 
-//start and end trip 
+//start and end trip
     public function start(Trip $trip)
 {
     if (auth()->user()->id !== $trip->driver_id) {
@@ -274,7 +289,7 @@ class TripController extends Controller
 
     $trip->status = 'In Progress';
     $trip->start_time = now();
-    $trip->save(); 
+    $trip->save();
 
     return back()->with('success',  __('messages.Trip started successfully.'));
 }
@@ -292,9 +307,9 @@ public function end(Trip $trip)
     $trip->status = 'Completed';
     $trip->arrival_time = now();
     $trip->end_time= now();
-    $trip->save(); 
+    $trip->save();
 
-    return back()->with('success', __('messages.Trip ended successfully.'));
+    return back()->with('success', 'Trip ended successfully.');
 }
 
 

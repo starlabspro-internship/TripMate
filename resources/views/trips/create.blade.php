@@ -11,17 +11,17 @@
                         }).addTo(map);
 
                         var customIcon = L.icon({
-                            iconUrl: '{{ asset('storage/profile/icon.png') }}',
-                            iconSize: [25, 36], 
-                            iconAnchor: [16, 32], 
-                            popupAnchor: [0, -32] 
+                            iconUrl: '{{ asset('storage/icons/icon.png') }}',
+                            iconSize: [25, 36],
+                            iconAnchor: [16, 32],
+                            popupAnchor: [0, -32]
                         });
 
-                        var marker = L.marker([42.5269444444, 21.0072222222], { 
+                        var marker = L.marker([42.5269444444, 21.0072222222], {
                             draggable: true,
-                            icon: customIcon 
+                            icon: customIcon
                         }).addTo(map);
-                        
+
                         marker.bindPopup('<span class="italic text-indigo-500 text-xs">Choose the meeting location <br> by selecting a point on the map.</span>').openPopup();
 
                         function updateCoordinates(lat, lng) {
@@ -187,7 +187,7 @@
                         <span>{{ __('messages.Female Only') }}</span>
                     </label>
                     <label class="flex items-center space-x-2 mt-2">
-                        <input type="radio" name="passenger_gender_preference" value="all" class="radio" 
+                        <input type="radio" name="passenger_gender_preference" value="all" class="radio"
                         {{ old('passenger_gender_preference', 'all') == 'all' ? 'checked' : '' }}/>
                         <span>{{ __('messages.All') }}</span>
                     </label>
