@@ -263,6 +263,7 @@ return [
 
 
     'Mark All As Read' => 'Shëno të gjitha si të lexuara',
+    'No new notifications.' => 'Nuk ka njoftime të reja' ,
 
 //notification messages at bookings
 

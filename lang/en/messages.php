@@ -272,7 +272,7 @@ return [
 
 
 'Mark All As Read' => 'Mark All As Read',
-
+'No new notifications.' => 'No new notifications.' ,
 //notification messages at bookings
 
 'You have reserved a trip from' => 'You have reserved a trip from ',

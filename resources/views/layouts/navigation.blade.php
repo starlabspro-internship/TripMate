@@ -176,7 +176,7 @@
                                         @endif
 
                                     @empty
-                                        <li id="noNew" class="text-gray-500">No new notifications.</li>
+                                        <li id="noNew" class="text-gray-500">{{__('messages.No new notifications.')}}</li>
                                     @endforelse
                                 </ul>
                             </div>
