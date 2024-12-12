@@ -27,7 +27,7 @@
             </div>
             <div class="flex justify-center mt-6 gap-x-4">
                 <button type="submit" class="px-8 flex items-center justify-center mb-6 border bg-blue-500 hover:border-blue-900 hover:bg-blue-800 text-white text-base py-2 rounded-full tracking-wide font-medium cursor-pointer transition ease-in duration-500">
-                    {{ __('Upload') }}
+                    {{ __('messages.Upload') }}
                 </button>
                 <button id="change-file-btn" class="hidden underline flex items-center mb-6 text-blue-500" onclick="changeFile()">
                     {{ __('messages.Change File') }}

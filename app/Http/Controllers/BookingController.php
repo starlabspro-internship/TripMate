@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Notifications;
 use App\Models\Trip;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
@@ -53,7 +54,7 @@ class BookingController extends Controller
         $transactions = $query->get();
         return view('superadmin.transactions.index', compact('transactions'));
     }
-    
+
     public function myTransactions(Request $request){
         $userId = auth()->id();
         $dateFrom = $request->input('date_from');
@@ -83,7 +84,7 @@ class BookingController extends Controller
 
         return view('bookings.mytransactions', compact('moneySent', 'moneyReceived'));
 }
-    
+
 
     public function reserve(Request $request){
         $trip = Trip::findOrFail($request->trip_id);
@@ -94,6 +95,23 @@ class BookingController extends Controller
             'status' => 'reserved',
             'total_price' => $trip->price * $request->seats_booked,
         ]);
+        $reserveDetails = [
+            'originCity' => $trip->origincity->name,
+            'destinationCity' => $trip->destinationcity->name,
+            'seatsBooked' => $request->seats_booked,
+            'totalPrice' => $trip->price * $request->seats_booked,
+            'bookingId' => $request->id,
+        ];
+        $message = __('messages.You have reserved a trip from'). $reserveDetails['originCity'] .__('messages.to'). $reserveDetails['destinationCity'] .__('messages.with'). $reserveDetails['seatsBooked'] . __('messages.seats reserved.');
+
+        event(new Notifications($message , auth()->id(), $reserveDetails));
+
+        $driver = $trip->driver_id;
+
+        $drivermessage = __('messages.You have a new reservation from'). auth()->user()->name;
+
+        event(new Notifications($drivermessage , $driver));
+
         return redirect()->route('bookings.show', ['id' => $booking->id])->with('bookings', $booking);
     }
 
@@ -125,6 +143,7 @@ class BookingController extends Controller
 
         // Check for overlapping bookings for the same passenger
         $hasBooking = Booking::where('passenger_id', request('passenger_id'))
+            ->where('status', '!=', 'refunded')
             ->whereHas('trip', function ($query) use ($tripi) {
                 $query->where('departure_time', '<', $tripi->arrival_time)
                     ->where('arrival_time', '>', $tripi->departure_time);
@@ -179,6 +198,22 @@ class BookingController extends Controller
             'total_price' => $trip->price * $request->seats_booked,
             'session_id' => $session->id,
         ]);
+        $bookingDetails = [
+            'originCity' => $trip->origincity->name,
+            'destinationCity' => $trip->destinationcity->name,
+            'seatsBooked' => $request->seats_booked,
+            'totalPrice' => $trip->price * $request->seats_booked,
+            'bookingId' => $request->id,
+        ];
+        $message = __('messages.You have booked a trip from'). $bookingDetails['originCity'] .__('messages.to'). $bookingDetails['destinationCity'] .__('messages.with'). $bookingDetails['seatsBooked'] .__('messages.seats booked. Total price:'). $bookingDetails['totalPrice']. '€';
+
+        event(new Notifications($message , auth()->id(), $bookingDetails));
+
+        $driver = $trip->driver_id;
+
+        $drivermessage = __('messages.You have a new booking from'). auth()->user()->name;
+
+        event(new Notifications($drivermessage , $driver));
 
         return redirect($session->url);
     }
@@ -236,6 +271,26 @@ class BookingController extends Controller
                 'payment_intent' => $paymentIntentId,
             ]);
             $booking->update(['status' => 'refunded']);
+
+            $tripDetails = [
+                'originCity' => $booking->trip->origincity->name,
+                'destinationCity' => $booking->trip->destinationcity->name,
+                'refund' => $booking->total_price,
+            ];
+            $message = __('messages.Your ride from'). $tripDetails['originCity'] .__('messages.to'). $tripDetails['destinationCity'] .__('messages.has been canceled.').$booking['total_price'] . __('messages.have been refunded.');
+            event(new Notifications($message , auth()->id(), $tripDetails));
+
+
+            $toDriver = [
+                'passenger' => $booking->passenger->name,
+                'originCity' => $booking->trip->origincity->name,
+                'destinationCity' => $booking->trip->destinationcity->name,
+            ];
+            $driver = $booking->trip->driver_id;
+            $message = $toDriver['passenger'] . __('messages.has canceled their booking from'). $toDriver['originCity'] .__('messages.to').$toDriver['destinationCity'];
+            event(new Notifications($message , $driver, $tripDetails));
+
+
             return redirect('/bookings')->with('status', __('messages.Booking canceled and refunded successfully.'));
         } catch (\Exception $e) {
             return redirect()->back()->with([
@@ -284,6 +339,22 @@ class BookingController extends Controller
         $booking = Booking::find($id);
         $booking->delete();
 
+        $tripDetails = [
+            'originCity' => $booking->trip->origincity->name,
+            'destinationCity' => $booking->trip->destinationcity->name,
+        ];
+        $message = __('messages.Your ride from'). $tripDetails['originCity'] .__('messages.to'). $tripDetails['destinationCity'] .__('messages.has been canceled.');
+
+        event(new Notifications($message , auth()->id(), $tripDetails));
+
+        $todriver = [
+            'passenger' => $booking->passenger->name,
+            'originCity' => $booking->trip->origincity->name,
+            'destinationCity' => $booking->trip->destinationcity->name
+        ];
+        $message = $todriver['passenger']. __('messages.has canceled their reservation from') . $todriver['originCity'] .__('messages.to'). $todriver['destinationCity'];
+        $driver = $booking->trip->driver_id;
+        event(new Notifications($message , $driver, $todriver));
         return redirect('/trips')->with('success', __('messages.Booking deleted successfully'));
     }
 }

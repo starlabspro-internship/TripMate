@@ -108,7 +108,7 @@
                 </div>
 
                 <!-- Transactions Section -->
-                
+
                 <div class="w-full md:w-1/3 lg:w-2/5 bg-white rounded-md shadow-sm p-4">
                 <a href="{{ route('superadmin.transactions') }}">
                     <h3 class="text-2xl font-semibold text-gray-800 mb-4">{{ __('messages.Recent Transactions') }}</h3>
@@ -134,11 +134,11 @@
                                     @if($transaction->status === 'paid' || $transaction->status === 'refunded')
                                     <td class="text-left">
                                         <span class="ml-4 text-md my-4 text-gray-600 dark:text-white/80">
-                                            {{ $transaction->trip->origincity->name }} to {{ $transaction->trip->destinationcity->name }}
+                                            {{ $transaction->trip->origincity->name }} {{__('messages.to')}} {{ $transaction->trip->destinationcity->name }}
                                         </span>
                                     </td>
                                     <td class="text-center">
-                                        <span 
+                                        <span
                                         class="flex justify-center my-4
                                         {{ $transaction->status === 'paid' ? 'text-green-500' : 'text-red-500' }}">
                                         {{ $transaction->status === 'paid' ? '+' : '-' }}{{ $transaction->total_price }}€
@@ -155,7 +155,7 @@
                                 @endif
                             </tbody>
                         </table>
-                        
+
                     </div>
                 </div>
 

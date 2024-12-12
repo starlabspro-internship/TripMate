@@ -1,8 +1,14 @@
 <?php
 return [
-   
+
     'Profile' => 'Profile',
     'Available Rides' => 'Available Rides',
+    'Please wait until your account is verified.' => 'Please wait until your account is verified.',
+    'Verify Background Check' => 'Verify Background Check' ,
+    'Upload your certificate on criminal convictions.' => 'Upload your certificate on criminal convictions.',
+    'Upload' => 'Upload' ,
+    'Your file is being processed' => 'Your file is being processed' ,
+    'You will be notified when it the processing is done.' => 'You will be notified when it the processing is done.' ,
     'Your verification is still pending.' => 'Your verification is still pending.',
     'Verify Profile' => 'Verify Profile',
     'Verify your profile for safety.' => 'Verify your profile for safety.',
@@ -80,7 +86,8 @@ return [
 'Paid' => 'Paid',
 'Refunded' => 'Refunded',
 'Upcoming Bookings of' => 'Upcoming Bookings of ',
-'Upcoming Bookings for' => 'Upcoming Bookings for',
+'Upcoming Bookings for' => 'Upcoming Bookings for ',
+'`s Trips' => '`s Trips',
 'Seats Booked:' => 'Seats Booked:',
 'Booking Time:' => 'Booking Time:',
 'Booking Date:' => 'Booking Date:',
@@ -209,7 +216,7 @@ return [
 'Go to your Booking' => 'Go to your Booking',
 'Total Seats Booked:' => 'Total Seats Booked:',
 'Booking Information' => 'Booking Information',
-'Phone Number:' => 'Phone Number:', 
+'Phone Number:' => 'Phone Number:',
 'Trip Information' => 'Trip Information',
 'Passenger Information' => 'Passenger Information',
 
@@ -253,7 +260,7 @@ return [
 'Edit Image' => 'Edit Image',
 'First Name:' => 'First Name:',
 'Last Name:' => 'Last Name:',
-'My Transactions' => 'My Transactions', 
+'My Transactions' => 'My Transactions',
 'All Booked Up' => 'All Booked Up',
 'Meeting At:' => 'Meeting At:',
 
@@ -264,6 +271,41 @@ return [
 'Gender:' => 'Gender:',
 
 
+'Mark All As Read' => 'Mark All As Read',
+
+//notification messages at bookings
+
+'You have reserved a trip from' => 'You have reserved a trip from ',
+'to' => ' to ',
+'with' => ' with ',
+'seats reserved.' => ' seats reserved.',
+'You have a new reservation from' => 'You have a new reservation from ',
+'Your ride from' => 'Your ride from ',
+'has been canceled. Your' => ' has been canceled. Your ',
+'have been refunded.' => ' € have been refunded.',
+'has canceled their booking from' => ' has canceled their booking from ',
+'has been canceled.' => ' has been canceled. ',
+'has canceled their reservation from' => ' has canceled their reservation from ',
+'You have booked a trip from' => 'You have booked a trip from ',
+'seats booked. Total price:' => ' seats booked. Total price: ',
+'You have a new booking from' => 'You have a new booking from ' ,
+
+
+
+
+//notification messages at trips
+
+'Your trip from' => 'Your trip from ',
+'has been created' => ' has been created.',
+'has been canceled from the driver. Your' => ' has been canceled from the driver. Your ',
+'€ has been refunded.' => '€ has been refunded.',
+
+//notification messages at superadmin
+
+'Your background document has been verified successfully!' => 'Your background document has been verified successfully!',
+'Your background document has been flagged!' => 'Your background document has been flagged!',
+'Your profile has been verified successfully!' => 'Your profile has been verified successfully!',
+'Your profile has been Rejected!' => 'Your profile has been Rejected!',
 
 
 
@@ -283,19 +325,5 @@ return [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    
-
-     
 
 ];

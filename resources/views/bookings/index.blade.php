@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4 py-6 ">
         <h2 class="text-2xl font-semibold text-center mt-16 mb-6">
             {{ __('messages.Upcoming Bookings of') . ' ' . auth()->user()->name }}
-            
+
 
 
         </h2>
@@ -118,6 +118,16 @@
                                 {{ __('messages.Cancel & Refund') }}
                             </button>
                         </form>
+                        @elseif($booking->status == 'reserved' && now()->lessThan($booking->trip->departure_time))
+                            <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST"
+                                  onsubmit="return confirmSubmission()">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                        class="mt-4 w-auto bg-red-500 text-white py-1 px-3 rounded-full text-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                                    {{ __('messages.Cancel') }}
+                                </button>
+                            </form>
                     @else
                         <p class="mt-4 text-center text-sm text-gray-500">
                             {{ __('messages.This booking cannot be modified at this time.') }}
