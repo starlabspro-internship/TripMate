@@ -178,6 +178,13 @@
                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
             }).addTo(map);
 
+            var customIcon = L.icon({
+                iconUrl: "{{ asset('storage/icons/icon.png') }}",
+                iconSize: [25, 36],
+                iconAnchor: [12, 36],
+                popupAnchor: [0, -36]
+            });
+
             // Restrict bounds to Kosovo
             const kosovoBounds = [
                 [41.8571, 19.9800], // Southwest corner of Kosovo
@@ -200,7 +207,7 @@
             ];
 
             cities.forEach((city) => {
-                L.marker(city.coords)
+                L.marker(city.coords, {icon: customIcon})
                     .addTo(map)
                     .bindPopup(
                         `<strong>${city.name}</strong><br>Users: ${city.users}`
