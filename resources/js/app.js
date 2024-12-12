@@ -1,4 +1,5 @@
 import './bootstrap';
+import './echo.js'
 import './dashboard';
 import './swiper';
 import './flatpickr';
