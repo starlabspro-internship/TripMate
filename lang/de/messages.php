@@ -15,6 +15,9 @@ return [
     'Address:' => 'Adresse:',
     'Driver' => 'Fahrer',
     'Passenger' => 'Passagier',
+    'On Time' =>'Rechtzeitig',
+    'Planned Time' =>'Geplante Zeit',
+    'No passengers available.' => 'Keine Passagiere verfügbar.',
     'Started at:' => 'Gestartet um:',
     'Ended at:' => 'Beendet um:',
     'Price:' => 'Preis:',
@@ -136,7 +139,6 @@ return [
     'All Booked Up' => 'Alles ausgebucht',
     'Tables' => 'Tabellen',
     'Meeting At:' => 'Treffen um:',
-
 
 
 ];
