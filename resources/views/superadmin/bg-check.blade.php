@@ -5,8 +5,8 @@
                 Background Check
             </h2>
         </div>
-        
-        
+
+
         <!-- Verification Table -->
         <div class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
             <table class="w-full text-left table-auto border-collapse ">
@@ -33,9 +33,9 @@
                         <td class="px-6 py-4 text-left flex text-left">
                                 @if($user->background_document)
                                     <button onclick="openDocumentModalBg('{{ asset('storage/' . $user->background_document) }}')"
-                                        class="underline flex text-left rounded-md shadow text-blue-500">
+                                        class="underline flex text-left text-blue-500">
                                         <span>View Document</span>
-                                        <svg class="h-4 w-4 mt-1" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill=""><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>open-external</title> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="icon" fill="#172554" transform="translate(85.333333, 64.000000)"> <path d="M128,63.999444 L128,106.666444 L42.6666667,106.666667 L42.6666667,320 L256,320 L256,234.666444 L298.666,234.666444 L298.666667,362.666667 L4.26325641e-14,362.666667 L4.26325641e-14,64 L128,63.999444 Z M362.666667,1.42108547e-14 L362.666667,170.666667 L320,170.666667 L320,72.835 L143.084945,249.751611 L112.915055,219.581722 L289.83,42.666 L192,42.6666667 L192,1.42108547e-14 L362.666667,1.42108547e-14 Z" id="Combined-Shape"> </path> </g> </g> </g></svg>
+                                        <svg class="h-4 w-4 mt-1" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill=""><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>open-external</title> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="icon" fill="#3B82F6" transform="translate(85.333333, 64.000000)"> <path d="M128,63.999444 L128,106.666444 L42.6666667,106.666667 L42.6666667,320 L256,320 L256,234.666444 L298.666,234.666444 L298.666667,362.666667 L4.26325641e-14,362.666667 L4.26325641e-14,64 L128,63.999444 Z M362.666667,1.42108547e-14 L362.666667,170.666667 L320,170.666667 L320,72.835 L143.084945,249.751611 L112.915055,219.581722 L289.83,42.666 L192,42.6666667 L192,1.42108547e-14 L362.666667,1.42108547e-14 Z" id="Combined-Shape"> </path> </g> </g> </g></svg>
                                     </button>
                             @else
                                 <span class="text-gray-700 italic">No Document</span>
@@ -105,7 +105,7 @@
             </div>
             <!-- Close Button -->
             <button onclick="closeDocumentModal()"
-                    class="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600">
+                    class="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
                 Close
             </button>
         </div>
@@ -117,10 +117,15 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             @foreach($users->where('id', '!=', auth()->id()) as $user)
-            @if($user->background_document)
-            extractTextFromImage('{{ asset('storage/' . $user->background_document) }}', '{{ $user->id }}');
-            @endif
-            @endforeach
+    @if($user->background_document)
+        @php
+            $imageUrl = app()->environment('local')
+                ? asset('storage/' . $user->background_document) 
+                : secure_asset('storage/' . $user->background_document); 
+        @endphp
+        extractTextFromImage('{{ $imageUrl }}', '{{ $user->id }}');
+    @endif
+@endforeach
         });
         function extractTextFromImage(imageUrl, userId) {
             const resultElement = document.getElementById(`ocr-result-${userId}`);
@@ -130,7 +135,7 @@
                 imageUrl,
                 'sqi',
                 {
-                  
+
                 }
             )
                 .then(({ data: { text } }) => {
