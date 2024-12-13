@@ -16,9 +16,11 @@ return [
     'Address:' => 'Adresse :',
     'Driver' => 'Conducteur',
     'Passenger' => 'Passager',
+    'On Time' =>  'heure',
+    'Planned Time' => 'Heure prévue',
+    'No passengers available.' => 'Aucun passager disponible.',
     'Started at:' => 'Commencé à :',
     'Ended at:' => 'Terminé à :',
-
     'Price:' => 'Prix :',
     'Completed Rides Of' => 'Trajets terminés de',
     'From:' => 'De :',
@@ -134,8 +136,7 @@ return [
 'Expires' => 'Expire',
 'Payment Method' => 'Méthode de paiement',
 
-
-//controllers 
+//controllers
 
 'Trip created successfully' => 'Voyage créé avec succès',
 'Trip can`t be created' => 'Le voyage ne peut pas être créé',
