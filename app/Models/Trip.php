@@ -23,7 +23,7 @@ class Trip extends Model
         'longitude',
         'status',
         'start_time',
-        'end_time',   
+        'end_time',
     ];
     protected $casts = [
         'departure_time' => 'datetime',
@@ -31,7 +31,7 @@ class Trip extends Model
         'start_time' => 'datetime',
         'end_time' => 'datetime',
     ];
-    
+
     public function users()
     {
         return $this->belongsTo(User::class, 'driver_id');
@@ -56,15 +56,25 @@ class Trip extends Model
     {
         $this->status = 'In Progress';
         $this->start_time = now();
-        $this->save();  
+        $this->save();
     }
-    
+
     public function end()
     {
         $this->status = 'Completed';
         $this->end_time = now();
-        $this->save();  
+        $this->save();
+    }
+    public function passengers()
+    {
+        return $this->hasManyThrough(
+            User::class,
+            Booking::class,
+            'trip_id',
+            'id',
+            'id',
+            'passenger_id'
+        );
     }
 
-    
 }
