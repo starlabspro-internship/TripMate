@@ -30,6 +30,8 @@ jobs:
         php artisan db:seed --force
         npm install
         npm run build
+        npm update
+        composer update
         php artisan cache:clear
         php artisan config:clear
         php artisan route:clear
