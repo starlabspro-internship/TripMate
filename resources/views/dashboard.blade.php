@@ -52,10 +52,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4">
-                <div class="flex flex-wrap -mx-6">
-
-                </div>
+           
             </div>
             <div>
                 <div class="mt-8">
