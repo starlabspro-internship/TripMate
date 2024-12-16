@@ -55,33 +55,6 @@
             <div class="mt-4">
                 <div class="flex flex-wrap -mx-6">
 
-                    <!-- New Section 2: Pending Verifications -->
-                    <div class="w-full px-6 mt-6 sm:w-1/2  xl:mt-0">
-                        <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm">
-                            <div class="p-3 bg-yellow-600 bg-opacity-75 rounded-full">
-                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="m20.215 2.387-8.258 10.547-2.704-3.092a1 1 0 1 0-1.506 1.316l3.103 3.548a1.5 1.5 0 0 0 2.31-.063L21.79 3.62a1 1 0 1 0-1.575-1.233zM20 11a1 1 0 0 0-1 1v6.077c0 .459-.021.57-.082.684a.364.364 0 0 1-.157.157c-.113.06-.225.082-.684.082H5.923c-.459 0-.57-.022-.684-.082a.363.363 0 0 1-.157-.157c-.06-.113-.082-.225-.082-.684V5.5a.5.5 0 0 1 .5-.5l8.5.004a1 1 0 1 0 0-2L5.5 3A2.5 2.5 0 0 0 3 5.5v12.577c0 .76.082 1.185.319 1.627.224.419.558.753.977.977.442.237.866.319 1.627.319h12.154c.76 0 1.185-.082 1.627-.319.42-.224.754-.558.978-.977.236-.442.318-.866.318-1.627V12a1 1 0 0 0-1-1z" fill="#000000"></path></g></svg>
-                            </div>
-                            <div class="mx-5">
-                                <a href="{{ route('superadmin.index', ['tab' => 'verifications']) }}">
-                                    <h4 class="text-2xl font-semibold text-gray-700">{{ __('messages.To Do List') }}</h4>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- New Section 3: Cancelled Trips -->
-                    <div class="w-full px-6 mt-6 sm:w-1/2 xl:mt-0">
-                        <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm">
-                            <div class="p-3 bg-red-600 bg-opacity-75 rounded-full">
-                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 1C17.6569 1 19 2.34315 19 4C19 4.55228 18.5523 5 18 5C17.4477 5 17 4.55228 17 4C17 3.44772 16.5523 3 16 3H4C3.44772 3 3 3.44772 3 4V20C3 20.5523 3.44772 21 4 21H16C16.5523 21 17 20.5523 17 20V19C17 18.4477 17.4477 18 18 18C18.5523 18 19 18.4477 19 19V20C19 21.6569 17.6569 23 16 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H16Z" fill="#0F0F0F"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M20.7991 8.20087C20.4993 7.90104 20.0132 7.90104 19.7133 8.20087L11.9166 15.9977C11.7692 16.145 11.6715 16.3348 11.6373 16.5404L11.4728 17.5272L12.4596 17.3627C12.6652 17.3285 12.855 17.2308 13.0023 17.0835L20.7991 9.28666C21.099 8.98682 21.099 8.5007 20.7991 8.20087ZM18.2991 6.78666C19.38 5.70578 21.1325 5.70577 22.2134 6.78665C23.2942 7.86754 23.2942 9.61999 22.2134 10.7009L14.4166 18.4977C13.9744 18.9398 13.4052 19.2327 12.7884 19.3355L11.8016 19.5C10.448 19.7256 9.2744 18.5521 9.50001 17.1984L9.66448 16.2116C9.76728 15.5948 10.0602 15.0256 10.5023 14.5834L18.2991 6.78666Z" fill="#0F0F0F"></path> <path d="M5 7C5 6.44772 5.44772 6 6 6H14C14.5523 6 15 6.44772 15 7C15 7.55228 14.5523 8 14 8H6C5.44772 8 5 7.55228 5 7Z" fill="#0F0F0F"></path> <path d="M5 11C5 10.4477 5.44772 10 6 10H10C10.5523 10 11 10.4477 11 11C11 11.5523 10.5523 12 10 12H6C5.44772 12 5 11.5523 5 11Z" fill="#0F0F0F"></path> <path d="M5 15C5 14.4477 5.44772 14 6 14H7C7.55228 14 8 14.4477 8 15C8 15.5523 7.55228 16 7 16H6C5.44772 16 5 15.5523 5 15Z" fill="#0F0F0F"></path> </g></svg>
-                            </div>
-                            <div class="mx-5">
-                                <a href="{{ route('superadmin.index', ['tab' => 'cancelled']) }}">
-                                    <h4 class="text-2xl font-semibold text-gray-700">{{ __('messages.Feedbacks') }}</h4>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="mt-8">
@@ -103,6 +76,60 @@
                     <h3 class="text-2xl font-medium text-gray-700 mb-4">{{ __('messages.Map of Kosovo') }}</h3>
                     <div id="map" class="w-full h-96 rounded-md shadow-sm"></div>
                 </div>
+
+                <!-- Transactions Section -->
+
+                <div class="w-full md:w-1/3 lg:w-2/5 bg-white rounded-md shadow-sm p-4">
+                <a href="{{ route('superadmin.transactions') }}">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">{{ __('messages.Recent Transactions') }}</h3>
+                </a>
+                    <div class="overflow-y-auto max-h-[380px]">
+                        <table class="w-full border border-gray-200 rounded-md shadow-md overflow-hidden">
+                            <thead>
+                                <tr class="rounded-sm bg-gray-100 dark:bg-meta-4">
+                                    <th class="border-b border-gray-300 px-4 py-3 text-left">{{ __('messages.Transactions') }}</th>
+                                    <th class="border-b border-gray-300 px-4 py-3 text-center">{{ __('messages.Amount') }}</th>
+                                    <th class="border-b border-gray-300 px-4 py-3 text-center">{{ __('messages.Date') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <!-- Example Rows (Replace with Dynamic Data) -->
+                                @if($transactions->isEmpty())
+                                <tr>
+                                    <td colspan="3" class="text-center text-gray-600">{{ __('messages.No transactions available.') }}</td>
+                                </tr>
+                                @else
+                                @foreach($transactions as $transaction)
+                                <tr>
+                                    @if($transaction->status === 'paid' || $transaction->status === 'refunded')
+                                    <td class="text-left">
+                                        <span class="ml-4 text-md my-4 text-gray-600 dark:text-white/80">
+                                            {{ $transaction->trip->origincity->name }} {{__('messages.to')}} {{ $transaction->trip->destinationcity->name }}
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span
+                                        class="flex justify-center my-4
+                                        {{ $transaction->status === 'paid' ? 'text-green-500' : 'text-red-500' }}">
+                                        {{ $transaction->status === 'paid' ? '+' : '-' }}{{ $transaction->total_price }}€
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="flex justify-center my-4 text-sm text-gray-600 dark:text-white/80">
+                                            {{ $transaction->created_at->format('M d, Y') }}
+                                        </span>
+                                    </td>
+                                    @endif
+                                </tr>
+                                @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>

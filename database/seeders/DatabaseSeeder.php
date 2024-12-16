@@ -20,17 +20,19 @@ class DatabaseSeeder extends Seeder
             ['email' => "admin@gmail.com"],
             [
                 'name' => 'admin',
-                'password' => Hash::make('adminpassword'),
+                'password' => Hash::make('tripmate8'),
                 'email' => 'admin@gmail.com',
+                'email_verified_at' => now(),
             ]
         );
         User::firstOrCreate(
            ['email' => 'superadmin@gmail.com'],
-           
+
            [
               'name' => 'superadmin' ,
-               'password' => Hash::make('superadmin'),
+               'password' => Hash::make('tripmate8'),
                'is_super_admin' => true,
+               'email_verified_at' => now(),
                ]
            );
         $this->call(CitySeeder::class);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Notifications;
 use App\Models\City;
 use App\Models\User;
 use App\Models\Booking;
@@ -120,8 +121,8 @@ class SuperAdminController extends Controller
         $nullStatusUsers = User::whereNull('verification_status')->count();
         $totalBookings = Booking::count();
         $totalUsers = User::count();
-        $totalTrips = Trip::count();        
-        $query = Booking::with(['trip.origincity', 'trip.destinationcity', 'passenger']);     
+        $totalTrips = Trip::count();
+        $query = Booking::with(['trip.origincity', 'trip.destinationcity', 'passenger']);
         $transactions = $query->get();
         return view('dashboard', compact('totalTrips', 'totalUsers', 'totalBookings','transactions','verifiedUsers', 'nullStatusUsers'));
     }
@@ -143,13 +144,14 @@ class SuperAdminController extends Controller
                 ]);
         }
         $user->update(['background_status' => 'verified']);
+        event(new Notifications( __('messages.Your background document has been verified successfully!'), $user->id));
         return redirect()->route('superadmin.bg-check')
             ->with('success', 'User verified successfully');
     }
 
     public function bgFlagged(User $user)
     {
-        if (!$user->background_document) {
+        if (!$user->background_document || $user->background) {
             return redirect()->route('superadmin.bg-check')
                 ->with([
                     'error' => 'Verification Failed',
@@ -157,6 +159,7 @@ class SuperAdminController extends Controller
                 ]);
         }
         $user->update(['background_status' => 'flagged']);
+        event(new Notifications(__('messages.Your background document has been flagged!'), $user->id));
         return redirect()->route('superadmin.bg-check')
             ->with('success', 'User has been flagged');
     }

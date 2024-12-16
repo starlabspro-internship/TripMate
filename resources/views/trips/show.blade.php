@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="bg-showImage bg-no-repeat bg-cover bg-center min-h-screen p-[15px]"> 
+    <div class="bg-showImage bg-no-repeat bg-cover bg-center min-h-screen p-[15px]">
         <div class="mt-1 p-1 md:mx-[76px] rounded-3xl ">
             <a href="/trips">
                             <img
@@ -74,12 +74,12 @@
             <button id="closeModal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-900 text-xl font-bold">×</button>
             <div class="text-center">
             @if ($trip->users->image)
-                <img src="{{ asset('storage/' . $trip->users->image) }}" 
-                     alt="Driver Image" 
+                <img src="{{ asset('storage/' . $trip->users->image) }}"
+                     alt="Driver Image"
                      class="w-28 h-28 mx-auto rounded-full border-4 border-gray-300 shadow-lg object-cover mb-4">
             @else
-                <img src="{{ asset('https://ui-avatars.com/api/?name=' . $trip->users->name . '+' . $trip->users->lastname) }}" 
-                     alt="Default Image" 
+                <img src="{{ asset('https://ui-avatars.com/api/?name=' . $trip->users->name . '+' . $trip->users->lastname) }}"
+                     alt="Default Image"
                      class="w-28 h-28 mx-auto rounded-full border-4 border-gray-300 shadow-lg object-cover mb-4">
             @endif
 
@@ -110,7 +110,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#f59e0b" class="w-6 h-6" viewBox="0 0 24 24">
                         <path d="M12 .587l3.668 7.573 8.332 1.151-6.064 5.944 1.448 8.28L12 18.896l-7.384 4.639 1.448-8.28L.587 9.311l8.332-1.151z" />
                     </svg>
-                                     <span class="ml-1 -mb-1 text-gray-800 font-semibold text-lg">{{ 4.3 }}</span> 
+                                     <span class="ml-1 -mb-1 text-gray-800 font-semibold text-lg">{{ 4.3 }}</span>
                                  </div>
                                  <div class="flex items-center justify-center  -mt-2">
                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 36 36" aria-hidden="true" role="img" class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet">
@@ -123,7 +123,7 @@
                              <path fill="#F4900C" d="M2.373 25l-.196 1H36v-1c0-.348-.055-.679-.133-1H2.702a4.764 4.764 0 0 0-.329 1z"/>
                              <path d="M24 21h5.92a12.673 12.673 0 0 0-.156-1.5c-.395-2.5-.552-3.5-3.437-3.5H24v5zm-2-5h-5c-1.594 0-3.236 1.567-3.847 3.5c-.194.599-.353 1.088-.472 1.5H22v-5z" fill="#55ACEE"/>
                          </svg>
-                         <span class="mt-3 ml-2 text-gray-800 font-semibold text-lg">{{ $trip->users->count() }}</span> 
+                         <span class="mt-3 ml-2 text-gray-800 font-semibold text-lg">{{ $trip->users->count() }}</span>
                               </div>
                           </div>
                                   <div class="mt-6 flex justify-center">
@@ -164,7 +164,7 @@
                                 <div class="rounded-md bg-red-500 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md  focus:bg-red-700 focus:shadow-none  active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:bg-red-500 md:w-40 cursor-not-allowed opacity-50">
                                     @lang('messages.All Booked Up')
                                 </div>
-                                
+
                             </div>
                         @endif
                     </div>
@@ -207,7 +207,7 @@
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
             var customIcon = L.icon({
-                iconUrl: "{{ asset('storage/profile/icon.png') }}",
+                iconUrl: "{{ asset('storage/icons/icon.png') }}",
                 iconSize: [25, 36],
                 iconAnchor: [12, 36],
                 popupAnchor: [0, -36]

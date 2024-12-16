@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Events\Notifications;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +55,9 @@ class UserVerifyController extends Controller
 
         $user->update(['verification_status' => 'verified']);
 
+        event(new Notifications(__('messages.Your profile has been verified successfully!'), $user->id));
+
+
         $user->notify(new UserVerifiedNotification());
 
         return redirect()->route('superadmin.users.index-users')
@@ -76,6 +80,9 @@ class UserVerifyController extends Controller
 
 
         $user->update(['verification_status' => 'rejected']);
+
+        event(new Notifications(__('messages.Your profile has been Rejected!'), $user->id));
+
 
         $user->notify(new UserRejectedNotification());
 
@@ -104,8 +111,8 @@ class UserVerifyController extends Controller
     }
 
     public function userStatus($uuid)
-    {   
-        $user = User::where('uuid', $uuid)->firstOrFail(); 
+    {
+        $user = User::where('uuid', $uuid)->firstOrFail();
 
         if ($user->image) {
             $user->image = asset('storage/' . $user->image);

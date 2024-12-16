@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Models\User;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SuperAdminController;
 use Illuminate\Support\Facades\Route;
@@ -125,6 +126,9 @@ Route::get('profile/upload-file', function () {
 Route::get('/user/qr', [UserVerifyController::class, 'qrCode'])->middleware('auth')->name('user.qr-code');
 Route::get('/scan-qr', [UserVerifyController::class, 'scan'])->middleware('auth')->name('scan.qr');
 Route::get('/user/check/{uuid}', [UserVerifyController::class, 'userStatus'])->middleware('auth')->name('userStatus');
+Route::patch('notifications/markread/{notification}', [NotificationController::class, 'markAsRead'])->middleware('auth')->name('notifications.read');
+Route::patch('notifications/markAllRead', [NotificationController::class, 'markAllAsRead'])->middleware('auth')->name('notifications.allRead');
+
 
 
 Route::get('language/{locale}', function($locale){
