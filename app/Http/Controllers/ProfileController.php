@@ -44,7 +44,10 @@ class ProfileController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('profile.index', compact('bookings', 'trips', 'user' ));
+        $user = auth()->user();
+        $tripCount = Trip::where('driver_id', $user->id)->count();
+
+        return view('profile.index', compact('bookings', 'trips', 'user', 'tripCount' ));
 
     }
 

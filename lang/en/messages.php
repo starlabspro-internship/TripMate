@@ -262,6 +262,7 @@ return [
 'User Status' => 'User Status',
 'Phone:' => 'Phone:',
 'Gender:' => 'Gender:',
+'Users:' => 'Users:'
 
 
 

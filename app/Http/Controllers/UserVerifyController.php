@@ -1,11 +1,13 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Notifications\UserVerifiedNotification;
-use App\Notifications\UserRejectedNotification;
+use Illuminate\Support\Facades\DB;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Notifications\UserRejectedNotification;
+use App\Notifications\UserVerifiedNotification;
 
 class UserVerifyController extends Controller
 {
@@ -113,5 +115,13 @@ class UserVerifyController extends Controller
 
         return view('qr-code.user-status', compact('user'));
     }
+    public function getCitiesWithUserCount()
+    {
+        $cities = City::withCount('users') 
+            ->get(['name as city_name', 'latitude', 'longitude']); 
+
+        return response()->json($cities);
+    }
+
 
 }

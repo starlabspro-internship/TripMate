@@ -253,6 +253,7 @@ return [
 'User Status' => 'Statusi i përdoruesit',
 'Phone:' => 'Telefoni:',
 'Gender:' => 'Gjinia:',
+'Users:' => 'Përdoruesit:'
 
 
 

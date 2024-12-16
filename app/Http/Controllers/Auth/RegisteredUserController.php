@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Validation\Rules;
+use Illuminate\View\View;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use App\Mail\VerificationCodeMail;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
-use Illuminate\View\View;
-use App\Mail\VerificationCodeMail;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 
 class RegisteredUserController extends Controller
 {
@@ -25,7 +26,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $cities = City::orderBy('name', 'asc')->get();
+        return view('auth.register', compact('cities'));
     }
 
 
@@ -43,7 +45,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'string', 'min:8', 'max:20', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'confirmed'],
             'phone' => ['nullable', 'string', 'regex:/^\+?[0-9\s-]*$/', 'max:20'],
             'birthday' => ['nullable', 'date', 'before:' . now()->subYears(16)->toDateString()],
-            'city' => ['nullable', 'string', 'max:255'],
+            'city' => ['required', 'exists:cities,id'],
             'gender' => ['required', 'in:male,female'],
             // 'g-recaptcha-response' => ['required', 'captcha'],
         ], [
@@ -65,7 +67,7 @@ class RegisteredUserController extends Controller
 
         // Generate a random 6-character verification code
         $verificationCode = Str::random(6);
-
+        $cityName = City::where('id', $request->city)->value('name');
         // Prepare user data
         $userData = [
             'image' => $path,
@@ -75,7 +77,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
             'birthday' => $request->birthday,
-            'city' => $request->city,
+            'city' => $cityName,
             'gender' => $request->gender,
             'recaptcha_verified' => true,
             'email_verification_code' => $verificationCode,

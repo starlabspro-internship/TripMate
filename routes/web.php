@@ -133,6 +133,6 @@ Route::get('language/{locale}', function($locale){
     return redirect()->back();
 })->name('localization');
 
-
+Route::get('/cities-with-user-count', [UserVerifyController::class, 'getCitiesWithUserCount'])->middleware('auth');
 
 require __DIR__.'/auth.php';

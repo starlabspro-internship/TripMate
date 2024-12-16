@@ -65,8 +65,35 @@
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
     </div>
-    <div class="w-full md:w-1/2">
-        <input id="city" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" type="text" name="city" placeholder="City" value="{{ old('city') }}" required />
+    <div class="w-full md:w-1/2 max-h-96 relative">
+        <div x-data="{ open: false, selected: { id: null, name: null } }" class="relative">
+            <input type="hidden" name="city" x-model="selected.id" />
+            <button 
+                type="button" 
+                @click="open = !open" 
+                class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg flex justify-between items-center"
+                aria-haspopup="listbox" 
+                :aria-expanded="open">
+                <span x-text="selected.name ? selected.name : 'City'"></span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.23 7.29a1 1 0 011.41 0L10 10.58l3.36-3.29a1 1 0 111.36 1.42l-4 3.93a1 1 0 01-1.36 0l-4-3.93a1 1 0 010-1.42z" clip-rule="evenodd" />
+                </svg>
+            </button>
+            <ul 
+                x-show="open" 
+                @click.away="open = false" 
+                class="absolute mt-1 w-full bg-white shadow-md max-h-60 rounded-md overflow-auto z-10 border border-gray-200 focus:outline-none"
+                role="listbox">
+                @foreach ($cities as $city)
+                    <li 
+                        @click="selected = { id: '{{ $city->id }}', name: '{{ $city->name }}' }; open = false;" 
+                        :class="selected && selected.id == '{{ $city->id }}' ? 'bg-indigo-600 text-white' : 'text-gray-900'" 
+                        class="cursor-pointer select-none relative py-2 px-3 hover:bg-indigo-100">
+                        <span class="block truncate">{{ $city->name }}</span>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
         @error('city')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
@@ -78,12 +105,42 @@
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
     </div>
-    <div class="w-full md:w-1/2">
-        <select id="gender" name="gender" class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none" required>
-            <option value="" disabled {{ old('gender') ? '' : 'selected' }}>Select Gender</option>
-            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
-            <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
-        </select>
+    <div class="w-full md:w-1/2 max-h-96 relative">
+        <div x-data="{ 
+            open: false, 
+            selected: @json(old('gender') ? ['value' => old('gender'), 'label' => ucfirst(old('gender'))] : null) 
+        }" class="relative">
+            <input type="hidden" name="gender" x-model="selected.value" />
+            <button 
+                type="button" 
+                @click="open = !open" 
+                class="w-full text-sm px-3 py-2 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg flex justify-between items-center"
+                aria-haspopup="listbox" 
+                :aria-expanded="open">
+                <span x-text="selected ? selected.label : 'Gender'"></span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.23 7.29a1 1 0 011.41 0L10 10.58l3.36-3.29a1 1 0 111.36 1.42l-4 3.93a1 1 0 01-1.36 0l-4-3.93a1 1 0 010-1.42z" clip-rule="evenodd" />
+                </svg>
+            </button>
+            <ul 
+                x-show="open" 
+                @click.away="open = false" 
+                class="absolute mt-1 w-full bg-white shadow-md max-h-60 rounded-md overflow-auto z-10 border border-gray-200 focus:outline-none"
+                role="listbox">
+                <li 
+                    @click="selected = { value: 'male', label: 'Male' }; open = false;" 
+                    :class="selected && selected.value == 'male' ? 'bg-indigo-600 text-white' : 'text-gray-900'" 
+                    class="cursor-pointer select-none relative py-2 px-3 hover:bg-indigo-100">
+                    <span class="block truncate">Male</span>
+                </li>
+                <li 
+                    @click="selected = { value: 'female', label: 'Female' }; open = false;" 
+                    :class="selected && selected.value == 'female' ? 'bg-indigo-600 text-white' : 'text-gray-900'" 
+                    class="cursor-pointer select-none relative py-2 px-3 hover:bg-indigo-100">
+                    <span class="block truncate">Female</span>
+                </li>
+            </ul>
+        </div>
         @error('gender')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
