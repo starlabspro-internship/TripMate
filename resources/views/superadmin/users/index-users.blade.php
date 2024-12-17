@@ -1,24 +1,21 @@
 <x-app-layout>
-    <div x-data="{ currentTab: 'pending', search: '', filteredUsers() { 
-        
-        
-    } }" class="container mx-auto mt-5 px-20">
+    <div x-data="{ currentTab: 'pending', search: '', filteredUsers() { /* your filtering logic */ } }" class="container mx-auto mt-5 px-5 sm:px-10 lg:px-20">
         
         <!-- Tab Buttons -->
         <div class="w-full flex justify-center items-center mb-6">
-            <div class="flex gap-1 bg-gray-300 px-0 py-0 rounded-full shadow-sm relative mt-5">
+            <div class="flex gap-1 bg-gray-300 px-0 py-0 rounded-full shadow-sm relative mt-5 w-full sm:w-auto">
                 <button @click="currentTab = 'pending'" 
                     :class="currentTab === 'pending' ? 'bg-white text-gray-700 shadow-md' : 'bg-gray-300 text-white'" 
-                    class="px-20 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 whitespace-nowrap">
+                    class="w-full sm:w-auto lg:w-64 px-6 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 whitespace-nowrap text-center">
                     Pending Verification
                 </button>
                 <button @click="currentTab = 'rejected'" 
                     :class="currentTab === 'rejected' ? 'bg-white text-gray-700 shadow-md' : 'bg-gray-300 text-white'" 
-                    class="px-20 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 whitespace-nowrap">
+                    class="w-full sm:w-auto lg:w-64 px-6 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 whitespace-nowrap text-center">
                     Rejected Users
                 </button>
             </div>
-        </div>
+        </div>    
         
         <!-- Search Bar -->
         <div class="border-t border-gray-300 mx-auto w-full"></div>
@@ -53,71 +50,77 @@
 
         <!-- Pending Verification Table -->
         <div x-show="currentTab === 'pending'" class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
-       <table class="w-full text-left table-auto border-collapse">
-                <thead class="bg-white text-gray-400">
-                    <tr>
-                        <th class="p-4 text-sm  leading-none text-gray-400 text-left">Name</th>
-                        <th class="p-4 text-sm  leading-none text-gray-400 text-left">Verification Status</th>
-                        <th class="p-4 text-sm  leading-none text-gray-400 text-left">Document</th>
-                        <th class="p-4 text-sm  leading-none text-gray-400 text-left">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($pendingUsers->where('id', '!=', auth()->id()) as $user)
-                        <tr class="bg-gray-100">
-                            <td class="p-4 text-left">{{ $user->name }}</td>
-                            <td class="p-4 text-left">{{ ucfirst($user->verification_status) }}</td>
-                            <td class="p-4 text-left">
-                                @if($user->id_document)
-                                    <button onclick="openDocumentModal('{{ asset('storage/' . $user->id_document) }}')" class="btn bg-blue-500 text-white px-4 py-2 rounded-md shadow hover:bg-blue-700">View Document</button>
-                                @else
-                                    <span>No Document</span>
-                                @endif
-                            </td>
-                            <td class="p-4 text-left flex space-x-2">
-                                <form action="{{ route('superadmin.users.verify', $user) }}" method="POST" class="inline-block">
-                                    @csrf
-                                    <button type="submit" class="btn bg-green-600 text-white text-left px-4 py-2 rounded-md shadow hover:bg-green-700">Verify</button>
-                                </form>
-
-                                <form action="{{ route('superadmin.users.reject', $user) }}" method="POST" class="inline-block">
-                                    @csrf
-                                    <button type="submit" class="btn bg-red-700 text-left text-white px-4 py-2 rounded-md shadow hover:bg-red-800">Reject</button>
-                                </form>
-                            </td>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left table-auto border-collapse">
+                    <thead class="bg-white text-gray-400">
+                        <tr>
+                            <th class="p-4 text-sm sm:text-base leading-none text-gray-400 text-left">Name</th>
+                            <th class="p-4 text-sm sm:text-base leading-none text-gray-400 text-left">Verification Status</th>
+                            <th class="p-4 text-sm sm:text-base leading-none text-gray-400 text-left">Document</th>
+                            <th class="p-4 text-sm sm:text-base leading-none text-gray-400 text-left">Actions</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach($pendingUsers->where('id', '!=', auth()->id()) as $user)
+                            <tr class="bg-gray-100">
+                                <td class="p-4 text-sm sm:text-base text-left">{{ $user->name }}</td>
+                                <td class="p-4 text-sm sm:text-base text-left">{{ ucfirst($user->verification_status) }}</td>
+                                <td class="p-4 text-sm sm:text-base text-left">
+                                    @if($user->id_document)
+                                        <button onclick="openDocumentModal('{{ asset('storage/' . $user->id_document) }}')" class="btn bg-blue-500 text-white text-sm sm:text-base px-4 py-2 rounded-md shadow hover:bg-blue-700">View Document</button>
+                                    @else
+                                        <span>No Document</span>
+                                    @endif
+                                </td>
+                                <td class="p-4 text-sm sm:text-base text-left flex space-x-2">
+                                    <form action="{{ route('superadmin.users.verify', $user) }}" method="POST" class="inline-block">
+                                        @csrf
+                                        <button type="submit" class="btn bg-green-600 text-white text-sm sm:text-base px-4 py-2 rounded-md shadow hover:bg-green-700">Verify</button>
+                                    </form>
+        
+                                    <form action="{{ route('superadmin.users.reject', $user) }}" method="POST" class="inline-block">
+                                        @csrf
+                                        <button type="submit" class="btn bg-red-700 text-left text-white text-sm sm:text-base px-4 py-2 rounded-md shadow hover:bg-red-800">Reject</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
+        
 
         <!-- Rejected Users Table -->
-        <div x-show="currentTab === 'rejected'" class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
-            <table class="w-full text-left table-auto border-collapse">
-                     <thead class="bg-white text-gray-400">
-                    <tr>
-                        <th class="p-4 text-sm leading-none text-gray-400 text-left">Name</th>
-                        <th class="p-4 text-sm leading-none text-gray-400 text-left">Verification Status</th>
-                        <th class="p-4 text-sm leading-none text-gray-400 text-left">Document</th>
+<div x-show="currentTab === 'rejected'" class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
+    <div class="overflow-x-auto">
+        <table class="w-full text-left table-auto border-collapse">
+            <thead class="bg-white text-gray-400">
+                <tr>
+                    <th class="p-4 text-sm sm:text-base leading-none text-gray-400 text-left">Name</th>
+                    <th class="p-4 text-sm sm:text-base leading-none text-gray-400 text-left">Verification Status</th>
+                    <th class="p-4 text-sm sm:text-base leading-none text-gray-400 text-left">Document</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($rejectedUsers->where('id', '!=', auth()->id()) as $user)
+                    <tr class="bg-gray-100">
+                        <td class="p-4 text-sm sm:text-base text-left">{{ $user->name }}</td>
+                        <td class="p-4 text-sm sm:text-base text-left">{{ ucfirst($user->verification_status) }}</td>
+                        <td class="p-4 text-sm sm:text-base text-left">
+                            @if($user->id_document)
+                                <button onclick="openDocumentModal('{{ asset('storage/' . $user->id_document) }}')" class="btn bg-blue-500 text-white text-sm sm:text-base px-4 py-2 rounded-md hover:bg-blue-700">View Document</button>
+                            @else
+                                <span>No Document</span>
+                            @endif
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach($rejectedUsers->where('id', '!=', auth()->id()) as $user)
-                        <tr>
-                            <td class="p-4 text-left">{{ $user->name }}</td>
-                            <td class="p-4 text-left">{{ ucfirst($user->verification_status) }}</td>
-                            <td class="p-4 text-left">
-                                @if($user->id_document)
-                                    <button onclick="openDocumentModal('{{ asset('storage/' . $user->id_document) }}')" class="btn bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700">View Document</button>
-                                @else
-                                    <span>No Document</span>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
     </div>
 

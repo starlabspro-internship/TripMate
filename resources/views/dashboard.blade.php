@@ -52,11 +52,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4">
-                <div class="flex flex-wrap -mx-6">
-
-                </div>
-            </div>
+    
             <div>
                 <div class="mt-8">
                     <h3 class="text-2xl font-medium text-gray-700 mb-4">{{ __('messages.Analytics') }}</h3>
