@@ -46,7 +46,6 @@
             </div>
         </div>
 
-        <div class="border-t border-gray-300 mx-auto w-full"></div>
 
         <!-- Pending Verification Table -->
         <div x-show="currentTab === 'pending'" class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
