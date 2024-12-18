@@ -272,6 +272,7 @@ return [
 'User Status' => 'User Status',
 'Phone:' => 'Phone:',
 'Gender:' => 'Gender:',
+'Users:' => 'Users:',
 
 
 'Mark All As Read' => 'Mark All As Read',
@@ -310,7 +311,10 @@ return [
 'Your profile has been verified successfully!' => 'Your profile has been verified successfully!',
 'Your profile has been Rejected!' => 'Your profile has been Rejected!',
 
-
+'Users' => 'Users',
+'Trips' => 'Trips',
+'Verified Users with drivers license' => 'Verified Users with drivers license',
+'Unverified Users' => 'Unverified Users',
 
 
 

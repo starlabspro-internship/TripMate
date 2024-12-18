@@ -123,7 +123,7 @@
                 <p class="text-sm text-gray-500">{{ auth()->user()->city }}</p>
                 <div class="flex justify-center gap-x-3 py-3 mx-8 text-blue-900 text-sm">
                     <div class="text-center w-20 flex flex-col items-center">
-                        <h2 class="text-xl font-bold">12</h2>
+                        <h2 class="text-xl font-bold">{{ $tripCount }}</h2>
                         <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 -4.5 32 32"
                              fill="none" class="mt-2">
                             <path

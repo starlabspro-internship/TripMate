@@ -57,6 +57,10 @@ public function givenRatings()
     {
         return $this->is_super_admin == 1;
     }
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
 
     protected $fillable = [
         'image',

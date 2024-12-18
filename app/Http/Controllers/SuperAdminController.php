@@ -117,12 +117,14 @@ class SuperAdminController extends Controller
 
     public function count()
     {
+        $verifiedUsers = User::where('verification_status', 'verified')->count();
+        $nullStatusUsers = User::whereNull('verification_status')->count();
         $totalBookings = Booking::count();
         $totalUsers = User::count();
         $totalTrips = Trip::count();
         $query = Booking::with(['trip.origincity', 'trip.destinationcity', 'passenger']);
         $transactions = $query->get();
-        return view('dashboard', compact('totalTrips', 'totalUsers', 'totalBookings','transactions'));
+        return view('dashboard', compact('totalTrips', 'totalUsers', 'totalBookings','transactions','verifiedUsers', 'nullStatusUsers'));
     }
 
     public function indexBg()

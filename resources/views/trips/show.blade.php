@@ -66,6 +66,7 @@
                                     <img class="relative rounded-full inline-block h-10 w-10  object-cover object-center" src="{{ asset('https://eu.ui-avatars.com/api/' . $trip->users->name  . '+' . $trip->users->lastname) }}" alt="Default Image">
                                 @endif
                                 <p class="relative inline-block px-2 object-cover object-center">{{$trip->users->name}}</p>
+                                <p class="relative text-xs italic underline hover:text-blue-400 text-blue-600 inline-block object-cover object-center">view details</p>
                              </a>
                             </div>
              <div id="driverModal" class="hidden fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">

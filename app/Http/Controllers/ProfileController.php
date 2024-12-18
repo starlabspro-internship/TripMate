@@ -45,11 +45,15 @@ class ProfileController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        $user = auth()->user();
+        $tripCount = Trip::where('driver_id', $user->id)->count();
+
+
             $feedback = PassengerRating::where('reviewed_id', $userId)
             ->whereNotNull('feedback')  
             ->where('feedback', '!=', '') 
             ->count();
-            return view('profile.index', ['bookings' => $bookings, 'trips' => $trips, 'user' => $user , 'feedback' => $feedback]);
+            return view('profile.index', ['bookings' => $bookings, 'trips' => $trips, 'user' => $user , 'feedback' => $feedback , 'tripCount' => $tripCount]);
     }
 
     /**
