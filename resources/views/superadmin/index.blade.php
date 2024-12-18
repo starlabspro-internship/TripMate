@@ -5,7 +5,7 @@
                 <button @click="currentTab = 'users'" :class="currentTab === 'users' ? 'bg-white text-gray-700  shadow-md' : 'bg-gray-300 text-white'" class="flex-1 px-6 sm:w-auto lg:w-64 py-2 text-xs sm:text-sm lg:text-base rounded-full font-semibold transition-all duration-300">
                     Users
                 </button>
-                <button @click="currentTab = 'bookings'" :class="currentTab === 'bookings' ? 'bg-white text-gray-700  shadow-md' : 'bg-gray-300 text-white'" class="flex-1 px-6 sm:w-auto lg:w-64 -12 py-2 text-xs sm:text-sm lg:text-base rounded-full font-semibold transition-all duration-300">
+                <button @click="currentTab = 'bookings'" :class="currentTab === 'bookings' ? 'bg-white text-gray-700  shadow-md' : 'bg-gray-300 text-white'" class="flex-1 px-6 sm:w-auto lg:w-64 py-2 text-xs sm:text-sm lg:text-base rounded-full font-semibold transition-all duration-300">
                     Bookings
                 </button>
                 <button @click="currentTab = 'trips'" :class="currentTab === 'trips' ? 'bg-white text-gray-700 shadow-md' : 'bg-gray-300 text-white'" class="flex-1 px-6 sm:w-auto lg:w-64 py-2 rounded-full text-xs sm:text-sm lg:text-base font-semibold transition-all duration-300">

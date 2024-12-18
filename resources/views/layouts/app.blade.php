@@ -14,8 +14,6 @@
         <meta name="apple-mobile-web-app-title" content="TripMate" />
         <link rel="manifest" href="/storage/favicons/site.webmanifest" />
 
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
         <!-- Scripts -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v4.0.0/dist/tesseract.min.js"></script>
