@@ -263,7 +263,7 @@ return [
 'User Status' => 'Statusi i përdoruesit',
 'Phone:' => 'Telefoni:',
 'Gender:' => 'Gjinia:',
-'Users:' => 'Përdoruesit:'
+'Users:' => 'Përdoruesit:',
 
 
     'Mark All As Read' => 'Shëno të gjitha si të lexuara',
@@ -303,7 +303,10 @@ return [
     'Your profile has been verified successfully!' => 'Profili juaj është verifikuar me sukses!',
     'Your profile has been Rejected!' => 'Profili juaj nuk ka mundur të verifikohet!',
 
-
+'Users' => 'Përdoruesit',
+'Trips' => 'Udhëtimet',
+'Verified Users with drivers license' => 'Përdorues të verifikuar me patentë shoferi',
+'Unverified Users' => 'Përdorues të paverifikuar',
 
 
 

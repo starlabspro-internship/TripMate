@@ -76,60 +76,6 @@
                     <h3 class="text-2xl font-medium text-gray-700 mb-4">{{ __('messages.Map of Kosovo') }}</h3>
                     <div id="map" class="w-full h-96 rounded-md shadow-sm"></div>
                 </div>
-
-                <!-- Transactions Section -->
-
-                <div class="w-full md:w-1/3 lg:w-2/5 bg-white rounded-md shadow-sm p-4">
-                <a href="{{ route('superadmin.transactions') }}">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">{{ __('messages.Recent Transactions') }}</h3>
-                </a>
-                    <div class="overflow-y-auto max-h-[380px]">
-                        <table class="w-full border border-gray-200 rounded-md shadow-md overflow-hidden">
-                            <thead>
-                                <tr class="rounded-sm bg-gray-100 dark:bg-meta-4">
-                                    <th class="border-b border-gray-300 px-4 py-3 text-left">{{ __('messages.Transactions') }}</th>
-                                    <th class="border-b border-gray-300 px-4 py-3 text-center">{{ __('messages.Amount') }}</th>
-                                    <th class="border-b border-gray-300 px-4 py-3 text-center">{{ __('messages.Date') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <!-- Example Rows (Replace with Dynamic Data) -->
-                                @if($transactions->isEmpty())
-                                <tr>
-                                    <td colspan="3" class="text-center text-gray-600">{{ __('messages.No transactions available.') }}</td>
-                                </tr>
-                                @else
-                                @foreach($transactions as $transaction)
-                                <tr>
-                                    @if($transaction->status === 'paid' || $transaction->status === 'refunded')
-                                    <td class="text-left">
-                                        <span class="ml-4 text-md my-4 text-gray-600 dark:text-white/80">
-                                            {{ $transaction->trip->origincity->name }} {{__('messages.to')}} {{ $transaction->trip->destinationcity->name }}
-                                        </span>
-                                    </td>
-                                    <td class="text-center">
-                                        <span
-                                        class="flex justify-center my-4
-                                        {{ $transaction->status === 'paid' ? 'text-green-500' : 'text-red-500' }}">
-                                        {{ $transaction->status === 'paid' ? '+' : '-' }}{{ $transaction->total_price }}€
-                                        </span>
-                                    </td>
-                                    <td class="text-center">
-                                        <span class="flex justify-center my-4 text-sm text-gray-600 dark:text-white/80">
-                                            {{ $transaction->created_at->format('M d, Y') }}
-                                        </span>
-                                    </td>
-                                    @endif
-                                </tr>
-                                @endforeach
-                                @endif
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-
-
             </div>
         </div>
     </div>
@@ -180,44 +126,44 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-    const ctx1 = document.getElementById('myChart').getContext('2d');
-    const data1 = {
-        labels: ['Verified Users', 'Unverified Users'],
-        datasets: [{
-            label: 'Count',
-            data: [
-                {{ $verifiedUsers }}, 
-                {{ $nullStatusUsers }},
-            ],
-            backgroundColor: [
-                '#32CD32', 
-                '#FF6347', 
-            ],
-            borderWidth: 1
-        }]
-    };
-    const config1 = {
-        type: 'polarArea',
-        data: data1,
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'top',
+            const ctx1 = document.getElementById('myChart').getContext('2d');
+            const data1 = {
+                labels: ['{{ __('messages.Verified Users with drivers license') }}', '{{ __('messages.Unverified Users') }}'],
+                datasets: [{
+                    label: 'Count',
+                    data: [
+                        {{ $verifiedUsers }}, 
+                        {{ $nullStatusUsers }},
+                    ],
+                    backgroundColor: [
+                        '#32CD32', 
+                        '#FF6347', 
+                    ],
+                    borderWidth: 1
+                }]
+            };
+            const config1 = {
+                type: 'polarArea',
+                data: data1,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        }
+                    }
                 }
-            }
-        }
-    };
-    new Chart(ctx1, config1);
+            };
+            new Chart(ctx1, config1);
 
             // Second Chart (Pie Chart)
             const ctx2 = document.getElementById('myChart1').getContext('2d');
 
             // Data for the chart
             const data2 = {
-                labels: ['Users', 'Trips', 'Bookings'],
+                labels: ['{{ __('messages.Users') }}','{{ __('messages.Trips') }}','{{ __('messages.Bookings') }}'],
                 datasets: [{
                     label: 'Distribution',
                     data: [{{ $totalUsers }}, {{ $totalTrips }}, {{ $totalBookings }}], // Replace with dynamic data

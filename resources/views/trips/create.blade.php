@@ -111,7 +111,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 space-x-4">
+                <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
                     <div class="flex flex-col w-full max-w-full relative">
                         <input type="text" id="date-picker" name="departure_time"
                                class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 w-full"
