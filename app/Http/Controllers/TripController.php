@@ -16,7 +16,6 @@ use Carbon\Carbon;
 use App\Models\Booking;
 use Stripe\StripeClient;
 
-
 class TripController extends Controller
 {
     public function index(Request $request)
@@ -189,7 +188,9 @@ class TripController extends Controller
             $available_seats -= $booking->seats_booked;
         }
 
-        return view('trips.show', ['trip' => $trip, 'available_seats'=> $available_seats]);
+        $user = User::find($trip->driver_id);
+        $countTrips = $user->trips()->count();
+        return view('trips.show', ['trip' => $trip, 'available_seats'=> $available_seats, 'countTrips' => $countTrips]);
     }
 
     public function update(Request $request, $id){
@@ -308,6 +309,24 @@ public function end(Trip $trip)
     $trip->arrival_time = now();
     $trip->end_time= now();
     $trip->save();
+
+    $passengerIds = Booking::where('trip_id', $trip->id)->pluck('passenger_id');
+
+    foreach ($passengerIds as $passengerId) {
+        $tripDetails = [
+            'originCity' => $trip->origincity->name,
+            'destinationCity' => $trip->destinationcity->name,
+        ];
+        $messageE = 'Your trip from ' . $tripDetails['originCity'] . ' to ' . $tripDetails['destinationCity'] . ' has been successfully completed. <br> Please Rate Your Driver!';
+        $messageN = 'Your trip from ' . $tripDetails['originCity'] . ' to ' . $tripDetails['destinationCity'] . ' has been successfully completed.
+        <a href="#" class="feedback-link" data-trip-id="' . $trip->id . '" data-driver-id="' . $trip->driver_id . '" style="color: #0066cc; text-decoration: underline;">Provide Your Feedback</a>';
+        $driverId = $trip->driver_id;
+        $tripId = $trip->id;
+
+        event(new EndTrip($messageE, $passengerId, $driverId, $tripId));
+        event(new Notifications($messageN, $passengerId));
+    }
+
 
     return back()->with('success', 'Trip ended successfully.');
 }

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone', 20)->nullable()->unique();
             $table->date('birthday')->nullable();
+            $table->float('average_rating', 2, 1)->nullable();
             $table->enum('background_status', ['verified', 'pending', 'flagged', 'none'])->default('none');
             $table->string('background_document')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
