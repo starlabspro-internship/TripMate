@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Log;
+use App\Models\PassengerRating;
 
 class ProfileController extends Controller
 {
@@ -47,8 +48,13 @@ class ProfileController extends Controller
         $user = auth()->user();
         $tripCount = Trip::where('driver_id', $user->id)->count();
 
-        return view('profile.index', compact('bookings', 'trips', 'user', 'tripCount' ));
+        // return view('profile.index', compact('bookings', 'trips', 'user', 'tripCount' ));
 
+            $feedback = PassengerRating::where('reviewed_id', $userId)
+            ->whereNotNull('feedback')  
+            ->where('feedback', '!=', '') 
+            ->count();
+            return view('profile.index', ['bookings' => $bookings, 'trips' => $trips, 'user' => $user , 'feedback' => $feedback , 'tripCount']);
     }
 
     /**
