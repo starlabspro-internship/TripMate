@@ -48,13 +48,12 @@ class ProfileController extends Controller
         $user = auth()->user();
         $tripCount = Trip::where('driver_id', $user->id)->count();
 
-        // return view('profile.index', compact('bookings', 'trips', 'user', 'tripCount' ));
 
             $feedback = PassengerRating::where('reviewed_id', $userId)
             ->whereNotNull('feedback')  
             ->where('feedback', '!=', '') 
             ->count();
-            return view('profile.index', ['bookings' => $bookings, 'trips' => $trips, 'user' => $user , 'feedback' => $feedback , 'tripCount']);
+            return view('profile.index', ['bookings' => $bookings, 'trips' => $trips, 'user' => $user , 'feedback' => $feedback , 'tripCount' => $tripCount]);
     }
 
     /**
