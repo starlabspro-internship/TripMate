@@ -1,14 +1,14 @@
 <x-app-layout>
-    <div x-data="userSearch()" class="px-20 mx-auto ">
+    <div x-data="userSearch()" class="px-4 sm:px-10 lg:px-20 mx-auto ">
         <div class="w-full flex justify-center items-center mb-3 mt-5 ">
-            <div class="flex gap-1 bg-gray-300 px-0 py-0 rounded-full shadow-sm relative mt-5">
-                <button @click="currentTab = 'users'" :class="currentTab === 'users' ? 'bg-white text-gray-700  shadow-md' : 'bg-gray-300 text-white'" class="flex-1 px-20 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300">
+            <div class="flex gap-1 bg-gray-300 px-0 py-0 rounded-full shadow-sm relative mt-5 w-full sm:w-auto">
+                <button @click="currentTab = 'users'" :class="currentTab === 'users' ? 'bg-white text-gray-700  shadow-md' : 'bg-gray-300 text-white'" class="flex-1 sm:flex-none px-6 sm:px-12 lg:px-20 py-2 rounded-full text-xs sm:text-sm lg:text-base font-semibold transition-all duration-300 text-center">
                     Users
                 </button>
-                <button @click="currentTab = 'bookings'" :class="currentTab === 'bookings' ? 'bg-white text-gray-700  shadow-md' : 'bg-gray-300 text-white'" class="flex-1 px-20 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300">
+                <button @click="currentTab = 'bookings'" :class="currentTab === 'bookings' ? 'bg-white text-gray-700  shadow-md' : 'bg-gray-300 text-white'" class="flex-1 sm:flex-none px-6 sm:px-12 lg:px-20 py-2 rounded-full text-xs sm:text-sm lg:text-base font-semibold transition-all duration-300 text-center">
                     Bookings
                 </button>
-                <button @click="currentTab = 'trips'" :class="currentTab === 'trips' ? 'bg-white text-gray-700 shadow-md' : 'bg-gray-300 text-white'" class="flex-1 px-20 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300">
+                <button @click="currentTab = 'trips'" :class="currentTab === 'trips' ? 'bg-white text-gray-700 shadow-md' : 'bg-gray-300 text-white'" class="flex-1 sm:flex-none px-6 sm:px-12 lg:px-20 py-2 rounded-full text-xs sm:text-sm lg:text-base font-semibold transition-all duration-300 text-center">
                     Trips
                 </button>
             </div>
@@ -48,7 +48,7 @@
        <table class="w-full text-left table-auto border-collapse">
            <thead>
                <tr class="border-b border-slate-300 bg-white-500">
-                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Image</th>
+                   <th class="p-4 text-sm leading-none text-gray-400 text-left hidden sm:table-cell">Image</th>
                    <th class="p-4 text-sm leading-none text-gray-400 text-left">Name</th>
                    <th class="p-4 text-sm leading-none text-gray-400 text-left">Phone</th>
                    <th class="p-4 text-sm leading-none text-gray-400 text-left">City</th>
@@ -62,7 +62,7 @@
            <tbody>
                <template x-for="user in filteredUsers()" :key="user.id">
                    <tr class="bg-gray-100">
-                       <td class="border-b border-slate-200 py-5 px-6">
+                       <td class="border-b border-slate-200 py-5 px-6 hidden sm:table-cell">
                            <img class="w-14 h-14 object-cover rounded-full"
                                 :src="user.image ? `{{ asset('storage/') }}/${user.image}` : `https://eu.ui-avatars.com/api/${user.name}+${user.lastname}`"
                                 alt="User Image">
@@ -97,8 +97,8 @@
                </template>
            </tbody>
        </table>
-   </div>
-   
+    </div>
+    
 
         <div id="bookings" x-show="currentTab === 'bookings'" class="relative flex flex-col w-full h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
             <table class="w-full text-left table-auto min-w-max">
