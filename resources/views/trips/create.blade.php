@@ -44,7 +44,7 @@
     </head>
     <div class="container mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-center mt-1 w-full space-y-4 md:space-y-0">
-            <h1 class="text-3xl font-bold text-black p-6">{{ __('messages.Create Trips') }}</h1>
+            <h1 class="text-3xl font-bold text-white p-6">{{ __('messages.Create Trips') }}</h1>
             <div class="flex gap-2 md:flex-row  md:space-y-0 md:space-x-2 mt-4 md:mt-0">
                 <a href="{{ route('trips.index') }}"
                    class="w-28 px-4 py-1 text-sm rounded-md transition duration-200
@@ -176,9 +176,11 @@
                 </div>
                 <div class="flex flex-col w-full">
                     <textarea type="text" id="driver_comments" name="driver_comments"
-                               class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-                               placeholder="{{ __('messages.Add any comments or instructions about the trip to help your passenger.') }}" value="{{ old('driver_comments') }}"></textarea>
+                              class="border border-gray-300 rounded-md px-2 py-1 bg-white shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                              placeholder="{{ __('messages.Add any comments or instructions about the trip to help your passenger.') }}"
+                              maxlength="40">{{ old('driver_comments') }}</textarea>
                 </div>
+                
                 @if( Auth::user()->gender == 'female')
                 <div class="flex flex-col w-full">
                     <legend class=" mb-2">{{ __('messages.Passengers') }}</legend>

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="h-full bg-gray-200 p-8">
+    <div class="h-full bg-[#28666e] p-8">
         <div class="bg-white rounded-lg shadow-xl pb-8">
             <div class="w-full h-[250px]">
                 <img src="https://vojislavd.com/ta-template-demo/assets/img/profile-background.jpg"
