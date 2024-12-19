@@ -61,6 +61,7 @@
                 @endif
             @endisset
 
+           @include('components.end-modal')         
 
             <!-- Page Content -->
             <main>

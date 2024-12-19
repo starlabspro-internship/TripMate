@@ -123,7 +123,7 @@
                 <p class="text-sm text-gray-500">{{ auth()->user()->city }}</p>
                 <div class="flex justify-center gap-x-3 py-3 mx-8 text-blue-900 text-sm">
                     <div class="text-center w-20 flex flex-col items-center">
-                        <h2 class="text-xl font-bold">12</h2>
+                        <h2 class="text-xl font-bold">{{ $tripCount }}</h2>
                         <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 -4.5 32 32"
                              fill="none" class="mt-2">
                             <path
@@ -191,7 +191,7 @@
                         </svg>
                     </div>
                     <div class="text-center w-20 flex flex-col items-center">
-                        <h2 class="text-xl font-bold">10</h2>
+                        <h2 class="text-xl font-bold">{{auth()->user()->average_rating ? round(auth()->user()->average_rating, 1) : 'N/A' }}</h2>
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px"
                              width="30px" version="1.1" id="Layer_1" viewBox="0 0 511.998 511.998" xml:space="preserve"
                              class="mt-2">
@@ -202,7 +202,7 @@
                         </svg>
                     </div>
                     <div class="text-center w-20 flex flex-col items-center">
-                        <h2 class="text-xl font-bold">7</h2>
+                        <h2 class="text-xl font-bold">{{$feedback}}</h2>
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px"
                              width="30px" version="1.1" id="Layer_1" viewBox="0 0 511.999 511.999" xml:space="preserve"
                              class="mt-2">

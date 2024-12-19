@@ -90,7 +90,7 @@
                 </div>
                     @endif
                     @if( Auth::user()->isSuperAdmin())
-                        <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('superadmin.transactions.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                        <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('superadmin.transactions') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
                            href="{{ route('superadmin.transactions') }}">
                             <img
                                 src="{{ asset('storage/icons/transactions.svg') }}"
@@ -196,20 +196,18 @@
 
                     @include('partials.languageSwitcher')
 
-                    <!-- User Photo -->
-                    <div class="w-8 h-8 flex mr-4 hidden sm:block">
-                        @if(auth()->user()->image)
-                            <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="User Image" class="rounded-full w-8 h-8"/>
-                        @else
-                            <img src="{{ 'https://eu.ui-avatars.com/api/?name=' . urlencode(auth()->user()->name . ' ' . auth()->user()->lastname) . '&size=250' }}" alt="Default Image" class="rounded-full w-8 h-8"/>
-                        @endif
-                    </div>
-
-                    <div class="text-sm md:text-md text-black dark:text-white flex items-center">
+                    <div  class=" text-sm md:text-md text-black dark:text-white flex items-center z-[999] ">
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
-                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white dark:bg-[#0F172A] hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                    <div class="flex items-center space-x-2 -ml-3">
+                                <button class="inline-flex  items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white dark:bg-[#0F172A] hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    <div class="w-8 h-8 flex mr-4 hidden sm:block">
+                                        @if(auth()->user()->image)
+                                            <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="User Image" class="rounded-full w-8 h-8">
+                                        @else
+                                            <img src="{{ 'https://eu.ui-avatars.com/api/?name=' . urlencode(auth()->user()->name . ' ' . auth()->user()->lastname) . '&size=250' }}" alt="Default Image" class="rounded-full w-8 h-8">
+                                        @endif
+                                    </div>
+                                    <div class="flex items-center space-x-2 mx-2 ">
                                         <div class="text-black dark:text-white">{{ Auth::user()->name }}</div>
                                         <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>

@@ -66,6 +66,7 @@
                                     <img class="relative rounded-full inline-block h-10 w-10  object-cover object-center" src="{{ asset('https://eu.ui-avatars.com/api/' . $trip->users->name  . '+' . $trip->users->lastname) }}" alt="Default Image">
                                 @endif
                                 <p class="relative inline-block px-2 object-cover object-center">{{$trip->users->name}}</p>
+                                <p class="relative text-xs italic underline hover:text-blue-400 text-blue-600 inline-block object-cover object-center">view details</p>
                              </a>
                             </div>
              <div id="driverModal" class="hidden fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
@@ -109,7 +110,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#f59e0b" class="w-6 h-6" viewBox="0 0 24 24">
                         <path d="M12 .587l3.668 7.573 8.332 1.151-6.064 5.944 1.448 8.28L12 18.896l-7.384 4.639 1.448-8.28L.587 9.311l8.332-1.151z" />
                     </svg>
-                                     <span class="ml-1 -mb-1 text-gray-800 font-semibold text-lg">{{ 4.3 }}</span>
+                                     <span class="ml-1 -mb-1 text-gray-800 font-semibold text-lg">{{ $trip->users->average_rating ? round($trip->users->average_rating, 1) : 'N/A' }}</span>
                                  </div>
                                  <div class="flex items-center justify-center  -mt-2">
                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 36 36" aria-hidden="true" role="img" class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet">
@@ -122,7 +123,7 @@
                              <path fill="#F4900C" d="M2.373 25l-.196 1H36v-1c0-.348-.055-.679-.133-1H2.702a4.764 4.764 0 0 0-.329 1z"/>
                              <path d="M24 21h5.92a12.673 12.673 0 0 0-.156-1.5c-.395-2.5-.552-3.5-3.437-3.5H24v5zm-2-5h-5c-1.594 0-3.236 1.567-3.847 3.5c-.194.599-.353 1.088-.472 1.5H22v-5z" fill="#55ACEE"/>
                          </svg>
-                         <span class="mt-3 ml-2 text-gray-800 font-semibold text-lg">{{ $trip->users->count() }}</span>
+                         <span class="mt-3 ml-2 text-gray-800 font-semibold text-lg">{{ $countTrips }}</span>
                               </div>
                           </div>
                                   <div class="mt-6 flex justify-center">

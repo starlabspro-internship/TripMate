@@ -52,83 +52,31 @@
                     </div>
                 </div>
             </div>
-    
-            <div>
-                <div class="mt-8">
-                    <h3 class="text-2xl font-medium text-gray-700 mb-4">{{ __('messages.Analytics') }}</h3>
-                    <div class="flex space-x-4">
-                        <!-- First Chart -->
-                        <div class="flex-1 bg-white p-6 rounded-md shadow-sm">
-                            <canvas id="myChart"  style="max-width: 400px; height: 300px;"></canvas>
-                        </div>
-                        <!-- Second Chart -->
-                        <div class="flex-1 bg-white p-6 rounded-md shadow-sm justify-center">
-                            <canvas id="myChart1"  style="max-width: 400px; height: 300px;"></canvas>
-                        </div>
+
+            <div class="mt-4">
+                <div class="flex flex-wrap -mx-6">
+
+                </div>
+            </div>
+            <div class="mt-8">
+                <h3 class="text-2xl font-medium text-gray-700 mb-6">{{ __('messages.Analytics') }}</h3>
+                <div class="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
+                    <!-- First Chart -->
+                    <div class="flex-1 bg-white p-6 rounded-lg shadow-md">
+                        <canvas id="myChart" class="w-full h-64 md:h-80"></canvas>
+                    </div>
+                    <!-- Second Chart -->
+                    <div class="flex-1 bg-white p-6 rounded-lg shadow-md">
+                        <canvas id="myChart1" class="w-full h-64 md:h-80"></canvas>
                     </div>
                 </div>
             </div>
-
-            <div class="flex mt-8 gap-4">
+            <div class="flex mt-8 gap-4 ">
                 <!-- Map Section -->
-                <div class="w-full md:w-2/3 lg:w-3/5 bg-white p-3 rounded-md">
+                <div class="w-full  bg-white p-3 rounded-md">
                     <h3 class="text-2xl font-medium text-gray-700 mb-4">{{ __('messages.Map of Kosovo') }}</h3>
                     <div id="map" class="w-full h-96 rounded-md shadow-sm"></div>
                 </div>
-
-                <!-- Transactions Section -->
-
-                <div class="w-full md:w-1/3 lg:w-2/5 bg-white rounded-md shadow-sm p-4">
-                <a href="{{ route('superadmin.transactions') }}">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">{{ __('messages.Recent Transactions') }}</h3>
-                </a>
-                    <div class="overflow-y-auto max-h-[380px]">
-                        <table class="w-full border border-gray-200 rounded-md shadow-md overflow-hidden">
-                            <thead>
-                                <tr class="rounded-sm bg-gray-100 dark:bg-meta-4">
-                                    <th class="border-b border-gray-300 px-4 py-3 text-left">{{ __('messages.Transactions') }}</th>
-                                    <th class="border-b border-gray-300 px-4 py-3 text-center">{{ __('messages.Amount') }}</th>
-                                    <th class="border-b border-gray-300 px-4 py-3 text-center">{{ __('messages.Date') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <!-- Example Rows (Replace with Dynamic Data) -->
-                                @if($transactions->isEmpty())
-                                <tr>
-                                    <td colspan="3" class="text-center text-gray-600">{{ __('messages.No transactions available.') }}</td>
-                                </tr>
-                                @else
-                                @foreach($transactions as $transaction)
-                                <tr>
-                                    @if($transaction->status === 'paid' || $transaction->status === 'refunded')
-                                    <td class="text-left">
-                                        <span class="ml-4 text-md my-4 text-gray-600 dark:text-white/80">
-                                            {{ $transaction->trip->origincity->name }} {{__('messages.to')}} {{ $transaction->trip->destinationcity->name }}
-                                        </span>
-                                    </td>
-                                    <td class="text-center">
-                                        <span
-                                        class="flex justify-center my-4
-                                        {{ $transaction->status === 'paid' ? 'text-green-500' : 'text-red-500' }}">
-                                        {{ $transaction->status === 'paid' ? '+' : '-' }}{{ $transaction->total_price }}€
-                                        </span>
-                                    </td>
-                                    <td class="text-center">
-                                        <span class="flex justify-center my-4 text-sm text-gray-600 dark:text-white/80">
-                                            {{ $transaction->created_at->format('M d, Y') }}
-                                        </span>
-                                    </td>
-                                    @endif
-                                </tr>
-                                @endforeach
-                                @endif
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-
-
             </div>
         </div>
     </div>
@@ -136,70 +84,62 @@
 
     <!-- Map Script -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const map = L.map("map", {
-                minZoom: 8, // Minimum zoom level
-                maxZoom: 9, // Maximum zoom level
-            }).setView([42.6026, 20.9020], 8);
+        document.addEventListener('DOMContentLoaded', function () {
+            var map = L.map('map').setView([42.5269444444, 21.0072222222], 8);
 
-            // Add tile layer
-            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 10,
+                minZoom: 8,
             }).addTo(map);
-
-            var customIcon = L.icon({
-                iconUrl: "{{ asset('storage/icons/icon.png') }}",
-                iconSize: [25, 36],
-                iconAnchor: [12, 36],
-                popupAnchor: [0, -36]
+            const customIcon = L.divIcon({
+                className: 'custom-svg-icon',
+                html: `
+                    <svg width="30px" height="30px" viewBox="-3.12 -3.12 30.24 30.24" xmlns="http://www.w3.org/2000/svg" fill="#477fb3" stroke="#0f97ff" transform="matrix(1, 0, 0, 1, 0, 0)" stroke-width="0.00024000000000000003">
+                        <g id="SVGRepo_iconCarrier">
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path d="M17.084 15.812a7 7 0 1 0-10.168 0A5.996 5.996 0 0 1 12 13a5.996 5.996 0 0 1 5.084 2.812zM12 23.728l-6.364-6.364a9 9 0 1 1 12.728 0L12 23.728zM12 12a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"></path>
+                        </g>
+                    </svg>
+                `,
+                iconSize: [40, 40],
+                iconAnchor: [15, 15],
             });
 
-            // Restrict bounds to Kosovo
-            const kosovoBounds = [
-                [41.8571, 19.9800], // Southwest corner of Kosovo
-                [43.2575, 21.9400], // Northeast corner of Kosovo
-            ];
-            map.setMaxBounds(kosovoBounds); // Set the map bounds
-            map.on("drag", function () {
-                map.panInsideBounds(kosovoBounds, { animate: true }); // Prevent dragging out of bounds
-            });
-
-            // Add city markers
-            const cities = [
-                { name: "Pristina", coords: [42.6629, 21.1655], users: 150 },
-                { name: "Prizren", coords: [42.2150, 20.7420], users: 100 },
-                { name: "Peja", coords: [42.6591, 20.2885], users: 75 },
-                { name: "Ferizaji", coords: [42.3800, 21.1578], users: 75 },
-                { name: "Gjilani", coords: [42.4614, 21.4681], users: 75 },
-                { name: "Gjakova", coords: [42.3800, 20.4308], users: 50 },
-                { name: "Mitrovica", coords: [42.8900, 20.8683], users: 120 },
-            ];
-
-            cities.forEach((city) => {
-                L.marker(city.coords, {icon: customIcon})
-                    .addTo(map)
-                    .bindPopup(
-                        `<strong>${city.name}</strong><br>Users: ${city.users}`
-                    );
-            });
+            fetch('/cities-with-user-count')
+                .then(response => response.json())
+                .then(cities => {
+                    cities.forEach(city => {
+                        if (city.name && city.latitude && city.longitude && city.users_count > 0) {
+                            let coordinates = [parseFloat(city.latitude), parseFloat(city.longitude)];
+                            L.marker(coordinates, { icon: customIcon })
+                                .addTo(map)
+                                .bindPopup(`
+                                    <div class="p-2 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+                                        <h3 class="text-sm font-bold text-gray-800">${city.name}</h3>
+                                        <h4 class="text-sm text-gray-600">{{ __('messages.Users:') }} <span class="text-blue-600 font-medium">${city.users_count}</span></h4>
+                                    </div>
+                                `);
+                        }
+                    });
+                })
+                .catch(error => console.error('Error:', error));
         });
-
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // First Chart (Bar Chart)
             const ctx1 = document.getElementById('myChart').getContext('2d');
             const data1 = {
-                labels: ['Users', 'Trips', 'Bookings'],
+                labels: ['{{ __('messages.Verified Users with drivers license') }}', '{{ __('messages.Unverified Users') }}'],
                 datasets: [{
                     label: 'Count',
-                    data: [{{ $totalUsers }}, {{ $totalTrips }}, {{ $totalBookings }}], // Dynamically populated
-                    backgroundColor: [
-                        '#4682B4', // Users
-                        '#FFBF00', // Trips
-                        '#FF7F50', // Bookings
+                    data: [
+                        {{ $verifiedUsers }}, 
+                        {{ $nullStatusUsers }},
                     ],
-
+                    backgroundColor: [
+                        '#32CD32', 
+                        '#FF6347', 
+                    ],
                     borderWidth: 1
                 }]
             };
@@ -214,11 +154,6 @@
                             display: true,
                             position: 'top',
                         }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
                     }
                 }
             };
@@ -229,7 +164,7 @@
 
             // Data for the chart
             const data2 = {
-                labels: ['Users', 'Trips', 'Bookings'],
+                labels: ['{{ __('messages.Users') }}','{{ __('messages.Trips') }}','{{ __('messages.Bookings') }}'],
                 datasets: [{
                     label: 'Distribution',
                     data: [{{ $totalUsers }}, {{ $totalTrips }}, {{ $totalBookings }}], // Replace with dynamic data
