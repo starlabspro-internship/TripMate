@@ -20,6 +20,18 @@ export default {
             },
             colors: {
                 aquamarine: '#38B2AC',
+                customgreen: {
+                    50: '#e6f2f2',
+                    100: '#cce5e5',
+                    200: '#99cbcb',
+                    300: '#66b1b1',
+                    400: '#339797',
+                    500: '#28666e', // bg color
+                    600: '#205454',
+                    700: '#183f3f',
+                    800: '#102b2b',
+                    900: '#081616',
+                  },
             },
             fontFamily: {
                 roboto: ['Roboto', 'sans-serif'],

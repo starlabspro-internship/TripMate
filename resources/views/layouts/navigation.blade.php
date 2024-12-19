@@ -41,11 +41,11 @@
                     <div x-show="open" class="pl-12">
                         <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('bookings.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('bookings.index') }}">
                             <img src="{{ asset('storage/icons/booking.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
-                            <span class="mx-3 text-sm">{{ __('messages.My Bookings') }}</span>
+                            <span class="mx-3 text-sm">{{ __('messages.My Rides') }}</span>
                         </a>
                         <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('bookings.myTrips') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('bookings.myTrips') }}">
                             <img src="{{ asset('storage/icons/trips.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
-                            <span class="mx-3 text-sm">{{ __('messages.My Trips Bookings') }}</span>
+                            <span class="mx-3 text-sm">{{ __('messages.My Drives') }}</span>
                         </a>
                         <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('bookings.myTransactions') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('bookings.transactions') }}">
                             <img src="{{ asset('storage/icons/credit-card.svg') }}" alt="avatar" class="relative inline-block h-6 w-6 object-cover object-center" />
@@ -234,7 +234,7 @@
                 </div>
 
             </header>
-            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-[#28666e]">
                 {{ $slot }}
             </main>
         </div>

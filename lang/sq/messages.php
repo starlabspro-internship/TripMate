@@ -303,10 +303,31 @@ return [
     'Your profile has been verified successfully!' => 'Profili juaj është verifikuar me sukses!',
     'Your profile has been Rejected!' => 'Profili juaj nuk ka mundur të verifikohet!',
 
+
+    'My Rides' => 'Udhëtimet si pasagjer',
+    'My Drives' => 'Udhëtimet si shofer',
+    'Trip Cancelled' => 'Udhëtimi u anulua',
+
+
+
+
+
 'Users' => 'Përdoruesit',
 'Trips' => 'Udhëtimet',
 'Verified Users with drivers license' => 'Përdorues të verifikuar me patentë shoferi',
 'Unverified Users' => 'Përdorues të paverifikuar',
+
+
+'Rides Of' => 'Udhëtimet si pasagjer për',
+'Drives Of' => 'Udhëtimet si shofer për',
+
+  
+
+
+
+
+
+
 
 
 
