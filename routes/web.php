@@ -16,7 +16,7 @@ use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\UserVerifyController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PassengerRatingController;
-
+use Illuminate\Support\Facades\Artisan;
 
 
 
@@ -140,6 +140,21 @@ Route::get('language/{locale}', function($locale){
     return redirect()->back();
 })->name('localization');
 
+
 Route::get('/cities-with-user-count', [UserVerifyController::class, 'getCitiesWithUserCount'])->middleware('auth');
+
+Route::get('/clear-cache-and-seed', function () {
+    // Clear caches
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    
+    // Run database seeder
+    Artisan::call('db:seed');
+
+    return 'Caches cleared and database seeded successfully!';
+});
+
 
 require __DIR__.'/auth.php';
