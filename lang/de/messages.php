@@ -140,5 +140,11 @@ return [
     'Tables' => 'Tabellen',
     'Meeting At:' => 'Treffen um:',
 
+    'My Rides' => 'Meine Fahrten als Passagier',
+'My Drives' => 'Meine Fahrten als Fahrer',
+'Trip Cancelled' => 'Reise Abgesagt',
+
+'Rides Of' => 'Fahrten von ',
+'Drives Of' => 'Fahrten von',
 
 ];

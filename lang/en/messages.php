@@ -312,10 +312,32 @@ return [
 'Your profile has been verified successfully!' => 'Your profile has been verified successfully!',
 'Your profile has been Rejected!' => 'Your profile has been Rejected!',
 
+'My Rides' => 'My Rides',
+'My Drives' => 'My Drives',
+'Trip Cancelled' => 'Trip Cancelled',
+
+
+
+'Rides Of' => 'Rides Of',
+'Drives Of' => 'Drives Of',
+
+
+
+
 'Users' => 'Users',
 'Trips' => 'Trips',
 'Verified Users with drivers license' => 'Verified Users with drivers license',
 'Unverified Users' => 'Unverified Users',
+
+
+
+
+
+
+
+
+
+
 
 
 
