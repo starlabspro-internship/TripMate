@@ -264,6 +264,7 @@ return [
 'Phone:' => 'Telefoni:',
 'Gender:' => 'Gjinia:',
 'Users:' => 'Përdoruesit:',
+'Name:' => 'Emri:',
 
 
     'Mark All As Read' => 'Shëno të gjitha si të lexuara',

@@ -273,6 +273,7 @@ return [
 'Phone:' => 'Phone:',
 'Gender:' => 'Gender:',
 'Users:' => 'Users:',
+'Name:' => 'Name:',
 
 
 'Mark All As Read' => 'Mark All As Read',
