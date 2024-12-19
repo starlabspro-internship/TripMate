@@ -9,6 +9,7 @@ use App\Models\Trip;
 use App\Models\Message;
 use App\Models\Booking;
 use Illuminate\Support\Str;
+use App\Models\PassengerRating;
 
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -35,9 +36,30 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Message::class);
     }
 
+public function receivedRatings()
+{
+    return $this->hasMany(PassengerRating::class, 'reviewed_id');
+}
+
+public function givenRatings()
+{
+    return $this->hasMany(PassengerRating::class, 'reviewer_id');
+}
+
+public function updateAverageRating()
+{
+    $average = $this->receivedRatings()->avg('rating'); 
+    $this->average_rating = round($average, 1);        
+    $this->save();                                      
+}
+
     public function isSuperAdmin()
     {
         return $this->is_super_admin == 1;
+    }
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
     }
 
     protected $fillable = [

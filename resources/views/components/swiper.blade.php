@@ -78,8 +78,8 @@
 
                         <div class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl max-sm:max-w-sm max-sm:mx-auto p-6 transition-all duration-500 hover:border-yellow-400 h-full min-h-[400px] md:min-h-[455px] lg:min-h-[550px] xl:min-h-[450px]">
                             <div class="flex items-center gap-5 mb-5 sm:mb-9">
-                                <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-24 sm:h-24 border-4 border-yellow-400"
-                                     src="https://www.pngitem.com/pimgs/m/404-4042710_circle-profile-picture-png-transparent-png.png"
+                                <img class="rounded-full object-cover mx-auto w-20 sm:w-24 h-20 sm:h-24 border-4 border-yellow-400"
+                                     src="https://t4e.lu/wp-content/uploads/2018/04/PngItem_4042710.png"
                                      alt="avatar">
                             </div>
 

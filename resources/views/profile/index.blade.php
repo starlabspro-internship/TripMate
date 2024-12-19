@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="h-full bg-gray-200 p-8">
+    <div class="h-full bg-[#28666e] p-8">
         <div class="bg-white rounded-lg shadow-xl pb-8">
             <div class="w-full h-[250px]">
                 <img src="https://vojislavd.com/ta-template-demo/assets/img/profile-background.jpg"
@@ -123,7 +123,7 @@
                 <p class="text-sm text-gray-500">{{ auth()->user()->city }}</p>
                 <div class="flex justify-center gap-x-3 py-3 mx-8 text-blue-900 text-sm">
                     <div class="text-center w-20 flex flex-col items-center">
-                        <h2 class="text-xl font-bold">12</h2>
+                        <h2 class="text-xl font-bold">{{ $tripCount }}</h2>
                         <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 -4.5 32 32"
                              fill="none" class="mt-2">
                             <path
@@ -191,7 +191,7 @@
                         </svg>
                     </div>
                     <div class="text-center w-20 flex flex-col items-center">
-                        <h2 class="text-xl font-bold">10</h2>
+                        <h2 class="text-xl font-bold">{{auth()->user()->average_rating ? round(auth()->user()->average_rating, 1) : 'N/A' }}</h2>
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px"
                              width="30px" version="1.1" id="Layer_1" viewBox="0 0 511.998 511.998" xml:space="preserve"
                              class="mt-2">
@@ -202,7 +202,7 @@
                         </svg>
                     </div>
                     <div class="text-center w-20 flex flex-col items-center">
-                        <h2 class="text-xl font-bold">7</h2>
+                        <h2 class="text-xl font-bold">{{$feedback}}</h2>
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px"
                              width="30px" version="1.1" id="Layer_1" viewBox="0 0 511.999 511.999" xml:space="preserve"
                              class="mt-2">
@@ -302,25 +302,27 @@
                 </div>
             </div>
 
+
             <!-- Ride History Section -->
-            <div x-data="tabs()"  class="flex flex-col w-full 2xl:w-2/3 overflow-y-auto max-h-[430px]">
-                <div class="mb-4 container mx-auto px-2 py-4 bg-white rounded-lg shadow-xl flex-1 overflow-y-auto">
-                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">
-                        {{ __('messages.Completed Rides Of') . ' ' . auth()->user()->name }}
+            <div x-data="tabs()" class="flex flex-col w-full xl:w-2/3 max-h-[430px] overflow-y-auto">
+    <div class="mb-4 container mx-auto px-4 sm:px-6 lg:px-8 py-6 bg-white rounded-lg shadow-xl flex-1 overflow-y-auto">
+        <!-- Titulli -->
+        <h2 class="text-lg sm:text-xl lg:text-2xl font-bold mt-4 mb-4 text-gray-800">
+            {{ __('messages.Completed Rides Of') . ' ' . auth()->user()->name }}
+        </h2>
 
+        <div class="flex flex-wrap justify-start lg:justify-start gap-4 mb-6">
+            <button @click="currentTab = 'driver'" 
+                class="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm sm:text-base">
+                {{ __('messages.Driver') }}
+            </button>
+            <button @click="currentTab = 'passenger'" 
+                class="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm sm:text-base">
+                {{ __('messages.Passenger') }}
+            </button>
+        </div>
+        <div id="bookings" class="space-y-4">
 
-                    </h2>
-                    <div class="flex gap-2 mb-4">
-                        <button @click="currentTab = 'driver'"
-                                class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm">
-                                {{ __('messages.Driver') }}
-                        </button>
-                        <button @click="currentTab = 'passenger'"
-                                class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm">
-                                {{ __('messages.Passenger') }}
-                        </button>
-                    </div>
-                    <div id="bookings" class="space-y-4 ">
 
 @foreach ($bookings as $ride)
     @if($ride->trip && $ride->trip->status === 'Completed')
@@ -331,11 +333,11 @@
             <div class="flex justify-between items-center p-4 cursor-pointer bg-white" onclick="toggleDetails(this)">
                 <div>
 
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-5">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M17.197 5.46A.824.824 0 0 0 16.5 5h-9a.824.824 0 0 0-.697.46l-1.988 4.638L5.285 9H3v1.5a.501.501 0 0 0 .5.5 2.572 2.572 0 0 1 .367-.388A2.532 2.532 0 0 0 3 12.522V19.5a.501.501 0 0 0 .5.5h2a.501.501 0 0 0 .5-.5v-1.831A46.229 46.229 0 0 0 12 18a46.244 46.244 0 0 0 6.001-.331L18 19.5a.501.501 0 0 0 .5.5h2a.501.501 0 0 0 .5-.5v-6.978a2.534 2.534 0 0 0-.87-1.909 2.523 2.523 0 0 1 .359.387h.011a.501.501 0 0 0 .5-.5V9h-2.286zM7.66 6h8.68l1.715 4H5.945zM5 19H4v-1.79a1.983 1.983 0 0 0 .613.235c.118.024.254.048.387.071zm15 0h-1v-1.484c.133-.023.269-.047.387-.07A1.989 1.989 0 0 0 20 17.21zm-.525-7.632A1.53 1.53 0 0 1 20 12.522v2.946a1.015 1.015 0 0 1-.808.997A43.178 43.178 0 0 1 12 17a43.255 43.255 0 0 1-7.192-.535A1.015 1.015 0 0 1 4 15.468v-2.946a1.532 1.532 0 0 1 .524-1.156 1.49 1.49 0 0 1 .568-.307L5.296 11h13.406l.205.06a1.493 1.493 0 0 1 .568.308zM17 13h2v1a1 1 0 0 1-1 1h-2zM7 13l1 2H6a1 1 0 0 1-1-1v-1zm2 1h6v1H9z"></path><path fill="none" d="M0 0h24v24H0z"></path></g></svg>
-                        <h3 class="text-lg font-medium text-gray-900 flex items-center gap-2">
+                        <h3 class="text-sm md:text-lg font-medium text-gray-900 flex items-center gap-2">
                             {{ $ride->trip->origincity->name }}
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
                             {{ $ride->trip->destinationcity->name }}
@@ -352,19 +354,19 @@
                     <path d="M12 15l-6-6h12l-6 6z"/>
                 </svg>
             </div>
-            <div class="details hidden px-4 py-2 ">
+            <div class="details hidden px-4 py-2 bg-blue-100">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:p-6">
 
                     <!-- Driver Card  -->
-                    <div class="flex items-center space-x-4 bg-white shadow-md rounded-xl p-4   border border-blue-400">
+                    <div class="flex items-center space-x-4 bg-white shadow-md rounded-xl p-4  border border-blue-400">
                         <div class="text-center">
-                            <p class="text-3xl font-bold text-gray-600"></p>
+                            <p class="text-sm md:text-lg font-bold text-gray-600"></p>
                             <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="35" height="35"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M27 40C27 41.6569 25.6569 43 24 43C22.3431 43 21 41.6569 21 40C21 38.3431 22.3431 37 24 37C25.6569 37 27 38.3431 27 40Z" fill="#333333"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M30.6187 37.1037C30.1899 35.5033 31.1396 33.8583 32.74 33.4295L34.6719 32.9118C36.2723 32.483 37.9173 33.4328 38.3461 35.0332L39.3814 38.8969C39.8102 40.4973 38.8604 42.1423 37.26 42.5711L35.3282 43.0887C33.7278 43.5176 32.0828 42.5678 31.654 40.9674L30.6187 37.1037ZM33.2576 35.3613C32.7242 35.5043 32.4076 36.0526 32.5505 36.5861L33.5858 40.4498C33.7288 40.9832 34.2771 41.2998 34.8106 41.1569L36.7424 40.6392C37.2759 40.4963 37.5925 39.948 37.4495 39.4145L36.4142 35.5508C36.2713 35.0173 35.723 34.7007 35.1895 34.8437L33.2576 35.3613Z" fill="#333333"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M9.65396 35.0324C10.0828 33.432 11.7278 32.4823 13.3282 32.9111L15.26 33.4287C16.8604 33.8576 17.8102 35.5026 17.3814 37.103L16.3461 40.9667C15.9173 42.5671 14.2723 43.5168 12.6719 43.088L10.74 42.5704C9.13961 42.1415 8.18986 40.4965 8.61869 38.8961L9.65396 35.0324ZM12.8106 34.843C12.2771 34.7 11.7288 35.0166 11.5858 35.5501L10.5505 39.4138C10.4076 39.9472 10.7242 40.4956 11.2576 40.6385L13.1895 41.1561C13.723 41.2991 14.2713 40.9825 14.4142 40.449L15.4495 36.5853C15.5925 36.0519 15.2759 35.5035 14.7424 35.3606L12.8106 34.843Z" fill="#333333"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.8378 39H23V31.0549C20.1303 31.3722 17.6672 33.0387 16.2592 35.406C16.0095 34.9247 15.5662 34.546 15.0012 34.3947L14.5983 34.2867C16.5287 31.1168 20.0172 29 24 29C27.9832 29 31.4718 31.1171 33.4022 34.2874L32.9988 34.3954C32.434 34.5468 31.9908 34.9253 31.7411 35.4064C30.3331 33.0389 27.8699 31.3722 25 31.0549V39H32.1621L32.6199 40.7086C32.647 40.8098 32.6814 40.9071 32.7223 41H24H15.2773C15.3185 40.9068 15.353 40.8093 15.3802 40.7078L15.8378 39ZM15.0966 41.324C14.6828 41.9256 13.9602 42.2651 13.2156 42.1769C13.4542 43.3648 13.8842 44.4842 14.4722 45.5007L16.2034 44.4993C15.6481 43.5392 15.2649 42.4671 15.0966 41.324ZM31.7966 44.4993C32.3518 43.5394 32.7349 42.4675 32.9033 41.3246C33.3171 41.9262 34.0397 42.2658 34.7843 42.1777C34.5457 43.3653 34.1157 44.4844 33.5278 45.5007L31.7966 44.4993Z" fill="#333333"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M15 17V14H17V17C17 20.866 20.134 24 24 24C27.866 24 31 20.866 31 17V14H33V17C33 21.9706 28.9706 26 24 26C19.0294 26 15 21.9706 15 17Z" fill="#333333"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5989 6.25348C15.0904 6.66596 15 6.95645 15 7.09677C15 8.53676 15.2324 9.66613 15.4583 10.424C15.5256 10.6495 15.5922 10.8421 15.6519 11H32.3481C32.4078 10.8421 32.4745 10.6496 32.5417 10.4241C32.7676 9.66629 33 8.53693 33 7.09678C33 6.95645 32.9096 6.66596 32.4011 6.25348C31.9098 5.85504 31.1661 5.46148 30.2339 5.11465C28.3749 4.42299 25.9931 4 24 4C22.0069 4 19.6251 4.42299 17.7661 5.11465C16.8339 5.46148 16.0902 5.85504 15.5989 6.25348ZM31.7015 13H16.2985C16.3655 13.09 16.4474 13.1843 16.5475 13.2811C17.3021 14.0108 19.2284 15 24 15C28.7716 15 30.6979 14.0108 31.4525 13.2811C31.5526 13.1843 31.6345 13.09 31.7015 13ZM13.9878 12.2059C13.9684 12.1635 13.9475 12.1164 13.9253 12.0648C13.8174 11.8142 13.6787 11.455 13.5417 10.9953C13.2676 10.0758 13 8.75356 13 7.09678C13 6.07581 13.6321 5.27356 14.3391 4.70015C15.0634 4.1127 16.0284 3.62723 17.0687 3.24019C19.1546 2.46411 21.7728 2 24 2C26.2272 2 28.8454 2.46411 30.9313 3.24019C31.9716 3.62723 32.9366 4.1127 33.6609 4.70015C34.3679 5.27356 35 6.07581 35 7.09677C35 8.75371 34.7324 10.076 34.4583 10.9955C34.3213 11.4551 34.1826 11.8143 34.0747 12.0649C34.0525 12.1165 34.0316 12.1635 34.0122 12.2059C34.0109 12.3756 33.9934 12.5932 33.9375 12.8431C33.8141 13.3952 33.5101 14.0736 32.8428 14.7189C31.5291 15.9892 28.9555 17 24 17C19.0445 17 16.4709 15.9892 15.1572 14.7189C14.4899 14.0736 14.1859 13.3952 14.0625 12.8431C14.0066 12.5932 13.9891 12.3756 13.9878 12.2059Z" fill="#333333"></path> <path d="M20 8C20 7.44772 20.4477 7 21 7H27C27.5523 7 28 7.44772 28 8C28 8.55228 27.5523 9 27 9H21C20.4477 9 20 8.55228 20 8Z" fill="#333333"></path> </g></svg>
                         </div>
                         <div class="flex items-center space-x-4">
                             <div class="text-gray-500"></div>
                             <div>
-                                <h3 class="text-lg font-semibold text-blue-600 flex items-center gap-2">
+                                <h3 class="text-sm md:text-lg font-semibold text-blue-600 flex items-center gap-2">
                                     {{ __('messages.Driver') }} @if ($ride->trip->users->verification_status === 'verified')
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="orange"
                                              class="w-4 h-4 text-orange inline ml-2" viewBox="0 0 24 24">
@@ -382,7 +384,7 @@
                                       </span>
                                     @endif
                                 </h3>
-                                <p class="text-black">{{ $ride->trip->users->name }}</p>
+                                <p class="text-sm md:text-lg text-black">{{ $ride->trip->users->name }}</p>
                             </div>
                         </div>
                     </div>
@@ -394,11 +396,11 @@
                             <svg fill="#000000" height="35" width="35" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512.001 512.001" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M270.948,302.936c-10.562-14.943-27.525-24.074-45.713-24.765c-0.385-0.043-0.775-0.067-1.171-0.067 c-23.135,0-42.252-17.484-44.859-39.93c6.661-4.851,12.807-11.007,18.254-18.381c11.015-14.913,18.165-33.547,20.816-53.698 c0.812-0.883,1.496-1.911,1.987-3.081c4.664-11.106,7.029-22.963,7.029-35.242c0-47.221-35.702-85.637-79.584-85.637 c-11.349,0-22.36,2.578-32.768,7.665c-3.891,0.328-7.704,1.028-11.365,2.088c-36.686,10.599-57.421,54.957-46.22,98.88 c1.127,4.419,2.56,8.765,4.262,12.916c0.464,1.134,1.114,2.13,1.88,3c4.225,31.022,18.908,56.833,38.989,71.434 c-2.581,22.474-21.712,39.988-44.867,39.988c-0.356,0-0.708,0.019-1.056,0.053C25.185,279.268,0,305.121,0,336.763v63.14 c0,5.891,4.775,10.666,10.666,10.666h188.451c5.89,0,10.666-4.775,10.666-10.666s-4.776-10.666-10.666-10.666H21.331v-52.475 c0-20.585,16.746-37.33,37.33-37.33c0.356,0,0.708-0.019,1.056-0.053c7.683-0.24,15.04-1.786,21.858-4.429l50.497,72.883 c1.992,2.875,5.268,4.592,8.767,4.592c3.499,0,6.775-1.716,8.767-4.592l50.498-72.883c6.819,2.643,14.175,4.189,21.858,4.429 c0.348,0.034,0.7,0.053,1.056,0.053c12.105,0,23.511,5.912,30.51,15.815c2.078,2.94,5.372,4.51,8.719,4.51 c2.128,0,4.277-0.636,6.147-1.957C273.205,314.402,274.347,307.746,270.948,302.936z M109.492,72.377 c2.798-0.808,5.757-1.288,8.796-1.425c1.566-0.07,3.094-0.484,4.482-1.213c7.926-4.164,16.314-6.276,24.933-6.276 c31.47,0,57.174,27.694,58.204,62.162c-6.414-4.85-14.393-7.733-23.035-7.733h-55.779c-2.778,0-5.416-0.872-7.625-2.521 c-1.891-1.411-3.351-3.305-4.224-5.482c-2.015-5.014-7-8.146-12.383-7.806c-5.416,0.347-9.973,4.111-11.338,9.361 c-2.721,10.453-7.801,20.188-14.708,28.455C71.283,108.973,85.213,79.392,109.492,72.377z M84.479,162.705 c9.316-8.54,16.855-18.89,22.119-30.32c0.036,0.027,0.073,0.054,0.11,0.081c5.925,4.422,12.973,6.758,20.384,6.758h55.779 c6.7,0,12.487,3.92,15.234,9.577c-0.071,22.157-6.384,42.854-17.806,58.315c-10.771,14.58-24.785,22.61-39.462,22.61 c-13.583,0-26.807-7.017-37.236-19.757C93.483,197.61,86.788,180.974,84.479,162.705z M140.838,343.031l-40.817-58.912 c10.95-9.086,18.932-21.616,22.307-35.908c5.943,1.86,12.141,2.848,18.509,2.848c6.334,0,12.537-0.961,18.52-2.817 c3.379,14.278,11.358,26.796,22.3,35.876L140.838,343.031z"></path> </g> </g> <g> <g> <path d="M455.441,337.455c-0.348-0.034-0.7-0.053-1.056-0.053c-23.167,0-42.305-17.531-44.871-40.023 c13.062-9.512,23.832-23.774,30.931-41.119c1.016,3.324,3.617,6.008,7.039,7.069c1.04,0.322,2.104,0.479,3.157,0.479 c3.232,0,6.36-1.473,8.417-4.114c14.881-19.112,22.616-43.986,21.784-70.041c-0.818-25.56-9.803-49.555-25.303-67.563 c-15.869-18.438-36.819-28.699-59.012-28.911c-1.177-0.048-4.104,0.053-4.577,0.082c-11.402-5.172-23.45-7.588-35.858-7.194 c-25.625,0.819-49.196,13.591-66.369,35.963c-16.688,21.741-25.355,50.098-24.404,79.85c0.161,5.041,0.559,9.683,1.203,14.103 c1.737,12.679,5.23,24.822,10.381,36.091c1.639,3.587,5.124,5.977,9.06,6.213c3.923,0.237,7.681-1.718,9.739-5.083 c0.858-1.403,1.961-3.152,3.178-4.866c4.755,14.445,12.024,27.423,21.253,37.669c3.937,4.371,8.189,8.173,12.667,11.416 c-2.586,22.469-21.715,39.977-44.866,39.977c-0.356,0-0.708,0.019-1.056,0.053c-31.374,1.112-56.558,26.967-56.558,58.607v63.14 c0,5.891,4.776,10.666,10.666,10.666h260.346c5.89,0,10.666-4.775,10.666-10.666v-63.14 C512,364.422,486.815,338.568,455.441,337.455z M290.112,225.625c-1.052-4.108-1.876-8.321-2.467-12.626 c-0.54-3.708-0.868-7.568-1.003-11.799c-0.794-24.837,6.31-48.341,20.004-66.18c13.208-17.208,31.01-27.02,50.128-27.631 c0.639-0.021,14.387-0.795,28.421,6.277c1.569,0.79,3.377,1.157,5.138,1.107c0.202-0.006,5.677-0.265,5.836-0.263 c16.02,0.106,31.362,7.741,43.203,21.497c12.331,14.328,19.487,33.622,20.149,54.329c0.359,11.247-1.221,22.18-4.567,32.239 c-1.008-2.686-2.132-5.331-3.369-7.932c-10.298-21.91-27.633-38.881-48.812-47.788c-2.683-1.128-5.709-1.111-8.378,0.047 c-2.67,1.157-4.75,3.355-5.759,6.085c-1.42,3.836-3.14,7.573-5.116,11.106c-5.584,9.986-16.842,15.927-29.361,15.489 c-1.879-0.064-3.786-0.067-5.666-0.007c-9.223,0.295-18.217,2.053-26.78,5.242C313.255,208.009,299.041,216.018,290.112,225.625z M316.351,231.43c4.044-2.709,8.347-4.94,12.853-6.643c6.344-2.362,13.063-3.672,19.97-3.893c1.41-0.046,2.838-0.044,4.246,0.005 c20.594,0.705,39.217-9.405,48.718-26.396c0.584-1.045,1.152-2.106,1.701-3.177c9.728,5.993,18.043,14.44,24.295,24.692 c-0.054,0.316-0.1,0.633-0.126,0.959c-1.636,20.237-8.617,38.809-19.658,52.295c-10.429,12.741-23.653,19.757-37.236,19.757 C346.004,289.027,323.666,265.158,316.351,231.43z M352.654,307.492c6.003,1.876,12.194,2.866,18.46,2.866 c6.384,0,12.597-0.994,18.555-2.864c4.284,18.163,16.029,33.466,31.818,42.495c-6.159,22.255-26.627,38.258-50.324,38.258 c-23.699,0-44.166-16.004-50.324-38.26C336.626,340.96,348.371,325.656,352.654,307.492z M490.669,448.537H251.654v-52.475 c0-20.583,16.746-37.33,37.33-37.33c0.356,0,0.708-0.019,1.056-0.053c3.673-0.115,7.274-0.519,10.775-1.209 c9.265,30.416,37.613,52.11,70.347,52.11c32.734,0,61.081-21.694,70.348-52.109c3.5,0.69,7.101,1.094,10.773,1.208 c0.348,0.034,0.7,0.053,1.056,0.053c20.584,0,37.33,16.746,37.33,37.33V448.537z"></path> </g> </g> </g></svg>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="text-gray-500"></div>
+                            <div class="text-sm md:text-lg text-gray-500"></div>
                             <div>
                                 <h3 class="text-lg font-semibold text-blue-600">{{ __('messages.Passengers') }}</h3>
 
-                                <p class="text-black"> @if ($ride->trip->passengers->isNotEmpty())
+                                <p class="text-sm md:text-lg text-black"> @if ($ride->trip->passengers->isNotEmpty())
 
                                         @foreach ($ride->trip->passengers as $passenger)
                                             {{ $passenger->name }}
@@ -414,7 +416,7 @@
                     <!-- Planned Time Card -->
                     <div class="flex items-center space-x-4 bg-white shadow-md border rounded-xl border-blue-400 p-4">
                         <div class="text-center">
-                            <p class="text-3xl font-bold text-gray-600"></p>
+                            <p class="text-sm md:text-lg font-bold text-gray-600"></p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256" fill="#000000">
                                 <circle cx="128" cy="128" r="95.9" fill="none" stroke="#000" stroke-width="16" />
                                 <path d="M80 211L64 240M176 211l16 29" fill="none" stroke="#000" stroke-width="16" stroke-linecap="round" />
@@ -424,11 +426,11 @@
                             </svg>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="text-gray-500"></div>
+                            <div class="text-sm md:text-lg text-gray-500"></div>
                             <div>
                                 <h3 class="text-lg font-semibold text-blue-600">{{ __('messages.Planned Time') }}</h3>
 
-                                <p class="text-black">
+                                <p class="text-sm md:text-lg text-black">
                                     {{ $ride->trip->departure_time->format('H:i') }}
                                     →
                                     {{ $ride->trip->arrival_time->format('H:i') }}
@@ -439,16 +441,16 @@
 
 
                     <!-- Price Card -->
-                    <div class="flex items-center space-x-4 shadow-md border border-blue-400 rounded-xl p-4">
+                    <div class="bg-white flex items-center space-x-4 shadow-md border border-blue-400 rounded-xl p-4">
                         <div class="text-center">
-                            <p class="text-3xl font-bold text-gray-600"></p>
+                            <p class="text-sm md:text-lg font-bold text-gray-600"></p>
                             <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="30" height="30" stroke-width="3" stroke="#000000" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle cx="31.1" cy="31.05" r="25.29"></circle><path d="M41.19,40.91a12.43,12.43,0,1,1-2.34-21.14"></path><line x1="14.99" y1="28.04" x2="35.67" y2="28.04"></line><line x1="14.99" y1="34.34" x2="33.17" y2="34.34"></line></g></svg>
                         </div>
                         <div class="flex items-center space-x-4">
                             <div class="text-gray-500"></div>
                             <div>
                                 <h3 class="text-lg font-semibold text-blue-600">{{ __('messages.Price:') }}</h3>
-                                <p class="text-black"> {{ $ride->trip->price }} €</p>
+                                <p class="text-sm md:text-lg text-black"> {{ $ride->trip->price }} €</p>
                             </div>
                         </div>
                     </div>
@@ -457,15 +459,15 @@
                     <!-- Started at Card -->
                     <div class="flex items-center space-x-4 bg-white shadow-md border border-blue-400 rounded-xl p-4">
                         <div class="text-center">
-                            <p class="text-3xl font-bold text-gray-600"></p>
+                            <p class="text-sm md:text-lg font-bold text-gray-600"></p>
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="39" height="39" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M18 11a5 5 0 1 0-4.95-5A5.006 5.006 0 0 0 18 11zm0-9a4 4 0 1 1-4 4 4.005 4.005 0 0 1 4-4zm2 5h-3V3h1v3h2zm-5 10a1.996 1.996 0 0 0-1.505-1.93l-.013-.07H15v-1h-1.702l-.296-1.605A1.829 1.829 0 0 0 11.394 11H4.606a1.829 1.829 0 0 0-1.608 1.395L2.702 14H1v1h1.518l-.013.07A1.996 1.996 0 0 0 1 17v6h22v-1h-8zM3.981 12.576c.075-.256.387-.576.625-.576h6.788c.238 0 .55.32.643.658l.43 2.342H3.534zM3 22H2v-1h1zm9 0H4v-1h8zm2 0h-1v-1h1zm-1-3a1 1 0 0 0 1-1v2H2v-2a1 1 0 0 0 1 1h1l-1-2H2a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1h-1l-1 2zm-8-1h6v1H5z"></path><path fill="none" d="M0 0h24v24H0z"></path></g></svg>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="text-gray-500"></div>
+                            <div class="text-sm md:text-lg text-gray-500"></div>
                             <div>
                                 <h3 class="text-lg font-semibold text-blue-600"> {{ __('messages.Started at:') }} </h3>
 
-                                <p class="text-black">
+                                <p class="text-sm md:text-lg text-black">
                                     {{ __('messages.Started at:') }} {{ \Carbon\Carbon::parse($ride->trip->start_time)->format('H:i') }}
                                 </p>
                             </div>
@@ -476,15 +478,15 @@
                     <!-- Ended at Card -->
                     <div class="flex items-center space-x-4 bg-white shadow-md border border-blue-400 rounded-xl p-4">
                         <div class="text-center">
-                            <p class="text-3xl font-bold text-gray-600"></p>
+                            <p class="text-sm md:text-lg font-bold text-gray-600"></p>
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="39" height="39" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M18 11a5 5 0 1 0-4.95-5A5.006 5.006 0 0 0 18 11zm0-9a4 4 0 1 1-4 4 4.005 4.005 0 0 1 4-4zm2 5h-3V3h1v3h2zm-5 10a1.996 1.996 0 0 0-1.505-1.93l-.013-.07H15v-1h-1.702l-.296-1.605A1.829 1.829 0 0 0 11.394 11H4.606a1.829 1.829 0 0 0-1.608 1.395L2.702 14H1v1h1.518l-.013.07A1.996 1.996 0 0 0 1 17v6h22v-1h-8zM3.981 12.576c.075-.256.387-.576.625-.576h6.788c.238 0 .55.32.643.658l.43 2.342H3.534zM3 22H2v-1h1zm9 0H4v-1h8zm2 0h-1v-1h1zm-1-3a1 1 0 0 0 1-1v2H2v-2a1 1 0 0 0 1 1h1l-1-2H2a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1h-1l-1 2zm-8-1h6v1H5z"></path><path fill="none" d="M0 0h24v24H0z"></path></g></svg>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="text-gray-500"></div>
+                            <div class="text-sm md:text-lg text-gray-500"></div>
                             <div>
                                 <h3 class="text-lg font-semibold text-blue-600">{{ __('messages.Ended at:') }}</h3>
 
-                                <p class="text-black">
+                                <p class="text-sm md:text-lg text-black">
                                     {{ __('messages.Ended at:') }} {{ \Carbon\Carbon::parse($ride->trip->end_time)->format('H:i') }}
                                 </p>
                             </div>
@@ -504,12 +506,12 @@
             id="driver"
             x-show="currentTab === 'driver'"
             class="bg-white shadow-md rounded-lg border border-blue-400 shadow-neon overflow-hidden max-w-4xl mx-auto">
-            <div class="flex justify-between items-center p-4 cursor-pointer bg-white" onclick="toggleDetails(this)">
+            <div  class="flex flex-wrap justify-between items-center p-4 px-2 sm:px-6 cursor-pointer bg-white" onclick="toggleDetails(this)">
                 <div>
 
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-5">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M17.197 5.46A.824.824 0 0 0 16.5 5h-9a.824.824 0 0 0-.697.46l-1.988 4.638L5.285 9H3v1.5a.501.501 0 0 0 .5.5 2.572 2.572 0 0 1 .367-.388A2.532 2.532 0 0 0 3 12.522V19.5a.501.501 0 0 0 .5.5h2a.501.501 0 0 0 .5-.5v-1.831A46.229 46.229 0 0 0 12 18a46.244 46.244 0 0 0 6.001-.331L18 19.5a.501.501 0 0 0 .5.5h2a.501.501 0 0 0 .5-.5v-6.978a2.534 2.534 0 0 0-.87-1.909 2.523 2.523 0 0 1 .359.387h.011a.501.501 0 0 0 .5-.5V9h-2.286zM7.66 6h8.68l1.715 4H5.945zM5 19H4v-1.79a1.983 1.983 0 0 0 .613.235c.118.024.254.048.387.071zm15 0h-1v-1.484c.133-.023.269-.047.387-.07A1.989 1.989 0 0 0 20 17.21zm-.525-7.632A1.53 1.53 0 0 1 20 12.522v2.946a1.015 1.015 0 0 1-.808.997A43.178 43.178 0 0 1 12 17a43.255 43.255 0 0 1-7.192-.535A1.015 1.015 0 0 1 4 15.468v-2.946a1.532 1.532 0 0 1 .524-1.156 1.49 1.49 0 0 1 .568-.307L5.296 11h13.406l.205.06a1.493 1.493 0 0 1 .568.308zM17 13h2v1a1 1 0 0 1-1 1h-2zM7 13l1 2H6a1 1 0 0 1-1-1v-1zm2 1h6v1H9z"></path><path fill="none" d="M0 0h24v24H0z"></path></g></svg>
-                        <h3 class="text-lg font-medium text-gray-900 flex items-center gap-2">
+                        <h3 class="text-sm md:text-lg font-medium text-gray-900 flex items-center gap-1">
                             {{ $ride->origincity->name }}
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -528,19 +530,19 @@
                     <path d="M12 15l-6-6h12l-6 6z"/>
                 </svg>
             </div>
-            <div class="details hidden px-4 py-2 ">
+            <div class="details hidden px-0 py-2 bg-blue-100 ">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:p-6">
 
                     <!-- Driver Card -->
                     <div class="flex items-center space-x-4 bg-white shadow-md rounded-xl p-4 border border-blue-400">
                         <div class="text-center">
-                            <p class="text-3xl font-bold text-gray-600"></p>
+                            <p class="text-sm md:text-lg font-bold text-gray-600"></p>
                             <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="35" height="35"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M27 40C27 41.6569 25.6569 43 24 43C22.3431 43 21 41.6569 21 40C21 38.3431 22.3431 37 24 37C25.6569 37 27 38.3431 27 40Z" fill="#333333"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M30.6187 37.1037C30.1899 35.5033 31.1396 33.8583 32.74 33.4295L34.6719 32.9118C36.2723 32.483 37.9173 33.4328 38.3461 35.0332L39.3814 38.8969C39.8102 40.4973 38.8604 42.1423 37.26 42.5711L35.3282 43.0887C33.7278 43.5176 32.0828 42.5678 31.654 40.9674L30.6187 37.1037ZM33.2576 35.3613C32.7242 35.5043 32.4076 36.0526 32.5505 36.5861L33.5858 40.4498C33.7288 40.9832 34.2771 41.2998 34.8106 41.1569L36.7424 40.6392C37.2759 40.4963 37.5925 39.948 37.4495 39.4145L36.4142 35.5508C36.2713 35.0173 35.723 34.7007 35.1895 34.8437L33.2576 35.3613Z" fill="#333333"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M9.65396 35.0324C10.0828 33.432 11.7278 32.4823 13.3282 32.9111L15.26 33.4287C16.8604 33.8576 17.8102 35.5026 17.3814 37.103L16.3461 40.9667C15.9173 42.5671 14.2723 43.5168 12.6719 43.088L10.74 42.5704C9.13961 42.1415 8.18986 40.4965 8.61869 38.8961L9.65396 35.0324ZM12.8106 34.843C12.2771 34.7 11.7288 35.0166 11.5858 35.5501L10.5505 39.4138C10.4076 39.9472 10.7242 40.4956 11.2576 40.6385L13.1895 41.1561C13.723 41.2991 14.2713 40.9825 14.4142 40.449L15.4495 36.5853C15.5925 36.0519 15.2759 35.5035 14.7424 35.3606L12.8106 34.843Z" fill="#333333"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.8378 39H23V31.0549C20.1303 31.3722 17.6672 33.0387 16.2592 35.406C16.0095 34.9247 15.5662 34.546 15.0012 34.3947L14.5983 34.2867C16.5287 31.1168 20.0172 29 24 29C27.9832 29 31.4718 31.1171 33.4022 34.2874L32.9988 34.3954C32.434 34.5468 31.9908 34.9253 31.7411 35.4064C30.3331 33.0389 27.8699 31.3722 25 31.0549V39H32.1621L32.6199 40.7086C32.647 40.8098 32.6814 40.9071 32.7223 41H24H15.2773C15.3185 40.9068 15.353 40.8093 15.3802 40.7078L15.8378 39ZM15.0966 41.324C14.6828 41.9256 13.9602 42.2651 13.2156 42.1769C13.4542 43.3648 13.8842 44.4842 14.4722 45.5007L16.2034 44.4993C15.6481 43.5392 15.2649 42.4671 15.0966 41.324ZM31.7966 44.4993C32.3518 43.5394 32.7349 42.4675 32.9033 41.3246C33.3171 41.9262 34.0397 42.2658 34.7843 42.1777C34.5457 43.3653 34.1157 44.4844 33.5278 45.5007L31.7966 44.4993Z" fill="#333333"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M15 17V14H17V17C17 20.866 20.134 24 24 24C27.866 24 31 20.866 31 17V14H33V17C33 21.9706 28.9706 26 24 26C19.0294 26 15 21.9706 15 17Z" fill="#333333"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5989 6.25348C15.0904 6.66596 15 6.95645 15 7.09677C15 8.53676 15.2324 9.66613 15.4583 10.424C15.5256 10.6495 15.5922 10.8421 15.6519 11H32.3481C32.4078 10.8421 32.4745 10.6496 32.5417 10.4241C32.7676 9.66629 33 8.53693 33 7.09678C33 6.95645 32.9096 6.66596 32.4011 6.25348C31.9098 5.85504 31.1661 5.46148 30.2339 5.11465C28.3749 4.42299 25.9931 4 24 4C22.0069 4 19.6251 4.42299 17.7661 5.11465C16.8339 5.46148 16.0902 5.85504 15.5989 6.25348ZM31.7015 13H16.2985C16.3655 13.09 16.4474 13.1843 16.5475 13.2811C17.3021 14.0108 19.2284 15 24 15C28.7716 15 30.6979 14.0108 31.4525 13.2811C31.5526 13.1843 31.6345 13.09 31.7015 13ZM13.9878 12.2059C13.9684 12.1635 13.9475 12.1164 13.9253 12.0648C13.8174 11.8142 13.6787 11.455 13.5417 10.9953C13.2676 10.0758 13 8.75356 13 7.09678C13 6.07581 13.6321 5.27356 14.3391 4.70015C15.0634 4.1127 16.0284 3.62723 17.0687 3.24019C19.1546 2.46411 21.7728 2 24 2C26.2272 2 28.8454 2.46411 30.9313 3.24019C31.9716 3.62723 32.9366 4.1127 33.6609 4.70015C34.3679 5.27356 35 6.07581 35 7.09677C35 8.75371 34.7324 10.076 34.4583 10.9955C34.3213 11.4551 34.1826 11.8143 34.0747 12.0649C34.0525 12.1165 34.0316 12.1635 34.0122 12.2059C34.0109 12.3756 33.9934 12.5932 33.9375 12.8431C33.8141 13.3952 33.5101 14.0736 32.8428 14.7189C31.5291 15.9892 28.9555 17 24 17C19.0445 17 16.4709 15.9892 15.1572 14.7189C14.4899 14.0736 14.1859 13.3952 14.0625 12.8431C14.0066 12.5932 13.9891 12.3756 13.9878 12.2059Z" fill="#333333"></path> <path d="M20 8C20 7.44772 20.4477 7 21 7H27C27.5523 7 28 7.44772 28 8C28 8.55228 27.5523 9 27 9H21C20.4477 9 20 8.55228 20 8Z" fill="#333333"></path> </g></svg>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="text-gray-500"></div>
+                            <div class="text-sm md:text-lg text-gray-500"></div>
                             <div>
-                                <h3 class="text-lg font-semibold text-blue-600 flex items-center gap-2">
+                                <h3 class="text-sm md:text-lg font-semibold text-blue-600 flex items-center gap-2">
                                     {{ __('messages.Driver') }} @if ($ride->users->verification_status === 'verified')
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="orange"
                                              class="w-4 h-4 text-orange inline ml-2" viewBox="0 0 24 24">
@@ -550,7 +552,7 @@
                                     @endif
 
                                     @if ($ride->start_time && $ride->start_time->diffInMinutes($ride->departure_time) <= 10)
-                                        <span class="text-sm font-bold text-green-600 flex items-center gap-1">
+                                        <span class="text-sm md:text-lg font-bold text-green-600 flex items-center gap-1">
                                           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
                                           </svg>
@@ -558,7 +560,7 @@
                                       </span>
                                     @endif
                                 </h3>
-                                <p class="text-black">{{ $ride->users->name }}</p>
+                                <p class="text-sm md:text-lg text-black">{{ $ride->users->name }}</p>
                             </div>
                         </div>
                     </div>
@@ -566,14 +568,14 @@
                     <!-- Passengers Card -->
                     <div class="flex items-center space-x-4 bg-white border shadow-md border-blue-400  rounded-xl p-4">
                         <div class="text-center">
-                            <p class="text-3xl font-bold text-gray-600"></p>
+                            <p class="text-sm md:text-lg font-bold text-gray-600"></p>
                             <svg fill="#000000" height="35" width="35" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512.001 512.001" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M270.948,302.936c-10.562-14.943-27.525-24.074-45.713-24.765c-0.385-0.043-0.775-0.067-1.171-0.067 c-23.135,0-42.252-17.484-44.859-39.93c6.661-4.851,12.807-11.007,18.254-18.381c11.015-14.913,18.165-33.547,20.816-53.698 c0.812-0.883,1.496-1.911,1.987-3.081c4.664-11.106,7.029-22.963,7.029-35.242c0-47.221-35.702-85.637-79.584-85.637 c-11.349,0-22.36,2.578-32.768,7.665c-3.891,0.328-7.704,1.028-11.365,2.088c-36.686,10.599-57.421,54.957-46.22,98.88 c1.127,4.419,2.56,8.765,4.262,12.916c0.464,1.134,1.114,2.13,1.88,3c4.225,31.022,18.908,56.833,38.989,71.434 c-2.581,22.474-21.712,39.988-44.867,39.988c-0.356,0-0.708,0.019-1.056,0.053C25.185,279.268,0,305.121,0,336.763v63.14 c0,5.891,4.775,10.666,10.666,10.666h188.451c5.89,0,10.666-4.775,10.666-10.666s-4.776-10.666-10.666-10.666H21.331v-52.475 c0-20.585,16.746-37.33,37.33-37.33c0.356,0,0.708-0.019,1.056-0.053c7.683-0.24,15.04-1.786,21.858-4.429l50.497,72.883 c1.992,2.875,5.268,4.592,8.767,4.592c3.499,0,6.775-1.716,8.767-4.592l50.498-72.883c6.819,2.643,14.175,4.189,21.858,4.429 c0.348,0.034,0.7,0.053,1.056,0.053c12.105,0,23.511,5.912,30.51,15.815c2.078,2.94,5.372,4.51,8.719,4.51 c2.128,0,4.277-0.636,6.147-1.957C273.205,314.402,274.347,307.746,270.948,302.936z M109.492,72.377 c2.798-0.808,5.757-1.288,8.796-1.425c1.566-0.07,3.094-0.484,4.482-1.213c7.926-4.164,16.314-6.276,24.933-6.276 c31.47,0,57.174,27.694,58.204,62.162c-6.414-4.85-14.393-7.733-23.035-7.733h-55.779c-2.778,0-5.416-0.872-7.625-2.521 c-1.891-1.411-3.351-3.305-4.224-5.482c-2.015-5.014-7-8.146-12.383-7.806c-5.416,0.347-9.973,4.111-11.338,9.361 c-2.721,10.453-7.801,20.188-14.708,28.455C71.283,108.973,85.213,79.392,109.492,72.377z M84.479,162.705 c9.316-8.54,16.855-18.89,22.119-30.32c0.036,0.027,0.073,0.054,0.11,0.081c5.925,4.422,12.973,6.758,20.384,6.758h55.779 c6.7,0,12.487,3.92,15.234,9.577c-0.071,22.157-6.384,42.854-17.806,58.315c-10.771,14.58-24.785,22.61-39.462,22.61 c-13.583,0-26.807-7.017-37.236-19.757C93.483,197.61,86.788,180.974,84.479,162.705z M140.838,343.031l-40.817-58.912 c10.95-9.086,18.932-21.616,22.307-35.908c5.943,1.86,12.141,2.848,18.509,2.848c6.334,0,12.537-0.961,18.52-2.817 c3.379,14.278,11.358,26.796,22.3,35.876L140.838,343.031z"></path> </g> </g> <g> <g> <path d="M455.441,337.455c-0.348-0.034-0.7-0.053-1.056-0.053c-23.167,0-42.305-17.531-44.871-40.023 c13.062-9.512,23.832-23.774,30.931-41.119c1.016,3.324,3.617,6.008,7.039,7.069c1.04,0.322,2.104,0.479,3.157,0.479 c3.232,0,6.36-1.473,8.417-4.114c14.881-19.112,22.616-43.986,21.784-70.041c-0.818-25.56-9.803-49.555-25.303-67.563 c-15.869-18.438-36.819-28.699-59.012-28.911c-1.177-0.048-4.104,0.053-4.577,0.082c-11.402-5.172-23.45-7.588-35.858-7.194 c-25.625,0.819-49.196,13.591-66.369,35.963c-16.688,21.741-25.355,50.098-24.404,79.85c0.161,5.041,0.559,9.683,1.203,14.103 c1.737,12.679,5.23,24.822,10.381,36.091c1.639,3.587,5.124,5.977,9.06,6.213c3.923,0.237,7.681-1.718,9.739-5.083 c0.858-1.403,1.961-3.152,3.178-4.866c4.755,14.445,12.024,27.423,21.253,37.669c3.937,4.371,8.189,8.173,12.667,11.416 c-2.586,22.469-21.715,39.977-44.866,39.977c-0.356,0-0.708,0.019-1.056,0.053c-31.374,1.112-56.558,26.967-56.558,58.607v63.14 c0,5.891,4.776,10.666,10.666,10.666h260.346c5.89,0,10.666-4.775,10.666-10.666v-63.14 C512,364.422,486.815,338.568,455.441,337.455z M290.112,225.625c-1.052-4.108-1.876-8.321-2.467-12.626 c-0.54-3.708-0.868-7.568-1.003-11.799c-0.794-24.837,6.31-48.341,20.004-66.18c13.208-17.208,31.01-27.02,50.128-27.631 c0.639-0.021,14.387-0.795,28.421,6.277c1.569,0.79,3.377,1.157,5.138,1.107c0.202-0.006,5.677-0.265,5.836-0.263 c16.02,0.106,31.362,7.741,43.203,21.497c12.331,14.328,19.487,33.622,20.149,54.329c0.359,11.247-1.221,22.18-4.567,32.239 c-1.008-2.686-2.132-5.331-3.369-7.932c-10.298-21.91-27.633-38.881-48.812-47.788c-2.683-1.128-5.709-1.111-8.378,0.047 c-2.67,1.157-4.75,3.355-5.759,6.085c-1.42,3.836-3.14,7.573-5.116,11.106c-5.584,9.986-16.842,15.927-29.361,15.489 c-1.879-0.064-3.786-0.067-5.666-0.007c-9.223,0.295-18.217,2.053-26.78,5.242C313.255,208.009,299.041,216.018,290.112,225.625z M316.351,231.43c4.044-2.709,8.347-4.94,12.853-6.643c6.344-2.362,13.063-3.672,19.97-3.893c1.41-0.046,2.838-0.044,4.246,0.005 c20.594,0.705,39.217-9.405,48.718-26.396c0.584-1.045,1.152-2.106,1.701-3.177c9.728,5.993,18.043,14.44,24.295,24.692 c-0.054,0.316-0.1,0.633-0.126,0.959c-1.636,20.237-8.617,38.809-19.658,52.295c-10.429,12.741-23.653,19.757-37.236,19.757 C346.004,289.027,323.666,265.158,316.351,231.43z M352.654,307.492c6.003,1.876,12.194,2.866,18.46,2.866 c6.384,0,12.597-0.994,18.555-2.864c4.284,18.163,16.029,33.466,31.818,42.495c-6.159,22.255-26.627,38.258-50.324,38.258 c-23.699,0-44.166-16.004-50.324-38.26C336.626,340.96,348.371,325.656,352.654,307.492z M490.669,448.537H251.654v-52.475 c0-20.583,16.746-37.33,37.33-37.33c0.356,0,0.708-0.019,1.056-0.053c3.673-0.115,7.274-0.519,10.775-1.209 c9.265,30.416,37.613,52.11,70.347,52.11c32.734,0,61.081-21.694,70.348-52.109c3.5,0.69,7.101,1.094,10.773,1.208 c0.348,0.034,0.7,0.053,1.056,0.053c20.584,0,37.33,16.746,37.33,37.33V448.537z"></path> </g> </g> </g></svg>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="text-gray-500"></div>
+                            <div class="text-sm md:text-lg text-gray-500"></div>
                             <div>
-                                <h3 class="text-lg font-semibold text-blue-600">{{ __('messages.Passengers') }}</h3>
-                                <p class="text-black"> @if ($ride->passengers->isNotEmpty())
+                                <h3 class="text-sm md:text-lg font-semibold text-blue-600">{{ __('messages.Passengers') }}</h3>
+                                <p class="text-sm md:text-lg text-black"> @if ($ride->passengers->isNotEmpty())
 
                                         @foreach ($ride->passengers as $passenger)
                                             {{ $passenger->name }}
@@ -589,7 +591,7 @@
                     <!-- Planned Time Card -->
                     <div class="flex items-center space-x-4 bg-white shadow-md border rounded-xl border-blue-400 p-4">
                         <div class="text-center">
-                            <p class="text-3xl font-bold text-gray-600"></p>
+                            <p class="text-sm md:text-lg text-3xl font-bold text-gray-600"></p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256" fill="#000000">
                                 <circle cx="128" cy="128" r="95.9" fill="none" stroke="#000" stroke-width="16" />
                                 <path d="M80 211L64 240M176 211l16 29" fill="none" stroke="#000" stroke-width="16" stroke-linecap="round" />
@@ -599,10 +601,10 @@
                             </svg>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="text-gray-500"></div>
+                            <div class="text-sm md:text-lg text-gray-500"></div>
                             <div>
-                                <h3 class="text-lg font-semibold text-blue-600"> {{ __('messages.Planned Time') }}</h3>
-                                <p class="text-black">
+                                <h3 class="text-sm md:text-lg font-semibold text-blue-600"> {{ __('messages.Planned Time') }}</h3>
+                                <p class="text-sm md:text-lg text-black">
                                     {{ $ride->departure_time->format('H:i') }}
                                     →
                                     {{ $ride->arrival_time->format('H:i') }}
@@ -612,32 +614,33 @@
                     </div>
 
                     <!-- Price Card -->
-                    <div class="flex items-center shadow-md border border-blue-400 rounded-xl p-4 space-x-4">
+                    <div class="flex items-center shadow-md border border-blue-400 rounded-xl p-4 space-x-4 bg-white">
                         <div class="text-center">
-                            <p class="text-3xl font-bold text-gray-600"></p>
+                            <p class="text-sm md:text-lg font-bold text-gray-600"></p>
                             <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="30" height="30" stroke-width="3" stroke="#000000" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle cx="31.1" cy="31.05" r="25.29"></circle><path d="M41.19,40.91a12.43,12.43,0,1,1-2.34-21.14"></path><line x1="14.99" y1="28.04" x2="35.67" y2="28.04"></line><line x1="14.99" y1="34.34" x2="33.17" y2="34.34"></line></g></svg>
 
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="text-gray-500"></div>
+                            <div class="text-sm md:text-lg text-gray-500"></div>
                             <div>
-                                <h3 class="text-lg font-semibold text-blue-600">{{ __('messages.Price:') }}</h3>
-                                <p class="text-black"> {{ $ride->price }} €</p>
+                                <h3 class="text-sm md:text-lg font-semibold text-blue-600">{{ __('messages.Price:') }}</h3>
+                                <p class="text-sm md:text-lg text-black"> {{ $ride->price }} €</p>
                             </div>
                         </div>
                     </div>
 
+
                     <!-- Started at Card -->
                     <div class="flex items-center space-x-4 bg-white shadow-md border border-blue-400 rounded-xl p-4">
                         <div class="text-center">
-                            <p class="text-3xl font-bold text-gray-600"></p>
+                            <p class="text-sm md:text-lg font-bold text-gray-600"></p>
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="39" height="39" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M18 11a5 5 0 1 0-4.95-5A5.006 5.006 0 0 0 18 11zm0-9a4 4 0 1 1-4 4 4.005 4.005 0 0 1 4-4zm2 5h-3V3h1v3h2zm-5 10a1.996 1.996 0 0 0-1.505-1.93l-.013-.07H15v-1h-1.702l-.296-1.605A1.829 1.829 0 0 0 11.394 11H4.606a1.829 1.829 0 0 0-1.608 1.395L2.702 14H1v1h1.518l-.013.07A1.996 1.996 0 0 0 1 17v6h22v-1h-8zM3.981 12.576c.075-.256.387-.576.625-.576h6.788c.238 0 .55.32.643.658l.43 2.342H3.534zM3 22H2v-1h1zm9 0H4v-1h8zm2 0h-1v-1h1zm-1-3a1 1 0 0 0 1-1v2H2v-2a1 1 0 0 0 1 1h1l-1-2H2a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1h-1l-1 2zm-8-1h6v1H5z"></path><path fill="none" d="M0 0h24v24H0z"></path></g></svg>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="text-gray-500"></div>
+                            <div class="text-sm md:text-lg text-gray-500"></div>
                             <div>
-                                <h3 class="text-lg font-semibold text-blue-600">{{ __('messages.Started at:') }}</h3>
-                                <p class="text-black">
+                                <h3 class="text-sm md:text-lg font-semibold text-blue-600">{{ __('messages.Started at:') }}</h3>
+                                <p class="text-sm md:text-lg text-black">
                                     {{ __('messages.Started at:') }} {{ \Carbon\Carbon::parse($ride->start_time)->format('H:i') }}
                                 </p>
                             </div>
@@ -653,8 +656,8 @@
                         <div class="flex items-center space-x-4">
                             <div class="text-gray-500"></div>
                             <div>
-                                <h3 class="text-lg font-semibold text-blue-600"> {{ __('messages.Ended at:') }}</h3>
-                                <p class="text-black">
+                                <h3 class="text-sm md:text-lg font-semibold text-blue-600"> {{ __('messages.Ended at:') }}</h3>
+                                <p class="text-sm md:text-lg text-black">
                                     {{ __('messages.Ended at:') }} {{ \Carbon\Carbon::parse($ride->end_time)->format('H:i') }}
                                 </p>
                             </div>

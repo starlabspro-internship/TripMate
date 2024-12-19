@@ -272,6 +272,7 @@ return [
 'User Status' => 'User Status',
 'Phone:' => 'Phone:',
 'Gender:' => 'Gender:',
+'Users:' => 'Users:',
 
 
 'Mark All As Read' => 'Mark All As Read',
@@ -309,6 +310,31 @@ return [
 'Your background document has been flagged!' => 'Your background document has been flagged!',
 'Your profile has been verified successfully!' => 'Your profile has been verified successfully!',
 'Your profile has been Rejected!' => 'Your profile has been Rejected!',
+
+'My Rides' => 'My Rides',
+'My Drives' => 'My Drives',
+'Trip Cancelled' => 'Trip Cancelled',
+
+
+
+'Rides Of' => 'Rides Of',
+'Drives Of' => 'Drives Of',
+
+
+
+
+'Users' => 'Users',
+'Trips' => 'Trips',
+'Verified Users with drivers license' => 'Verified Users with drivers license',
+'Unverified Users' => 'Unverified Users',
+
+
+
+
+
+
+
+
 
 
 

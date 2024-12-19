@@ -245,8 +245,13 @@ return [
 'My Transactions' => 'Mes transactions',
 'All Booked Up' => 'Complet',
 
+'My Rides' => 'Trajets en tant que passager',
+'My Drives' => 'Trajets en tant que conducteur',
+'Trip Cancelled' => 'Voyage Annulé',
 
 
+'Rides Of' => 'Trajets de',
+'Drives Of' => 'Conduites de',
 
 
 

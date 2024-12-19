@@ -263,6 +263,7 @@ return [
 'User Status' => 'Statusi i përdoruesit',
 'Phone:' => 'Telefoni:',
 'Gender:' => 'Gjinia:',
+'Users:' => 'Përdoruesit:',
 
 
     'Mark All As Read' => 'Shëno të gjitha si të lexuara',
@@ -301,6 +302,30 @@ return [
     'Your background document has been flagged!' => 'Dokumeti juaj për të kaluarën penale nuk është verifikuar!',
     'Your profile has been verified successfully!' => 'Profili juaj është verifikuar me sukses!',
     'Your profile has been Rejected!' => 'Profili juaj nuk ka mundur të verifikohet!',
+
+
+    'My Rides' => 'Udhëtimet si pasagjer',
+    'My Drives' => 'Udhëtimet si shofer',
+    'Trip Cancelled' => 'Udhëtimi u anulua',
+
+
+
+
+
+'Users' => 'Përdoruesit',
+'Trips' => 'Udhëtimet',
+'Verified Users with drivers license' => 'Përdorues të verifikuar me patentë shoferi',
+'Unverified Users' => 'Përdorues të paverifikuar',
+
+
+'Rides Of' => 'Udhëtimet si pasagjer për',
+'Drives Of' => 'Udhëtimet si shofer për',
+
+  
+
+
+
+
 
 
 

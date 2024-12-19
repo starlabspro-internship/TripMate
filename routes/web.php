@@ -15,6 +15,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\UserVerifyController;
 use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\PassengerRatingController;
 use Illuminate\Support\Facades\Artisan;
 
 
@@ -46,6 +47,8 @@ Route::middleware('ifnotauth')->prefix('bookings')->name('bookings.')->controlle
     Route::get('/{id}', 'show')->name('show');
     Route::delete('/{id}', 'destroy')->name('destroy');
 });
+
+Route::post('/passenger-ratings', [PassengerRatingController::class, 'store'])->middleware('auth')->name('passenger-ratings.store');
 
 Route::get('/home', function(){
     if (Auth::check()) {
@@ -137,6 +140,9 @@ Route::get('language/{locale}', function($locale){
     return redirect()->back();
 })->name('localization');
 
+
+Route::get('/cities-with-user-count', [UserVerifyController::class, 'getCitiesWithUserCount'])->middleware('auth');
+
 Route::get('/clear-cache-and-seed', function () {
     // Clear caches
     Artisan::call('cache:clear');
@@ -149,5 +155,6 @@ Route::get('/clear-cache-and-seed', function () {
 
     return 'Caches cleared and database seeded successfully!';
 });
+
 
 require __DIR__.'/auth.php';

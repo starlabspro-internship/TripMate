@@ -14,7 +14,6 @@
         <meta name="apple-mobile-web-app-title" content="TripMate" />
         <link rel="manifest" href="/storage/favicons/site.webmanifest" />
 
-
         <!-- Scripts -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v4.0.0/dist/tesseract.min.js"></script>
@@ -31,7 +30,7 @@
 
         @vite('resources/js/app.js')
     </head>
-    <body class="min-h-screen bg-[#f5f5f5] dark:bg-[#0F172A] font-roboto antialiased w-full md:absolute md:w-navbar">
+    <body class="min-h-screen bg-[#28666e] font-roboto antialiased w-full md:absolute md:w-navbar">
 
         <div class="flex flex-col">
             @include('components.success')
@@ -62,6 +61,7 @@
                 @endif
             @endisset
 
+           @include('components.end-modal')         
 
             <!-- Page Content -->
             <main>
