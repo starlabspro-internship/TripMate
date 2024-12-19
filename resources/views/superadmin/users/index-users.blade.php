@@ -1,12 +1,12 @@
 <x-app-layout>
-    <div x-data="{ currentTab: 'pending', search: '', filteredUsers() { /* your filtering logic */ } }" class="container mx-auto mt-5 px-5 sm:px-10 lg:px-20">
+    <div x-data="{ currentTab: 'pending', search: '', filteredUsers() { /* your filtering logic */ } }" class="container mx-auto mt-5 px-4 sm:px-6 lg:px-8 xl:px-10">
         
         <!-- Tab Buttons -->
         <div class="w-full flex justify-center items-center mb-6">
-            <div class="flex gap-1 bg-gray-300 px-0 py-0 rounded-full shadow-sm relative mt-5 w-full sm:w-auto">
+            <div class="flex gap-1 bg-gray-300 px-0 py-0 rounded-full shadow-sm relative mt-5 w-full w-full sm:w-auto sm:mt-5">
                 <button @click="currentTab = 'pending'" 
                     :class="currentTab === 'pending' ? 'bg-white text-gray-700 shadow-md' : 'bg-gray-300 text-white'" 
-                    class="w-full sm:w-auto lg:w-64 px-6 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 whitespace-nowrap text-center">
+                    class="flex-1 sm:flex-none w-full sm:w-auto px-2 py-2 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 whitespace-nowrap text-center">
                     Pending Verification
                 </button>
                 <button @click="currentTab = 'rejected'" 
