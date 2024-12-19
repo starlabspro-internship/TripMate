@@ -302,22 +302,22 @@
                 </div>
             </div>
 
+
             <!-- Ride History Section -->
             <div x-data="tabs()"  class="flex flex-col w-full 2xl:w-2/3 overflow-y-auto max-h-[430px]">
-                <div class="mb-4 container mx-auto px-2 py-4 bg-white rounded-lg shadow-xl flex-1 overflow-y-auto">
-                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">
+                <div class="mb-4 container mx-auto px-3 py-7 bg-white rounded-lg shadow-xl flex-1 overflow-y-auto">
+                    <h2 class=" lg:ml-[60px] text-xl sm:text-2xl xs:text-md  font-bold mt-4 mb-2 text-gray-800">
                         {{ __('messages.Completed Rides Of') . ' ' . auth()->user()->name }}
-
-
                     </h2>
-                    <div class="flex gap-2 mb-4">
+                    <div class="lg:ml-[25px] flex gap-4 mb-1 lg:p-10 py-10 ">
                         <button @click="currentTab = 'driver'"
-                                class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm">
-                                {{ __('messages.Driver') }}
+                                class="px-7 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm ">
+                            {{ __('messages.Driver') }}
+
                         </button>
                         <button @click="currentTab = 'passenger'"
                                 class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm">
-                                {{ __('messages.Passenger') }}
+                            {{ __('messages.Passenger') }}
                         </button>
                     </div>
                     <div id="bookings" class="space-y-4 ">
@@ -331,7 +331,7 @@
             <div class="flex justify-between items-center p-4 cursor-pointer bg-white" onclick="toggleDetails(this)">
                 <div>
 
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-5">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M17.197 5.46A.824.824 0 0 0 16.5 5h-9a.824.824 0 0 0-.697.46l-1.988 4.638L5.285 9H3v1.5a.501.501 0 0 0 .5.5 2.572 2.572 0 0 1 .367-.388A2.532 2.532 0 0 0 3 12.522V19.5a.501.501 0 0 0 .5.5h2a.501.501 0 0 0 .5-.5v-1.831A46.229 46.229 0 0 0 12 18a46.244 46.244 0 0 0 6.001-.331L18 19.5a.501.501 0 0 0 .5.5h2a.501.501 0 0 0 .5-.5v-6.978a2.534 2.534 0 0 0-.87-1.909 2.523 2.523 0 0 1 .359.387h.011a.501.501 0 0 0 .5-.5V9h-2.286zM7.66 6h8.68l1.715 4H5.945zM5 19H4v-1.79a1.983 1.983 0 0 0 .613.235c.118.024.254.048.387.071zm15 0h-1v-1.484c.133-.023.269-.047.387-.07A1.989 1.989 0 0 0 20 17.21zm-.525-7.632A1.53 1.53 0 0 1 20 12.522v2.946a1.015 1.015 0 0 1-.808.997A43.178 43.178 0 0 1 12 17a43.255 43.255 0 0 1-7.192-.535A1.015 1.015 0 0 1 4 15.468v-2.946a1.532 1.532 0 0 1 .524-1.156 1.49 1.49 0 0 1 .568-.307L5.296 11h13.406l.205.06a1.493 1.493 0 0 1 .568.308zM17 13h2v1a1 1 0 0 1-1 1h-2zM7 13l1 2H6a1 1 0 0 1-1-1v-1zm2 1h6v1H9z"></path><path fill="none" d="M0 0h24v24H0z"></path></g></svg>
                         <h3 class="text-lg font-medium text-gray-900 flex items-center gap-2">
                             {{ $ride->trip->origincity->name }}
@@ -352,7 +352,7 @@
                     <path d="M12 15l-6-6h12l-6 6z"/>
                 </svg>
             </div>
-            <div class="details hidden px-4 py-2 ">
+            <div class="details hidden px-4 py-2 bg-blue-100">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:p-6">
 
                     <!-- Driver Card  -->
@@ -439,7 +439,7 @@
 
 
                     <!-- Price Card -->
-                    <div class="flex items-center space-x-4 shadow-md border border-blue-400 rounded-xl p-4">
+                    <div class="bg-white flex items-center space-x-4 shadow-md border border-blue-400 rounded-xl p-4">
                         <div class="text-center">
                             <p class="text-3xl font-bold text-gray-600"></p>
                             <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="30" height="30" stroke-width="3" stroke="#000000" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle cx="31.1" cy="31.05" r="25.29"></circle><path d="M41.19,40.91a12.43,12.43,0,1,1-2.34-21.14"></path><line x1="14.99" y1="28.04" x2="35.67" y2="28.04"></line><line x1="14.99" y1="34.34" x2="33.17" y2="34.34"></line></g></svg>
@@ -507,7 +507,7 @@
             <div class="flex justify-between items-center p-4 cursor-pointer bg-white" onclick="toggleDetails(this)">
                 <div>
 
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-5">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M17.197 5.46A.824.824 0 0 0 16.5 5h-9a.824.824 0 0 0-.697.46l-1.988 4.638L5.285 9H3v1.5a.501.501 0 0 0 .5.5 2.572 2.572 0 0 1 .367-.388A2.532 2.532 0 0 0 3 12.522V19.5a.501.501 0 0 0 .5.5h2a.501.501 0 0 0 .5-.5v-1.831A46.229 46.229 0 0 0 12 18a46.244 46.244 0 0 0 6.001-.331L18 19.5a.501.501 0 0 0 .5.5h2a.501.501 0 0 0 .5-.5v-6.978a2.534 2.534 0 0 0-.87-1.909 2.523 2.523 0 0 1 .359.387h.011a.501.501 0 0 0 .5-.5V9h-2.286zM7.66 6h8.68l1.715 4H5.945zM5 19H4v-1.79a1.983 1.983 0 0 0 .613.235c.118.024.254.048.387.071zm15 0h-1v-1.484c.133-.023.269-.047.387-.07A1.989 1.989 0 0 0 20 17.21zm-.525-7.632A1.53 1.53 0 0 1 20 12.522v2.946a1.015 1.015 0 0 1-.808.997A43.178 43.178 0 0 1 12 17a43.255 43.255 0 0 1-7.192-.535A1.015 1.015 0 0 1 4 15.468v-2.946a1.532 1.532 0 0 1 .524-1.156 1.49 1.49 0 0 1 .568-.307L5.296 11h13.406l.205.06a1.493 1.493 0 0 1 .568.308zM17 13h2v1a1 1 0 0 1-1 1h-2zM7 13l1 2H6a1 1 0 0 1-1-1v-1zm2 1h6v1H9z"></path><path fill="none" d="M0 0h24v24H0z"></path></g></svg>
                         <h3 class="text-lg font-medium text-gray-900 flex items-center gap-2">
                             {{ $ride->origincity->name }}
@@ -528,7 +528,7 @@
                     <path d="M12 15l-6-6h12l-6 6z"/>
                 </svg>
             </div>
-            <div class="details hidden px-4 py-2 ">
+            <div class="details hidden px-4 py-2 bg-blue-100 ">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:p-6">
 
                     <!-- Driver Card -->
@@ -612,7 +612,7 @@
                     </div>
 
                     <!-- Price Card -->
-                    <div class="flex items-center shadow-md border border-blue-400 rounded-xl p-4 space-x-4">
+                    <div class="flex items-center shadow-md border border-blue-400 rounded-xl p-4 space-x-4 bg-white">
                         <div class="text-center">
                             <p class="text-3xl font-bold text-gray-600"></p>
                             <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="30" height="30" stroke-width="3" stroke="#000000" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle cx="31.1" cy="31.05" r="25.29"></circle><path d="M41.19,40.91a12.43,12.43,0,1,1-2.34-21.14"></path><line x1="14.99" y1="28.04" x2="35.67" y2="28.04"></line><line x1="14.99" y1="34.34" x2="33.17" y2="34.34"></line></g></svg>
@@ -626,6 +626,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <!-- Started at Card -->
                     <div class="flex items-center space-x-4 bg-white shadow-md border border-blue-400 rounded-xl p-4">
