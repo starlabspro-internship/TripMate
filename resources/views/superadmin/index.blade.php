@@ -43,10 +43,7 @@
             </div>
         </div>
 
-        {{--<div class="border-t border-gray-300 mx-auto" style="width: 98.8%;"></div>--}}
-        <div class="border-t border-gray-300 mx-auto w-full rounded-r-lg"></div>
-
-        <div x-show="currentTab === 'users'" 
+        <div id="users" x-show="currentTab === 'users'" 
         class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
        <table class="w-full text-left table-auto border-collapse">
            <thead>
