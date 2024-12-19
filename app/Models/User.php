@@ -46,12 +46,12 @@ public function givenRatings()
     return $this->hasMany(PassengerRating::class, 'reviewer_id');
 }
 
-// public function updateAverageRating()
-// {
-//     $average = $this->receivedRatings()->avg('rating'); 
-//     $this->average_rating = round($average, 1);        
-//     $this->save();                                      
-// }
+public function updateAverageRating()
+{
+    $average = $this->receivedRatings()->avg('rating'); 
+    $this->average_rating = round($average, 1);        
+    $this->save();                                      
+}
 
     public function isSuperAdmin()
     {
