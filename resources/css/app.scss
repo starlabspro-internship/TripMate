@@ -108,3 +108,34 @@ ul {
 p#txt-mail {
 color: white !important;
 }
+
+#camera-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+@media (max-width: 1024px) {
+    #camera {
+        width: 100%;
+        max-width: 480px;
+    }
+}
+@media (max-width: 500px) {
+    #camera {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 380px) {
+    #camera {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+@media (max-width: 350px) {
+    #camera {
+        width: 100%;
+        max-width: 200px;
+    }
+}
