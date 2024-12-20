@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="container px-6 py-8 mx-auto">
         <div class="text-center bg-white p-6 rounded-md shadow-sm mb-6">
-            <h1 class="text-4xl font-bold text-blue-700">{{ __('messages.Welcome') }} , {{ Auth::user()->name }}!</h1>
+            <h1 class="text-4xl font-bold text-customgreen-500">{{ __('messages.Welcome') }} , {{ Auth::user()->name }}!</h1>
             <p class="text-lg text-gray-600 mt-2">{{ __('messages.Start your journey, one trip at a time!') }}</p>
         </div>
 
@@ -10,7 +10,8 @@
                 <!-- Total Users -->
                 <div class="w-full px-6 mt-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
                     <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm">
-                        <div class="p-3 bg-blue-600 bg-opacity-75 rounded-full">
+                      
+                        <div class="p-3 bg-indigo-600 bg-opacity-75 rounded-full">
                             <img src="{{ asset('storage/icons/users.svg') }}" alt="Users" class="h-6 w-6"/>
                         </div>
                         <div class="mx-5">
@@ -19,13 +20,14 @@
                                 <div class="text-gray-500">{{ __('messages.Total Users') }}</div>
                             </a>
                         </div>
+                    
                     </div>
                 </div>
 
                 <!-- Total Trips -->
                 <div class="w-full px-6 mt-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
                     <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm">
-                        <div class="p-3 bg-blue-600 bg-opacity-75 rounded-full">
+                        <div class="p-3 bg-indigo-600 bg-opacity-75 rounded-full">
                             <img src="{{ asset('storage/icons/road.svg') }}" alt="Trips" class="h-6 w-6"/>
                         </div>
                         <div class="mx-5">
@@ -40,7 +42,7 @@
                 <!-- Total Bookings -->
                 <div class="w-full px-6 mt-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
                     <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm">
-                        <div class="p-3 bg-blue-600 bg-opacity-75 rounded-full">
+                        <div class="p-3 bg-indigo-600 bg-opacity-75 rounded-full">
                             <img src="{{ asset('storage/icons/cars.svg') }}" alt="Bookings" class="h-6 w-6"/>
                         </div>
                         <div class="mx-5">
@@ -59,7 +61,7 @@
                 </div>
             </div>
             <div class="mt-8">
-                <h3 class="text-2xl font-medium text-gray-700 mb-6">{{ __('messages.Analytics') }}</h3>
+                <h3 class="text-2xl font-medium text-white mb-6">{{ __('messages.Analytics') }}</h3>
                 <div class="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
                     <!-- First Chart -->
                     <div class="flex-1 bg-white p-6 rounded-lg shadow-md">
@@ -137,7 +139,7 @@
                         {{ $nullStatusUsers }},
                     ],
                     backgroundColor: [
-                        '#32CD32', 
+                        '#90DB89', 
                         '#FF6347', 
                     ],
                     borderWidth: 1
@@ -169,9 +171,9 @@
                     label: 'Distribution',
                     data: [{{ $totalUsers }}, {{ $totalTrips }}, {{ $totalBookings }}], // Replace with dynamic data
                     backgroundColor: [
-                        '#4682B4', // Teal Blue for Users
+                        '#607ADB', // Teal Blue for Users
                         '#FFBF00', // Warm Amber for Trips
-                        '#FF7F50', // Muted Coral for Bookings
+                        '#39CEDB', // Muted Coral for Bookings
                     ],
                     hoverOffset: 4
                 }]
