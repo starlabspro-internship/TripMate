@@ -99,7 +99,7 @@
 
 
 
-<div id="rides-list" class="grid grid-cols-1 mb-4 gap-6 sm:grid-cols-2 lg:grid-cols-3 hover px-4 mt-20">
+<div id="rides-list" class="grid grid-cols-1 gap-6 mb-4 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-6 lg:px-8 mt-20">
     @foreach ($trips as $trip)
     
 
@@ -286,32 +286,39 @@
 
        
 
-        <div class="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-4 mb-2 ">
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-2">
             <!-- Departure Time -->
-            <div class="flex flex-col items-center ">
-                <p class="text-gray-500 text-xs mb-1">{{ __('messages.Departure Time:') }}</p>
+            <div class="flex flex-col items-center sm:items-center w-full sm:w-auto">
+                <p class="text-gray-500 text-xs text-center  mb-1">
+                    {{ __('messages.Departure Time:') }}
+                </p>
                 <span class="flex items-center justify-center w-24 h-6 px-3 text-sm rounded-full bg-white text-gray-800 text-center border border-gray-200">
                     {{ \Carbon\Carbon::parse($trip->departure_time)->format('H:i') }}
                 </span>
             </div>
         
             <!-- Seats Booked -->
-            <div class="flex flex-col items-center ">
-                <p class="text-gray-500 text-xs mb-1">{{ __('messages.Available Seats:') }}</p>
-                <span class="flex items-center justify-center w-24 h-6 px-3 text-sm bg-white rounded-full text-gray-800 text-center border-gray-200">
+            <div class="flex flex-col items-center sm:items-center w-full sm:w-auto">
+                <p class="text-gray-500 text-xs text-center
+                 mb-1">
+                    {{ __('messages.Available Seats:') }}
+                </p>
+                <span class="flex items-center justify-center w-24 h-6 px-3 text-sm bg-white rounded-full text-gray-800 text-center border border-gray-200">
                     {{ $trip->available_seats }}
                 </span>
             </div>
         
             <!-- Price -->
-            <div class="flex flex-col items-center ">
-                <p class="text-gray-500 text-xs mb-1">{{ __('messages.Price:') }}</p>
-                <span class="flex items-center justify-center w-24 h-6 px-3  bg-white rounded-full text-sm text-gray-800 text-center border-gray-200">
+            <div class="flex flex-col items-center sm:items-center w-full sm:w-auto">
+                <p class="text-gray-500 text-xs text-center  mb-1">
+                    {{ __('messages.Price:') }}
+                </p>
+                <span class="flex items-center justify-center w-24 h-6 px-3 bg-white rounded-full text-sm text-gray-800 text-center border border-gray-200">
                     {{ $trip->price }}€
-            
                 </span>
             </div>
         </div>
+        
         
         
     </div>
