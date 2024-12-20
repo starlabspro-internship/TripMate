@@ -118,7 +118,7 @@ return [
 'Tables' => 'Tabelat',
 
 'Welcome' => 'Mirësevini',
-'Start your journey, one trip at a time!' => 'Filloni rrugetimin tuaj, me nga nje udhetim!',
+'Start your journey, one trip at a time!' => 'Filloni rrugëtimin tuaj me një udhëtim!',
 'Total Users' => 'Përdoruesit total',
 'Total Trips' => 'Udhëtimet totale',
 'Total Bookings' => 'Rezervimet totale',
@@ -292,7 +292,7 @@ return [
 //notification messages at trips
 
     'Your trip from' => 'Udhëtimi juaj nga ',
-    'has been created' => ' ështe krijuar.',
+    'has been created' => ' është krijuar.',
     'has been canceled from the driver. Your' => ' është anuluar nga shoferi. ',
     '€ has been refunded.' => '€ janë rimbursuar',
 
