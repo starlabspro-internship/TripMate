@@ -3,15 +3,15 @@
         
         <!-- Tab Buttons -->
         <div class="w-full flex justify-center items-center mb-6">
-            <div class="flex gap-1 bg-gray-300 px-0 py-0 rounded-full shadow-sm relative mt-5 w-full w-full sm:w-auto sm:mt-5">
+            <div class="flex gap-1 bg-gray-300 px-0 py-0 rounded-full shadow-sm relative mt-5 w-full sm:w-auto sm:mt-5">
                 <button @click="currentTab = 'pending'" 
                     :class="currentTab === 'pending' ? 'bg-white text-gray-700 shadow-md' : 'bg-gray-300 text-white'" 
-                    class="flex-1 sm:flex-none w-full sm:w-auto px-2 py-2 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 whitespace-nowrap text-center">
+                    class="flex-1 lg:w-64 sm:flex-none w-full sm:w-auto px-2 py-2 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 whitespace-nowrap text-center">
                     Pending Verification
                 </button>
                 <button @click="currentTab = 'rejected'" 
                     :class="currentTab === 'rejected' ? 'bg-white text-gray-700 shadow-md' : 'bg-gray-300 text-white'" 
-                    class="w-full sm:w-auto lg:w-64 px-6 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 whitespace-nowrap text-center">
+                    class="flex-1 lg:w-64 sm:flex-none w-full sm:w-auto px-2 py-2 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 whitespace-nowrap text-center">
                     Rejected Users
                 </button>
             </div>
@@ -61,7 +61,7 @@
                     </thead>
                     <tbody>
                         @foreach($pendingUsers->where('id', '!=', auth()->id()) as $user)
-                            <tr class="bg-gray-100">
+                            <tr class="bg-gray-100 hover:bg-gray-200">
                                 <td class="p-4 text-sm sm:text-base text-left">{{ $user->name }}</td>
                                 <td class="p-4 text-sm sm:text-base text-left">{{ ucfirst($user->verification_status) }}</td>
                                 <td class="p-4 text-sm sm:text-base text-left">
@@ -103,7 +103,7 @@
             </thead>
             <tbody>
                 @foreach($rejectedUsers->where('id', '!=', auth()->id()) as $user)
-                    <tr class="bg-gray-100">
+                    <tr class="bg-gray-100 hover:bg-gray-200">
                         <td class="p-4 text-sm sm:text-base text-left">{{ $user->name }}</td>
                         <td class="p-4 text-sm sm:text-base text-left">{{ ucfirst($user->verification_status) }}</td>
                         <td class="p-4 text-sm sm:text-base text-left">
