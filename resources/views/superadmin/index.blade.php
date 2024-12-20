@@ -1,14 +1,14 @@
 <x-app-layout>
-    <div x-data="userSearch()" class="px-20 mx-auto ">
+    <div x-data="userSearch()" class="px-4 sm:px-10 lg:px-20 mx-auto ">
         <div class="w-full flex justify-center items-center mb-3 mt-5 ">
-            <div class="flex gap-1 bg-gray-300 px-0 py-0 rounded-full shadow-sm relative mt-5">
-                <button @click="currentTab = 'users'" :class="currentTab === 'users' ? 'bg-white text-gray-700  shadow-md' : 'bg-gray-300 text-white'" class="flex-1 px-20 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300">
+            <div class="flex gap-1 bg-gray-300 px-0 py-0 rounded-full shadow-sm relative mt-5 w-full sm:w-auto">
+                <button @click="currentTab = 'users'" :class="currentTab === 'users' ? 'bg-white text-gray-700  shadow-md' : 'bg-gray-300 text-white'" class="flex-1 sm:flex-none px-6 sm:px-12 lg:px-20 py-2 rounded-full text-xs sm:text-sm lg:text-base font-semibold transition-all duration-300 text-center">
                     Users
                 </button>
-                <button @click="currentTab = 'bookings'" :class="currentTab === 'bookings' ? 'bg-white text-gray-700  shadow-md' : 'bg-gray-300 text-white'" class="flex-1 px-20 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300">
+                <button @click="currentTab = 'bookings'" :class="currentTab === 'bookings' ? 'bg-white text-gray-700  shadow-md' : 'bg-gray-300 text-white'" class="flex-1 sm:flex-none px-6 sm:px-12 lg:px-20 py-2 rounded-full text-xs sm:text-sm lg:text-base font-semibold transition-all duration-300 text-center">
                     Bookings
                 </button>
-                <button @click="currentTab = 'trips'" :class="currentTab === 'trips' ? 'bg-white text-gray-700 shadow-md' : 'bg-gray-300 text-white'" class="flex-1 px-20 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300">
+                <button @click="currentTab = 'trips'" :class="currentTab === 'trips' ? 'bg-white text-gray-700 shadow-md' : 'bg-gray-300 text-white'" class="flex-1 sm:flex-none px-6 sm:px-12 lg:px-20 py-2 rounded-full text-xs sm:text-sm lg:text-base font-semibold transition-all duration-300 text-center">
                     Trips
                 </button>
             </div>
@@ -43,62 +43,62 @@
             </div>
         </div>
 
-        <div id="users" x-show="currentTab === 'users'" 
-        class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
-       <table class="w-full text-left table-auto border-collapse">
-           <thead>
-               <tr class="border-b border-slate-300 bg-white-500">
-                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Image</th>
-                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Name</th>
-                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Phone</th>
-                   <th class="p-4 text-sm leading-none text-gray-400 text-left">City</th>
-                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Email</th>
-                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Joined</th>
-                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Super Admin</th>
-                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Edit</th>
-                   <th class="p-4 text-sm leading-none text-gray-400 text-left">Delete</th>
+      <div id="users" x-show="currentTab === 'users'" 
+    class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
+   <table class="w-full text-left table-auto border-collapse">
+       <thead>
+           <tr class="border-b border-slate-300 bg-white-500">
+               <th class="p-4 text-sm leading-none text-gray-400 text-left hidden sm:table-cell">Image</th>
+               <th class="p-4 text-sm leading-none text-gray-400 text-left">Name</th>
+               <th class="p-4 text-sm leading-none text-gray-400 text-left">Phone</th>
+               <th class="p-4 text-sm leading-none text-gray-400 text-left">City</th>
+               <th class="p-4 text-sm leading-none text-gray-400 text-left">Email</th>
+               <th class="p-4 text-sm leading-none text-gray-400 text-left">Joined</th>
+               <th class="p-4 text-sm leading-none text-gray-400 text-left">Super Admin</th>
+               <th class="p-4 text-sm leading-none text-gray-400 text-left">Edit</th>
+               <th class="p-4 text-sm leading-none text-gray-400 text-left">Delete</th>
+           </tr>
+       </thead>
+       <tbody>
+           <template x-for="user in filteredUsers()" :key="user.id">
+               <tr class="bg-gray-100">
+                   <td class="border-b border-slate-200 py-5 px-6 hidden sm:table-cell">
+                       <img class="w-14 h-14 object-cover rounded-full"
+                            :src="user.image ? `{{ asset('storage/') }}/${user.image}` : `https://eu.ui-avatars.com/api/${user.name}+${user.lastname}`"
+                            alt="User Image">
+                   </td>
+                   <td class="p-4 border-b border-slate-200 py-5" x-text="`${user.name || ''} ${user.lastname || ''}`"></td>
+                   <td class="p-4 border-b border-slate-200 py-5" x-text="user.phone || ''"></td>
+                   <td class="p-4 border-b border-slate-200 py-5" x-text="user.city || ''"></td>
+                   <td class="p-4 border-b border-slate-200 py-5" x-text="user.email || ''"></td>
+                   <td class="p-4 border-b border-slate-200 py-5" x-text="formatDate(user.created_at) || ''"></td>
+                   <td class="p-4 border-b border-slate-200 py-5" x-text="user.is_super_admin == 1 ? 'Yes' : 'No'"></td>
+                   <td class="p-4 border-b border-slate-200 py-5">
+                       <a :href="`{{ route('superadmin.edit', '') }}/${user.id}`">
+                           <button type="button" class="text-slate-500 hover:text-slate-700">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                   <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                               </svg>
+                           </button>
+                       </a>
+                   </td>
+                   <td class="p-4 border-b border-slate-200 py-5">
+                       <form :action="`{{ route('superadmin.users.destroy', '') }}/${user.id}`" method="POST" @submit.prevent="confirmDelete($event)">
+                           @csrf
+                           @method('DELETE')
+                           <button type="submit" class="text-slate-500 hover:text-slate-700">
+                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                               </svg>
+                           </button>
+                       </form>
+                   </td>
                </tr>
-           </thead>
-           <tbody>
-               <template x-for="user in filteredUsers()" :key="user.id">
-                   <tr class="bg-gray-100">
-                       <td class="border-b border-slate-200 py-5 px-6">
-                           <img class="w-14 h-14 object-cover rounded-full"
-                                :src="user.image ? `{{ asset('storage/') }}/${user.image}` : `https://eu.ui-avatars.com/api/${user.name}+${user.lastname}`"
-                                alt="User Image">
-                       </td>
-                       <td class="p-4 border-b border-slate-200 py-5" x-text="`${user.name || ''} ${user.lastname || ''}`"></td>
-                       <td class="p-4 border-b border-slate-200 py-5" x-text="user.phone || ''"></td>
-                       <td class="p-4 border-b border-slate-200 py-5" x-text="user.city || ''"></td>
-                       <td class="p-4 border-b border-slate-200 py-5" x-text="user.email || ''"></td>
-                       <td class="p-4 border-b border-slate-200 py-5" x-text="formatDate(user.created_at) || ''"></td>
-                       <td class="p-4 border-b border-slate-200 py-5" x-text="user.is_super_admin == 1 ? 'Yes' : 'No'"></td>
-                       <td class="p-4 border-b border-slate-200 py-5">
-                           <a :href="`{{ route('superadmin.edit', '') }}/${user.id}`">
-                               <button type="button" class="text-slate-500 hover:text-slate-700">
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                       <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-                                   </svg>
-                               </button>
-                           </a>
-                       </td>
-                       <td class="p-4 border-b border-slate-200 py-5">
-                           <form :action="`{{ route('superadmin.users.destroy', '') }}/${user.id}`" method="POST" @submit.prevent="confirmDelete($event)">
-                               @csrf
-                               @method('DELETE')
-                               <button type="submit" class="text-slate-500 hover:text-slate-700">
-                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                                       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                   </svg>
-                               </button>
-                           </form>
-                       </td>
-                   </tr>
-               </template>
-           </tbody>
-       </table>
-   </div>
-   
+           </template>
+       </tbody>
+   </table>
+</div>
+
 
         <div id="bookings" x-show="currentTab === 'bookings'" class="relative flex flex-col w-full h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
             <table class="w-full text-left table-auto min-w-max">
