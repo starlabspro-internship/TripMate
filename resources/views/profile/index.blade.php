@@ -305,13 +305,13 @@
 
             <!-- Ride History Section -->
             <div x-data="tabs()" class="flex flex-col w-full xl:w-2/3 max-h-[430px] overflow-y-auto">
-    <div class="mb-4 container mx-auto px-4 sm:px-6 lg:px-8 py-6 bg-white rounded-lg shadow-xl flex-1 overflow-y-auto">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 bg-white rounded-lg shadow-xl flex-1 overflow-y-auto">
         <!-- Titulli -->
-        <h2 class="text-lg sm:text-xl lg:text-2xl font-bold mt-4 mb-4 text-gray-800">
+        <h2 class="text-lg sm:text-xl lg:text-2xl font-bold mt-2 mb-4 text-gray-800">
             {{ __('messages.Completed Rides Of') . ' ' . auth()->user()->name }}
         </h2>
 
-        <div class="flex flex-wrap justify-start lg:justify-start gap-4 mb-6">
+        <div class="flex flex-wrap justify-start lg:justify-start gap-4 mb-6 mt-6">
             <button @click="currentTab = 'driver'" 
                 class="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm sm:text-base">
                 {{ __('messages.Driver') }}

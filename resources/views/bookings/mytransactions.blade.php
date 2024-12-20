@@ -87,25 +87,25 @@
 
       {{-- filteri funksional --}}
       <div class="flex justify-center items-center mb-4 mt-10"> 
-        <form method="GET" action="{{ route('bookings.transactions') }}" class="flex flex-wrap gap-4 items-center justify-center w-full space-x-4">
-            <div class="flex flex-col">
+        <form method="GET" action="{{ route('bookings.transactions') }}" class="flex flex-wrap gap-4 items-center justify-center w-full">
+            <div class="flex flex-col w-40">
                 <label for="date_from" class="block text-sm font-medium text-white">{{ __('messages.From:') }}</label>
                 <input type="date" id="filter_date" name="date_from" 
                        value="{{ request('date_from') }}" 
                        placeholder="{{ __('messages.Select Date') }}"
-                       class="mt-1 block w-32 sm:w-40 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm">
+                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm">
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col w-40">
                 <label for="date_to" class="block text-sm font-medium text-white">{{ __('messages.To:') }}</label>
                 <input type="date" id="filter_date" name="date_to" 
                        value="{{ request('date_to') }}" 
                        placeholder="{{ __('messages.Select Date') }}"
-                       class="mt-1 block w-32 sm:w-40 border-gray-300 rounded-md shadow-sm focus:border-orange-400 focus:ring focus:ring-orange-400 focus:ring-opacity-50 text-sm">
+                       class="mt-1 block w-full  border-gray-300 rounded-md shadow-sm focus:border-orange-400 focus:ring focus:ring-orange-400 focus:ring-opacity-50 text-sm">
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col w-40">
                 <label for="status" class="block text-sm font-medium text-white ">{{ __('messages.Status') }}</label>
                 <select id="status" name="status" 
-                        class="mt-1 block w-32 sm:w-40 px-1 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
+                        class="mt-1 block w-full px-1 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
                     <option value="">{{ __('messages.All') }}</option>
                     <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>{{ __('messages.Paid') }} </option>
                     <option value="refunded" {{ request('status') == 'refunded' ? 'selected' : '' }}>{{ __('messages.Refunded') }}</option>
