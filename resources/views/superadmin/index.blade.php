@@ -42,7 +42,6 @@
                 </div>
             </div>
         </div>
-
       <div id="users" x-show="currentTab === 'users'" 
     class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
    <table class="w-full text-left table-auto border-collapse">
@@ -62,6 +61,7 @@
        <tbody>
            <template x-for="user in filteredUsers()" :key="user.id">
                <tr class="bg-gray-100 hover:bg-gray-200">
+
                    <td class="border-b border-slate-200 py-5 px-6 hidden sm:table-cell">
                        <img class="w-14 h-14 object-cover rounded-full"
                             :src="user.image ? `{{ asset('storage/') }}/${user.image}` : `https://eu.ui-avatars.com/api/${user.name}+${user.lastname}`"
@@ -98,8 +98,6 @@
        </tbody>
    </table>
 </div>
-
-
         <div id="bookings" x-show="currentTab === 'bookings'" class="relative flex flex-col w-full h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
             <table class="w-full text-left table-auto min-w-max">
                 <thead>
