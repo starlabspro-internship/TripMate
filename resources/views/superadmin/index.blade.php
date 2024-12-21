@@ -43,6 +43,7 @@
             </div>
         </div>
 
+
       <div id="users" x-show="currentTab === 'users'" 
     class="relative rounded-lg flex flex-col h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-lg w-full">
    <table class="w-full text-left table-auto border-collapse">
@@ -98,7 +99,6 @@
        </tbody>
    </table>
 </div>
-
 
         <div id="bookings" x-show="currentTab === 'bookings'" class="relative flex flex-col w-full h-full overflow-y-auto max-h-[calc(80vh-100px)] text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
             <table class="w-full text-left table-auto min-w-max">
