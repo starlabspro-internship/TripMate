@@ -4,7 +4,7 @@
         <source src="{{ asset('storage/videos/ride.mp4') }}" type="video/mp4">
     </video>
 
-    <video autoplay loop muted playsinline class="block h-[355px] md:hidden w-full h-full object-cover">
+    <video autoplay loop muted playsinline class="block h-[355px] md:hidden w-full object-cover">
         <source src="{{ asset('storage/videos/ride-mobile.mp4') }}" type="video/mp4">
     </video>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 absolute md:relative">
