@@ -145,7 +145,7 @@
             </div>
             <div class="mb-12">
               @if($moneySent->isEmpty())
-              <div class="text-center text-gray-600">{{ __('messages.No records of payments made by you.') }}</div>
+              <div class="md:text-left ml-4 text-gray-600">{{ __('messages.No records of payments made by you.') }}</div>
           @else
               <div class="flex-auto p-4 pb-0">
                   <ul class="flex flex-col pl-0 mb-0 rounded-lg">
@@ -208,7 +208,7 @@
             </div>
             <div class="mb-12">
               @if($moneyReceived->isEmpty())
-                <div class="text-center text-gray-600">No records of payments received by you.</div>
+                <div class="md:text-left ml-4 text-gray-600">No records of payments received by you.</div>
               @else
                 <div class="flex-auto p-4 pb-0">
                   <ul class="flex flex-col pl-0 mb-0 rounded-lg">
