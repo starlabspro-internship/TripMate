@@ -64,7 +64,7 @@
            @include('components.end-modal')         
 
             <!-- Page Content -->
-            <main>
+            <main class="{{ request()->routeIs('home') ? 'bg-gray-200' : bg-[#28666e]' }}">
                 @if (!Auth::check())
                 {{ $slot }}
                 @endif
