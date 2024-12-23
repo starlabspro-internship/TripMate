@@ -22,7 +22,7 @@
                 </thead>
                 <tbody class="">
                 @foreach($users->where('id', '!=', auth()->id()) as $user)
-                    <tr class="border-b border-gray-300 bg-gray-100 p-2.5 ">
+                    <tr class="border-b border-gray-300 bg-gray-100 p-2.5 hover:bg-gray-200">
                         <td class="px-6 py-4 text-gray-700">{{ $user->name }} {{$user->lastname}}</td>
                         <td class="px-6 py-4 text-left">
                             <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-md

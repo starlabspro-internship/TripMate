@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>TripMate</title>
-
+     
         <link rel="icon" type="image/png" href="/storage/favicons/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/storage/favicons/favicon.svg" />
         <link rel="shortcut icon" href="/storage/favicons/favicon.ico" />
@@ -64,7 +64,7 @@
            @include('components.end-modal')         
 
             <!-- Page Content -->
-            <main>
+             <main class="{{ request()->routeIs('home') ? 'bg-gray-200' : 'bg-[#28666e]' }}">
                 @if (!Auth::check())
                 {{ $slot }}
                 @endif

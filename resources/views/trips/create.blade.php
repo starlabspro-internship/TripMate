@@ -203,7 +203,7 @@
                     <div class="flex flex-row items-center justify-center space-x-4">
                         <a href="{{ route('trips.index') }}">
                             <button type="submit"
-                                    class="w-[150px] h-[40px] px-3 py-1 text-md rounded-xl transition duration-200 bg-blue-500 text-white hover:bg-blue-300 md:w-[250px] md:h-[45px] max-w-full">
+                                    class="w-[100px] h-[34px] px-3 py-1 text-md rounded-lg transition duration-200 bg-blue-600 text-white hover:bg-blue-800 md:w-[150px] md:h-[35px] max-w-full">
                                     {{ __('messages.Publish') }}
                             </button>
                         </a>
