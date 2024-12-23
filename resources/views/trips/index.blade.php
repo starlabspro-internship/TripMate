@@ -1,7 +1,8 @@
 <x-app-layout>
     @auth
     <div class="container mx-auto bg-[#28666e] ">
-        <div class="flex flex-col md:flex-row justify-between items-center mb-6 mt-1 w-full space-y-4 md:space-y-0 ">
+        <div class="flex flex-col sm:justify-between md:flex-row items-center md:items-end mb-6 mt-1 w-full space-y-4 md:space-y-0">
+
             <h1 class="text-3xl font-bold text-white p-6 ">{{ __('messages.Available Rides') }}</h1>
 
 
@@ -56,7 +57,7 @@
             </div>
         
             <!-- Destination City Select -->
-            <div class="w-full md:w-1/4 mb-4 md:mb-0">
+            <div class="w-full md:w-1/4 mb-4 md:mb-0 md:mr-4">
                 <select name="destination_city_id" id="destination-city"
                         class="border border-gray-300 rounded-md px-3 py-1.5 w-full focus:outline-none focus:ring-2 focus:ring-orange-300 transition duration-200">
                     <option value="" class="text-gray-800">{{ __('messages.To:') }}</option>
@@ -69,7 +70,7 @@
             </div>
         
             <!-- Date Picker -->
-            <div class="w-full md:w-1/4 ml-2 flex items-center space-x-2">
+            <div class="w-full md:w-1/4  flex items-center  mb-4 md:mb-0">
                 
                 <input type="text" id="filter-date" name="date"
                        class="text-gray-900 border border-gray-300 rounded-md px-3 py-1.5 w-full focus:outline-none focus:ring-2 focus:ring-orange-300 transition duration-200 text-center"
@@ -99,7 +100,7 @@
 
 
 
-<div id="rides-list" class="grid grid-cols-1 gap-6 mb-4 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-6 lg:px-8 mt-20">
+<div id="rides-list" class="grid grid-cols-1 gap-6 mb-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 px-4 sm:px-6 lg:px-8 mt-20 justify-items-center">
     @foreach ($trips as $trip)
     
 

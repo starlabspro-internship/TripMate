@@ -30,7 +30,7 @@
                     @endif
                     <div class="flex flex-col items-start pt-4 px-6 justify-start w-full">
                         <div class="flex items-center justify-end mb-10 md:mb-10">
-                            <label for="image" class="inline-block px-4 py-2 bg-blue-500 text-white font-medium rounded-md cursor-pointer hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 translate-y-[-5px]">
+                            <label for="image" class="inline-block px-4 py-2 bg-customgreen-400 text-white font-medium rounded-md cursor-pointer hover:bg-customgreen-500 focus:outline-none focus:ring-2 focus:ring-customgreen-400 focus:ring-offset-2 translate-y-[-5px]">
                                 {{ __('messages.Edit Image') }}
                             </label>
                         </div>
@@ -82,23 +82,47 @@
                             </div>
 
                             <!-- City -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">{{ __('messages.City:') }}</label>
-                                <input type="text" name="city" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" value="{{ old('city', $user->city) }}">
-                                <x-input-error class="mt-2" :messages="$errors->get('city')" />
+                            <div x-data="{ open: false, selected: { id: null, name: '{{ old('city', $user->city ?? 'Select a city') }}' } }" class="relative">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('messages.City:') }}</label>
+                                <input type="hidden" name="city" x-model="selected.name"/>
+                                <button 
+                                    type="button" 
+                                    @click="open = !open" 
+                                    class="w-full text-sm px-3 py-[10px] bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg flex justify-between items-center"
+                                    aria-haspopup="listbox" 
+                                    :aria-expanded="open">
+                                    <span x-text="selected.name ? selected.name : 'Select a city'"></span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M5.23 7.29a1 1 0 011.41 0L10 10.58l3.36-3.29a1 1 0 111.36 1.42l-4 3.93a1 1 0 01-1.36 0l-4-3.93a1 1 0 010-1.42z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <ul 
+                                    x-show="open" 
+                                    @click.away="open = false" 
+                                    class="absolute mt-1 w-full bg-white shadow-md max-h-60 rounded-md overflow-auto z-10 border border-gray-200 focus:outline-none"
+                                    role="listbox">
+                                    @foreach ($cities as $city)
+                                        <li 
+                                            @click="selected = { id: '{{ $city->id }}', name: '{{ $city->name }}' }; open = false;" 
+                                            :class="selected && selected.id == '{{ $city->id }}' ? 'bg-indigo-600 text-white' : 'text-gray-900'" 
+                                            class="cursor-pointer select-none relative py-2 px-3 hover:bg-indigo-100">
+                                            <span class="block truncate">{{ $city->name }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
 
                             <!-- Birthday -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">{{ __('messages.Birthday:') }}</label>
-                                    <input type="text" name="birthday" value="{{ \Carbon\Carbon::parse(old('birthday', $user->birthday))->format('Y-m-d') }}" readonly class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                                    <input type="text" name="birthday" value="{{ \Carbon\Carbon::parse(old('birthday', $user->birthday))->format('Y/m/d') }}" readonly class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                                 <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
                             </div>
 
 
                             <!-- Save Button -->
                         <div class="mt-4 md:mt-6 col-span-1 md:col-span-2">
-                            <button type="submit" class="bg-blue-500 text-white py-2 px-6  rounded-md font-bold hover:bg-blue-600">{{ __('messages.Save') }}</button>
+                            <button type="submit" class="bg-customgreen-400 text-white py-2 px-6  rounded-md font-bold hover:bg-customgreen-500">{{ __('messages.Save') }}</button>
                         </div>
                         </div>
                     </form>

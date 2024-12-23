@@ -269,32 +269,32 @@
                 <div class="bg-white rounded-lg shadow-xl p-8 flex-1">
                     <h4 class="text-xl text-gray-900 font-bold">{{ __('messages.Personal Info') }}</h4>
                     <ul class="mt-2 text-gray-700">
-                        <li class="flex border-y py-2">
+                        <li class="flex flex-wrap sm:flex-nowrap border-b py-2">
                             <span class="font-bold w-24">{{ __('messages.Full Name:') }}</span>
                             <span>{{ auth()->user()->name }} {{ auth()->user()->lastname }}</span>
                         </li>
-                        <li class="flex border-b py-2">
+                        <li class="flex flex-wrap sm:flex-nowrap border-b py-2">
                             <span class="font-bold w-24">{{ __('messages.Birthday:') }}</span>
-                            <span>{{ auth()->user()->birthday }}</span>
+                            <span>{{ \Carbon\Carbon::parse(auth()->user()->birthday)->format('Y-m-d') }}</span>
                         </li>
-                        <li class="flex border-y py-2">
+                        <li class="flex flex-wrap sm:flex-nowrap border-b py-2">
                             <span class="font-bold w-24">{{ __('messages.Email:') }}</span>
                             <span>{{ auth()->user()->email }}</span>
                         </li>
-                        <li class="flex border-b py-2">
+                        <li class="flex flex-wrap sm:flex-nowrap border-b py-2">
                             <span class="font-bold w-24">{{ __('messages.Joined:') }}</span>
                             <span>{{ auth()->user()->created_at}}</span>
                         </li>
-                        <li class="flex border-b py-2">
+                        <li class="flex flex-wrap sm:flex-nowrap border-b py-2">
                             <span class="font-bold w-24">{{ __('messages.Phone Number:') }}</span>
 
                             <span>{{ auth()->user()->phone }}</span>
                         </li>
-                        <li class="flex border-b py-2">
+                        <li class="flex flex-wrap sm:flex-nowrap border-b py-2">
                             <span class="font-bold w-24">{{ __('messages.City:') }}</span>
                             <span>{{ auth()->user()->city }}</span>
                         </li>
-                        <li class="flex border-b py-2">
+                        <li class="flex flex-wrap sm:flex-nowrap border-b py-2">
                             <span class="font-bold w-24">{{ __('messages.Address:') }}</span>
                             <span>{{ auth()->user()->address }}</span>
                         </li>

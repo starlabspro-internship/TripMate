@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Log;
 use App\Models\PassengerRating;
+use App\Models\City;
 
 class ProfileController extends Controller
 {
@@ -21,9 +22,9 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-
+        $cities = City::orderBy('name', 'asc')->get();
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => $request->user(),'cities' => $cities
         ]);
     }
 
@@ -67,6 +68,7 @@ class ProfileController extends Controller
 
         $user = $request->user();
         $user->fill($validatedData);
+        $cityName = City::where('id', $request->city)->value('name');
 
         if ($request->hasFile('image')) {
             if ($user->image) {
