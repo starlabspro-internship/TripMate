@@ -66,12 +66,12 @@
                             </select>
                         </div>
                     </div>
-                    <div class="flex flex-col justify-between space-y-4 md:flex-row md:space-y-0 md:space-x-2">
+                    <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-2">
                         <div class="flex flex-col w-full relative">
                             <label for="departure_time" class="block text-gray-700">{{ __('messages.Departure Time:') }}</label>
                             <div class="flex flex-col w-full relative">
                                 <input type="text" id="date-picker" name="departure_time"
-                                       class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                                       class="border border-gray-300 rounded-md px-3 py-2  bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                                        placeholder="{{ __('messages.Departure Time:') }}"
                                        value="{{ $trip->departure_time->format('d.m.Y H:i ') }}" required>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px"
@@ -93,7 +93,7 @@
                             <label for="departure_time" class="block text-gray-700">{{ __('messages.Arrival Time:') }}</label>
                             <div class="flex flex-col w-full relative">
                                 <input type="text" id="date-picker" name="arrival_time"
-                                       class="border border-gray-300 rounded-md px-3 py-2 pr-10 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                                       class="border border-gray-300 rounded-md px-3 py-2  bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                                        placeholder="{{ __('messages.Arrival Time:') }}"
                                        value="{{ $trip->arrival_time->format('d.m.Y H:i ') }}" required>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-2.5" width="20px"
@@ -214,6 +214,13 @@
                     minZoom: 8,
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(map);
+
+                var customIcon = L.icon({
+                            iconUrl: '{{ asset('storage/icons/icon.png') }}',
+                            iconSize: [25, 36],
+                            iconAnchor: [16, 32],
+                            popupAnchor: [0, -32]
+                        });
 
                 var marker = L.marker([latitude, longitude], {draggable: true}).addTo(map)
                     .bindPopup("Drag me to update location")

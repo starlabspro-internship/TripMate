@@ -9,8 +9,8 @@
             />
         </div>
         <div class="mt-6 flex flex-col items-center space-y-4">
-            <h2 class="text-xl text-gray-800 font-semibold">
-                <b>{{ __('messages.Full Name:') }}</b><span class="capitalize"> {{ $user->name }} {{$user->lastname}} </span> 
+            <h2 class="text-lg text-gray-800 font-semibold">
+                <b>{{ __('messages.Name:') }}</b><span class="capitalize"> {{ $user->name }} {{$user->lastname}} </span> 
                 @if ($user->verification_status === 'verified')
                     <svg xmlns="http://www.w3.org/2000/svg" fill="green"
                         class="w-5 h-5 text-green-500 inline ml-2" viewBox="0 0 24 24">
