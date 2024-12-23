@@ -215,14 +215,14 @@
                       
                         @elseif($booking->status == 'reserved' && now()->lessThan($booking->trip->departure_time))
                         <div class="flex justify-center sm:justify-end mr-3 w-full">
-                            <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST"
-                                  onsubmit="return confirmSubmission()">
+                            <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit"
+                                <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal"
                                 class="min-w-16 sm:min-w-24 px-2 sm:px-4 py-1 sm:py-1 relative overflow-hidden rounded-full bg-blue-400 text-white border-none cursor-pointer before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-full before:bg-gradient-to-r before:from-red-500 before:to-red-700 before:scale-x-0 before:origin-left before:transition-transform before:duration-500 hover:before:scale-x-100">
                                 <span class="relative z-10">{{ __('messages.Cancel') }}</span>
                               </button>
+                              @include('bookings.bookingModal')
                             </form>
                         </div>
                     @else
@@ -252,9 +252,35 @@
 
 
 <script >
-            function confirmSubmission(event) {
+           function openModal(modalId, overlayId) {
+            const modal = document.getElementById(modalId);
+            const overlay = document.getElementById(overlayId);
+
+            if (modal && overlay) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                overlay.classList.remove('hidden');
+            }
+                function confirmSubmission(event) {
                 return confirm('Are you sure you want to cancel and refund this booking?');
+            }
         }
+        function closeModal(modalId, overlayId) {
+            const modal = document.getElementById(modalId);
+            const overlay = document.getElementById(overlayId);
+
+            if (modal && overlay) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                overlay.classList.add('hidden');
+            }
+        }
+        document.querySelectorAll('[data-modal-toggle]').forEach(button => {
+            button.addEventListener('click', () => {
+                const target = button.getAttribute('data-modal-target');
+                openModal(target, 'popup-modal-overlay');
+            });
+        });
     function filterBookings(status) {
         const bookings = document.querySelectorAll('#bookings-container .bg-white');
             bookings.forEach(booking => {
