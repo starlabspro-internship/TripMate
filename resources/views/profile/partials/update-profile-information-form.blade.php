@@ -63,7 +63,7 @@
                             <!-- Email (readonly) -->
                             <div class="col-span-1 md:col-span-2">
                                 <label class="block text-sm font-medium text-gray-700">{{ __('messages.Email:') }}</label>
-                                <input type="email" name="email" value="{{ old('email', $user->email) }}" readonly class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                                <input type="email" name="email" value="{{ old('email', $user->email) }}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                                 <x-input-error class="mt-2" :messages="$errors->get('email')" />
                             </div>
 
@@ -115,7 +115,7 @@
                             <!-- Birthday -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">{{ __('messages.Birthday:') }}</label>
-                                    <input type="text" name="birthday" value="{{ \Carbon\Carbon::parse(old('birthday', $user->birthday))->format('Y/m/d') }}" readonly class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                                    <input type="text" name="birthday" value="{{ \Carbon\Carbon::parse(old('birthday', $user->birthday))->format('Y/m/d') }}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                                 <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
                             </div>
 
