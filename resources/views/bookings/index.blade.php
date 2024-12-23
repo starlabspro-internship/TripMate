@@ -204,7 +204,7 @@
                           <form action="{{ route('bookings.refund', $booking->id) }}" method="POST" onsubmit="return confirmSubmission()">
                             @csrf
                             <button type="submit"
-                              class="min-w-16 sm:min-w-24 px-2 sm:px-4 py-1 sm:py-1 relative overflow-hidden rounded-full bg-blue-400 text-white border-none cursor-pointer before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-full before:bg-gradient-to-r before:from-red-500 before:to-red-700 before:scale-x-0 before:origin-left before:transition-transform before:duration-500 hover:before:scale-x-100">
+                              class="min-w-16 sm:min-w-24 px-2 sm:px-4 py-1 sm:py-1 relative overflow-hidden rounded-full bg-customgreen-400 text-white border-none cursor-pointer before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-full before:bg-gradient-to-r before:from-red-500 before:to-red-700 before:scale-x-0 before:origin-left before:transition-transform before:duration-500 hover:before:scale-x-100">
                               <span class="relative z-10">{{ __('messages.Cancel & Refund') }}</span>
                             </button>
                           </form>

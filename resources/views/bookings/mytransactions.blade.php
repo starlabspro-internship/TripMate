@@ -103,7 +103,7 @@
                        class="mt-1 block w-full  border-gray-300 rounded-md shadow-sm focus:border-orange-400 focus:ring focus:ring-orange-400 focus:ring-opacity-50 text-sm">
             </div>
             <div class="flex flex-col w-40">
-                <label for="status" class="block text-sm font-medium text-white ">{{ __('messages.Status') }}</label>
+                <label for="status" class="block text-sm font-medium text-white ">{{ __('messages.Status') }}:</label>
                 <select id="status" name="status" 
                         class="mt-1 block w-full px-1 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
                     <option value="">{{ __('messages.All') }}</option>

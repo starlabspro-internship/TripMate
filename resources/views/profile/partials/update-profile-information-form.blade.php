@@ -30,7 +30,7 @@
                     @endif
                     <div class="flex flex-col items-start pt-4 px-6 justify-start w-full">
                         <div class="flex items-center justify-end mb-10 md:mb-10">
-                            <label for="image" class="inline-block px-4 py-2 bg-blue-500 text-white font-medium rounded-md cursor-pointer hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 translate-y-[-5px]">
+                            <label for="image" class="inline-block px-4 py-2 bg-customgreen-400 text-white font-medium rounded-md cursor-pointer hover:bg-customgreen-500 focus:outline-none focus:ring-2 focus:ring-customgreen-400 focus:ring-offset-2 translate-y-[-5px]">
                                 {{ __('messages.Edit Image') }}
                             </label>
                         </div>
@@ -122,7 +122,7 @@
 
                             <!-- Save Button -->
                         <div class="mt-4 md:mt-6 col-span-1 md:col-span-2">
-                            <button type="submit" class="bg-blue-500 text-white py-2 px-6  rounded-md font-bold hover:bg-blue-600">{{ __('messages.Save') }}</button>
+                            <button type="submit" class="bg-customgreen-400 text-white py-2 px-6  rounded-md font-bold hover:bg-customgreen-500">{{ __('messages.Save') }}</button>
                         </div>
                         </div>
                     </form>

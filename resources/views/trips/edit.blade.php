@@ -2,20 +2,20 @@
     @auth
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center mt-1 w-full space-y-4 md:space-y-0">
-                <h1 class="text-3xl font-bold p-6 text-black">{{ __('messages.Edit Trip') }}</h1>
-                <div class="flex gap-2 md:flex-row  md:space-y-0 md:space-x-2 mt-4 md:mt-0">
+                <h1 class="text-3xl font-bold p-6 text-white">{{ __('messages.Edit Trip') }}</h1>
+                <div class="flex gap-2 md:flex-row  md:space-y-0 md:space-x-2 mt-4 md:mt-0 mr-4">
                     <a href="{{ route('trips.index') }}"
-                       class="w-28 px-4 py-1 text-sm rounded-full transition duration-200
-                                  {{ request()->routeIs('trips.index') ? 'bg-gray-100 text-gray-600' : 'bg-gray-200 text-gray-700' }}
-                                  hover:bg-gray-400 text-center">
-                                  {{ __('messages.Passenger') }}
-                    </a>
-                    <a href="{{ route('trips.create') }}"
-                       class="w-28 px-4 py-1 text-sm rounded-full transition duration-200
-                             {{ request()->routeIs('trips.create') ? 'bg-blue-100 text-blue-600' : 'bg-gray-200 text-gray-700' }}
-                                 hover:bg-blue-300 text-center">
-                                 {{ __('messages.Driver') }}
-                    </a>
+                class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
+                       {{ request()->routeIs('trips.index') ? 'bg-white text-[#033f63]' : 'bg-white text-[#033f63]' }}
+                       hover:bg-orange-400 hover:text-white font-semibold text-center">
+                {{ __('messages.Passenger') }}
+             </a>
+             <a href="{{ route('trips.create') }}"
+             class="w-28 px-4 py-1 text-sm rounded-md transition duration-200 
+                    {{ request()->routeIs('trips.create') ? 'bg-[#033f63] text-white' : 'bg-[#033f63] text-white ' }}
+                    hover:bg-white hover:text-[#033f63] text-center font-semibold">
+             {{ __('messages.Driver') }}
+          </a>
                 </div>
             </div>
         </div>
