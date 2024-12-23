@@ -11,26 +11,26 @@
             <nav class="mt-10">
                 @if(Auth::user()->isSuperAdmin())
                 <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('dashboard') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('dashboard') }}">
-                    <img src="{{ asset('storage/icons/dashboard.svg') }}" alt="avatar" class="relative inline-block h-6 w-6 object-cover object-center" />
-                    <span class="mx-3">{{ __('messages.Dashboard') }}</span>
+                    <img src="{{ asset('storage/icons/dashboard.svg') }}" alt="avatar" class="relative inline-block h-6 w-6 object-cover object-center " />
+                    <span class="mx-3 text-white">{{ __('messages.Dashboard') }}</span>
 
 
                 </a>
                 @endif
                 <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('profile.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('profile.index') }}">
                     <img src="{{ asset('storage/icons/profil.svg') }}" alt="avatar" class="relative inline-block h-6 w-6 object-cover object-center" />
-                    <span class="mx-3">{{ __('messages.Profile') }}</span>
+                    <span class="mx-3 text-white">{{ __('messages.Profile') }}</span>
                 </a>
 
                 <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs('trips.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('trips.index') }}">
                     <img src="{{ asset('storage/icons/car.svg') }}" alt="avatar" class="relative inline-block h-6 w-6 object-cover object-center" />
-                    <span class="mx-3">{{ __('messages.Available Rides') }}</span>
+                    <span class="mx-3 text-white">{{ __('messages.Available Rides') }}</span>
                 </a>
                 <div x-data="{ openTab: null }">
                     <div  class="mt-4">
                         <div @click="openTab = (openTab === 1 ? null : 1)" class="flex items-center px-6 py-2 cursor-pointer text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
                             <img src="{{ asset('storage/icons/book.svg') }}" alt="menu" class="relative inline-block h-6 w-6 object-cover object-center" />
-                            <span class="mx-3">{{ __('messages.Bookings') }}</span>
+                            <span class="mx-3 text-white">{{ __('messages.Bookings') }}</span>
                             <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 ml-auto" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06 0L10 10.94l3.71-3.73a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 010-1.06z" clip-rule="evenodd" />
                             </svg>
@@ -41,23 +41,23 @@
                         <div x-show="openTab === 1" class="pl-12" x-transition>
                             <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('bookings.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('bookings.index') }}">
                                 <img src="{{ asset('storage/icons/booking.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
-                                <span class="mx-3 text-sm">{{ __('messages.My Bookings') }}</span>
+                                <span class="mx-3 text-sm text-white">{{ __('messages.My Bookings') }}</span>
                             </a>
                             <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('bookings.myTrips') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('bookings.myTrips') }}">
                                 <img src="{{ asset('storage/icons/trips.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
-                                <span class="mx-3 text-sm">{{ __('messages.My Trips Bookings') }}</span>
+                                <span class="mx-3 text-sm text-white ">{{ __('messages.My Trips Bookings') }}</span>
                             </a>
                             <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('bookings.myTransactions') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('bookings.transactions') }}">
                                 <img src="{{ asset('storage/icons/credit-card.svg') }}" alt="avatar" class="relative inline-block h-6 w-6 object-cover object-center" />
-                                <span class="mx-3 text-sm">{{ __('messages.My Transactions') }}</span>
+                                <span class="mx-3 text-sm text-white">{{ __('messages.My Transactions') }}</span>
                             </a>
                             <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('user.qr-code') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('user.qr-code', ['id' => auth()->user()->id]) }}">
                                 <img src="{{ asset('storage/icons/qr-code.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
-                                <span class="mx-3 text-sm">{{ __('messages.My QR-Code') }}</span>
+                                <span class="mx-3 text-sm text-white">{{ __('messages.My QR-Code') }}</span>
                             </a>
                             <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('scan.qr') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('scan.qr', auth()->user()->id) }}">
                                 <img src="{{ asset('storage/icons/qr-code-scanning.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
-                                <span class="mx-3 text-sm">{{ __('messages.Scan QR-Code') }}</span>
+                                <span class="mx-3 text-sm text-white">{{ __('messages.Scan QR-Code') }}</span>
                             </a>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                     <div x-data="{ open: false }" class="mt-4">
                         <div @click="openTab = (openTab === 2 ? null : 2)" class="flex items-center px-6 py-2 cursor-pointer text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
                             <img src="{{ asset('storage/icons/table.svg') }}" alt="menu" class="relative inline-block h-6 w-6 object-cover object-center" />
-                            <span class="mx-3">{{ __('messages.Admin Panel') }}</span>
+                            <span class="mx-3 text-white">{{ __('messages.Admin Panel') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 ml-auto transition-transform duration-300" :class="openTab === 2 ? 'rotate-180' : ''" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06 0L10 10.94l3.71-3.73a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 010-1.06z" clip-rule="evenodd" />
                             </svg>
@@ -76,15 +76,15 @@
                         <div x-show="openTab === 2" class="pl-12" x-transition>
                             <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('superadmin.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('superadmin.index') }}">
                                 <img src="{{ asset('storage/icons/table.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
-                                <span class="mx-3 text-sm">{{ __('messages.Users, Booking, Trips') }}</span>
+                                <span class="mx-3 text-sm text-white">{{ __('messages.Users, Booking, Trips') }}</span>
                             </a>
                             <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('superadmin.users.index-users') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('superadmin.users.index-users') }}">
                                 <img src="{{ asset('storage/icons/verify.svg') }}" alt="avatar" class="relative inline-block h-5 w-5  object-cover object-center" />
-                                <span class="mx-3 text-sm">{{ __('messages.Verifications') }}</span>
+                                <span class="mx-3 text-sm text-white">{{ __('messages.Verifications') }}</span>
                             </a>
                             <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('superadmin.bg-check') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('superadmin.bg-check') }}">
                                 <img src="{{ asset('storage/icons/secure.svg') }}" alt="avatar" class="relative inline-block h-5 w-5  object-cover object-center" />
-                                <span class="mx-3 text-sm">{{ __('messages.Background Check') }}</span>
+                                <span class="mx-3 text-sm text-white">{{ __('messages.Background Check') }}</span>
                             </a>
                         </div>
                     </div>
@@ -100,12 +100,12 @@
                             />
                             </svg>
 
-                            <span class="mx-3">{{ __('messages.Transactions') }}</span>
+                            <span class="mx-3 text-white">{{ __('messages.Transactions') }}</span>
                         </a>
                     @endif
                 <a class="flex items-center px-6 py-2 mt-4 {{ Request::routeIs(config('chatify.routes.prefix')) ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route(config('chatify.routes.prefix')) }}">
                     <img src="{{ asset('storage/icons/chat.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
-                    <span class="mx-3">{{ __('messages.Chat') }}</span>
+                    <span class="mx-3 text-white">{{ __('messages.Chat') }}</span>
                 </a>
             </nav>
         </div>
@@ -197,7 +197,7 @@
 
                     @include('partials.languageSwitcher')
 
-                    <div class="text-sm md:text-md text-black dark:text-white flex items-center">  
+                    <div class="text-sm md:text-md text-black dark:text-white flex items-center">
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button class="inline-flex  items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white dark:bg-[#0F172A] hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -226,7 +226,7 @@
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                                        {{ __('messages.Log Out') }} 
+                                        {{ __('messages.Log Out') }}
                                     </x-dropdown-link>
                                 </form>
                             </x-slot>
