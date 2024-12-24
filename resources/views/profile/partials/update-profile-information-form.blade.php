@@ -88,7 +88,7 @@
                                 <button 
                                     type="button" 
                                     @click="open = !open" 
-                                    class="w-full text-sm px-3 py-[10px] bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg flex justify-between items-center"
+                                    class="w-full text-sm px-3 py-[10px] focus:bg-gray-100 border border-gray-200 rounded-lg flex justify-between items-center"
                                     aria-haspopup="listbox" 
                                     :aria-expanded="open">
                                     <span x-text="selected.name ? selected.name : 'Select a city'"></span>

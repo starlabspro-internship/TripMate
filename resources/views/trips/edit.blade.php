@@ -216,24 +216,27 @@
                 }).addTo(map);
 
                 var customIcon = L.icon({
-                            iconUrl: '{{ asset('storage/icons/icon.png') }}',
-                            iconSize: [25, 36],
-                            iconAnchor: [16, 32],
-                            popupAnchor: [0, -32]
-                        });
+                    iconUrl: '{{ asset('storage/icons/icon.png') }}',
+                    iconSize: [25, 36],
+                    iconAnchor: [12, 36],
+                    popupAnchor: [0, -36] 
+                });
 
-                var marker = L.marker([latitude, longitude], {draggable: true}).addTo(map)
-                    .bindPopup("Drag me to update location")
-                    .openPopup();
+                var marker = L.marker([latitude, longitude], {
+                    draggable: true,
+                    icon: customIcon
+                }).addTo(map)
+                .bindPopup("Drag me to update location")
+                .openPopup();
 
                 marker.on('dragend', function (e) {
-                    var {lat, lng} = e.target.getLatLng();
+                    var { lat, lng } = e.target.getLatLng();
                     document.getElementById('latitude').value = lat;
                     document.getElementById('longitude').value = lng;
                 });
 
                 map.on('click', function (e) {
-                    var {lat, lng} = e.latlng;
+                    var { lat, lng } = e.latlng;
                     marker.setLatLng([lat, lng]);
                     document.getElementById('latitude').value = lat;
                     document.getElementById('longitude').value = lng;

@@ -131,7 +131,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const ctx1 = document.getElementById('myChart').getContext('2d');
             const data1 = {
-                labels: ['{{ __('messages.Verified Users with drivers license') }}', '{{ __('messages.Unverified Users') }}'],
+                labels: ['{{ __('messages.Verified Users with ID') }}', '{{ __('messages.Unverified Users') }}'],
                 datasets: [{
                     label: 'Count',
                     data: [
