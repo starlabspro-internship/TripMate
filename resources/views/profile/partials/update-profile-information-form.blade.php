@@ -115,7 +115,7 @@
                             <!-- Birthday -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">{{ __('messages.Birthday:') }}</label>
-                                    <input type="text" name="birthday" value="{{ \Carbon\Carbon::parse(old('birthday', $user->birthday))->format('Y/m/d') }}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                                    <input type="text" name="birthday" value="{{ \Carbon\Carbon::parse(old('birthday', $user->birthday))->format('d/m/Y') }}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                                 <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
                             </div>
 
