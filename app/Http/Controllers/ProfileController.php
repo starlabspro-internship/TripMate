@@ -69,7 +69,11 @@ class ProfileController extends Controller
         $user = $request->user();
         $user->fill($validatedData);
         $cityName = City::where('id', $request->city)->value('name');
-
+ 
+        if ($request->has('email') && $user->email !== $request->email) {
+            $user->email = $request->email;
+        }
+        
         if ($request->hasFile('image')) {
             if ($user->image) {
                 Storage::disk('public')->delete($user->image);

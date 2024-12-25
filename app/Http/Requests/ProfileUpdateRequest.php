@@ -19,7 +19,7 @@ class ProfileUpdateRequest extends FormRequest
             'image' => ['nullable', 'image',],
             'name' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/', 'max:255'], 
             'lastname' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/', 'max:255'], 
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email,' . auth()->id()],
             'phone' => ['nullable', 'string', 'regex:/^\+?[0-9\s-]*$/', 'max:20'], 
             'birthday' => ['nullable', 'date', 'before:' . now()->subYears(16)->toDateString()],
             'city' => ['nullable', 'string', 'max:255'],
