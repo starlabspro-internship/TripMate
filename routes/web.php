@@ -170,6 +170,10 @@ Route::get('/clear-cache-and-seed', function () {
     
     Artisan::call('db:seed');
 
+ Artisan::call('queue:work', [
+        '--queue' => 'sos-emails,admin-emails,emails',
+    ]);
+
     return 'Caches cleared and database seeded successfully!';
 });
 
