@@ -62,8 +62,8 @@
            <template x-for="user in filteredUsers()" :key="user.id">
                <tr class="bg-gray-100 hover:bg-gray-200">
 
-                   <td class="border-b border-slate-200 lg:py-5 lg:px-6 md:py-4 md:px-4 hidden sm:table-cell">
-                       <img class="lg:w-14 lg:h-14 md:w-10 md:h-10 object-cover rounded-full"
+                   <td class="border-b border-slate-200 lg:py-5 lg:px-2 xl:px-5 xl:px-2 sm:px-4 sm:py-2 md:py-4 md:px-4 hidden sm:table-cell">
+                       <img class="lg:w-14 lg:h-14 md:w-10 xl:w-15 xl:h-15 md:h-10 sm:h-10 sm:w-10 object-cover rounded-full"
                             :src="user.image ? `{{ asset('storage/') }}/${user.image}` : `https://eu.ui-avatars.com/api/${user.name}+${user.lastname}`"
                             alt="User Image">
                    </td>
