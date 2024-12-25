@@ -264,6 +264,7 @@ return [
 'Phone:' => 'Telefoni:',
 'Gender:' => 'Gjinia:',
 'Users:' => 'Përdoruesit:',
+'Name:' => 'Emri:',
 
 
     'Mark All As Read' => 'Shëno të gjitha si të lexuara',
@@ -321,7 +322,48 @@ return [
 'Rides Of' => 'Udhëtimet si pasagjer për',
 'Drives Of' => 'Udhëtimet si shofer për',
 
-  
+'The trip has ended. Please rate your driver.' => 'Udhëtimi ka përfunduar. Ju lutemi vlerësoni shoferin tuaj.',
+'Your trip from' => 'Udhëtimi juaj nga',
+'has been successfully completed' => 'është përfunduar me sukses',
+'Leave feedback (optional)' => 'Lini komente (opsionale)',
+'Provide Your Feedback' => 'Jepni komentet tuaja',
+'Trip ended successfully.' => 'Udhëtimi përfundoi me sukses.',
+'Please rate your driver' => 'Ju lutemi vlerësoni shoferin tuaj',
+'The trip has ended. Please rate your driver.' => 'Udhëtimi ka përfunduar. Ju lutemi vlerësoni shoferin tuaj.',
+'Are you sure you want to press the SOS button? This will immediately notify the authorities and trigger an emergency response!'=> 'A jeni të sigurt që dëshironi të shtypni butonin SOS? Kjo do të njoftojë menjëherë autoritetet dhe do të bëj një thirrje të menjëhershme për emergjencën!',
+'Triggered By:' => 'Shkaktuar nga:',
+'Passengers:' => 'Pasagjerët:',
+'Alert triggered time:' => 'Koha e shkaktimit të alarmit:',
+'Driver:' => 'Shoferi:',
+'Details for the SOS alert' => 'Detajet për alarmin SOS',
+'SOS Logs' => 'Regjistrat e SOS',
+
+'SOS Alert Details' => 'Detajet e Alarmit SOS',
+'Driver Information' => 'Informacioni i Shoferit',
+'Age' => 'Mosha',
+'years' => 'vjet',
+'City' => 'Qyteti',
+'Gender' => 'Gjinia',
+'Phone' => 'Telefoni',
+'Passengers Information' => 'Informacioni i Pasagjerëve',
+'Emergency Status' => 'Statusi i emergjencës',
+'Trip Location' => 'Vendndodhja e udhëtimit',
+'Resolve' => 'Zgjidh',
+'pending' => 'në pritje',
+'resolved' => 'i zgjidhur',
+
+'Jan' => 'Jan',
+'Feb' => 'Shk',
+'Mar' => 'Mar',
+'Apr' => 'Pri',
+'May' => 'Maj',
+'Jun' => 'Qer',
+'Jul' => 'Kor',
+'Aug' => 'Gus',
+'Sep' => 'Sht',
+'Oct' => 'Tet',
+'Nov' => 'Nën',
+'Dec' => 'Dhj',
 
 
 

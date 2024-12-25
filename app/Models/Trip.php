@@ -48,6 +48,11 @@ class Trip extends Model
         return $this->hasMany(Booking::class );
     }
 
+    public function alerts()
+    {
+        return $this->hasMany(SosAlert::class);
+    }
+
     public function mesazhat(){
         return $this->hasMany(Message::class);
     }
