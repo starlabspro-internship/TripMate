@@ -71,7 +71,21 @@ class TripController extends Controller
             $trip->available_seats = $available_seats;
         }
 
-        return view('trips.index', compact('cities', 'trips'));
+        $userId = auth()->id();
+
+
+        $currentTrip = Trip::where('status', 'In Progress')
+            ->where(function ($query) use ($userId) {
+                $query->where('driver_id', $userId)
+                    ->orWhereHas('bookings', function ($subQuery) use ($userId) {
+                        $subQuery->where('passenger_id', $userId);
+                    });
+            })
+            ->pluck('id')
+            ->first();
+
+
+        return view('trips.index', (['cities' => $cities, 'trips' => $trips, 'currentTrip' => $currentTrip]));
     }
 
     public function create(){
@@ -317,9 +331,9 @@ public function end(Trip $trip)
             'originCity' => $trip->origincity->name,
             'destinationCity' => $trip->destinationcity->name,
         ];
-        $messageE = 'Your trip from ' . $tripDetails['originCity'] . ' to ' . $tripDetails['destinationCity'] . ' has been successfully completed. <br> Please Rate Your Driver!';
-        $messageN = 'Your trip from ' . $tripDetails['originCity'] . ' to ' . $tripDetails['destinationCity'] . ' has been successfully completed.
-        <a href="#" class="feedback-link" data-trip-id="' . $trip->id . '" data-driver-id="' . $trip->driver_id . '" style="color: #0066cc; text-decoration: underline;">Provide Your Feedback</a>';
+        $messageE = __('messages.Your trip from')  . $tripDetails['originCity'] . __('messages.to') . $tripDetails['destinationCity'] .  __('messages.has been successfully completed') . __('messages.Please rate your driver');
+$messageN =  __('messages.Your trip from')  . $tripDetails['originCity'] . __('messages.to') . $tripDetails['destinationCity'] .  __('messages.has been successfully completed').
+    '<a href="#" class="feedback-link" data-trip-id="' . $trip->id . '" data-driver-id="' . $trip->driver_id . '" style="color: #0066cc; text-decoration: underline;">' . __('Provide Your Feedback') . '</a>';
         $driverId = $trip->driver_id;
         $tripId = $trip->id;
 
@@ -328,7 +342,7 @@ public function end(Trip $trip)
     }
 
 
-    return back()->with('success', 'Trip ended successfully.');
+    return back()->with('success', __('messages.Trip ended successfully.'));
 }
 
 

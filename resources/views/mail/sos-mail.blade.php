@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank you for contacting us!</title>
+    <title>SOS ALERT</title>
     <style>
         body {
             background-color: #f3f4f6;
@@ -13,7 +13,7 @@
         .container {
             max-width: 600px;
             margin: 40px auto;
-            background: linear-gradient(135deg, #621dc9, #260754);
+            background: linear-gradient(135deg, #ff5858, #501a12);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
@@ -26,7 +26,7 @@
             text-align: center;
             margin-bottom: 20px;
         }
-          a  {
+        a  {
             color: white !important;
             font-weight: bold;
         }
@@ -49,28 +49,30 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>New Inquiry Submitted by a User</h1>
-        <p class="message">
-            Below are the details of the inquiry:
-        </p>
-        <p class="message">
-            Name: <span class="bold-text">{{ $contact->name }}</span>
-        </p>
-        <p class="message">
-            Email: <span class="bold-text">{{ $contact->email }}</span>
-        </p>
-        <p class="message">
-            Subject: <span class="bold-text">{{ $contact->subject }}</span>
-        </p>
-        <p class="message">
-            Message: <span class="bold-text">{{ $contact->message }}</span>
-        </p>
-    
-        <footer>
-            <p>You can reply directly to the user via their email address.</p>
-            <p>The TripMate Team</p>
-        </footer>
-    </div>    
+<div class="container">
+    <h1>One of the users needs your help</h1>
+    <p class="message">
+        Below are the details of the emergency:
+    </p>
+    <p class="message">
+        User: <span class="bold-text">{{ $sosAlert->users->name }}</span>
+    </p>
+    <p class="message">
+        Trip: <span class="bold-text">{{ $sosAlert->trips->origincity->name }} to {{$sosAlert->trips->destinationcity->name}}</span>
+    </p>
+    <p class="message">
+        Status: <span class="bold-text">{{ $sosAlert->status }}</span>
+    </p>
+    <p class="message">
+        Link: <a href="{{ url('/sos-alert/view/' . $sosAlert->id) }}" class="bold-text">View SOS Alert Details</a>
+    </p>
+
+
+
+    <footer>
+        <p>You can reply directly to the user via their email address.</p>
+        <p>The TripMate Team</p>
+    </footer>
+</div>
 </body>
 </html>
