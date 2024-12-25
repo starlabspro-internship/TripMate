@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Models\PassengerRating;
-use App\Models\Booking;
 use App\Models\Trip;
+
 use App\Models\User;
+use App\Models\Booking;
+use Illuminate\Http\Request;
+use App\Models\PassengerRating;
+use Illuminate\Support\Facades\Auth;
 
 class PassengerRatingController extends Controller
 {

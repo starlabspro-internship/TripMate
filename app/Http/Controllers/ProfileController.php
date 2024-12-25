@@ -54,7 +54,16 @@ class ProfileController extends Controller
             ->whereNotNull('feedback')  
             ->where('feedback', '!=', '') 
             ->count();
-            return view('profile.index', ['bookings' => $bookings, 'trips' => $trips, 'user' => $user , 'feedback' => $feedback , 'tripCount' => $tripCount]);
+
+            $userId = $request->user()->id;
+
+            $feedbacks = PassengerRating::with('reviewer')
+                ->where('reviewed_id', $userId)
+                ->orderBy('created_at', 'desc')
+                ->take(4)
+                ->get();
+        
+            return view('profile.index', ['bookings' => $bookings, 'trips' => $trips, 'user' => $user , 'feedback' => $feedback , 'tripCount' => $tripCount, 'feedbacks'=>$feedbacks]);
     }
 
     /**

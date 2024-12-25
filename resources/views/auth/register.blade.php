@@ -66,8 +66,8 @@
         @enderror
     </div>
     <div class="w-full md:w-1/2 max-h-96 relative">
-        <div x-data="{ open: false, selected: { id: null, name: null } }" class="relative">
-            <input type="hidden" name="city" x-model="selected.id" />
+        <div x-data="{ open: false, selected: { id: null, name: null } }">
+            <input type="hidden" name="city" x-model="selected.id">
             <button 
                 type="button" 
                 @click="open = !open" 

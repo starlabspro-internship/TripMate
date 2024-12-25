@@ -326,8 +326,10 @@ return [
 
 'Users' => 'Users',
 'Trips' => 'Trips',
-'Verified Users with drivers license' => 'Verified Users with drivers license',
+'Verified Users with ID' => 'Verified Users with ID',
 'Unverified Users' => 'Unverified Users',
+
+'Passenger Feedbacks' => 'Passenger Feedbacks',
 
 'The trip has ended. Please rate your driver.' => 'The trip has ended. Please rate your driver.',
 'Your trip from' => 'Your trip from ',
