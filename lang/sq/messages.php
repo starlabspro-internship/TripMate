@@ -315,13 +315,16 @@ return [
 
 'Users' => 'Përdoruesit',
 'Trips' => 'Udhëtimet',
-'Verified Users with drivers license' => 'Përdorues të verifikuar me patentë shoferi',
+'Verified Users with ID' => 'Përdorues të verifikuar me ID',
 'Unverified Users' => 'Përdorues të paverifikuar',
 
 
 'Rides Of' => 'Udhëtimet si pasagjer për',
 'Drives Of' => 'Udhëtimet si shofer për',
 
+'Passenger Feedbacks' => 'Reagimet e pasagjerëve',
+
+  
 'The trip has ended. Please rate your driver.' => 'Udhëtimi ka përfunduar. Ju lutemi vlerësoni shoferin tuaj.',
 'Your trip from' => 'Udhëtimi juaj nga',
 'has been successfully completed' => 'është përfunduar me sukses',
