@@ -53,6 +53,11 @@ public function updateAverageRating()
     $this->save();                                      
 }
 
+    public function alerts()
+    {
+        return $this->hasMany(SosAlert::class);
+    }
+    
     public function isSuperAdmin()
     {
         return $this->is_super_admin == 1;

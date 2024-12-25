@@ -16,6 +16,7 @@ use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\UserVerifyController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PassengerRatingController;
+use App\Http\Controllers\SOSController;
 
 
 
@@ -34,6 +35,14 @@ Route::middleware('auth')->prefix('trips')->name('trips.')->controller(TripContr
     Route::post('/{trip}/start', 'start')->name('start');
 });
 
+
+Route::controller(SOSController::class)->group(function () {
+    Route::post('/sos', 'sendSOS')->name('sos.send');
+    Route::get('sos-alert/view/{id}', 'view')->name('sos-alert.view');
+    Route::post('/update-location', 'updateLocation');
+    Route::post('sos-alert/resolve/{sosAlert}', 'resolve')->name('sosAlert.resolve');
+    Route::get('/sos-logs', 'logs')->middleware(['superadmin'])->name('superadmin.sos-logs');
+});
 
 Route::middleware('ifnotauth')->prefix('bookings')->name('bookings.')->controller(BookingController::class)->group(function () {
     Route::get('/transactions','myTransactions')->name('transactions');
