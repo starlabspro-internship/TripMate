@@ -41,11 +41,11 @@
                         <div x-show="openTab === 1" class="pl-12" x-transition>
                             <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('bookings.index') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('bookings.index') }}">
                                 <img src="{{ asset('storage/icons/booking.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
-                                <span class="mx-3 text-sm text-white">{{ __('messages.My Bookings') }}</span>
+                                <span class="mx-3 text-sm text-white">{{ __('messages.My Rides') }}</span>
                             </a>
                             <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('bookings.myTrips') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('bookings.myTrips') }}">
                                 <img src="{{ asset('storage/icons/trips.svg') }}" alt="avatar" class="relative inline-block h-5 w-5 object-cover object-center" />
-                                <span class="mx-3 text-sm text-white ">{{ __('messages.My Trips Bookings') }}</span>
+                                <span class="mx-3 text-sm text-white ">{{ __('messages.My Drives') }}</span>
                             </a>
                             <a class="flex items-center px-4 py-2 mt-2 {{ Request::routeIs('bookings.myTransactions') ? 'bg-gray-800 text-white' : 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href="{{ route('bookings.transactions') }}">
                                 <img src="{{ asset('storage/icons/credit-card.svg') }}" alt="avatar" class="relative inline-block h-6 w-6 object-cover object-center" />
@@ -61,6 +61,10 @@
                             </a>
                         </div>
                     </div>
+
+                   
+
+
                         @if(Auth::user()->isSuperAdmin())
                         <div x-data="{ open: false }" class="mt-4">
                             <div @click="openTab = (openTab === 2 ? null : 2)" class="flex items-center px-6 py-2 cursor-pointer text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
@@ -113,19 +117,42 @@
                 </a>
             </nav>
         </div>
-        <div class="flex flex-col flex-1 overflow-hidden ">
-            <header class="flex items-center justify-between px-6 py-4 bg-white border-b-2 border-gray-800">
-                <div class="flex items-center">
+
+       
+
+        <div class="flex flex-col flex-1 overflow-hidden">
+           
+
+            <header class="flex flex-col md:flex-row items-center justify-between px-6 py-4 bg-white border-b-2 border-gray-800 space-y-2 md:space-y-0">
+             
+              
+            
+
+                <div class="flex items-start space-x-4">
                     <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
                         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round"></path>
+                            <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     </button>
-                </div>
-                <div class="flex-none h-full text-center flex items-center space-x-4 sm:space-x-4 ">
-                    <div class="relative flex items-center">
-                        <!-- Notification Button -->
+
+                    {{-- search per mobile --}}
+                    <div class="block md:hidden w-full mb-3">
+                        @include('components.search-user-mobile')
+                    </div>
+
+
+        {{-- search per larger screens --}}
+             <div class="hidden md:flex items-center">
+                @include('components.search-user')
+            </div>
+        </div>
+
+                
+        <div class="flex items-center justify-end w-full md:w-auto space-x-4">
+
+                   <div class="relative flex items-center">
+
+                     <!-- Notification Button -->
                         <button id="notificationButton" aria-label="Notifications" class="relative inline-block h-7 w-7 object-cover object-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-bell w-5 h-5" viewBox="0 0 16 16">
                                 <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6" />
@@ -199,6 +226,9 @@
                         </div>
                     </div>
 
+                    
+
+
                     @include('partials.languageSwitcher')
                     
                     <div class="text-sm md:text-md text-black dark:text-white flex items-center">
@@ -237,9 +267,19 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
+
+                  
+                   
                 </div>
 
+            
+              
+              
+
+
+
             </header>
+          
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-[#28666e]">
                 {{ $slot }}
             </main>
