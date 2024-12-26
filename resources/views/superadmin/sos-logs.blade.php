@@ -48,7 +48,7 @@
                                             <path d="M6 9l6 6 6-6" />
                                         </svg>
                                     </div>
-                                    
+
                             </div>
                         </div>
 
@@ -59,7 +59,7 @@
                         <div class="details hidden px-4 py-2 text-gray-800 bg-[#c9dde2] ">
 <div class="text-center">
 
-                            
+
 
 </div>
                             <div class="flex flex-wrap justify-between ">
@@ -72,7 +72,7 @@
                                             </span>
                                                     <h3 class="flex items-center mb-1 text-sm text-gray-500  ml-3">{{ __('messages.Driver:') }}</h3>
                                                     <p class="mb-4 text-sm text-gray-900 ml-3">
-                                                        {{ $sosAlert->trips->users->name }} 
+                                                        {{ $sosAlert->trips->users->name }}
                                                         {{ $sosAlert->trips->users->lastname }}
                                                     </p>
                                                 </li>
@@ -86,10 +86,25 @@
                                     </span>
                                             <h3 class="flex items-center mb-1 text-sm text-gray-500  ml-3">{{ __('messages.Alert triggered time:') }}</h3>
                                             <p class="mb-4 text-sm text-gray-900 ml-3">
-                                                {{ $sosAlert->created_at->format('H:i - d M') }} 
+                                                {{ $sosAlert->created_at->format('H:i - d M') }}
                                             </p>
                                         </li>
-                                        
+                                        @if($sosAlert->status === 'pending')
+                                        <li class="mb-5 ms-6">
+                                    <span class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 mt-2 rounded-full -start-4 ring-4 ring-customgreen-500">
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier"> <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M12 22C16 18 20 14.4183 20 10C20 5.58172 16.4183 2 12 2C7.58172 2 4 5.58172 4 10C4 14.4183 8 18 12 22Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g>
+                                        </svg>
+                                    </span>
+                                            <h3 class="flex items-center mb-1 text-sm text-gray-500  ml-3">{{ __('messages.Location:') }}</h3>
+                                            <p class="mb-4 text-sm text-gray-900 ml-3 flex items-center hover:underline">
+                                                <a href="{{'http://localhost:8000/sos-alert/view/' . $sosAlert->id }}" >View Location</a>
+                                                <svg class="h-4 w-4" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill=""><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>open-external</title> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="icon" fill="#000000" transform="translate(85.333333, 64.000000)"> <path d="M128,63.999444 L128,106.666444 L42.6666667,106.666667 L42.6666667,320 L256,320 L256,234.666444 L298.666,234.666444 L298.666667,362.666667 L4.26325641e-14,362.666667 L4.26325641e-14,64 L128,63.999444 Z M362.666667,1.42108547e-14 L362.666667,170.666667 L320,170.666667 L320,72.835 L143.084945,249.751611 L112.915055,219.581722 L289.83,42.666 L192,42.6666667 L192,1.42108547e-14 L362.666667,1.42108547e-14 Z" id="Combined-Shape"> </path> </g> </g> </g></svg>
+                                            </p>
+                                        </li>
+                                        @endif
                                     </ol>
                                 </div>
 
@@ -121,8 +136,8 @@
                                     </span>
                                             <h3 class="flex items-center mb-1 text-sm text-gray-500  ml-3">{{ __('messages.Triggered By:') }}</h3>
                                             <p class="mb-4 text-sm text-gray-900 ml-3">
-                                                {{ $sosAlert->users->name }} 
-                                                {{ $sosAlert->users->lastname }} 
+                                                {{ $sosAlert->users->name }}
+                                                {{ $sosAlert->users->lastname }}
                                             </p>
                                         </li>
                                     </ol>

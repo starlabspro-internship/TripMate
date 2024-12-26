@@ -191,5 +191,7 @@ return [
 'Nov' => 'Nov',
 'Dec' => 'Dez',
 
-
+'Efficiently oversee and manage your platform with precision and control!' => 'Überwachen und verwalten Sie Ihre Plattform effizient mit Präzision und Kontrolle!',
+'Location:' => 'Ort:',
+'View Location' => 'Ort anzeigen',
 ];
