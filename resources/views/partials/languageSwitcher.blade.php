@@ -25,7 +25,7 @@
             @foreach ($available_locales as $locale_name => $available_locale)
                 @if ($available_locale !== $current_locale)
                     <div @click="open = false; window.location.href = '{{ route('localization', $available_locale) }}';"
-                        class="cursor-pointer px-2 py-1 hover:bg-orange-400 hover:text-white flex items-center space-x-2 transition duration-150 ease-in-out">
+                        class="cursor-pointer px-2 py-1 hover:bg-customgreen-200 hover:text-white flex items-center space-x-2 transition duration-150 ease-in-out">
                         <img src="{{ asset('images/flags/' . $available_locale . '.png') }}" alt="{{ $locale_name }}" class="w-5 h-auto">
                         <span class="hidden sm:block text-base">{{ $locale_name }}</span>
                         <span class="block sm:hidden text-sm">{{ substr($locale_name, 0, 2) }}</span>

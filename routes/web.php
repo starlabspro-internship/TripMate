@@ -17,6 +17,7 @@ use App\Http\Controllers\UserVerifyController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PassengerRatingController;
 use App\Http\Controllers\SOSController;
+use App\Http\Controllers\SearchUserController;
 
 
 
@@ -150,5 +151,7 @@ Route::get('language/{locale}', function($locale){
 })->name('localization');
 
 Route::get('/cities-with-user-count', [UserVerifyController::class, 'getCitiesWithUserCount'])->middleware('auth');
+
+Route::get('/search-users', [SearchUserController::class, 'search'])->name('users.search');
 
 require __DIR__.'/auth.php';

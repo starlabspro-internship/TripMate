@@ -133,28 +133,27 @@
                 </div>
 
                 <!-- Destination City Select -->
-                <div class="w-full md:w-1/4 mb-4 md:mb-0">
-                    <select name="destination_city_id" id="destination-city"
-                            class="border border-gray-300 rounded-md px-3 py-1.5 w-full focus:outline-none focus:ring-2 focus:ring-orange-300 transition duration-200">
-                        <option value="" class="text-gray-800">{{ __('messages.To:') }}</option>
-                        @foreach ($cities as $city)
-                            <option
-                                value="{{ $city->id }}" {{ request('destination_city_id') == $city->id ? 'selected' : '' }}>
-                                {{ $city->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
+<div class="w-full md:w-1/4 mb-4 md:mb-0 md:mr-4"> 
+    <select name="destination_city_id" id="destination-city"
+        class="border border-gray-300 rounded-md px-3 py-1.5 w-full focus:outline-none focus:ring-2 focus:ring-orange-300 transition duration-200">
+        <option value="" class="text-gray-800">{{ __('messages.To:') }}</option>
+        @foreach ($cities as $city)
+            <option
+                value="{{ $city->id }}" {{ request('destination_city_id') == $city->id ? 'selected' : '' }}>
+                {{ $city->name }}
+            </option>
+        @endforeach
+    </select>
+</div>
 
-                <!-- Date Picker -->
-                <div class="w-full md:w-1/4 ml-2 flex items-center space-x-2">
+<!-- Date Picker -->
+<div class="w-full md:w-1/4 mb-4 md:mb-0"> 
+    <input type="text" id="filter-date" name="date"
+        class="text-gray-900 border border-gray-300 rounded-md px-3 py-1.5 w-full focus:outline-none focus:ring-2 focus:ring-orange-300 transition duration-200 text-center"
+        placeholder="{{ __('messages.Select a date') }}" readonly
+        value="{{ request('date') }}">
+</div>
 
-                    <input type="text" id="filter-date" name="date"
-                           class="text-gray-900 border border-gray-300 rounded-md px-3 py-1.5 w-full focus:outline-none focus:ring-2 focus:ring-orange-300 transition duration-200 text-center"
-                           placeholder="{{ __('messages.Select a date') }}" readonly
-                           value="{{ request('date') }}">
-
-                </div>
 
 
                 <!-- Filter and Reset Buttons -->
@@ -176,8 +175,8 @@
 
 
 
-<div id="rides-list" class="grid grid-cols-1 gap-6 mb-4 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-6 lg:px-8 mt-20">
-    @foreach ($trips as $trip)
+            <div id="rides-list" class="grid grid-cols-1 gap-6 mb-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 px-4 sm:px-6 lg:px-8 mt-20 justify-items-center">
+                @foreach ($trips as $trip)
 
 
                     <div class="ride-card max-w-sm rounded-xl shadow-md bg-white p-3 relative"
