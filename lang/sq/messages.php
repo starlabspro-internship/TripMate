@@ -371,7 +371,9 @@ return [
 
 
 
-
+'Efficiently oversee and manage your platform with precision and control!' => 'Mbikëqyrni dhe menaxhoni me efikasitet platformën tuaj me saktësi dhe kontroll!',
+'Location:' => 'Lokacioni:',
+'View Location' => 'Shiko Lokacionin',
 
 
 

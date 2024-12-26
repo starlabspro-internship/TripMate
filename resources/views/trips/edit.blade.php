@@ -185,21 +185,28 @@
                     <input type="hidden" id="latitude" name="latitude" />
                     <input type="hidden" id="longitude" name="longitude" />
                     <div class="flex flex-col items-center space-y-4">
-                        <button type="submit"
-                                class="px-3 py-1 text-xs rounded-lg transition duration-200 bg-blue-500 text-white hover:bg-blue-600 w-[100px] h-[40px] max-w-full">
-                                {{ __('messages.Update') }}
-                        </button>
+
                     </div>
                 </form>
-                <form action="{{ route('trips.destroy', $trip->id) }}" method="POST"
+                <form id="delete-trip-form"
+                      action="{{ route('trips.destroy', $trip->id) }}" method="POST"
                       class="flex flex-col items-center space-y-4 mt-3">
                     @csrf
                     @method('DELETE')
-                    <button type="submit"
-                            class="px-3 py-1 text-xs rounded-lg transition duration-200 bg-red-500 text-white hover:bg-red-600 w-[100px] h-[40px] max-w-full">
-                            {{ __('messages.Delete') }}
-                    </button>
+
                 </form>
+                <div class="flex justify-center gap-x-4">
+                <button type="submit"
+                        form="edit-trip-form"
+                        class="px-3 py-1 text-xs rounded-lg transition duration-200 bg-blue-500 text-white hover:bg-blue-600 w-[100px] h-[40px] max-w-full">
+                    {{ __('messages.Update') }}
+                </button>
+                <button type="submit"
+                        form="delete-trip-form"
+                        class="px-3 py-1 text-xs rounded-lg transition duration-200 bg-red-500 text-white hover:bg-red-600 w-[100px] h-[40px] max-w-full">
+                    {{ __('messages.Delete') }}
+                </button>
+                </div>
             </div>
         </div>
         <script>

@@ -64,7 +64,7 @@
         Status: <span class="bold-text">{{ $sosAlert->status }}</span>
     </p>
     <p class="message">
-        Link: <a href="{{ url('/sos-alert/view/' . $sosAlert->id) }}" class="bold-text">View SOS Alert Details</a>
+        Link: <a href="{{'http://localhost:8000/sos-alert/view/' . $sosAlert->id }}" class="bold-text">View SOS Alert Details</a>
     </p>
 
 

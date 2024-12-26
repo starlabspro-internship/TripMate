@@ -2,15 +2,15 @@
     <div class="container px-6 py-8 mx-auto">
         <div class="text-center bg-white p-6 rounded-md shadow-sm mb-6">
             <h1 class="text-4xl font-bold text-customgreen-500">{{ __('messages.Welcome') }} , {{ Auth::user()->name }}!</h1>
-            <p class="text-lg text-gray-600 mt-2">{{ __('messages.Start your journey, one trip at a time!') }}</p>
-        </div>
+            <p class="text-lg text-gray-600 mt-2">{{ __('messages.Efficiently oversee and manage your platform with precision and control!') }}</p>
+         </div>
 
         <div class="mt-4">
             <div class="flex flex-wrap -mx-6">
                 <!-- Total Users -->
                 <div class="w-full px-6 mt-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
                     <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm">
-                      
+
                         <div class="p-3 bg-indigo-600 bg-opacity-75 rounded-full">
                             <img src="{{ asset('storage/icons/users.svg') }}" alt="Users" class="h-6 w-6"/>
                         </div>
@@ -20,7 +20,6 @@
                                 <div class="text-gray-500">{{ __('messages.Total Users') }}</div>
                             </a>
                         </div>
-                    
                     </div>
                 </div>
 
@@ -135,12 +134,12 @@
                 datasets: [{
                     label: 'Count',
                     data: [
-                        {{ $verifiedUsers }}, 
+                        {{ $verifiedUsers }},
                         {{ $nullStatusUsers }},
                     ],
                     backgroundColor: [
-                        '#90DB89', 
-                        '#FF6347', 
+                        '#90DB89',
+                        '#FF6347',
                     ],
                     borderWidth: 1
                 }]
@@ -201,3 +200,4 @@
     </script>
 
 </x-app-layout>
+
