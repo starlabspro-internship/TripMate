@@ -379,7 +379,11 @@ return [
 
 
 
-
+'Search users' => 'Kërko përdoruesit',
+'Age' => 'Mosha',
+'Rating' => 'Vlerësimi',
+'No users found' => 'Asnjë përdorues nuk u gjet',
+'years' => 'vite',
 
 
 

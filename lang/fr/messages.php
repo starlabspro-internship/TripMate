@@ -303,4 +303,10 @@ return [
 'Location:' => 'Emplacement:',
 'View Location' => 'Voir l’emplacement',
 
+'Search users' => 'Rechercher des utilisateurs',
+'Age' => 'Âge',
+'Rating' => 'Évaluation',
+'No users found' => 'Aucun utilisateur trouvé',
+'years' => 'ans',
+
 ];

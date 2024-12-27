@@ -9,7 +9,7 @@
             type="text" 
             id="searchUserInputM" 
             class="search-input p-2 pl-10 border border-customgreen-400 rounded-md w-full text-sm focus:outline-none focus:ring-2 focus:ring-customgreen-400"
-            placeholder="Search users" 
+            placeholder="{{ __('messages.Search users') }}" 
             onkeyup="searchUsersM()" 
         />
     </div>
@@ -34,12 +34,12 @@
         <h2 id="modalUserNameM" class="text-lg md:text-2xl font-semibold mb-4"></h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
             <div>
-                <p class="text-sm md:text-base"><strong>Email:</strong> <span id="modalEmailM" class="text-gray-700"></span></p>
-                <p class="text-sm md:text-base"><strong>City:</strong> <span id="modalCityM" class="text-gray-700"></span></p>
+                <p class="text-sm md:text-base"><strong>{{ __('messages.Email:') }}</strong> <span id="modalEmailM" class="text-gray-700"></span></p>
+                <p class="text-sm md:text-base"><strong>{{ __('messages.City:') }}</strong> <span id="modalCityM" class="text-gray-700"></span></p>
             </div>
             <div>
-                <p class="text-sm md:text-base"><strong>Age:</strong> <span id="modalAgeM" class="text-gray-700"></span></p>
-                <p class="text-sm md:text-base"><strong>Rating:</strong> 
+                <p class="text-sm md:text-base"><strong>{{ __('messages.Age') }}:</strong> <span id="modalAgeM" class="text-gray-700"></span></p>
+                <p class="text-sm md:text-base"><strong>{{ __('messages.Rating') }}:</strong> 
                     <span id="modalRatingM" class="text-gray-700"></span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5 text-yellow-500 -mt-1" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
@@ -99,7 +99,7 @@
             resultsContainer.appendChild(userDiv);
         });
     } else {
-        resultsContainer.innerHTML = "<p class='p-1.5 text-gray-900 text-sm'>No users found</p>";
+        resultsContainer.innerHTML = "<p class='p-1.5 text-gray-900 text-sm'>{{ __('messages.No users found') }}</p>";
     }
 }
 
@@ -111,7 +111,7 @@
         document.getElementById("modalCityM").textContent = user.city || "N/A";
         document.getElementById("modalRatingM").textContent = user.average_rating || "N/A";
         document.getElementById("modalEmailM").textContent = user.email || "N/A";
-        document.getElementById("modalAgeM").textContent = (user.age ? `${user.age} years` : "N/A");
+        document.getElementById("modalAgeM").textContent = (user.age ? `${user.age} {{ __('messages.years') }}` : "N/A");
 
 
         const userPhoto = document.getElementById("modalUserPhotoM");
