@@ -381,6 +381,15 @@ return [
 
 
 
+'Search users' => 'Search users', 
+'Age' => 'Age',
+'Rating' => 'Rating',
+'No users found' => 'No users found',
+'years' => 'years',
+
+
+
+
 
 
 

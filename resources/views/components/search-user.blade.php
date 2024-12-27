@@ -9,7 +9,7 @@
             type="text" 
             id="searchUserInput" 
             class="search-input p-2 pl-10 border border-customgreen-400 rounded-md w-full text-sm md:text-sm "
-            placeholder="Search users"
+            placeholder="{{ __('messages.Search users') }}"
             onkeyup="searchUsers()" 
         />
     </div>
@@ -38,15 +38,15 @@
         <div class="flex flex-col md:flex-row justify-between ">
           
             <div class="text-left ">
-                <p class="text-sm md:text-base mb-2"><strong>Email:</strong> <span id="modalEmail" class="text-gray-700"></span></p>
-                <p class="text-sm md:text-base mb-2"><strong>City:</strong> <span id="modalCity" class="text-gray-700"></span></p>
+                <p class="text-sm md:text-base mb-2"><strong>{{ __('messages.Email:') }}</strong> <span id="modalEmail" class="text-gray-700"></span></p>
+                <p class="text-sm md:text-base mb-2"><strong>{{ __('messages.City:') }}</strong> <span id="modalCity" class="text-gray-700"></span></p>
             </div>
         
            
             <div class="text-left mr-3 ">
-                <p class="text-sm md:text-base mb-2"><strong>Age:</strong> <span id="modalAge" class="text-gray-700"></span></p>
+                <p class="text-sm md:text-base mb-2"><strong>{{ __('messages.Age') }}:</strong> <span id="modalAge" class="text-gray-700"></span></p>
                 <p class="text-sm md:text-base mb-2">
-                    <strong>Rating:</strong>
+                    <strong>{{ __('messages.Rating') }}:</strong>
                     <span id="modalRating" class="text-gray-700"></span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5 text-yellow-500 -mt-1" fill="currentColor" viewBox="0 0 24 24" stroke="none">
                       <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
@@ -107,7 +107,7 @@
             resultsContainer.appendChild(userDiv);
         });
     } else {
-        resultsContainer.innerHTML = "<p class='p-1.5 text-gray-900 text-sm'>No users found</p>";
+        resultsContainer.innerHTML = "<p class='p-1.5 text-gray-900 text-sm'>{{ __('messages.No users found') }}</p>";
     }
 }
 
@@ -118,7 +118,7 @@ document.getElementById("modalUserName").textContent = `${user.name} ${user.last
 document.getElementById("modalCity").textContent = user.city || "N/A";
 document.getElementById("modalRating").textContent = user.average_rating || "N/A";
 document.getElementById("modalEmail").textContent = user.email || "N/A";
-document.getElementById("modalAge").textContent = user.age ? `${user.age} years` : "N/A";
+document.getElementById("modalAge").textContent = user.age ? `${user.age} {{ __('messages.years') }}` : "N/A";
 
 const userPhoto = document.getElementById("modalUserPhoto");
 
