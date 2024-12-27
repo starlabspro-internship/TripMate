@@ -18,8 +18,7 @@ use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PassengerRatingController;
 use App\Http\Controllers\SOSController;
 use App\Http\Controllers\SearchUserController;
-
-
+use Illuminate\Support\Facades\Artisan;
 
 
 Auth::routes(['verify' => true]);
@@ -150,8 +149,38 @@ Route::get('language/{locale}', function($locale){
     return redirect()->back();
 })->name('localization');
 
+
 Route::get('/cities-with-user-count', [UserVerifyController::class, 'getCitiesWithUserCount'])->middleware('auth');
 
+
 Route::get('/search-users', [SearchUserController::class, 'search'])->name('users.search');
+
+Route::get('/clear-cache-and-seed', function () {
+    
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    
+    
+    Artisan::call('migrate:fresh', [
+        '--force' => true,
+    ]);
+
+    
+    Artisan::call('db:seed', [
+        '--force' => true, 
+    ]);
+    
+    
+    Artisan::call('db:seed');
+
+ Artisan::call('queue:work', [
+        '--queue' => 'sos-emails,admin-emails,emails',
+    ]);
+
+    return 'Caches cleared and database seeded successfully!';
+});
+
 
 require __DIR__.'/auth.php';

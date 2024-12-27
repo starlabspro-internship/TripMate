@@ -1,0 +1,43 @@
+name: Auto Deploy Laravel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY_TRIP_MATE }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        echo -e "Host 188.245.97.198\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+        
+    - name: Deploy to Server
+      run: |
+        ssh root@188.245.97.198 << 'EOF'
+        cd /var/www/TripMate
+        git pull origin main
+        composer install --optimize-autoloader --no-dev
+        php artisan migrate --force
+        php artisan db:seed --force
+        npm install
+        npm run build
+        npm update
+        composer update
+        php artisan cache:clear
+        php artisan config:clear
+        php artisan route:clear
+        php artisan queue:restart
+        nohup php artisan queue:work --queue=emails,admin-emails > /var/www/TripMate/queue.log 2>&1 &
+        EOF
+
+    - name: Cleanup
+      run: rm -f ~/.ssh/id_rsa
