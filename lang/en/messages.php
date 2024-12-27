@@ -375,6 +375,17 @@ return [
 'Dec' => 'Dec',
 
 
+'Efficiently oversee and manage your platform with precision and control!' => 'Efficiently oversee and manage your platform with precision and control!' ,
+'Location:' => 'Location:',
+'View Location' => 'View Location',
+
+
+
+'Search users' => 'Search users', 
+'Age' => 'Age',
+'Rating' => 'Rating',
+'No users found' => 'No users found',
+'years' => 'years',
 
 
 

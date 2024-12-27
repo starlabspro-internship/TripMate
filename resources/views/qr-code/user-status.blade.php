@@ -1,16 +1,16 @@
 <x-app-layout>
-    <div class="flex flex-col border ring-4 ring-blue-500 bg-gradient-to-br from-purple-100 via-blue-100 to-indigo-100 border-blue-500 m-[30px] md:mx-[200px] p-6 rounded-xl shadow-2xl">
-        <h1 class="text-3xl font-extrabold text-center text-blue-800 mb-4">{{ __('messages.User Status') }}</h1>
+    <div class="flex flex-col border ring-4 ring-customgreen-300 bg-customgreen-100 border-customgreen-300 m-[30px] md:mx-[200px] p-6 rounded-xl shadow-2xl">
+        <h1 class="text-3xl font-extrabold text-center text-customgreen-500 mb-4">{{ ('messages.User Status') }}</h1>
         <div class="mt-4 flex justify-center items-center">
-            <img 
-                src="{{ $user->image }}" 
-                alt="Profile picture of {{ $user->name }}" 
+            <img
+                src="{{ $user->image }}"
+                alt="Profile picture of {{ $user->name }}"
                 class="w-[230px] h-[230px] shadow-2xl rounded-full border-4 border-gray-300"
             />
         </div>
         <div class="mt-6 flex flex-col items-center space-y-4">
             <h2 class="text-lg text-gray-800 font-semibold">
-                <b>{{ __('messages.Name:') }}</b><span class="capitalize"> {{ $user->name }} {{$user->lastname}} </span> 
+                <b>{{ ('messages.Name:') }}</b><span class="capitalize"> {{ $user->name }} {{$user->lastname}} </span>
                 @if ($user->verification_status === 'verified')
                     <svg xmlns="http://www.w3.org/2000/svg" fill="green"
                         class="w-5 h-5 text-green-500 inline ml-2" viewBox="0 0 24 24">
@@ -21,8 +21,8 @@
             </h2>
             <div class="">
                 <h3 class="text-md text-gray-700"><b>Email:</b> {{ $user->email }}</h3>
-                <h3 class="text-md text-gray-700"><b>{{ __('messages.Phone:') }}</b> {{ $user->phone }}</h3>
-                <h3 class="text-md text-gray-700"><b>{{ __('messages.City:') }}</b><span class="capitalize"> {{ $user->city }} </span></h3>
+                <h3 class="text-md text-gray-700"><b>{{ ('messages.Phone:') }}</b> {{ $user->phone }}</h3>
+                <h3 class="text-md text-gray-700"><b>{{ ('messages.City:') }}</b><span class="capitalize"> {{ $user->city }} </span></h3>
                 <h3 class="text-md text-gray-700"><b>{{ __('messages.Gender:') }}</b><span class="capitalize"> {{ $user->gender }} </span></h3>
             </div>
         </div>

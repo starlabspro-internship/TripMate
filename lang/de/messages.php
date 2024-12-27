@@ -25,7 +25,7 @@ return [
     'To:' => 'Nach:',
     'Select a date' => 'Wählen Sie ein Datum',
     'Filter' => 'Filter',
-    'Reset' => 'Zurücksetzen',
+    'Reset' => 'Rücksetzen',
     'Edit' => 'Bearbeiten',
     'Start' => 'Start',
     'Trip Failed' => 'Fahrt fehlgeschlagen',
@@ -191,5 +191,14 @@ return [
 'Nov' => 'Nov',
 'Dec' => 'Dez',
 
+'Efficiently oversee and manage your platform with precision and control!' => 'Überwachen und verwalten Sie Ihre Plattform effizient mit Präzision und Kontrolle!',
+'Location:' => 'Ort:',
+'View Location' => 'Ort anzeigen',
 
+
+'Search users' => 'Benutzer suchen',
+'Age' => 'Alter',
+'Rating' => 'Bewertung',
+'No users found' => 'Keine Benutzer gefunden',
+'years' => 'Jahre',
 ];

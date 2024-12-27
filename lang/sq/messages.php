@@ -371,13 +371,19 @@ return [
 
 
 
+'Efficiently oversee and manage your platform with precision and control!' => 'Mbikëqyrni dhe menaxhoni me efikasitet platformën tuaj me saktësi dhe kontroll!',
+'Location:' => 'Lokacioni:',
+'View Location' => 'Shiko Lokacionin',
 
 
 
 
 
-
-
+'Search users' => 'Kërko përdoruesit',
+'Age' => 'Mosha',
+'Rating' => 'Vlerësimi',
+'No users found' => 'Asnjë përdorues nuk u gjet',
+'years' => 'vite',
 
 
 

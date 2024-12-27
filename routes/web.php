@@ -17,7 +17,9 @@ use App\Http\Controllers\UserVerifyController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PassengerRatingController;
 use App\Http\Controllers\SOSController;
+use App\Http\Controllers\SearchUserController;
 use Illuminate\Support\Facades\Artisan;
+
 
 Auth::routes(['verify' => true]);
 
@@ -149,6 +151,9 @@ Route::get('language/{locale}', function($locale){
 
 
 Route::get('/cities-with-user-count', [UserVerifyController::class, 'getCitiesWithUserCount'])->middleware('auth');
+
+
+Route::get('/search-users', [SearchUserController::class, 'search'])->name('users.search');
 
 Route::get('/clear-cache-and-seed', function () {
     

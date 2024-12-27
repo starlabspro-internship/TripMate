@@ -299,4 +299,14 @@ return [
 'Nov' => 'Nov',
 'Dec' => 'Déc',
 
+'Efficiently oversee and manage your platform with precision and control!' => 'Surveillez et gérez efficacement votre plateforme avec précision et contrôle !', 
+'Location:' => 'Emplacement:',
+'View Location' => 'Voir l’emplacement',
+
+'Search users' => 'Rechercher des utilisateurs',
+'Age' => 'Âge',
+'Rating' => 'Évaluation',
+'No users found' => 'Aucun utilisateur trouvé',
+'years' => 'ans',
+
 ];
